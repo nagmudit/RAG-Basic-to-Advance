@@ -2,7 +2,7 @@
 
 **Architecture:** 12 parts → 28 modules → 57 chapters. Chapters are numbered globally so every prerequisite and case study can cite an unambiguous target. Each chapter has an objective, prerequisites, a lab, a planned visual, a trade-off, a misconception, and the capability it unlocks. The nested `Section → Topic → micro-concepts` lines define minimum teaching depth; chapter writing may add sections but cannot quietly replace mechanisms with labels.
 
-The core question evolves throughout: **Which evidence enters the LLM's context, through what algorithm and authorization path, and with what measured risk of omission or error?** Every part ends with a cumulative quiz, an architecture sketch from memory, and a comparison against the prior engine version. Depth labels follow [TEACHING_PHILOSOPHY.md](TEACHING_PHILOSOPHY.md). The first judged retriever appears in Chapter 09; Core RAG Evaluation is taught in Chapters 30–33 before specialized and adaptive architectures.
+The core question evolves throughout: **Which evidence enters the LLM's context, through what algorithm and authorization path, and with what measured risk of omission or error?** Every part ends with a cumulative quiz, an architecture sketch from memory, and a comparison against the prior engine version. Depth labels follow [TEACHING_PHILOSOPHY.md](TEACHING_PHILOSOPHY.md). The first judged retriever appears in Chapter 09; Core RAG Evaluation is taught in Chapters 30–33 before specialized and adaptive architectures. Every written chapter follows the [completion checklist](CHAPTER_COMPLETION_CHECKLIST.md), [visual system](visuals/VISUAL_ASSET_CONTRACT.md), [evaluation/experiment contract](evaluation/EVALUATION_EXPERIMENT_CONTRACT.md) and evolving [observability contract](observability/OBSERVABILITY_CONTRACT.md).
 
 ## Part I — Orientation and prerequisites [FOUNDATIONAL]
 
@@ -24,8 +24,8 @@ The core question evolves throughout: **Which evidence enters the LLM's context,
 - **Objective:** Implement `documents → segment → search → prompt → answer` and observe a failure at each boundary.
 - **Prerequisites:** Chapter 01; a short in-lab primer teaches the Python lists and dictionaries used here.
 - **Section 1 — Index and query time.** Topic: source representation; micro-concepts: document IDs, text spans, crude splitting, token overlap score. Topic: retrieval; micro-concepts: scoring every span, top-k selection, deterministic tie breaking.
-- **Section 2 — Evidence in the prompt.** Topic: context assembly; micro-concepts: source labels, token budget estimate, quoted evidence, explicit unsupported-answer behavior. Topic: tracing; micro-concepts: logging candidate scores and final context.
-- **Lab:** Implement a 10-document local engine with a stub generator, then optionally connect an LLM.
+- **Section 2 — Evidence in the prompt.** Topic: context assembly; micro-concepts: source labels, token budget estimate, quoted evidence, explicit unsupported-answer behavior. Topic: minimal telemetry; micro-concepts: request/query IDs, source snapshot, candidate IDs and scores, selected context IDs, wall-clock latency, status, redacted structured log.
+- **Lab:** Implement a 10-document local engine with a stub generator and one structured request record, then optionally connect an LLM.
 - **Visual:** Separate index-time and query-time sequence diagrams.
 - **Trade-off / misconception:** A prompt containing a retrieved passage may still yield an unsupported answer.
 - **Unlocks:** Concrete failures that motivate indexing, ranking, and evaluation.
@@ -109,7 +109,7 @@ The core question evolves throughout: **Which evidence enters the LLM's context,
 - **Objective:** Measure whether the right documents appear and in what order.
 - **Prerequisites:** Chapters 05–07; basic averages from Chapter 03.
 - **Section 1 — Defining relevance.** Topic: qrels; micro-concepts: query sets, document vs passage relevance, binary and graded labels, pooling, assessor disagreement, incomplete judgments, leakage.
-- **Section 2 — Ranking measures.** Topic: set and rank measures; micro-concepts: Precision@K, Recall@K, Hit Rate, F1, reciprocal rank and MRR, average precision and MAP, DCG and NDCG, cutoffs, ties, macro vs micro averaging.
+- **Section 2 — Ranking measures.** Topic: set and rank measures; micro-concepts: Precision@K, Recall@K, Hit Rate, F1, reciprocal rank and MRR, average precision and MAP, DCG and NDCG, cutoffs, ties, macro vs micro averaging; report query-set version, measurement window and p50/p95 retrieval latency alongside judged quality.
 - **Lab:** Hand-calculate metrics for three rankings and implement a small evaluation harness.
 - **Visual:** Ranked lists with relevance labels and cumulative gain.
 - **Trade-off / misconception:** A high retrieval score does not establish answer faithfulness; unjudged documents are not necessarily irrelevant.
@@ -370,7 +370,7 @@ The core question evolves throughout: **Which evidence enters the LLM's context,
 - **Objective:** Build a defensible relevance dataset and distinguish candidate coverage from final ranking quality.
 - **Prerequisites:** Chapters 09, 20, and 25–29.
 - **Section 1 — Dataset construction.** Topic: judgments; micro-concepts: qrels recap, golden sets, human vs synthetic questions, hard negatives, query slices, passage/document labels, graded relevance, pooled judgments, assessor agreement, temporal and ACL-specific cases.
-- **Section 2 — Analysis.** Topic: metrics; micro-concepts: Recall@K at each retrieval stage, Precision@K, Hit Rate, MRR, MAP, NDCG, context recall, context precision, evidence coverage, diversity, per-slice failures, ANN recall vs relevance recall. Confidence intervals return in Chapter 48.
+- **Section 2 — Analysis.** Topic: metrics; micro-concepts: Recall@K at each retrieval stage, Precision@K, Hit Rate, MRR, MAP, NDCG, context recall, context precision, evidence coverage, diversity, per-slice failures, ANN recall vs relevance recall, dataset and rubric version in every reported quality series. Confidence intervals return in Chapter 48.
 - **Lab:** Build a small golden set and implement a reproducible retrieval/context metric harness; report recall lost at parsing, first stage, filter, fusion, reranking and packing.
 - **Visual:** Stage-wise recall waterfall.
 - **Trade-off / misconception:** One aggregate metric can hide catastrophic exact-ID, rare-language, or permission failures.
@@ -381,9 +381,9 @@ The core question evolves throughout: **Which evidence enters the LLM's context,
 - **Objective:** Evaluate answer correctness, evidence support and end-to-end utility separately from retrieval quality.
 - **Prerequisites:** Chapters 28–30.
 - **Section 1 — Answer criteria.** Topic: human and automated labels; micro-concepts: factual correctness, completeness, relevance, faithfulness, citation accuracy, abstention, unsupported-claim rate, contradictory sources.
-- **Section 2 — Evaluation operations.** Topic: methods; micro-concepts: blind human review, LLM-as-judge basics and rubric, position and model bias, calibration against humans, basic regression suite and answerability tests. Online A/B, availability and production dashboards return in Chapter 48. Tool examples (RAGAS, TruLens, DeepEval, LangSmith) are mapped to metrics, not used as definitions.
+- **Section 2 — Evaluation operations.** Topic: methods; micro-concepts: blind human review, LLM-as-judge basics and rubric, position and model bias, calibration against humans, basic regression suite, answerability tests and sampled online judgments. Online A/B and release gates return in Chapter 48; operational dashboards and SLIs/SLOs mature in Chapter 52. Tool examples (RAGAS, TruLens, DeepEval, LangSmith) are mapped to metrics, not used as definitions.
 - **Lab:** Extend the Chapter 30 harness with answer correctness, faithfulness, citation support and abstention checks; grade 30 answers and inspect human vs model-judge disagreements.
-- **Visual:** Three dashboards: retrieval, answer, and system behavior.
+- **Visual:** Three diagnostic scorecards: retrieval, answer, and request behavior; production dashboard construction returns in Chapter 52.
 - **Trade-off / misconception:** LLM judge scores are measurements with bias, not ground truth.
 - **Unlocks:** Systematic debugging and experiment design.
 
@@ -393,9 +393,9 @@ The core question evolves throughout: **Which evidence enters the LLM's context,
 
 - **Objective:** Locate failures at the earliest responsible stage using a reproducible trace.
 - **Prerequisites:** Chapters 19–31.
-- **Section 1 — Trace anatomy.** Topic: stages; micro-concepts: missing source, parse loss, wrong boundary, embedding mismatch, ANN miss, faulty filter, fusion failure, reranker error, truncation, prompt noncompliance, unsupported answer.
-- **Section 2 — Diagnostic procedure.** Topic: controlled probes; micro-concepts: exact-search oracle, disable filters, inspect candidates and scores, swap context with gold evidence, replay input, traces with redacted content, minimal failure case. Production alert thresholds return in Chapter 48.
-- **Lab:** Diagnose injected faults across at least five stages; provide minimal reproduction and a proposed fix.
+- **Section 1 — Trace anatomy.** Topic: stages; micro-concepts: request/trace/span IDs, parent-child and parallel spans, correlation with logs/events, candidate vs evidence IDs, source/index/prompt/model versions, missing source, parse loss, wrong boundary, embedding mismatch, ANN miss, faulty filter, fusion failure, reranker error, truncation, prompt noncompliance and unsupported answer.
+- **Section 2 — Diagnostic procedure.** Topic: controlled probes; micro-concepts: exact-search oracle, authorization-safe filter probe, inspect candidates and scores, swap context with gold evidence, replay input, redaction/retention, minimal failure case, first failing stage. Production alert thresholds return in Chapter 48.
+- **Lab:** Implement a minimal nested request trace and diagnose injected faults across at least five stages; provide minimal reproduction and a proposed fix.
 - **Visual:** Decision tree from failed answer to first failing stage.
 - **Trade-off / misconception:** Prompt edits cannot fix a document that was never ingested or authorized.
 - **Unlocks:** Reliable regression and incident handling.
@@ -453,7 +453,8 @@ The core question evolves throughout: **Which evidence enters the LLM's context,
 #### Chapter 37 — Agentic retrieval and tool-orchestrated RAG
 
 - **Objective:** Design a reproducible bounded policy that chooses the next evidence action from observations.
-- **Prerequisites:** Chapters 23–24, 29–36; tool APIs are introduced here and detailed by source in Chapters 40–41.
+- **Prerequisites:** Chapters 23–24 and 29–36.
+- **Later connection:** Tool APIs are introduced here; source-specific APIs are detailed in Chapters 40–41.
 - **Section 1 — Control model.** Topic: policy and state; micro-concepts: deterministic pipeline vs dynamic policy, state, observations, actions, tools, source/tool selection, query planning, search loops, evidence inspection, information-gap detection, reflection and verification
 - **Section 2 — Operational bounds.** Topic: termination and failure; micro-concepts: step/token/monetary budgets, loop detection, partial success, deterministic guardrails, failure recovery, state machines/graphs, trace replay, reproducibility and escalation to a human
 - **Lab:** Implement a bounded tool-choice loop over two local retrievers, with explicit stop rules, loop detection, action trace and budget ledger.
@@ -594,8 +595,8 @@ The core question evolves throughout: **Which evidence enters the LLM's context,
 - **Objective:** Test whether a new technique actually improves the intended workload.
 - **Prerequisites:** Chapters 09, 25–27, and 30–33.
 - **Section 1 — Study design.** Topic: controls; micro-concepts: frozen corpus and qrels, one-variable ablations, paired queries, baselines, sampling, confidence intervals, multiple comparison caution.
-- **Section 2 — Deployment evidence.** Topic: gates; micro-concepts: confidence intervals, slice-level acceptance criteria, p95 latency and cost budgets, canary, online A/B, rollback threshold, corpus drift vs retriever drift, regression gates, monitoring dashboards, incident diagnosis and error budget.
-- **Lab:** Ablate chunk size, hybrid weight, reranking, and context budget on the same benchmark.
+- **Section 2 — Deployment evidence.** Topic: gates; micro-concepts: confidence intervals, slice-level quality/latency/cost/security acceptance criteria, canary, online A/B, rollback threshold, corpus/query/language vs retriever drift, offline regression gate → deployment → online monitoring → reviewed new cases, SLIs/SLOs and error-budget intuition. Separate offline judgments from online service metrics; dashboards are implemented in Chapter 52.
+- **Lab:** Ablate chunk size, hybrid weight, reranking, and context budget on the same benchmark; build a versioned release-gate report with a canary/rollback rule and one drift investigation.
 - **Visual:** Pareto frontier of quality, latency, and cost.
 - **Trade-off / misconception:** A benchmark win under one corpus or model is not a universal architecture rule.
 - **Unlocks:** Production decisions based on evidence.
@@ -605,7 +606,7 @@ The core question evolves throughout: **Which evidence enters the LLM's context,
 - **Objective:** Prevent unauthorized retrieval and instruction execution from source content.
 - **Prerequisites:** Chapters 04, 21–22, 29, 32, and 41.
 - **Section 1 — Access boundaries.** Topic: identity and authorization; micro-concepts: tenant identity, document/row ACL, RBAC and attribute policies, permission-aware prefiltering, tenant-safe query/embedding/semantic cache keys, semantic-cache false matches, deletion and audit logs, least privilege.
-- **Section 2 — Adversarial content.** Topic: threats; micro-concepts: indirect prompt injection, poisoned documents, forged citations, tool-output manipulation, PII and secrets, exfiltration paths, source trust tiers, sandboxed tool execution.
+- **Section 2 — Adversarial content.** Topic: threats; micro-concepts: indirect prompt injection, poisoned documents, forged citations, tool-output manipulation, PII and secrets, exfiltration paths, source trust tiers, sandboxed tool execution, protected security-event logs and trace redaction.
 - **Lab:** Run cross-tenant and malicious-document tests; assert no unauthorized text reaches prompt, log, or cache.
 - **Visual:** Trust boundaries around retrievers, tools, context, and model.
 - **Trade-off / misconception:** Prompt instructions alone cannot enforce access control.
@@ -618,8 +619,8 @@ The core question evolves throughout: **Which evidence enters the LLM's context,
 - **Objective:** Operate parsing, embedding, and indexing as recoverable services.
 - **Prerequisites:** Chapters 18–22 and 49.
 - **Section 1 — Data plane.** Topic: pipeline; micro-concepts: source connector, queue, worker, batching, retries, dead-letter queue, idempotency, checkpoint, validation, throughput and backpressure.
-- **Section 2 — Lifecycle.** Topic: versioned indexes; micro-concepts: CDC, dual-write limits, snapshot + replay, model migration, alias cutover, consistency windows, backup, restore and deletion propagation.
-- **Lab:** Simulate duplicate events and worker failure; verify exactly one visible current document version.
+- **Section 2 — Lifecycle.** Topic: versioned indexes; micro-concepts: CDC, dual-write limits, snapshot + replay, model migration, alias cutover, consistency windows, backup, restore and deletion propagation. Topic: ingestion observability; micro-concepts: correlated change-to-visibility spans, queue depth/lag, parse/OCR/embedding failures, indexing throughput, duplicate rate, reindex progress, freshness lag and deletion delay.
+- **Lab:** Simulate duplicate events and worker failure; verify exactly one visible current document version and trace the source change through the queue, parser, embedder and searchable index.
 - **Visual:** Queue and worker pipeline with failure and recovery paths.
 - **Trade-off / misconception:** “Exactly once” is usually an application-level outcome built from idempotency, not a free queue property.
 - **Unlocks:** Distributed serving and scale estimates.
@@ -629,7 +630,7 @@ The core question evolves throughout: **Which evidence enters the LLM's context,
 - **Objective:** Plan memory, storage, routing, and latency for several corpus scales.
 - **Prerequisites:** Chapters 15–18, 21, 48, and 50.
 - **Section 1 — Capacity.** Topic: scale points; micro-concepts: 1k, 100k, 10m and 1b vectors, raw-vector bytes, graph overhead, PQ compression, index build time, RAM/SSD/GPU placement, CPU vs GPU search.
-- **Section 2 — Distributed query.** Topic: serving; micro-concepts: partition and shard selection, fan-out, replicas, shard oversampling, distributed top-k correctness, score comparability across shards and indexes, filter locality, multi-tenancy, caching, consistency, tail latency, throughput and recovery.
+- **Section 2 — Distributed query.** Topic: serving; micro-concepts: partition and shard selection, fan-out, replicas, shard oversampling, distributed top-k correctness, score comparability across shards and indexes, filter locality, multi-tenancy, caching, consistency, correlated shard/merge spans, partial results, p99 tail latency, throughput and recovery.
 - **Lab:** Write a capacity and p95 latency budget for 20m documents with ACLs and hourly freshness.
 - **Visual:** Coordinator → routed shards → partial top-k → merge → rerank.
 - **Trade-off / misconception:** More shards can reduce per-shard work while increasing fan-out and tail latency.
@@ -641,9 +642,9 @@ The core question evolves throughout: **Which evidence enters the LLM's context,
 
 - **Objective:** Keep the platform within quality, service, and cost targets through change.
 - **Prerequisites:** Chapters 30–33 and 48–51.
-- **Section 1 — Operations.** Topic: service design; micro-concepts: APIs, UI, rate limits, retries, circuit breakers, fallbacks, SLOs, p95/p99 traces, logs, dashboards, alerts, incident review and disaster recovery.
-- **Section 2 — Economics.** Topic: cost model; micro-concepts: source parsing, embedding, index storage, query fan-out, ANN compute, reranker, generation tokens, context size, cache hit rate, amortized refresh, per-tenant metering.
-- **Lab:** Build a per-1,000-query cost sheet and failure-mode runbook with rollback triggers.
+- **Section 1 — Operations and telemetry implementation.** Topic: service design; micro-concepts: APIs, UI, rate limits, retries, circuit breakers, fallbacks, recovery. Topic: observability; micro-concepts: structured logs vs counters/gauges/histograms vs traces/spans vs quality evaluations vs lifecycle events, trace/context propagation, redaction, sampling/retention, label cardinality, stage histograms, p50/p90/p95/p99 and critical-path/fan-out latency, SLIs/SLOs/SLAs/error budgets, alert thresholds, version manifests, drift, dashboards and incident review. Implement minimal telemetry directly before mapping to current OpenTelemetry, Prometheus/Grafana and RAG tooling documentation.
+- **Section 2 — Economics.** Topic: cost ledger; micro-concepts: request tokens/calls, rewrite, search, rerank, generation and verification cost; source parsing/OCR, embeddings, index/storage/network, utilization, cache savings, amortized refresh, per-tenant and per-strategy metering, cost/query and cost/successful task.
+- **Lab:** Instrument query and ingest traces, stage metrics, lifecycle/security events and a cost ledger; build a working local or deployable dashboard with latency, quality, freshness, error, cost and security panels; fire an alert, trace one incident to cause, and show recovery. Produce a per-1,000-query cost sheet and runbook with rollback triggers.
 - **Visual:** Cost and latency budget alongside service dependencies.
 - **Trade-off / misconception:** The cheapest per-query component may increase total cost by lowering cacheability or answer quality.
 - **Unlocks:** Capstone build and architecture critique.
@@ -694,8 +695,8 @@ The core question evolves throughout: **Which evidence enters the LLM's context,
 - **Objective:** Integrate the complete course into an evaluated, permission-safe, multi-source service.
 - **Prerequisites:** Chapters 01–55 and the project milestones.
 - **Section 1 — Required platform.** Topic: implementation; micro-concepts: multiple source adapters, parsing/chunking/embeddings, BM25+dense+hybrid, filters/reranking, conversation/query rewriting, multi-hop, web and graph branch, citations, evaluation, caching, APIs/UI, deployment.
-- **Section 2 — Engineering defense.** Topic: evidence; micro-concepts: ACL tests, incremental updates/deletions, traces, p95 budget, per-query cost, backup/restore, failure injection, ablation, architecture decision records.
-- **Lab:** Deliver a working service, reproducible benchmark, threat model, runbook, and design review.
+- **Section 2 — Engineering defense.** Topic: evidence; micro-concepts: ACL tests, incremental updates/deletions, correlated request and ingest traces, p50/p95/p99 budget, quality/system/economics/security dashboards, SLI/SLO and error-budget report, stage/tenant cost ledger, drift and regression gates, backup/restore, failure injection, ablation, architecture decision records.
+- **Lab:** Deliver a working service and dashboard, reproducible benchmark, explicit workload-specific retrieval/generation/latency/reliability/freshness/security/cost gates, threat model, incident runbook, and design review; document any unmet gate.
 - **Visual:** Full reference architecture annotated with actual deployed components.
 - **Trade-off / misconception:** Feature completion without measured quality and safe operation does not satisfy the capstone.
 - **Unlocks:** Research comparison and independent design work.
@@ -713,7 +714,7 @@ The core question evolves throughout: **Which evidence enters the LLM's context,
 
 ## Assessment and content continuity
 
-Every written chapter ends with “You understand this chapter if you can…” and observable abilities: explain the mechanism, draw index-time and query-time flow, calculate or implement a small instance, compare alternatives, and diagnose a failure. Separate solution files are written with chapters. Core evaluation in Chapters 30–33 supplies the harness for every later architecture; Chapters 48 and 52 add production experiments, dashboards, latency, cost, and incident response. The final exam mixes numerical work, code, debugging, design, paper interpretation, architecture critique, and teaching.
+Every written chapter ends with “You understand this chapter if you can…” and observable abilities: explain the mechanism, draw index-time and query-time flow, calculate or implement a small instance, compare alternatives, and diagnose a failure. Separate solution files are written with chapters. Core evaluation in Chapters 30–33 supplies the harness for every later architecture; Chapters 48 and 52 add production experiments, an implemented dashboard, latency, cost, and incident response. Each chapter applies the visual audit and completion checklist; substantive figures retain editable source. The final exam mixes numerical work, code, debugging, design, paper interpretation, architecture critique, and teaching.
 
 ## Deep-decomposition checkpoints
 
@@ -729,7 +730,7 @@ Every written chapter ends with “You understand this chapter if you can…” 
 | Dynamic retrieval (35–37) | information gap → action → observation → state update → stop | Trigger false positives/negatives, loop and budget exhaustion |
 | Graph/web/SQL (38–41) | source semantics → query route → evidence/provenance → answer | False graph edge, stale web page, invalid aggregation |
 | Multimodal and code (42–45) | page/region or symbol → candidate → expansion → grounded citation | OCR order error, chart units, wrong commit, partial source |
-| Production (49–52) | identity → idempotent update → shard route → answer trace → recovery | Tenant leak, stale delete, filtered recall, p95 budget |
+| Production (49–52) | identity → idempotent update → ingest trace → shard route → answer trace → dashboard/alert → recovery | Tenant leak, stale delete, filtered recall, p95/p99, freshness and cost budget |
 
 ## Phase 1.5 audit outcome
 

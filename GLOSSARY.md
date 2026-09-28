@@ -1,4 +1,4 @@
-# Terminology register (Phase 1.5)
+# Terminology register (Phase 1.6)
 
 The glossary will grow with chapter writing. Each future entry will include: **preferred term**, plain-language definition, formal definition or formula if useful, first teaching chapter, related/contrasted terms, implementation examples, and naming caveats. This initial register fixes high-risk distinctions and assigns the remaining terms to families.
 
@@ -35,6 +35,23 @@ The glossary will grow with chapter writing. Each future entry will include: **p
 | Agentic retrieval | A bounded policy that observes evidence and chooses subsequent actions dynamically | 37 | Fixed multi-step tool chain |
 | Document intelligence | Extracting and indexing layout and structure from document pages | 42 | OCR text alone |
 | Federated retrieval | Coordinating retrieval across distinct corpora or engines | 45 | Sharding one homogeneous index |
+| Telemetry | Recorded signals about a system's execution and state | 02; deep treatment 52 | Quality judgment alone |
+| Observability | Ability to infer behavior and failure causes from emitted evidence | 32; deep treatment 52 | A dashboard screenshot |
+| Structured log | Searchable discrete diagnostic record with named fields and correlation ID | 02; deep treatment 52 | Aggregated metric |
+| Metric | Aggregated numeric measurement over a defined interval and labels | 09; deep treatment 52 | One request log or judged case |
+| Trace | Causally linked record of one request or ingest operation | 02; deep treatment 32, 52 | Aggregate metric |
+| Span | Timed operation within a trace with parent/link, attributes and status | 32; deep treatment 52 | Whole trace |
+| Event | Durable named state transition, such as a delete or index cutover | 22; deep treatment 50 | Routine diagnostic log |
+| SLI | Service-level indicator: a defined measured reliability quantity | 48; deep treatment 52 | Its target, the SLO |
+| SLO | Service-level objective: target for an SLI over a window | 48; deep treatment 52 | Contractual SLA |
+| SLA | Service-level agreement: external service commitment and consequences | 52 | Internal SLO |
+| Error budget | Allowed number or fraction of SLO misses within its window | 48; deep treatment 52 | Error count without denominator |
+| Drift | Sustained change in data, query mix, system behavior or quality relative to a specified baseline | 48 | Sampling noise or a single regression |
+| p50 / p95 / p99 | 50th/95th/99th percentile of a declared latency sample and window | 09; deep treatment 52 | Mean latency or sum of stage percentiles |
+| Tail latency | Slow end of a latency distribution, often examined at p95 or p99 | 48; deep treatment 52 | Typical request latency |
+| Metric cardinality | Number of distinct label combinations in a time series family | 52 | Number of requests |
+| Sampling | Selection of a subset of traces, requests or judgments under a stated rule | 30; deep treatment 48, 52 | Random missing data with unknown bias |
+| Cost ledger | Versioned record and allocation of request, ingestion, storage and network cost | 52 | Token count alone |
 
 ## Taxonomy for future entries
 
@@ -46,6 +63,7 @@ The glossary will grow with chapter writing. Each future entry will include: **p
 - **Core evaluation (30–33):** qrels, retrieval/context recall, context precision, answer correctness, faithfulness, citation support, benchmark transfer, LLM-as-judge and failure localization.
 - **Specialized retrieval (34–47):** dialogue state, multi-hop, adaptive/active/corrective, Self-RAG, agentic policy, graph/community, web, SQL, document layout, multimodal embedding, code symbol graph, federation.
 - **Production and research (48–57):** p95/SLO, corpus/retriever drift, prompt injection, poisoning, cross-tenant leak, tenant-safe/semantic caches, distributed top-k, cost per query, REALM, FiD, RETRO, Atlas.
+- **Telemetry and operations (02, 09, 30–32, 48, 50–52):** correlation/trace/span ID, event, counter, gauge, histogram, log level, redaction, label cardinality, trace sampling, critical path, SLI/SLO/SLA, error budget, cost ledger, alert and incident.
 
 ## Naming notes
 

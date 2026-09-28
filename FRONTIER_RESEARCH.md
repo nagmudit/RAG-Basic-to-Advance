@@ -17,7 +17,7 @@
 
 ## Promotion gate
 
-Move a method into stable core only when (1) its mechanism is genuinely distinct from existing chapters, (2) original and ideally independent evidence compares against strong lexical, dense, hybrid or deterministic baselines as appropriate, (3) datasets and metrics match a meaningful workload, (4) latency, cost, index/update and security effects are measured, and (5) learners can reproduce a small version without relying on one vendor API. A negative or mixed replication stays in this file with its conditions.
+Move a method into stable core only when (1) its mechanism is genuinely distinct from existing chapters, (2) original and ideally independent evidence compares against strong lexical, dense, hybrid or deterministic baselines as appropriate, (3) datasets and metrics match a meaningful workload, (4) latency, cost, index/update and security effects are measured or their absence is stated, (5) the mechanism can be observed at the responsible retrieval/context/generation stage, and (6) learners can reproduce a small version without relying on one vendor API. Apply the [experiment contract](evaluation/EVALUATION_EXPERIMENT_CONTRACT.md) to any promotion test. A negative or mixed replication stays in this file with its conditions.
 
 ## Maintenance record template
 

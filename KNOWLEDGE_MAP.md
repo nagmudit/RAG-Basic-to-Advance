@@ -52,6 +52,26 @@ flowchart LR
 | Graph | nodes/edges/properties → BFS/DFS/path → entity resolution → relation provenance → local neighborhood → communities/summaries → global questions | Graph extraction errors become invisible “facts.” |
 | Structured | keys/joins/filters → aggregate semantics → schema selection → validated read-only query → row permissions → result provenance | Embeddings are asked to perform exact database operations. |
 | Production | stable IDs/versions → idempotent events → queues/workers → dual index migration → shard routing/replicas → observability/cost → recovery | Freshness, deletes, and authorization cannot be guaranteed. |
+| Observability | request → correlated trace → stage logs/metrics → versioned quality evaluations → dashboard → alert → incident diagnosis | A failure is visible only as a bad answer or a generic timeout. |
+| Improvement loop | offline evaluation → regression gate → canary/deployment → online monitoring → drift detection → reviewed new offline dataset | A frozen benchmark stays green while the real workload deteriorates. |
+
+```mermaid
+flowchart LR
+  Req[Request] --> Trace[Correlated trace]
+  Trace --> Stage[Stage metrics and redacted logs]
+  Stage --> Quality[Versioned quality evaluations]
+  Quality --> Dash[Dashboard]
+  Dash --> Alert[Alert]
+  Alert --> Incident[Incident diagnosis]
+  Offline[Offline evaluation] --> Gate[Regression gate]
+  Gate --> Deploy[Canary and deployment]
+  Deploy --> Online[Online monitoring]
+  Online --> Drift[Drift detection]
+  Drift --> NewData[Reviewed new offline dataset]
+  NewData --> Offline
+```
+
+The telemetry branch starts with a single correlated request in Chapter 02 and grows into production operations in Chapters 48–52. An online alert does not itself establish answer quality; reviewed cases feed the offline loop. See the [observability contract](observability/OBSERVABILITY_CONTRACT.md).
 
 ## Specialized branches
 

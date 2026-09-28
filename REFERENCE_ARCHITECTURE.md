@@ -5,17 +5,17 @@ This is a reference design, not a claim that every query needs every component. 
 ```mermaid
 flowchart LR
   subgraph I[Ingestion and governance]
-    Sources[Docs, DB, code, media, web feeds] --> Connect[Connectors / CDC / queues]
+    Sources[(Docs, DB, code, media, web feeds)] --> Connect[Connectors / CDC / queues]
     Connect --> Parse[Parse, OCR, normalize, dedupe]
     Parse --> Canon[Canonical records: ID, version, ACL, provenance]
     Canon --> Segment[Chunk / enrich / extract entities]
-    Segment --> Index[Build lexical, vector, graph, metadata, media indexes]
+    Segment --> Index[(Lexical, vector, graph, metadata, media indexes)]
     Index --> Validate[Index validation and alias cutover]
   end
   subgraph Q[Authorized query path]
-    User[User + identity] --> Understand[Intent, entities, time, conversation state]
+    User(User + identity) --> Understand[Intent, entities, time, conversation state]
     Understand --> Plan[Route / rewrite / decompose with budget]
-    Plan --> Gate[Authorization and source policy]
+    Plan --> Gate{Authorization and source policy}
     Gate --> Lex[Lexical / sparse]
     Gate --> Vec[Dense / ANN]
     Gate --> Struct[SQL / API]
@@ -30,16 +30,31 @@ flowchart LR
     Rank --> Pack[Token budget, evidence spans, citations]
     Pack --> LLM[Generate or abstain]
     LLM --> Verify[Claim and source verification]
-    Verify --> Answer[Answer + provenance]
+    Verify --> Answer(Answer + provenance)
   end
   Validate --> Lex
   Validate --> Vec
   Validate --> Graph
   Canon --> Struct
-  Answer --> CoreEval[Core evaluation: retrieval / context / answer]
-  CoreEval --> Obs[Production experiments, traces, cost, freshness, incidents]
-  Obs --> Connect
-  Obs --> Plan
+  subgraph O[Observability and evaluation control plane]
+    Telemetry[Structured logs, spans, metrics, lifecycle events]
+    CoreEval[Versioned qrels, context and answer judgments]
+    Ledger[Stage cost ledger and version manifest]
+    Dashboard[Dashboards, SLIs/SLOs, alerts and incidents]
+    GateEval[Offline regression gate and online drift review]
+    Telemetry --> Dashboard
+    CoreEval --> GateEval
+    Ledger --> Dashboard
+    Dashboard --> GateEval
+  end
+  Connect -. ingest events and spans .-> Telemetry
+  Validate -. visibility and version .-> Telemetry
+  Answer -. request trace and claims .-> Telemetry
+  Answer -. sampled outputs .-> CoreEval
+  Plan -. route and model use .-> Ledger
+  Index -. build and storage use .-> Ledger
+  GateEval -. reviewed dataset / policy changes .-> Connect
+  GateEval -. routing changes .-> Plan
 ```
 
 ## Non-negotiable boundaries
@@ -58,7 +73,7 @@ For “Which 2025 contract changed the support SLA for product XR-92817, and by 
 
 ## Operational overlays
 
-The index service needs idempotent upserts, tombstones, snapshots, backups, source licensing/retention metadata, and model/index version manifests. The query service needs p95 latency and cost budgets, rate limits, circuit breakers, fallbacks, redacted traces, tenant-safe cache keys, and quality dashboards. Semantic caches require false-match and authorization tests. Sharding and replication are introduced only after workload measurements show a single node cannot meet targets. Distributed top-k requires shard oversampling and score-comparability checks; a partial or timed-out source is visible in the answer trace. Product choice follows benchmark results on the actual corpus and filters.
+The index service needs idempotent upserts, tombstones, snapshots, backups, source licensing/retention metadata, and model/index version manifests. The query service needs p95 latency and cost budgets, rate limits, circuit breakers, fallbacks, redacted traces, tenant-safe cache keys, and quality dashboards. The control plane correlates request and ingestion traces with versioned judgments, stage histograms, security events, freshness and cost ledgers; it supports a working dashboard, alerts, regression gates and incident review. It must not expose unauthorized candidate content through logs. Semantic caches require false-match and authorization tests. Sharding and replication are introduced only after workload measurements show a single node cannot meet targets. Distributed top-k requires shard oversampling and score-comparability checks; a partial or timed-out source is visible in the answer trace. Product choice follows benchmark results on the actual corpus and filters. The canonical schemas and implementation sequence are in [OBSERVABILITY_CONTRACT.md](observability/OBSERVABILITY_CONTRACT.md).
 
 ## Specialized execution paths
 
@@ -71,7 +86,7 @@ The index service needs idempotent upserts, tombstones, snapshots, backups, sour
 
 ## Two evaluation loops
 
-**Core loop (Chapters 30–33):** freeze queries, relevant evidence and answer labels; diagnose whether the failure occurred in ingestion, retrieval, ranking, context, or generation. Every specialized route must beat an appropriate simpler baseline on its target slice. **Production loop (Chapters 48 and 52):** confidence intervals, ablations, canaries, A/B tests, drift, latency/cost/availability dashboards and incident diagnosis. This separation lets learners test architectures before learning full service operations.
+**Core loop (Chapters 30–33):** freeze queries, relevant evidence and answer labels; diagnose whether the failure occurred in ingestion, retrieval, ranking, context, or generation. Every specialized route must beat an appropriate simpler baseline on its target slice. **Production loop (Chapters 48 and 52):** confidence intervals, ablations, release gates, canaries, A/B tests, drift, latency/cost/availability dashboards and incident diagnosis. The feedback path creates reviewed new offline cases from online failures. The complete quality and experiment record is in [EVALUATION_EXPERIMENT_CONTRACT.md](evaluation/EVALUATION_EXPERIMENT_CONTRACT.md). This separation lets learners test architectures before learning full service operations.
 
 ## Source choice guide
 

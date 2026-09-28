@@ -88,4 +88,4 @@ Every study uses the same review sheet: **requirements → dataset → ingestion
 
 ## Cross-case design exercise
 
-After Chapter 54, choose two cases with opposite constraints (for example, product search and legal research). Produce one architecture diagram and one evaluation sheet per case. Explain which components transfer, which do not, and where a simpler exact or structured operation is preferable to dense retrieval.
+After Chapter 54, choose two cases with opposite constraints (for example, product search and legal research). Produce one architecture diagram, one versioned evaluation sheet and one incident trace per case. Set workload-specific retrieval, answer, latency, freshness, security and cost gates; identify the dashboard panels and alerts that would reveal the case's likely failure. Explain which components transfer, which do not, and where a simpler exact or structured operation is preferable to dense retrieval. Follow the [experiment](evaluation/EVALUATION_EXPERIMENT_CONTRACT.md), [observability](observability/OBSERVABILITY_CONTRACT.md) and [visual](visuals/VISUAL_ASSET_CONTRACT.md) contracts.
