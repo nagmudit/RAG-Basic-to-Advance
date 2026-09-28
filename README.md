@@ -1,0 +1,28 @@
+# Retrieval-Augmented Generation: a curriculum architecture
+
+This repository is the plan for a textbook and laboratory course on retrieval-augmented generation (RAG). Phase 1 defines the course; it does **not** contain chapters yet. The central engineering question is: **when a user asks a question, which evidence should enter the model's context, and why?**
+
+The intended reader can program at a basic level but may know no information retrieval, vector search, language-model internals, or distributed systems. The path begins with a tiny searchable corpus and ends with the ability to design, evaluate, secure, and scale a multi-source retrieval platform. The book treats RAG as a knowledge-access system: lexical search, structured queries, graph traversal, web retrieval, multimodal retrieval, and dense vectors all have distinct roles.
+
+## What completion means
+
+You should be able to build key algorithms from scratch, trace a query through each stage, measure retrieval separately from answer quality, diagnose failures with evidence, justify architecture choices under latency and permission constraints, and read major research papers critically. Completion is demonstrated by a capstone and a final assessment, not by finishing a framework tutorial.
+
+## How to use this repository
+
+1. Read [TEACHING_PHILOSOPHY.md](TEACHING_PHILOSOPHY.md) for the learning contract and [KNOWLEDGE_MAP.md](KNOWLEDGE_MAP.md) for prerequisites.
+2. Follow the numbered chapters in [SYLLABUS.md](SYLLABUS.md). Chapter entries specify the lab and mastery target that later writing must satisfy.
+3. Use [ROADMAP.md](ROADMAP.md) to choose a pace. Every pace covers the same material.
+4. Evolve one engine using [PROJECT_ROADMAP.md](PROJECT_ROADMAP.md). Record each version's retrieval and answer metrics before replacing a component.
+5. Build the core evaluation harness in Chapters 30–33, then apply it to [CASE_STUDIES.md](CASE_STUDIES.md). Enter the tracks in [PAPER_READING_PATH.md](PAPER_READING_PATH.md) only after their prerequisites.
+6. Use [GLOSSARY.md](GLOSSARY.md) for controlled terminology, [REFERENCE_ARCHITECTURE.md](REFERENCE_ARCHITECTURE.md) as the system map, and [FRONTIER_RESEARCH.md](FRONTIER_RESEARCH.md) for changing research that is not yet core instruction.
+
+## Running project
+
+**Build Your Own RAG Engine** starts with a handful of plain-text documents, explicit IDs, a hand-written search function, and no model. It gains ranking, embeddings, indexing, ingestion, hybrid retrieval, reranking, context packing, generation, specialized sources, security, and operations. Judged retrieval metrics begin at V2; a full baseline RAG evaluation harness is built at V10 before advanced architectures. Each upgrade begins with a failure case and keeps the old version as a baseline. Python is the default language; production libraries enter after the mechanism is visible.
+
+## Status and scope
+
+This is the Phase 1.5 architecture for review. Chapter prose, runnable labs, exercises, solutions, diagrams beyond planning maps, and product benchmarks belong to later phases. Algorithmic principles are separated from changing product details. The paper path and frontier register were checked on **2026-09-29**; each written chapter will verify its own time-sensitive claims and maintain references.
+
+The planned course has **12 parts, 28 modules, and 57 chapters**. These counts describe the current architecture, not a promise to compress topics that need more room during writing.
