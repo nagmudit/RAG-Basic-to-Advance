@@ -102,6 +102,7 @@ The core question evolves throughout: **Which evidence enters the LLM's context,
 
 #### Chapter 08 — Production lexical query execution
 
+- **Authored materials:** [Chapter](chapters/chapter-08-production-lexical-query-execution.md) · [Lab](labs/chapter-08/LAB.md) · [Solutions](solutions/chapter-08-solutions.md) · [V2 exact-pruning stage](projects/V2/README.md).
 - **Objective:** Explain how a search engine returns exact top-k BM25 results without scoring every matching document.
 - **Prerequisites:** Chapters 05–07; a top-k heap is introduced here before use.
 - **Section 1 — Postings on disk.** Topic: execution structures; micro-concepts: gap/delta encoding, variable-byte codes, compressed postings, positions and skip data, fielded indexes, immutable segments, segment merging, index-time impacts

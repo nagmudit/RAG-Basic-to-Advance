@@ -1,0 +1,12 @@
+{
+  "snapshot": "fictional-wand-pruning-lab-v1",
+  "documents": [
+    {"id": "P1", "title": "", "version": "v1", "allowed_scopes": ["support-team"], "sections": [{"span": "body", "text": "rare"}]},
+    {"id": "P2", "title": "", "version": "v1", "allowed_scopes": ["support-team"], "sections": [{"span": "body", "text": "common"}]},
+    {"id": "P3", "title": "", "version": "v1", "allowed_scopes": ["support-team"], "sections": [{"span": "body", "text": "common"}]},
+    {"id": "P4", "title": "", "version": "v1", "allowed_scopes": ["support-team"], "sections": [{"span": "body", "text": "common"}]},
+    {"id": "P5", "title": "", "version": "v1", "allowed_scopes": ["support-team"], "sections": [{"span": "body", "text": "common"}]},
+    {"id": "P6", "title": "", "version": "v1", "allowed_scopes": ["support-team"], "sections": [{"span": "body", "text": "rare common"}]},
+    {"id": "P7", "title": "", "version": "v1", "allowed_scopes": ["legal-team"], "sections": [{"span": "body", "text": "rare rare rare rare common"}]}
+  ]
+}

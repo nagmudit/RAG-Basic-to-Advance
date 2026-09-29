@@ -104,6 +104,18 @@ The glossary will grow with chapter writing. Each future entry will include: **p
 | Ranking | Ordering candidates by a score and tie rule | 02; deep treatment 06, 27 | Candidate generation or evidence verification |
 | Reranking | Reordering a preselected candidate set, often with a stronger model | 26 | First-stage retrieval |
 | Dynamic pruning | Safely skipping candidate scoring using upper score bounds during top-k search | 08 | Approximate index search |
+| Gap / delta encoding | Writing a sorted posting list as positive differences between successive document IDs | 08 | A query-time score or document-length normalization |
+| Variable-byte code | Integer byte encoding using seven payload bits and a continuation/end convention; Chapter 8 uses high bit 1 on the final byte | 08 | A universal posting codec or compression of positions by itself |
+| Skip data | Posting-list jump targets that let a cursor bypass entries when the query plan proves they cannot be needed | 05; deep treatment 08 | Dropping relevance evidence without a proof |
+| Term-at-a-time (TAAT) | Visiting all postings for one query term before the next and accumulating document scores | 08 | Document-at-a-time cursor merging |
+| Document-at-a-time (DAAT) | Moving term cursors in document-ID order and completing each candidate score at their meeting point | 08 | Scoring every corpus document |
+| Top-k heap threshold | Score of the weakest retained result once a size-k heap is full; ties require the declared rank rule | 08 | A calibrated relevance or answerability threshold |
+| Term impact / upper bound | A term's score contribution and a safe maximum over the declared eligible snapshot and scoring version | 08 | An arbitrary historical maximum valid after all updates |
+| MaxScore | Exact top-k plan that distinguishes essential from nonessential term lists using remaining score bounds | 08 | A BM25 variant or LLM confidence score |
+| WAND | Pivot-based posting-cursor plan that uses term-score upper bounds to avoid scoring provably losing candidates | 08 | Every possible WAND efficiency/effectiveness setting being exact |
+| Block-Max WAND | WAND-style execution with tighter upper bounds for document-ID blocks | 08 | The global-bound toy searcher implemented in V2 |
+| Impact ordering | Organizing postings by possible score contribution to encounter strong candidates early | 08 | Proof that a fixed posting budget returns exact top-k |
+| Immutable index segment | Read-only indexed batch whose postings may later be rewritten by a background merge | 08 | An unchanging source corpus or permanent local document IDs |
 | Inverted index | Analyzer-versioned term-to-postings lookup structure over a declared source snapshot | 05 | Forward store, vector index or access grant |
 | Embedding | Learned numeric representation of an input | 11 | Any vector |
 | Retriever adaptation | Updating a retriever using domain examples while testing generalization | 12 | Choosing a pretrained encoder unchanged |

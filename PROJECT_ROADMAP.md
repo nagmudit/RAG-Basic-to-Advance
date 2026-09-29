@@ -14,6 +14,8 @@ Chapter 6 completes [V1's first ranking comparison](projects/V1/README.md) with 
 
 Chapter 7 starts [V2's BM25 stage](projects/V2/README.md). It adds scope-local segment lengths and `avgdl`, nonnegative IDF and saturating term contributions over the same V1 postings. A short/long fixture isolates `b`; a paired frozen-query run preserves both the top-two termination gain and dated-contract evidence loss. It records candidate/context separation, build cost, search timing and version hashes. The judged V2 metric baseline is still scheduled for Chapter 9, after Chapter 8's exact top-*k* pruning method.
 
+Chapter 8 adds [V2's global-bound WAND stage](projects/V2/README.md): scope-specific cached BM25 term impacts and conservative upper bounds, DAAT posting cursors, a top-*k* heap and exact tie handling. A paired five-query, three-depth record checks ordered IDs, raw scores, selected context and stub status against exhaustive BM25. It reduces full scores on some cases but is slower than cached exhaustive search on the tiny Python corpus. Gap/variable-byte coding is a separate teaching codec; compressed-disk and Block-Max WAND execution remain conceptual. Chapter 9 still supplies reviewed qrels and ranking metrics.
+
 | Version / chapters | Previous limitation | Feature and concept | Implementation task | Observation to test |
 |---|---|---|---|---|
 | V0 / 01–02 | No external evidence | Literal search, explicit context, minimal telemetry | Score text matches; label sources; log request/query ID, source snapshot, retrieved IDs/scores, chosen evidence IDs, status and wall-clock latency | Exact words work; paraphrases and long documents fail; one request is replayable |
