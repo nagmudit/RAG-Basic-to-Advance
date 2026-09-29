@@ -127,7 +127,20 @@ The glossary will grow with chapter writing. Each future entry will include: **p
 | RRF | Reciprocal rank fusion, combining ranks rather than raw scores | 25 | Weighted score sum |
 | Learning to rank | Estimating ranking order from labeled query-candidate examples and features | 27 | Hand-tuned heuristic or candidate retrieval |
 | ACL | Access-control list or equivalent document eligibility policy | 21 | A soft relevance signal |
-| Qrels | Query-to-item relevance judgments | 09 | Generated answers |
+| Qrels | Versioned query-to-eligible-item relevance judgments under a declared corpus, unit, scope and rubric | 09 | Generated answers or permission grants |
+| Relevance grade / rubric | Ordinal judgment and written rule for how useful one eligible segment is for one information need | 09 | BM25 score or universal authority label |
+| Judgment universe | Source snapshot, indexed unit and eligible item roster over which qrels and metric denominators are defined | 09 | All documents a system might ever access |
+| Unjudged item | Candidate whose relevance has not been assessed for a query, often because it was outside a pool | 09 | Reviewed grade-0 item |
+| Judgment pool | Union of candidate items selected from diverse retrieval runs or expert search for human assessment | 09 | Complete corpus by default |
+| Precision@K | Number of binary-relevant results in first K positions divided by K under a declared missing-slot policy | 09 | Recall@K or answer correctness |
+| Recall@K | Number of known eligible binary-relevant items in first K positions divided by all known eligible binary-relevant items | 09 | ANN exact-neighbor recall or context recall |
+| Hit Rate@K | Fraction of positive queries with at least one relevant result in first K positions | 09 | Coverage of every required evidence span |
+| F1@K | Harmonic mean of Precision@K and Recall@K for a positive query when defined | 09 | Either component or answer quality by itself |
+| Reciprocal rank / MRR@K | Inverse rank of the first binary-relevant result within K / mean over positive queries | 09 | Reward for finding every relevant item |
+| Average precision / MAP@K | Mean of precision at relevant ranks through K divided by all known positives / mean over positive queries | 09 | Precision@K or a score normalized only by retrieved positives |
+| DCG / NDCG@K | Sum of graded gains discounted by rank / ratio to ideal gain from the whole judged eligible set | 09 | Calibrated utility or proof of multi-evidence completeness |
+| Macro / micro averaging | Equal weight per positive query / pooling relevant-item hits and denominators across positive queries | 09 | Interchangeable workload summaries |
+| Zero-positive query | Information need with no relevant item in the declared eligible corpus; some ranking measures are undefined and candidate-return behavior is reported separately | 09 | Query that simply returned zero candidates |
 | Context recall | Share of answer-required evidence represented in the supplied context | 30 | Candidate retrieval recall |
 | Faithfulness | Degree to which answer claims are supported by supplied evidence | 29 | Factual correctness in the world |
 | Freshness | Whether an index/answer reflects the required time and version | 22 | Mere recency preference |
@@ -138,7 +151,7 @@ The glossary will grow with chapter writing. Each future entry will include: **p
 | Telemetry | Recorded signals about a system's execution and state | 02; deep treatment 52 | Quality judgment alone |
 | Observability | Ability to infer behavior and failure causes from emitted evidence | 32; deep treatment 52 | A dashboard screenshot |
 | Structured log | Searchable discrete diagnostic record with named fields and correlation ID | 02; deep treatment 52 | Aggregated metric |
-| Metric | Aggregated numeric measurement over a defined interval and labels | 09; deep treatment 52 | One request log or judged case |
+| Metric | Quantified measure with a declared unit, denominator and aggregation; a production metric is an aggregated time series | 09; deep treatment 52 | One request log or an unlabeled quality claim |
 | Trace | Causally linked record of one request or ingest operation | 02; deep treatment 32, 52 | Aggregate metric |
 | Span | Timed operation within a trace with parent/link, attributes and status | 32; deep treatment 52 | Whole trace |
 | Event | Durable named state transition, such as a delete or index cutover | 22; deep treatment 50 | Routine diagnostic log |
@@ -160,7 +173,7 @@ The glossary will grow with chapter writing. Each future entry will include: **p
 - **Geometry and retriever learning (10–14):** norm, dot product, cosine, dense/sparse, dual encoder, InfoNCE, in-batch/hard/false negatives, mining, distillation, domain shift, SPLADE, MaxSim, ColBERT.
 - **ANN and storage (15–18):** KNN, exact-neighbor recall, KD-tree, LSH, IVF, `nlist`, `nprobe`, PQ, HNSW, `M`, `efConstruction`, `efSearch`, DiskANN, shard, replica.
 - **Query, ranking and evidence (23–29):** intent, route, rewrite, HyDE, fusion, RRF, learning to rank, LambdaMART, cross-encoder, MMR, dynamic top-k, threshold calibration, context packing, abstention, citation span.
-- **Core evaluation (30–33):** qrels, retrieval/context recall, context precision, answer correctness, faithfulness, citation support, benchmark transfer, LLM-as-judge and failure localization.
+- **Judged retrieval and core evaluation (09, 30–33):** qrels, relevance grades, pooling/unjudged policy, P/Recall/Hit/F1/MRR/MAP/NDCG, context recall/precision, answer correctness, faithfulness, citation support, benchmark transfer, LLM-as-judge and failure localization.
 - **Specialized retrieval (34–47):** dialogue state, multi-hop, adaptive/active/corrective, Self-RAG, agentic policy, graph/community, web, SQL, document layout, multimodal embedding, code symbol graph, federation.
 - **Production and research (48–57):** p95/SLO, corpus/retriever drift, prompt injection, poisoning, cross-tenant leak, tenant-safe/semantic caches, distributed top-k, cost per query, REALM, FiD, RETRO, Atlas.
 - **Telemetry and operations (02, 09, 30–32, 48, 50–52):** correlation/trace/span ID, event, counter, gauge, histogram, log level, redaction, label cardinality, trace sampling, critical path, SLI/SLO/SLA, error budget, cost ledger, alert and incident.

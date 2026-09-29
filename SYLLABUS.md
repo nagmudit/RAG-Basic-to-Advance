@@ -114,6 +114,7 @@ The core question evolves throughout: **Which evidence enters the LLM's context,
 
 #### Chapter 09 — Relevance judgments and ranking metrics
 
+- **Authored materials:** [Chapter](chapters/chapter-09-relevance-judgments-and-ranking-metrics.md) · [Lab](labs/chapter-09/LAB.md) · [Solutions](solutions/chapter-09-solutions.md) · [V2 judged evaluation stage](projects/V2/README.md).
 - **Objective:** Measure whether the right documents appear and in what order.
 - **Prerequisites:** Chapters 05–07; basic averages from Chapter 03.
 - **Section 1 — Defining relevance.** Topic: qrels; micro-concepts: query sets, document vs passage relevance, binary and graded labels, pooling, assessor disagreement, incomplete judgments, leakage.

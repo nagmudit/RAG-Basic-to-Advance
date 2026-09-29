@@ -1,0 +1,148 @@
+{
+  "version": "ch09-segment-qrels-v1",
+  "review_date": "2026-09-30",
+  "corpus_snapshot": "support-corpus-2026-05-20",
+  "scope_fixture": "support-team",
+  "retrieval_unit": "indexed_segment",
+  "review_method": "Single author inspected all twelve eligible source segments for each fictional information need before computing Chapter 9 metrics. The two V0 questions were already known failures, so this is not a held-out benchmark.",
+  "grade_policy": {
+    "0": "Reviewed; does not help answer this information need, is about the wrong entity, is superseded/misleading for the requested date, or is outside the need.",
+    "1": "Useful but incomplete context; alone it cannot supply the requested direct evidence.",
+    "2": "Direct, authoritative evidence for at least one requested fact under the declared source snapshot and scope. A multi-clause question can require more than one grade-2 segment."
+  },
+  "binary_relevant_at_or_above": 1,
+  "zero_policy": "Every eligible_segment_id not named in grade_1 or grade_2 was individually reviewed and assigned grade 0; no eligible segment is unjudged in this miniature corpus.",
+  "eligible_segment_ids": [
+    "D1:§3:0", "D1:§8:0", "D2:§2:0", "D3:FAQ-7:0",
+    "D4:step-4:0", "D4:step-4:1", "D4:step-4:2", "D5:§3:0",
+    "D6:row-2:0", "D7:timeline:0", "D8:§3:0", "D9:proposal-2:0"
+  ],
+  "queries": [
+    {
+      "query_id": "q-contract-change",
+      "question": "As of 20 May 2026, how did the Helios Pro Sev-1 response target change?",
+      "slice": "dated_multi_evidence",
+      "origin": "frozen_v0",
+      "grade_2": ["D1:§3:0", "D2:§2:0"],
+      "grade_1": [],
+      "rationale": "The signed original and effective signed amendment jointly establish the before/after change; the older FAQ and unsigned proposal are not authoritative for this dated comparison."
+    },
+    {
+      "query_id": "q-termination",
+      "question": "Show the termination clause in the Helios Pro agreement.",
+      "slice": "exact_clause",
+      "origin": "frozen_v0",
+      "grade_2": ["D1:§8:0"],
+      "grade_1": [],
+      "rationale": "The signed agreement section contains the notice clause."
+    },
+    {
+      "query_id": "q-price",
+      "question": "What is the annual Helios Pro support fee before tax in credits?",
+      "slice": "numeric_lookup",
+      "origin": "chapter09_authored",
+      "grade_2": ["D6:row-2:0"],
+      "grade_1": [],
+      "rationale": "The price-sheet row gives the amount and units; support agreements do not."
+    },
+    {
+      "query_id": "q-basic-target",
+      "question": "What is the Sev-1 initial response target for Helios Basic?",
+      "slice": "entity_disambiguation",
+      "origin": "chapter09_authored",
+      "grade_2": ["D5:§3:0"],
+      "grade_1": [],
+      "rationale": "The signed Basic agreement answers; Pro and Atlas clauses are wrong products."
+    },
+    {
+      "query_id": "q-atlas-target",
+      "question": "What is the Sev-1 initial response target for Atlas Pro?",
+      "slice": "entity_disambiguation",
+      "origin": "chapter09_authored",
+      "grade_2": ["D8:§3:0"],
+      "grade_1": [],
+      "rationale": "The Atlas agreement answers; similarly worded Helios clauses are wrong products."
+    },
+    {
+      "query_id": "q-urgent-arrival",
+      "question": "What should the on-call engineer do when an urgent incident arrives?",
+      "slice": "procedure_segment",
+      "origin": "chapter09_authored",
+      "grade_2": ["D4:step-4:0"],
+      "grade_1": ["D4:step-4:1"],
+      "rationale": "The first runbook window contains arrival, impact, page acknowledgment and bridge; the next window adds follow-on checks but cannot alone answer the arrival action."
+    },
+    {
+      "query_id": "q-shared-dependency",
+      "question": "For a shared-dependency incident, whom should the team notify and how is the next action tracked?",
+      "slice": "multi_segment_procedure",
+      "origin": "chapter09_authored",
+      "grade_2": ["D4:step-4:1", "D4:step-4:2"],
+      "grade_1": [],
+      "rationale": "The second runbook window names the incident commander; the third names action/effect/next owner in the timeline. Both are needed for the two-part request."
+    },
+    {
+      "query_id": "q-incident-timeline",
+      "question": "Which action and ownership details should the team record in the incident timeline?",
+      "slice": "procedure_segment",
+      "origin": "chapter09_authored",
+      "grade_2": ["D4:step-4:2"],
+      "grade_1": ["D4:step-4:0"],
+      "rationale": "The third runbook window names each action, observed effect and next owner; the first records arrival time and impact but not the requested ownership detail."
+    },
+    {
+      "query_id": "q-observed-response",
+      "question": "How long did the measured response to the recorded Sev-1 incident take?",
+      "slice": "observation_vs_contract",
+      "origin": "chapter09_authored",
+      "grade_2": ["D7:timeline:0"],
+      "grade_1": [],
+      "rationale": "The incident report gives an observed two-hour response; contractual targets and the draft proposal do not answer an observation question."
+    },
+    {
+      "query_id": "q-unsigned-proposal",
+      "question": "What Sev-1 response target did the unsigned Helios Pro proposal suggest?",
+      "slice": "source_status",
+      "origin": "chapter09_authored",
+      "grade_2": ["D9:proposal-2:0"],
+      "grade_1": [],
+      "rationale": "The draft proposal is directly relevant because the question asks what the draft suggested, not what is in force."
+    },
+    {
+      "query_id": "q-current-target",
+      "question": "As of 20 May 2026, what signed Helios Pro Sev-1 response target is in force?",
+      "slice": "dated_authority",
+      "origin": "chapter09_authored",
+      "grade_2": ["D2:§2:0"],
+      "grade_1": ["D1:§3:0"],
+      "rationale": "The signed effective amendment supplies the current target. The signed original is useful historical context but insufficient alone; the old FAQ and unsigned draft are grade 0 for current authority."
+    },
+    {
+      "query_id": "q-no-result",
+      "question": "zzzx-missing",
+      "slice": "no_result_exact",
+      "origin": "chapter08_frozen_probe",
+      "grade_2": [],
+      "grade_1": [],
+      "rationale": "No eligible segment contains evidence about this nonexistent identifier."
+    },
+    {
+      "query_id": "q-unknown-renewal",
+      "question": "What is the Nebula X support renewal code?",
+      "slice": "unanswerable_lexical_overlap",
+      "origin": "chapter09_authored",
+      "grade_2": [],
+      "grade_1": [],
+      "rationale": "Generic support wording can retrieve Helios material, but the corpus has no Nebula X renewal-code evidence."
+    },
+    {
+      "query_id": "q-private-target",
+      "question": "What thirty-minute Sev-1 target does the private Helios Pro addendum state?",
+      "slice": "permission_no_eligible_evidence",
+      "origin": "chapter09_authored",
+      "grade_2": [],
+      "grade_1": [],
+      "rationale": "The legal-only decoy is outside support-team eligibility. All twelve support-team segments are nonrelevant to this restricted request; no private source is a support-team qrel."
+    }
+  ]
+}
