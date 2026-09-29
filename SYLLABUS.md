@@ -76,6 +76,7 @@ The core question evolves throughout: **Which evidence enters the LLM's context,
 
 #### Chapter 06 — TF-IDF, vector-space ranking, and lexical limits
 
+- **Authored materials:** [Chapter](chapters/chapter-06-tf-idf-vector-space-ranking-and-lexical-limits.md) · [Lab](labs/chapter-06/LAB.md) · [Solutions](solutions/chapter-06-solutions.md) · [V1 ranking implementation](projects/V1/README.md).
 - **Objective:** Rank documents by term evidence and derive every factor in a sample score.
 - **Prerequisites:** Chapter 05 and logarithms from Chapter 03.
 - **Section 1 — Weighted terms.** Topic: frequency statistics; micro-concepts: TF, DF, corpus size, IDF, term saturation intuition, field length, zero and rare term handling. Topic: TF-IDF; micro-concepts: weighting variants, sparse document vectors, cosine normalization.

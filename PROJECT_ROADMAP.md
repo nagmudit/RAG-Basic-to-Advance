@@ -10,6 +10,8 @@ Chapter 4 adds [controlled context and prompt probes](projects/V0/CHAPTER_04_CON
 
 Chapter 5 starts [V1's positional lexical index](projects/V1/README.md). Its default analyzer and unweighted score reproduce V0 candidate order and frozen answer behavior; Boolean, phrase and Unicode diagnostics expose new analyzer choices separately. A raw scan-versus-postings experiment records index build cost, query work and latency. Chapter 6 adds TF-IDF before V1 is considered complete; judged qrels still begin at V2 / Chapter 9.
 
+Chapter 6 completes [V1's first ranking comparison](projects/V1/README.md) with raw, sublinear and cosine TF-IDF on the same indexed source. The paired experiment keeps the required-span gain for termination and loss for the dated contract change at top two; build cost, search timing, candidate IDs, context IDs and stub status remain separate. This is a transparent fixture check before Chapter 9's broader qrels and metrics, not a declaration of a winning ranker.
+
 | Version / chapters | Previous limitation | Feature and concept | Implementation task | Observation to test |
 |---|---|---|---|---|
 | V0 / 01–02 | No external evidence | Literal search, explicit context, minimal telemetry | Score text matches; label sources; log request/query ID, source snapshot, retrieved IDs/scores, chosen evidence IDs, status and wall-clock latency | Exact words work; paraphrases and long documents fail; one request is replayable |

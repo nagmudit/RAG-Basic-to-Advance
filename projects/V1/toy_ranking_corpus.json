@@ -1,0 +1,9 @@
+{
+  "snapshot": "fictional-four-record-ranking-lab-v1",
+  "documents": [
+    {"id": "T1", "title": "", "version": "v1", "allowed_scopes": ["support-team"], "sections": [{"span": "body", "text": "amber amber"}]},
+    {"id": "T2", "title": "", "version": "v1", "allowed_scopes": ["support-team"], "sections": [{"span": "body", "text": "amber blue blue"}]},
+    {"id": "T3", "title": "", "version": "v1", "allowed_scopes": ["support-team"], "sections": [{"span": "body", "text": "blue"}]},
+    {"id": "T4", "title": "", "version": "v1", "allowed_scopes": ["support-team"], "sections": [{"span": "body", "text": "blue"}]}
+  ]
+}

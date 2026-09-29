@@ -77,7 +77,13 @@ The glossary will grow with chapter writing. Each future entry will include: **p
 | Phrase query | Match requiring analyzed terms at consecutive positions in one field | 05 | Exact character substring or arbitrary semantic paraphrase |
 | Forward index / stored fields | Segment-ID lookup for original text, fields, version, locator and metadata | 05 | Term-to-postings lookup or reconstruction from terms |
 | Analyzed field length | Count of emitted terms in one indexed field under its analyzer version | 05 | Source bytes, whitespace words or model tokens |
-| Term frequency / segment frequency | Occurrence count of a term in a field or segment / count of indexed segments containing it | 05; weighting 06 | Relevance probability or count of distinct source documents when segments are indexed |
+| Term frequency (TF) / document frequency (DF) | TF counts occurrences in one indexed unit or field; DF counts eligible indexed units containing a term, which are segments in V1 | 05; formal weighting 06 | Relevance probability or distinct source-document count when segments are indexed |
+| Inverse document frequency (IDF) | Corpus-level rarity weight; V1 uses `ln(N/df)` for a term present in at least one eligible segment | 06 | A universal or calibrated relevance probability; smoothing conventions differ |
+| TF-IDF | Family of lexical weights combining a declared TF transformation and IDF, with optional query/field/length choices | 06 | One universal ranking formula or semantic similarity |
+| Sublinear term-frequency weight | Diminishing repetition weight such as `1+ln(tf)` for positive integer field counts | 06 | Bounded BM25 saturation or raw occurrence count |
+| Sparse term vector | Vocabulary-coordinate vector with zero weight for terms absent from a segment or query | 06 | Learned dense embedding or original word sequence |
+| Vector norm / cosine normalization | Euclidean magnitude of all weighted coordinates / dot product divided by nonzero query and document norms | 03; lexical application 06 | Document word count, relevance probability or source authority |
+| Scope-local corpus statistic | `N`, `df` or norm calculated over the declared eligible search population | 06 | Authentication or a statistic safe to reuse across changing tenants/policies |
 | Stop word / stem / lemma | Optional removal of selected common terms / rule-derived root / linguistically derived base form | 05 | Universally safe normalization; each can change match meaning |
 | N-gram / fuzzy match | Contiguous sequence of n terms or characters / bounded approximate matching under a declared rule | 05; advanced query use 23 | Exact identifier equality or guaranteed typo correction |
 | Literal term overlap | Number of distinct query terms shared with a candidate under V0's tokenizer | 02 | Calibrated relevance probability |
