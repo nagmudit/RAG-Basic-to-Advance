@@ -1,0 +1,10 @@
+{
+  "snapshot": "fictional-bm25-length-lab-v1",
+  "documents": [
+    {"id": "S1", "title": "", "version": "v1", "allowed_scopes": ["support-team"], "sections": [{"span": "body", "text": "amber amber"}]},
+    {"id": "S2", "title": "", "version": "v1", "allowed_scopes": ["support-team"], "sections": [{"span": "body", "text": "amber amber filler filler filler filler filler filler filler filler"}]},
+    {"id": "S3", "title": "", "version": "v1", "allowed_scopes": ["support-team"], "sections": [{"span": "body", "text": "filler filler"}]},
+    {"id": "S4", "title": "", "version": "v1", "allowed_scopes": ["support-team"], "sections": [{"span": "body", "text": "blue blue"}]},
+    {"id": "S5", "title": "", "version": "v1", "allowed_scopes": ["legal-team"], "sections": [{"span": "body", "text": "amber amber amber amber"}]}
+  ]
+}

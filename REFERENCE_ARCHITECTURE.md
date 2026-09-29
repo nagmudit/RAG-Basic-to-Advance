@@ -61,6 +61,8 @@ flowchart LR
 
 The first implemented lexical path is [V1's Chapter 5–6 index and ranking comparison](projects/V1/README.md): a versioned analyzer prepares term postings and a forward source store, static scope-local statistics support TF-IDF, and query-time eligibility gates candidate scoring and source fetch. Its scope fixture is not an authentication service. Unweighted overlap, raw/sublinear TF-IDF and cosine retain the same deterministic answer stub so their rank changes can be compared before generation is introduced.
 
+[V2's Chapter 7 BM25 stage](projects/V2/README.md) reuses that path and adds scope-local analyzed segment length, average length and saturating BM25 contributions. It still exhaustively scores the eligible posting union. Dynamic pruning and judged retrieval metrics are the next two dependencies; neither is implied by the BM25 formula.
+
 1. **Index time vs query time:** source extraction, chunking, embedding, and graph building happen before most questions. Query rewriting, routing, candidate search, reranking, and packing happen for a specific question. Live web retrieval crosses the boundary and must record capture time.
 2. **Eligibility vs relevance:** authorization and tenant scope define what may be searched or shown. A relevance score cannot override that constraint. Postfilter-only designs may underfill and leak through logs or caches.
 3. **Candidate vs evidence:** a high-ranked candidate is a possibility. Evidence entering the answer must retain source ID, version, span/page/coordinate, trust tier, and retrieval timestamp.

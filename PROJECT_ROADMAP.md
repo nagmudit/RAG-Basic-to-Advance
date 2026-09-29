@@ -12,6 +12,8 @@ Chapter 5 starts [V1's positional lexical index](projects/V1/README.md). Its def
 
 Chapter 6 completes [V1's first ranking comparison](projects/V1/README.md) with raw, sublinear and cosine TF-IDF on the same indexed source. The paired experiment keeps the required-span gain for termination and loss for the dated contract change at top two; build cost, search timing, candidate IDs, context IDs and stub status remain separate. This is a transparent fixture check before Chapter 9's broader qrels and metrics, not a declaration of a winning ranker.
 
+Chapter 7 starts [V2's BM25 stage](projects/V2/README.md). It adds scope-local segment lengths and `avgdl`, nonnegative IDF and saturating term contributions over the same V1 postings. A short/long fixture isolates `b`; a paired frozen-query run preserves both the top-two termination gain and dated-contract evidence loss. It records candidate/context separation, build cost, search timing and version hashes. The judged V2 metric baseline is still scheduled for Chapter 9, after Chapter 8's exact top-*k* pruning method.
+
 | Version / chapters | Previous limitation | Feature and concept | Implementation task | Observation to test |
 |---|---|---|---|---|
 | V0 / 01–02 | No external evidence | Literal search, explicit context, minimal telemetry | Score text matches; label sources; log request/query ID, source snapshot, retrieved IDs/scores, chosen evidence IDs, status and wall-clock latency | Exact words work; paraphrases and long documents fail; one request is replayable |

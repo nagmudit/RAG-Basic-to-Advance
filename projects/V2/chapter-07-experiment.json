@@ -1,0 +1,2133 @@
+{
+  "experiment_id": "ch07-v2-bm25-versus-v1-v1",
+  "created_at_utc": "2026-09-29T09:28:14.289050+00:00",
+  "source_hash_policy": "SHA256 of UTF-8 bytes with CRLF canonicalized to LF",
+  "question": "Does BM25 b=.75 improve both frozen required-evidence tasks at top two over raw TF-IDF?",
+  "hypothesis": "BM25 b=.75 places all required spans in top-two context for both tasks; falsified if either task lacks a required span.",
+  "baseline": "V1 raw TF-IDF; overlap and cosine are retained historical controls",
+  "independent_variable": "declared scoring configuration; the BM25 b pair isolates b",
+  "controlled_variables": [
+    "source snapshot",
+    "V0 analyzer",
+    "support-team eligibility fixture",
+    "question text",
+    "candidate depth",
+    "120 source-word context budget",
+    "deterministic answer stub",
+    "k1=1.2 and title boost=1 for BM25"
+  ],
+  "evidence_measure": "required fixture spans in candidates/context divided by listed required spans; not general qrels",
+  "limitations": [
+    "two required-evidence tasks only",
+    "no human relevance judgments",
+    "deterministic stub, no LLM",
+    "tiny static corpus and scope",
+    "seven local timings per case, not production tails"
+  ],
+  "corpus_snapshot": "support-corpus-2026-05-20",
+  "corpus_sha256": "ee0c2ee166bd2124079f04150cceeb48a8b3df06d1d8414e97f5de2bec423b16",
+  "index_code_sha256": "ee4c0f2d8d70543c635ce0b6ba54bcd58f2ffd55682edf539d2e08883b02fb5a",
+  "tfidf_code_sha256": "89a00f97470f29fcbab329b092bd01e4a62585befc76612548aa934c778043f7",
+  "bm25_code_sha256": "6bcb4fcbb0a290e4651e5d1f55b316e23d5deb92fe4595468ea263f848154679",
+  "experiment_code_sha256": "694542b32e7687f75eab3d50fe24188f2ed13421ee122247a21d4a9025a257fb",
+  "python": "3.14.2",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "seed": 7072026,
+  "query_set_version": "ch06-four-query-v1",
+  "query_ids": [
+    "q-contract-change",
+    "q-termination",
+    "q-rare-numeric",
+    "q-no-result"
+  ],
+  "depths": [
+    2,
+    8
+  ],
+  "modes": [
+    "overlap",
+    "tfidf_raw",
+    "tfidf_cosine",
+    "bm25_b0",
+    "bm25_b075"
+  ],
+  "analyzer_version": "v0",
+  "index_version": "v1-ch05-support-corpus-2026-05-20-v0",
+  "scoring_versions": {
+    "overlap": "v1-ch05-distinct-term-overlap",
+    "tfidf_raw": "v1-ch06-lnNdf-v1-ch05-support-corpus-2026-05-20-v0-title1.0-raw",
+    "tfidf_cosine": "v1-ch06-lnNdf-v1-ch05-support-corpus-2026-05-20-v0-title1.0-cosine",
+    "bm25_b0": "v2-ch07-bm25-segment-log1p-v1-ch05-support-corpus-2026-05-20-v0-k11.2-b0-title1.0",
+    "bm25_b075": "v2-ch07-bm25-segment-log1p-v1-ch05-support-corpus-2026-05-20-v0-k11.2-b0.75-title1.0"
+  },
+  "scope_fixture": "support-team",
+  "context_budget_source_words": 120,
+  "postings_build_ms_one_run": 0.497,
+  "statistics_build_ms_one_run": {
+    "tfidf": 0.191,
+    "bm25_b0": 0.11,
+    "bm25_b075": 0.107
+  },
+  "trials_per_method_case": 7,
+  "latency_unit": "microseconds_per_search_call",
+  "timing_scope": "candidate search only; excludes build/context/stub",
+  "cases": [
+    {
+      "query_id": "q-contract-change",
+      "top_k": 2,
+      "modes": {
+        "overlap": {
+          "candidate_scores": [
+            {
+              "segment_id": "D2:\u00a72:0",
+              "score": 7
+            },
+            {
+              "segment_id": "D1:\u00a73:0",
+              "score": 6
+            }
+          ],
+          "required_evidence_ids": [
+            "D1:\u00a73:0",
+            "D2:\u00a72:0"
+          ],
+          "required_in_candidates": [
+            "D1:\u00a73:0",
+            "D2:\u00a72:0"
+          ],
+          "context_ids": [
+            "D2:\u00a72:0",
+            "D1:\u00a73:0"
+          ],
+          "required_in_context": [
+            "D1:\u00a73:0",
+            "D2:\u00a72:0"
+          ],
+          "context_source_words": 25,
+          "fixture_answer_status": "answered",
+          "fixture_answer_reason": null,
+          "fixture_evidence_ids": [
+            "D1:\u00a73:0",
+            "D2:\u00a72:0"
+          ],
+          "work": {
+            "eligible_segments": 12,
+            "eligible_posting_visits": 57,
+            "scored_segments": 12,
+            "query_term_count": 14
+          },
+          "search_latency_us": {
+            "raw": [
+              25.7,
+              23.8,
+              24.1,
+              22.4,
+              22.6,
+              22.9,
+              23.7
+            ],
+            "median": 23.7,
+            "p95_nearest_rank": 25.7
+          }
+        },
+        "tfidf_raw": {
+          "candidate_scores": [
+            {
+              "segment_id": "D2:\u00a72:0",
+              "score": 6.067678
+            },
+            {
+              "segment_id": "D4:step-4:1",
+              "score": 3.388216
+            }
+          ],
+          "required_evidence_ids": [
+            "D1:\u00a73:0",
+            "D2:\u00a72:0"
+          ],
+          "required_in_candidates": [
+            "D2:\u00a72:0"
+          ],
+          "context_ids": [
+            "D2:\u00a72:0",
+            "D4:step-4:1"
+          ],
+          "required_in_context": [
+            "D2:\u00a72:0"
+          ],
+          "context_source_words": 39,
+          "fixture_answer_status": "abstained",
+          "fixture_answer_reason": "missing_required_evidence",
+          "fixture_evidence_ids": [],
+          "work": {
+            "eligible_segments": 12,
+            "eligible_posting_visits": 57,
+            "scored_segments": 12,
+            "query_term_count": 14,
+            "zero_score_candidates": 0
+          },
+          "search_latency_us": {
+            "raw": [
+              34.0,
+              33.2,
+              32.6,
+              32.6,
+              32.2,
+              33.4,
+              32.1
+            ],
+            "median": 32.6,
+            "p95_nearest_rank": 34.0
+          }
+        },
+        "tfidf_cosine": {
+          "candidate_scores": [
+            {
+              "segment_id": "D2:\u00a72:0",
+              "score": 0.305623
+            },
+            {
+              "segment_id": "D4:step-4:1",
+              "score": 0.14689
+            }
+          ],
+          "required_evidence_ids": [
+            "D1:\u00a73:0",
+            "D2:\u00a72:0"
+          ],
+          "required_in_candidates": [
+            "D2:\u00a72:0"
+          ],
+          "context_ids": [
+            "D2:\u00a72:0",
+            "D4:step-4:1"
+          ],
+          "required_in_context": [
+            "D2:\u00a72:0"
+          ],
+          "context_source_words": 39,
+          "fixture_answer_status": "abstained",
+          "fixture_answer_reason": "missing_required_evidence",
+          "fixture_evidence_ids": [],
+          "work": {
+            "eligible_segments": 12,
+            "eligible_posting_visits": 57,
+            "scored_segments": 12,
+            "query_term_count": 14,
+            "zero_score_candidates": 0
+          },
+          "search_latency_us": {
+            "raw": [
+              36.2,
+              35.1,
+              35.0,
+              34.5,
+              33.9,
+              44.2,
+              34.8
+            ],
+            "median": 35.0,
+            "p95_nearest_rank": 44.2
+          }
+        },
+        "bm25_b0": {
+          "candidate_scores": [
+            {
+              "segment_id": "D2:\u00a72:0",
+              "score": 5.703487
+            },
+            {
+              "segment_id": "D4:step-4:1",
+              "score": 2.766122
+            }
+          ],
+          "required_evidence_ids": [
+            "D1:\u00a73:0",
+            "D2:\u00a72:0"
+          ],
+          "required_in_candidates": [
+            "D2:\u00a72:0"
+          ],
+          "context_ids": [
+            "D2:\u00a72:0",
+            "D4:step-4:1"
+          ],
+          "required_in_context": [
+            "D2:\u00a72:0"
+          ],
+          "context_source_words": 39,
+          "fixture_answer_status": "abstained",
+          "fixture_answer_reason": "missing_required_evidence",
+          "fixture_evidence_ids": [],
+          "work": {
+            "eligible_segments": 12,
+            "eligible_posting_visits": 57,
+            "scored_segments": 12,
+            "query_term_count": 14,
+            "zero_score_candidates": 0
+          },
+          "search_latency_us": {
+            "raw": [
+              47.0,
+              47.0,
+              46.8,
+              45.7,
+              46.0,
+              44.4,
+              49.2
+            ],
+            "median": 46.8,
+            "p95_nearest_rank": 49.2
+          }
+        },
+        "bm25_b075": {
+          "candidate_scores": [
+            {
+              "segment_id": "D2:\u00a72:0",
+              "score": 5.603814
+            },
+            {
+              "segment_id": "D3:FAQ-7:0",
+              "score": 2.489763
+            }
+          ],
+          "required_evidence_ids": [
+            "D1:\u00a73:0",
+            "D2:\u00a72:0"
+          ],
+          "required_in_candidates": [
+            "D2:\u00a72:0"
+          ],
+          "context_ids": [
+            "D2:\u00a72:0",
+            "D3:FAQ-7:0"
+          ],
+          "required_in_context": [
+            "D2:\u00a72:0"
+          ],
+          "context_source_words": 23,
+          "fixture_answer_status": "abstained",
+          "fixture_answer_reason": "missing_required_evidence",
+          "fixture_evidence_ids": [],
+          "work": {
+            "eligible_segments": 12,
+            "eligible_posting_visits": 57,
+            "scored_segments": 12,
+            "query_term_count": 14,
+            "zero_score_candidates": 0
+          },
+          "search_latency_us": {
+            "raw": [
+              47.6,
+              46.8,
+              47.4,
+              47.4,
+              45.9,
+              50.7,
+              50.2
+            ],
+            "median": 47.4,
+            "p95_nearest_rank": 50.7
+          }
+        }
+      }
+    },
+    {
+      "query_id": "q-contract-change",
+      "top_k": 8,
+      "modes": {
+        "overlap": {
+          "candidate_scores": [
+            {
+              "segment_id": "D2:\u00a72:0",
+              "score": 7
+            },
+            {
+              "segment_id": "D1:\u00a73:0",
+              "score": 6
+            },
+            {
+              "segment_id": "D3:FAQ-7:0",
+              "score": 6
+            },
+            {
+              "segment_id": "D7:timeline:0",
+              "score": 6
+            },
+            {
+              "segment_id": "D9:proposal-2:0",
+              "score": 6
+            },
+            {
+              "segment_id": "D5:\u00a73:0",
+              "score": 5
+            },
+            {
+              "segment_id": "D8:\u00a73:0",
+              "score": 5
+            },
+            {
+              "segment_id": "D4:step-4:1",
+              "score": 4
+            }
+          ],
+          "required_evidence_ids": [
+            "D1:\u00a73:0",
+            "D2:\u00a72:0"
+          ],
+          "required_in_candidates": [
+            "D1:\u00a73:0",
+            "D2:\u00a72:0"
+          ],
+          "context_ids": [
+            "D2:\u00a72:0",
+            "D1:\u00a73:0",
+            "D3:FAQ-7:0",
+            "D7:timeline:0",
+            "D9:proposal-2:0",
+            "D5:\u00a73:0",
+            "D8:\u00a73:0",
+            "D4:step-4:1"
+          ],
+          "required_in_context": [
+            "D1:\u00a73:0",
+            "D2:\u00a72:0"
+          ],
+          "context_source_words": 117,
+          "fixture_answer_status": "answered",
+          "fixture_answer_reason": null,
+          "fixture_evidence_ids": [
+            "D1:\u00a73:0",
+            "D2:\u00a72:0"
+          ],
+          "work": {
+            "eligible_segments": 12,
+            "eligible_posting_visits": 57,
+            "scored_segments": 12,
+            "query_term_count": 14
+          },
+          "search_latency_us": {
+            "raw": [
+              25.5,
+              27.3,
+              27.6,
+              27.2,
+              27.8,
+              28.7,
+              28.4
+            ],
+            "median": 27.6,
+            "p95_nearest_rank": 28.7
+          }
+        },
+        "tfidf_raw": {
+          "candidate_scores": [
+            {
+              "segment_id": "D2:\u00a72:0",
+              "score": 6.067678
+            },
+            {
+              "segment_id": "D4:step-4:1",
+              "score": 3.388216
+            },
+            {
+              "segment_id": "D7:timeline:0",
+              "score": 2.694652
+            },
+            {
+              "segment_id": "D9:proposal-2:0",
+              "score": 2.147357
+            },
+            {
+              "segment_id": "D1:\u00a73:0",
+              "score": 1.973334
+            },
+            {
+              "segment_id": "D3:FAQ-7:0",
+              "score": 1.973334
+            },
+            {
+              "segment_id": "D5:\u00a73:0",
+              "score": 1.973334
+            },
+            {
+              "segment_id": "D8:\u00a73:0",
+              "score": 1.973334
+            }
+          ],
+          "required_evidence_ids": [
+            "D1:\u00a73:0",
+            "D2:\u00a72:0"
+          ],
+          "required_in_candidates": [
+            "D1:\u00a73:0",
+            "D2:\u00a72:0"
+          ],
+          "context_ids": [
+            "D2:\u00a72:0",
+            "D4:step-4:1",
+            "D7:timeline:0",
+            "D9:proposal-2:0",
+            "D1:\u00a73:0",
+            "D3:FAQ-7:0",
+            "D5:\u00a73:0",
+            "D8:\u00a73:0"
+          ],
+          "required_in_context": [
+            "D1:\u00a73:0",
+            "D2:\u00a72:0"
+          ],
+          "context_source_words": 117,
+          "fixture_answer_status": "answered",
+          "fixture_answer_reason": null,
+          "fixture_evidence_ids": [
+            "D1:\u00a73:0",
+            "D2:\u00a72:0"
+          ],
+          "work": {
+            "eligible_segments": 12,
+            "eligible_posting_visits": 57,
+            "scored_segments": 12,
+            "query_term_count": 14,
+            "zero_score_candidates": 0
+          },
+          "search_latency_us": {
+            "raw": [
+              36.4,
+              35.8,
+              39.1,
+              38.0,
+              39.3,
+              46.8,
+              40.5
+            ],
+            "median": 39.1,
+            "p95_nearest_rank": 46.8
+          }
+        },
+        "tfidf_cosine": {
+          "candidate_scores": [
+            {
+              "segment_id": "D2:\u00a72:0",
+              "score": 0.305623
+            },
+            {
+              "segment_id": "D4:step-4:1",
+              "score": 0.14689
+            },
+            {
+              "segment_id": "D1:\u00a78:0",
+              "score": 0.101411
+            },
+            {
+              "segment_id": "D3:FAQ-7:0",
+              "score": 0.063342
+            },
+            {
+              "segment_id": "D1:\u00a73:0",
+              "score": 0.060199
+            },
+            {
+              "segment_id": "D7:timeline:0",
+              "score": 0.037495
+            },
+            {
+              "segment_id": "D8:\u00a73:0",
+              "score": 0.036341
+            },
+            {
+              "segment_id": "D5:\u00a73:0",
+              "score": 0.03503
+            }
+          ],
+          "required_evidence_ids": [
+            "D1:\u00a73:0",
+            "D2:\u00a72:0"
+          ],
+          "required_in_candidates": [
+            "D1:\u00a73:0",
+            "D2:\u00a72:0"
+          ],
+          "context_ids": [
+            "D2:\u00a72:0",
+            "D4:step-4:1",
+            "D1:\u00a78:0",
+            "D3:FAQ-7:0",
+            "D1:\u00a73:0",
+            "D7:timeline:0",
+            "D8:\u00a73:0",
+            "D5:\u00a73:0"
+          ],
+          "required_in_context": [
+            "D1:\u00a73:0",
+            "D2:\u00a72:0"
+          ],
+          "context_source_words": 112,
+          "fixture_answer_status": "answered",
+          "fixture_answer_reason": null,
+          "fixture_evidence_ids": [
+            "D1:\u00a73:0",
+            "D2:\u00a72:0"
+          ],
+          "work": {
+            "eligible_segments": 12,
+            "eligible_posting_visits": 57,
+            "scored_segments": 12,
+            "query_term_count": 14,
+            "zero_score_candidates": 0
+          },
+          "search_latency_us": {
+            "raw": [
+              37.0,
+              37.0,
+              41.9,
+              41.4,
+              41.7,
+              41.5,
+              43.1
+            ],
+            "median": 41.5,
+            "p95_nearest_rank": 43.1
+          }
+        },
+        "bm25_b0": {
+          "candidate_scores": [
+            {
+              "segment_id": "D2:\u00a72:0",
+              "score": 5.703487
+            },
+            {
+              "segment_id": "D4:step-4:1",
+              "score": 2.766122
+            },
+            {
+              "segment_id": "D7:timeline:0",
+              "score": 2.395275
+            },
+            {
+              "segment_id": "D9:proposal-2:0",
+              "score": 2.200869
+            },
+            {
+              "segment_id": "D1:\u00a73:0",
+              "score": 2.108918
+            },
+            {
+              "segment_id": "D3:FAQ-7:0",
+              "score": 2.108918
+            },
+            {
+              "segment_id": "D5:\u00a73:0",
+              "score": 2.032291
+            },
+            {
+              "segment_id": "D8:\u00a73:0",
+              "score": 2.032291
+            }
+          ],
+          "required_evidence_ids": [
+            "D1:\u00a73:0",
+            "D2:\u00a72:0"
+          ],
+          "required_in_candidates": [
+            "D1:\u00a73:0",
+            "D2:\u00a72:0"
+          ],
+          "context_ids": [
+            "D2:\u00a72:0",
+            "D4:step-4:1",
+            "D7:timeline:0",
+            "D9:proposal-2:0",
+            "D1:\u00a73:0",
+            "D3:FAQ-7:0",
+            "D5:\u00a73:0",
+            "D8:\u00a73:0"
+          ],
+          "required_in_context": [
+            "D1:\u00a73:0",
+            "D2:\u00a72:0"
+          ],
+          "context_source_words": 117,
+          "fixture_answer_status": "answered",
+          "fixture_answer_reason": null,
+          "fixture_evidence_ids": [
+            "D1:\u00a73:0",
+            "D2:\u00a72:0"
+          ],
+          "work": {
+            "eligible_segments": 12,
+            "eligible_posting_visits": 57,
+            "scored_segments": 12,
+            "query_term_count": 14,
+            "zero_score_candidates": 0
+          },
+          "search_latency_us": {
+            "raw": [
+              50.9,
+              49.1,
+              56.9,
+              55.4,
+              56.6,
+              54.7,
+              56.6
+            ],
+            "median": 55.4,
+            "p95_nearest_rank": 56.9
+          }
+        },
+        "bm25_b075": {
+          "candidate_scores": [
+            {
+              "segment_id": "D2:\u00a72:0",
+              "score": 5.603814
+            },
+            {
+              "segment_id": "D3:FAQ-7:0",
+              "score": 2.489763
+            },
+            {
+              "segment_id": "D4:step-4:1",
+              "score": 2.357966
+            },
+            {
+              "segment_id": "D1:\u00a73:0",
+              "score": 2.314777
+            },
+            {
+              "segment_id": "D7:timeline:0",
+              "score": 2.237614
+            },
+            {
+              "segment_id": "D5:\u00a73:0",
+              "score": 2.128194
+            },
+            {
+              "segment_id": "D8:\u00a73:0",
+              "score": 2.128194
+            },
+            {
+              "segment_id": "D9:proposal-2:0",
+              "score": 2.121855
+            }
+          ],
+          "required_evidence_ids": [
+            "D1:\u00a73:0",
+            "D2:\u00a72:0"
+          ],
+          "required_in_candidates": [
+            "D1:\u00a73:0",
+            "D2:\u00a72:0"
+          ],
+          "context_ids": [
+            "D2:\u00a72:0",
+            "D3:FAQ-7:0",
+            "D4:step-4:1",
+            "D1:\u00a73:0",
+            "D7:timeline:0",
+            "D5:\u00a73:0",
+            "D8:\u00a73:0",
+            "D9:proposal-2:0"
+          ],
+          "required_in_context": [
+            "D1:\u00a73:0",
+            "D2:\u00a72:0"
+          ],
+          "context_source_words": 117,
+          "fixture_answer_status": "answered",
+          "fixture_answer_reason": null,
+          "fixture_evidence_ids": [
+            "D1:\u00a73:0",
+            "D2:\u00a72:0"
+          ],
+          "work": {
+            "eligible_segments": 12,
+            "eligible_posting_visits": 57,
+            "scored_segments": 12,
+            "query_term_count": 14,
+            "zero_score_candidates": 0
+          },
+          "search_latency_us": {
+            "raw": [
+              52.7,
+              51.9,
+              57.7,
+              53.3,
+              57.0,
+              57.2,
+              59.1
+            ],
+            "median": 57.0,
+            "p95_nearest_rank": 59.1
+          }
+        }
+      }
+    },
+    {
+      "query_id": "q-termination",
+      "top_k": 2,
+      "modes": {
+        "overlap": {
+          "candidate_scores": [
+            {
+              "segment_id": "D1:\u00a73:0",
+              "score": 4
+            },
+            {
+              "segment_id": "D4:step-4:2",
+              "score": 4
+            }
+          ],
+          "required_evidence_ids": [
+            "D1:\u00a78:0"
+          ],
+          "required_in_candidates": [],
+          "context_ids": [
+            "D1:\u00a73:0",
+            "D4:step-4:2"
+          ],
+          "required_in_context": [],
+          "context_source_words": 24,
+          "fixture_answer_status": "abstained",
+          "fixture_answer_reason": "missing_required_evidence",
+          "fixture_evidence_ids": [],
+          "work": {
+            "eligible_segments": 12,
+            "eligible_posting_visits": 37,
+            "scored_segments": 12,
+            "query_term_count": 8
+          },
+          "search_latency_us": {
+            "raw": [
+              21.2,
+              21.3,
+              20.3,
+              20.8,
+              22.2,
+              21.0,
+              20.0
+            ],
+            "median": 21.0,
+            "p95_nearest_rank": 22.2
+          }
+        },
+        "tfidf_raw": {
+          "candidate_scores": [
+            {
+              "segment_id": "D4:step-4:2",
+              "score": 3.205894
+            },
+            {
+              "segment_id": "D1:\u00a78:0",
+              "score": 2.371247
+            }
+          ],
+          "required_evidence_ids": [
+            "D1:\u00a78:0"
+          ],
+          "required_in_candidates": [
+            "D1:\u00a78:0"
+          ],
+          "context_ids": [
+            "D4:step-4:2",
+            "D1:\u00a78:0"
+          ],
+          "required_in_context": [
+            "D1:\u00a78:0"
+          ],
+          "context_source_words": 25,
+          "fixture_answer_status": "answered",
+          "fixture_answer_reason": null,
+          "fixture_evidence_ids": [
+            "D1:\u00a78:0"
+          ],
+          "work": {
+            "eligible_segments": 12,
+            "eligible_posting_visits": 37,
+            "scored_segments": 12,
+            "query_term_count": 8,
+            "zero_score_candidates": 0
+          },
+          "search_latency_us": {
+            "raw": [
+              29.5,
+              29.5,
+              29.3,
+              30.0,
+              30.6,
+              29.8,
+              29.3
+            ],
+            "median": 29.5,
+            "p95_nearest_rank": 30.6
+          }
+        },
+        "tfidf_cosine": {
+          "candidate_scores": [
+            {
+              "segment_id": "D4:step-4:2",
+              "score": 0.287178
+            },
+            {
+              "segment_id": "D1:\u00a73:0",
+              "score": 0.122341
+            }
+          ],
+          "required_evidence_ids": [
+            "D1:\u00a78:0"
+          ],
+          "required_in_candidates": [],
+          "context_ids": [
+            "D4:step-4:2",
+            "D1:\u00a73:0"
+          ],
+          "required_in_context": [],
+          "context_source_words": 24,
+          "fixture_answer_status": "abstained",
+          "fixture_answer_reason": "missing_required_evidence",
+          "fixture_evidence_ids": [],
+          "work": {
+            "eligible_segments": 12,
+            "eligible_posting_visits": 37,
+            "scored_segments": 12,
+            "query_term_count": 8,
+            "zero_score_candidates": 0
+          },
+          "search_latency_us": {
+            "raw": [
+              32.7,
+              31.5,
+              32.4,
+              32.9,
+              112.9,
+              33.7,
+              39.7
+            ],
+            "median": 32.9,
+            "p95_nearest_rank": 112.9
+          }
+        },
+        "bm25_b0": {
+          "candidate_scores": [
+            {
+              "segment_id": "D4:step-4:2",
+              "score": 2.740305
+            },
+            {
+              "segment_id": "D1:\u00a78:0",
+              "score": 1.703904
+            }
+          ],
+          "required_evidence_ids": [
+            "D1:\u00a78:0"
+          ],
+          "required_in_candidates": [
+            "D1:\u00a78:0"
+          ],
+          "context_ids": [
+            "D4:step-4:2",
+            "D1:\u00a78:0"
+          ],
+          "required_in_context": [
+            "D1:\u00a78:0"
+          ],
+          "context_source_words": 25,
+          "fixture_answer_status": "answered",
+          "fixture_answer_reason": null,
+          "fixture_evidence_ids": [
+            "D1:\u00a78:0"
+          ],
+          "work": {
+            "eligible_segments": 12,
+            "eligible_posting_visits": 37,
+            "scored_segments": 12,
+            "query_term_count": 8,
+            "zero_score_candidates": 0
+          },
+          "search_latency_us": {
+            "raw": [
+              37.6,
+              39.8,
+              40.7,
+              41.5,
+              43.4,
+              39.9,
+              39.9
+            ],
+            "median": 39.9,
+            "p95_nearest_rank": 43.4
+          }
+        },
+        "bm25_b075": {
+          "candidate_scores": [
+            {
+              "segment_id": "D4:step-4:2",
+              "score": 2.80615
+            },
+            {
+              "segment_id": "D1:\u00a78:0",
+              "score": 1.792763
+            }
+          ],
+          "required_evidence_ids": [
+            "D1:\u00a78:0"
+          ],
+          "required_in_candidates": [
+            "D1:\u00a78:0"
+          ],
+          "context_ids": [
+            "D4:step-4:2",
+            "D1:\u00a78:0"
+          ],
+          "required_in_context": [
+            "D1:\u00a78:0"
+          ],
+          "context_source_words": 25,
+          "fixture_answer_status": "answered",
+          "fixture_answer_reason": null,
+          "fixture_evidence_ids": [
+            "D1:\u00a78:0"
+          ],
+          "work": {
+            "eligible_segments": 12,
+            "eligible_posting_visits": 37,
+            "scored_segments": 12,
+            "query_term_count": 8,
+            "zero_score_candidates": 0
+          },
+          "search_latency_us": {
+            "raw": [
+              39.2,
+              40.0,
+              41.6,
+              40.3,
+              39.2,
+              43.7,
+              43.2
+            ],
+            "median": 40.3,
+            "p95_nearest_rank": 43.7
+          }
+        }
+      }
+    },
+    {
+      "query_id": "q-termination",
+      "top_k": 8,
+      "modes": {
+        "overlap": {
+          "candidate_scores": [
+            {
+              "segment_id": "D1:\u00a73:0",
+              "score": 4
+            },
+            {
+              "segment_id": "D4:step-4:2",
+              "score": 4
+            },
+            {
+              "segment_id": "D1:\u00a78:0",
+              "score": 3
+            },
+            {
+              "segment_id": "D3:FAQ-7:0",
+              "score": 3
+            },
+            {
+              "segment_id": "D4:step-4:0",
+              "score": 3
+            },
+            {
+              "segment_id": "D4:step-4:1",
+              "score": 3
+            },
+            {
+              "segment_id": "D5:\u00a73:0",
+              "score": 3
+            },
+            {
+              "segment_id": "D6:row-2:0",
+              "score": 3
+            }
+          ],
+          "required_evidence_ids": [
+            "D1:\u00a78:0"
+          ],
+          "required_in_candidates": [
+            "D1:\u00a78:0"
+          ],
+          "context_ids": [
+            "D1:\u00a73:0",
+            "D4:step-4:2",
+            "D1:\u00a78:0",
+            "D3:FAQ-7:0",
+            "D4:step-4:0",
+            "D4:step-4:1",
+            "D5:\u00a73:0",
+            "D6:row-2:0"
+          ],
+          "required_in_context": [
+            "D1:\u00a78:0"
+          ],
+          "context_source_words": 115,
+          "fixture_answer_status": "answered",
+          "fixture_answer_reason": null,
+          "fixture_evidence_ids": [
+            "D1:\u00a78:0"
+          ],
+          "work": {
+            "eligible_segments": 12,
+            "eligible_posting_visits": 37,
+            "scored_segments": 12,
+            "query_term_count": 8
+          },
+          "search_latency_us": {
+            "raw": [
+              22.0,
+              22.3,
+              20.8,
+              21.4,
+              21.8,
+              21.6,
+              21.5
+            ],
+            "median": 21.6,
+            "p95_nearest_rank": 22.3
+          }
+        },
+        "tfidf_raw": {
+          "candidate_scores": [
+            {
+              "segment_id": "D4:step-4:2",
+              "score": 3.205894
+            },
+            {
+              "segment_id": "D1:\u00a78:0",
+              "score": 2.371247
+            },
+            {
+              "segment_id": "D1:\u00a73:0",
+              "score": 1.454957
+            },
+            {
+              "segment_id": "D5:\u00a73:0",
+              "score": 1.454957
+            },
+            {
+              "segment_id": "D8:\u00a73:0",
+              "score": 1.454957
+            },
+            {
+              "segment_id": "D4:step-4:1",
+              "score": 0.903309
+            },
+            {
+              "segment_id": "D4:step-4:0",
+              "score": 0.538666
+            },
+            {
+              "segment_id": "D7:timeline:0",
+              "score": 0.538666
+            }
+          ],
+          "required_evidence_ids": [
+            "D1:\u00a78:0"
+          ],
+          "required_in_candidates": [
+            "D1:\u00a78:0"
+          ],
+          "context_ids": [
+            "D4:step-4:2",
+            "D1:\u00a78:0",
+            "D1:\u00a73:0",
+            "D5:\u00a73:0",
+            "D8:\u00a73:0",
+            "D4:step-4:1",
+            "D4:step-4:0"
+          ],
+          "required_in_context": [
+            "D1:\u00a78:0"
+          ],
+          "context_source_words": 109,
+          "fixture_answer_status": "answered",
+          "fixture_answer_reason": null,
+          "fixture_evidence_ids": [
+            "D1:\u00a78:0"
+          ],
+          "work": {
+            "eligible_segments": 12,
+            "eligible_posting_visits": 37,
+            "scored_segments": 12,
+            "query_term_count": 8,
+            "zero_score_candidates": 0
+          },
+          "search_latency_us": {
+            "raw": [
+              31.5,
+              30.6,
+              31.1,
+              31.7,
+              32.5,
+              31.6,
+              32.3
+            ],
+            "median": 31.6,
+            "p95_nearest_rank": 32.5
+          }
+        },
+        "tfidf_cosine": {
+          "candidate_scores": [
+            {
+              "segment_id": "D4:step-4:2",
+              "score": 0.287178
+            },
+            {
+              "segment_id": "D1:\u00a73:0",
+              "score": 0.122341
+            },
+            {
+              "segment_id": "D1:\u00a78:0",
+              "score": 0.113735
+            },
+            {
+              "segment_id": "D8:\u00a73:0",
+              "score": 0.073854
+            },
+            {
+              "segment_id": "D5:\u00a73:0",
+              "score": 0.07119
+            },
+            {
+              "segment_id": "D4:step-4:1",
+              "score": 0.005124
+            },
+            {
+              "segment_id": "D3:FAQ-7:0",
+              "score": 0.004961
+            },
+            {
+              "segment_id": "D7:timeline:0",
+              "score": 0.003665
+            }
+          ],
+          "required_evidence_ids": [
+            "D1:\u00a78:0"
+          ],
+          "required_in_candidates": [
+            "D1:\u00a78:0"
+          ],
+          "context_ids": [
+            "D4:step-4:2",
+            "D1:\u00a73:0",
+            "D1:\u00a78:0",
+            "D8:\u00a73:0",
+            "D5:\u00a73:0",
+            "D4:step-4:1",
+            "D3:FAQ-7:0",
+            "D7:timeline:0"
+          ],
+          "required_in_context": [
+            "D1:\u00a78:0"
+          ],
+          "context_source_words": 111,
+          "fixture_answer_status": "answered",
+          "fixture_answer_reason": null,
+          "fixture_evidence_ids": [
+            "D1:\u00a78:0"
+          ],
+          "work": {
+            "eligible_segments": 12,
+            "eligible_posting_visits": 37,
+            "scored_segments": 12,
+            "query_term_count": 8,
+            "zero_score_candidates": 0
+          },
+          "search_latency_us": {
+            "raw": [
+              35.7,
+              34.0,
+              32.9,
+              33.5,
+              33.5,
+              33.9,
+              34.0
+            ],
+            "median": 33.9,
+            "p95_nearest_rank": 35.7
+          }
+        },
+        "bm25_b0": {
+          "candidate_scores": [
+            {
+              "segment_id": "D4:step-4:2",
+              "score": 2.740305
+            },
+            {
+              "segment_id": "D1:\u00a78:0",
+              "score": 1.703904
+            },
+            {
+              "segment_id": "D1:\u00a73:0",
+              "score": 1.519651
+            },
+            {
+              "segment_id": "D5:\u00a73:0",
+              "score": 1.443024
+            },
+            {
+              "segment_id": "D8:\u00a73:0",
+              "score": 1.443024
+            },
+            {
+              "segment_id": "D4:step-4:1",
+              "score": 0.606638
+            },
+            {
+              "segment_id": "D6:row-2:0",
+              "score": 0.55073
+            },
+            {
+              "segment_id": "D9:proposal-2:0",
+              "score": 0.55073
+            }
+          ],
+          "required_evidence_ids": [
+            "D1:\u00a78:0"
+          ],
+          "required_in_candidates": [
+            "D1:\u00a78:0"
+          ],
+          "context_ids": [
+            "D4:step-4:2",
+            "D1:\u00a78:0",
+            "D1:\u00a73:0",
+            "D5:\u00a73:0",
+            "D8:\u00a73:0",
+            "D4:step-4:1",
+            "D6:row-2:0",
+            "D9:proposal-2:0"
+          ],
+          "required_in_context": [
+            "D1:\u00a78:0"
+          ],
+          "context_source_words": 112,
+          "fixture_answer_status": "answered",
+          "fixture_answer_reason": null,
+          "fixture_evidence_ids": [
+            "D1:\u00a78:0"
+          ],
+          "work": {
+            "eligible_segments": 12,
+            "eligible_posting_visits": 37,
+            "scored_segments": 12,
+            "query_term_count": 8,
+            "zero_score_candidates": 0
+          },
+          "search_latency_us": {
+            "raw": [
+              43.6,
+              43.9,
+              43.9,
+              41.2,
+              41.4,
+              44.0,
+              43.1
+            ],
+            "median": 43.6,
+            "p95_nearest_rank": 44.0
+          }
+        },
+        "bm25_b075": {
+          "candidate_scores": [
+            {
+              "segment_id": "D4:step-4:2",
+              "score": 2.80615
+            },
+            {
+              "segment_id": "D1:\u00a78:0",
+              "score": 1.792763
+            },
+            {
+              "segment_id": "D1:\u00a73:0",
+              "score": 1.66799
+            },
+            {
+              "segment_id": "D5:\u00a73:0",
+              "score": 1.510354
+            },
+            {
+              "segment_id": "D8:\u00a73:0",
+              "score": 1.510354
+            },
+            {
+              "segment_id": "D6:row-2:0",
+              "score": 0.593535
+            },
+            {
+              "segment_id": "D3:FAQ-7:0",
+              "score": 0.541629
+            },
+            {
+              "segment_id": "D4:step-4:1",
+              "score": 0.541041
+            }
+          ],
+          "required_evidence_ids": [
+            "D1:\u00a78:0"
+          ],
+          "required_in_candidates": [
+            "D1:\u00a78:0"
+          ],
+          "context_ids": [
+            "D4:step-4:2",
+            "D1:\u00a78:0",
+            "D1:\u00a73:0",
+            "D5:\u00a73:0",
+            "D8:\u00a73:0",
+            "D6:row-2:0",
+            "D3:FAQ-7:0",
+            "D4:step-4:1"
+          ],
+          "required_in_context": [
+            "D1:\u00a78:0"
+          ],
+          "context_source_words": 104,
+          "fixture_answer_status": "answered",
+          "fixture_answer_reason": null,
+          "fixture_evidence_ids": [
+            "D1:\u00a78:0"
+          ],
+          "work": {
+            "eligible_segments": 12,
+            "eligible_posting_visits": 37,
+            "scored_segments": 12,
+            "query_term_count": 8,
+            "zero_score_candidates": 0
+          },
+          "search_latency_us": {
+            "raw": [
+              42.9,
+              45.1,
+              44.2,
+              44.8,
+              44.8,
+              41.9,
+              45.4
+            ],
+            "median": 44.8,
+            "p95_nearest_rank": 45.4
+          }
+        }
+      }
+    },
+    {
+      "query_id": "q-rare-numeric",
+      "top_k": 2,
+      "modes": {
+        "overlap": {
+          "candidate_scores": [
+            {
+              "segment_id": "D6:row-2:0",
+              "score": 2
+            }
+          ],
+          "required_evidence_ids": [],
+          "required_in_candidates": [],
+          "context_ids": [
+            "D6:row-2:0"
+          ],
+          "required_in_context": [],
+          "context_source_words": 11,
+          "fixture_answer_status": null,
+          "fixture_answer_reason": null,
+          "fixture_evidence_ids": [],
+          "work": {
+            "eligible_segments": 12,
+            "eligible_posting_visits": 2,
+            "scored_segments": 1,
+            "query_term_count": 2
+          },
+          "search_latency_us": {
+            "raw": [
+              5.3,
+              5.1,
+              4.9,
+              4.9,
+              6.6,
+              5.4,
+              4.6
+            ],
+            "median": 5.1,
+            "p95_nearest_rank": 6.6
+          }
+        },
+        "tfidf_raw": {
+          "candidate_scores": [
+            {
+              "segment_id": "D6:row-2:0",
+              "score": 4.969813
+            }
+          ],
+          "required_evidence_ids": [],
+          "required_in_candidates": [],
+          "context_ids": [
+            "D6:row-2:0"
+          ],
+          "required_in_context": [],
+          "context_source_words": 11,
+          "fixture_answer_status": null,
+          "fixture_answer_reason": null,
+          "fixture_evidence_ids": [],
+          "work": {
+            "eligible_segments": 12,
+            "eligible_posting_visits": 2,
+            "scored_segments": 1,
+            "query_term_count": 2,
+            "zero_score_candidates": 0
+          },
+          "search_latency_us": {
+            "raw": [
+              6.8,
+              7.5,
+              7.6,
+              8.2,
+              7.6,
+              7.1,
+              7.4
+            ],
+            "median": 7.5,
+            "p95_nearest_rank": 8.2
+          }
+        },
+        "tfidf_cosine": {
+          "candidate_scores": [
+            {
+              "segment_id": "D6:row-2:0",
+              "score": 0.509954
+            }
+          ],
+          "required_evidence_ids": [],
+          "required_in_candidates": [],
+          "context_ids": [
+            "D6:row-2:0"
+          ],
+          "required_in_context": [],
+          "context_source_words": 11,
+          "fixture_answer_status": null,
+          "fixture_answer_reason": null,
+          "fixture_evidence_ids": [],
+          "work": {
+            "eligible_segments": 12,
+            "eligible_posting_visits": 2,
+            "scored_segments": 1,
+            "query_term_count": 2,
+            "zero_score_candidates": 0
+          },
+          "search_latency_us": {
+            "raw": [
+              7.4,
+              15.9,
+              8.5,
+              13.6,
+              9.1,
+              7.3,
+              7.9
+            ],
+            "median": 8.5,
+            "p95_nearest_rank": 15.9
+          }
+        },
+        "bm25_b0": {
+          "candidate_scores": [
+            {
+              "segment_id": "D6:row-2:0",
+              "score": 4.318968
+            }
+          ],
+          "required_evidence_ids": [],
+          "required_in_candidates": [],
+          "context_ids": [
+            "D6:row-2:0"
+          ],
+          "required_in_context": [],
+          "context_source_words": 11,
+          "fixture_answer_status": null,
+          "fixture_answer_reason": null,
+          "fixture_evidence_ids": [],
+          "work": {
+            "eligible_segments": 12,
+            "eligible_posting_visits": 2,
+            "scored_segments": 1,
+            "query_term_count": 2,
+            "zero_score_candidates": 0
+          },
+          "search_latency_us": {
+            "raw": [
+              8.0,
+              8.0,
+              9.3,
+              61.0,
+              8.4,
+              9.7,
+              7.9
+            ],
+            "median": 8.4,
+            "p95_nearest_rank": 61.0
+          }
+        },
+        "bm25_b075": {
+          "candidate_scores": [
+            {
+              "segment_id": "D6:row-2:0",
+              "score": 4.74056
+            }
+          ],
+          "required_evidence_ids": [],
+          "required_in_candidates": [],
+          "context_ids": [
+            "D6:row-2:0"
+          ],
+          "required_in_context": [],
+          "context_source_words": 11,
+          "fixture_answer_status": null,
+          "fixture_answer_reason": null,
+          "fixture_evidence_ids": [],
+          "work": {
+            "eligible_segments": 12,
+            "eligible_posting_visits": 2,
+            "scored_segments": 1,
+            "query_term_count": 2,
+            "zero_score_candidates": 0
+          },
+          "search_latency_us": {
+            "raw": [
+              8.3,
+              8.4,
+              8.7,
+              8.7,
+              11.0,
+              9.8,
+              8.4
+            ],
+            "median": 8.7,
+            "p95_nearest_rank": 11.0
+          }
+        }
+      }
+    },
+    {
+      "query_id": "q-rare-numeric",
+      "top_k": 8,
+      "modes": {
+        "overlap": {
+          "candidate_scores": [
+            {
+              "segment_id": "D6:row-2:0",
+              "score": 2
+            }
+          ],
+          "required_evidence_ids": [],
+          "required_in_candidates": [],
+          "context_ids": [
+            "D6:row-2:0"
+          ],
+          "required_in_context": [],
+          "context_source_words": 11,
+          "fixture_answer_status": null,
+          "fixture_answer_reason": null,
+          "fixture_evidence_ids": [],
+          "work": {
+            "eligible_segments": 12,
+            "eligible_posting_visits": 2,
+            "scored_segments": 1,
+            "query_term_count": 2
+          },
+          "search_latency_us": {
+            "raw": [
+              5.1,
+              4.9,
+              4.8,
+              5.0,
+              4.6,
+              4.3,
+              4.5
+            ],
+            "median": 4.8,
+            "p95_nearest_rank": 5.1
+          }
+        },
+        "tfidf_raw": {
+          "candidate_scores": [
+            {
+              "segment_id": "D6:row-2:0",
+              "score": 4.969813
+            }
+          ],
+          "required_evidence_ids": [],
+          "required_in_candidates": [],
+          "context_ids": [
+            "D6:row-2:0"
+          ],
+          "required_in_context": [],
+          "context_source_words": 11,
+          "fixture_answer_status": null,
+          "fixture_answer_reason": null,
+          "fixture_evidence_ids": [],
+          "work": {
+            "eligible_segments": 12,
+            "eligible_posting_visits": 2,
+            "scored_segments": 1,
+            "query_term_count": 2,
+            "zero_score_candidates": 0
+          },
+          "search_latency_us": {
+            "raw": [
+              7.3,
+              6.8,
+              6.8,
+              6.8,
+              6.7,
+              7.3,
+              6.6
+            ],
+            "median": 6.8,
+            "p95_nearest_rank": 7.3
+          }
+        },
+        "tfidf_cosine": {
+          "candidate_scores": [
+            {
+              "segment_id": "D6:row-2:0",
+              "score": 0.509954
+            }
+          ],
+          "required_evidence_ids": [],
+          "required_in_candidates": [],
+          "context_ids": [
+            "D6:row-2:0"
+          ],
+          "required_in_context": [],
+          "context_source_words": 11,
+          "fixture_answer_status": null,
+          "fixture_answer_reason": null,
+          "fixture_evidence_ids": [],
+          "work": {
+            "eligible_segments": 12,
+            "eligible_posting_visits": 2,
+            "scored_segments": 1,
+            "query_term_count": 2,
+            "zero_score_candidates": 0
+          },
+          "search_latency_us": {
+            "raw": [
+              7.3,
+              8.4,
+              7.4,
+              7.1,
+              7.3,
+              6.8,
+              7.1
+            ],
+            "median": 7.3,
+            "p95_nearest_rank": 8.4
+          }
+        },
+        "bm25_b0": {
+          "candidate_scores": [
+            {
+              "segment_id": "D6:row-2:0",
+              "score": 4.318968
+            }
+          ],
+          "required_evidence_ids": [],
+          "required_in_candidates": [],
+          "context_ids": [
+            "D6:row-2:0"
+          ],
+          "required_in_context": [],
+          "context_source_words": 11,
+          "fixture_answer_status": null,
+          "fixture_answer_reason": null,
+          "fixture_evidence_ids": [],
+          "work": {
+            "eligible_segments": 12,
+            "eligible_posting_visits": 2,
+            "scored_segments": 1,
+            "query_term_count": 2,
+            "zero_score_candidates": 0
+          },
+          "search_latency_us": {
+            "raw": [
+              8.6,
+              8.3,
+              8.0,
+              7.8,
+              8.6,
+              8.6,
+              7.8
+            ],
+            "median": 8.3,
+            "p95_nearest_rank": 8.6
+          }
+        },
+        "bm25_b075": {
+          "candidate_scores": [
+            {
+              "segment_id": "D6:row-2:0",
+              "score": 4.74056
+            }
+          ],
+          "required_evidence_ids": [],
+          "required_in_candidates": [],
+          "context_ids": [
+            "D6:row-2:0"
+          ],
+          "required_in_context": [],
+          "context_source_words": 11,
+          "fixture_answer_status": null,
+          "fixture_answer_reason": null,
+          "fixture_evidence_ids": [],
+          "work": {
+            "eligible_segments": 12,
+            "eligible_posting_visits": 2,
+            "scored_segments": 1,
+            "query_term_count": 2,
+            "zero_score_candidates": 0
+          },
+          "search_latency_us": {
+            "raw": [
+              7.8,
+              8.2,
+              7.6,
+              8.2,
+              7.7,
+              8.0,
+              8.3
+            ],
+            "median": 8.0,
+            "p95_nearest_rank": 8.3
+          }
+        }
+      }
+    },
+    {
+      "query_id": "q-no-result",
+      "top_k": 2,
+      "modes": {
+        "overlap": {
+          "candidate_scores": [],
+          "required_evidence_ids": [],
+          "required_in_candidates": [],
+          "context_ids": [],
+          "required_in_context": [],
+          "context_source_words": 0,
+          "fixture_answer_status": null,
+          "fixture_answer_reason": null,
+          "fixture_evidence_ids": [],
+          "work": {
+            "eligible_segments": 12,
+            "eligible_posting_visits": 0,
+            "scored_segments": 0,
+            "query_term_count": 1
+          },
+          "search_latency_us": {
+            "raw": [
+              3.0,
+              2.5,
+              2.5,
+              2.6,
+              2.9,
+              3.0,
+              2.5
+            ],
+            "median": 2.6,
+            "p95_nearest_rank": 3.0
+          }
+        },
+        "tfidf_raw": {
+          "candidate_scores": [],
+          "required_evidence_ids": [],
+          "required_in_candidates": [],
+          "context_ids": [],
+          "required_in_context": [],
+          "context_source_words": 0,
+          "fixture_answer_status": null,
+          "fixture_answer_reason": null,
+          "fixture_evidence_ids": [],
+          "work": {
+            "eligible_segments": 12,
+            "eligible_posting_visits": 0,
+            "scored_segments": 0,
+            "query_term_count": 1,
+            "zero_score_candidates": 0
+          },
+          "search_latency_us": {
+            "raw": [
+              4.0,
+              3.9,
+              3.9,
+              3.6,
+              3.6,
+              3.8,
+              3.8
+            ],
+            "median": 3.8,
+            "p95_nearest_rank": 4.0
+          }
+        },
+        "tfidf_cosine": {
+          "candidate_scores": [],
+          "required_evidence_ids": [],
+          "required_in_candidates": [],
+          "context_ids": [],
+          "required_in_context": [],
+          "context_source_words": 0,
+          "fixture_answer_status": null,
+          "fixture_answer_reason": null,
+          "fixture_evidence_ids": [],
+          "work": {
+            "eligible_segments": 12,
+            "eligible_posting_visits": 0,
+            "scored_segments": 0,
+            "query_term_count": 1,
+            "zero_score_candidates": 0
+          },
+          "search_latency_us": {
+            "raw": [
+              4.3,
+              4.4,
+              4.1,
+              4.1,
+              4.2,
+              4.4,
+              4.4
+            ],
+            "median": 4.3,
+            "p95_nearest_rank": 4.4
+          }
+        },
+        "bm25_b0": {
+          "candidate_scores": [],
+          "required_evidence_ids": [],
+          "required_in_candidates": [],
+          "context_ids": [],
+          "required_in_context": [],
+          "context_source_words": 0,
+          "fixture_answer_status": null,
+          "fixture_answer_reason": null,
+          "fixture_evidence_ids": [],
+          "work": {
+            "eligible_segments": 12,
+            "eligible_posting_visits": 0,
+            "scored_segments": 0,
+            "query_term_count": 1,
+            "zero_score_candidates": 0
+          },
+          "search_latency_us": {
+            "raw": [
+              4.6,
+              4.5,
+              4.1,
+              4.7,
+              3.8,
+              4.3,
+              4.0
+            ],
+            "median": 4.3,
+            "p95_nearest_rank": 4.7
+          }
+        },
+        "bm25_b075": {
+          "candidate_scores": [],
+          "required_evidence_ids": [],
+          "required_in_candidates": [],
+          "context_ids": [],
+          "required_in_context": [],
+          "context_source_words": 0,
+          "fixture_answer_status": null,
+          "fixture_answer_reason": null,
+          "fixture_evidence_ids": [],
+          "work": {
+            "eligible_segments": 12,
+            "eligible_posting_visits": 0,
+            "scored_segments": 0,
+            "query_term_count": 1,
+            "zero_score_candidates": 0
+          },
+          "search_latency_us": {
+            "raw": [
+              4.8,
+              4.1,
+              3.9,
+              4.7,
+              4.2,
+              4.0,
+              4.4
+            ],
+            "median": 4.2,
+            "p95_nearest_rank": 4.8
+          }
+        }
+      }
+    },
+    {
+      "query_id": "q-no-result",
+      "top_k": 8,
+      "modes": {
+        "overlap": {
+          "candidate_scores": [],
+          "required_evidence_ids": [],
+          "required_in_candidates": [],
+          "context_ids": [],
+          "required_in_context": [],
+          "context_source_words": 0,
+          "fixture_answer_status": null,
+          "fixture_answer_reason": null,
+          "fixture_evidence_ids": [],
+          "work": {
+            "eligible_segments": 12,
+            "eligible_posting_visits": 0,
+            "scored_segments": 0,
+            "query_term_count": 1
+          },
+          "search_latency_us": {
+            "raw": [
+              3.1,
+              2.5,
+              2.4,
+              2.7,
+              2.6,
+              2.7,
+              2.8
+            ],
+            "median": 2.7,
+            "p95_nearest_rank": 3.1
+          }
+        },
+        "tfidf_raw": {
+          "candidate_scores": [],
+          "required_evidence_ids": [],
+          "required_in_candidates": [],
+          "context_ids": [],
+          "required_in_context": [],
+          "context_source_words": 0,
+          "fixture_answer_status": null,
+          "fixture_answer_reason": null,
+          "fixture_evidence_ids": [],
+          "work": {
+            "eligible_segments": 12,
+            "eligible_posting_visits": 0,
+            "scored_segments": 0,
+            "query_term_count": 1,
+            "zero_score_candidates": 0
+          },
+          "search_latency_us": {
+            "raw": [
+              3.9,
+              3.8,
+              4.2,
+              3.7,
+              3.7,
+              3.8,
+              3.9
+            ],
+            "median": 3.8,
+            "p95_nearest_rank": 4.2
+          }
+        },
+        "tfidf_cosine": {
+          "candidate_scores": [],
+          "required_evidence_ids": [],
+          "required_in_candidates": [],
+          "context_ids": [],
+          "required_in_context": [],
+          "context_source_words": 0,
+          "fixture_answer_status": null,
+          "fixture_answer_reason": null,
+          "fixture_evidence_ids": [],
+          "work": {
+            "eligible_segments": 12,
+            "eligible_posting_visits": 0,
+            "scored_segments": 0,
+            "query_term_count": 1,
+            "zero_score_candidates": 0
+          },
+          "search_latency_us": {
+            "raw": [
+              4.5,
+              4.1,
+              4.1,
+              4.0,
+              4.5,
+              4.7,
+              4.5
+            ],
+            "median": 4.5,
+            "p95_nearest_rank": 4.7
+          }
+        },
+        "bm25_b0": {
+          "candidate_scores": [],
+          "required_evidence_ids": [],
+          "required_in_candidates": [],
+          "context_ids": [],
+          "required_in_context": [],
+          "context_source_words": 0,
+          "fixture_answer_status": null,
+          "fixture_answer_reason": null,
+          "fixture_evidence_ids": [],
+          "work": {
+            "eligible_segments": 12,
+            "eligible_posting_visits": 0,
+            "scored_segments": 0,
+            "query_term_count": 1,
+            "zero_score_candidates": 0
+          },
+          "search_latency_us": {
+            "raw": [
+              4.1,
+              4.5,
+              4.0,
+              4.1,
+              4.3,
+              4.3,
+              4.4
+            ],
+            "median": 4.3,
+            "p95_nearest_rank": 4.5
+          }
+        },
+        "bm25_b075": {
+          "candidate_scores": [],
+          "required_evidence_ids": [],
+          "required_in_candidates": [],
+          "context_ids": [],
+          "required_in_context": [],
+          "context_source_words": 0,
+          "fixture_answer_status": null,
+          "fixture_answer_reason": null,
+          "fixture_evidence_ids": [],
+          "work": {
+            "eligible_segments": 12,
+            "eligible_posting_visits": 0,
+            "scored_segments": 0,
+            "query_term_count": 1,
+            "zero_score_candidates": 0
+          },
+          "search_latency_us": {
+            "raw": [
+              4.5,
+              3.9,
+              4.3,
+              4.2,
+              4.2,
+              4.6,
+              4.6
+            ],
+            "median": 4.3,
+            "p95_nearest_rank": 4.6
+          }
+        }
+      }
+    }
+  ]
+}

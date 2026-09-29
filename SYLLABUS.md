@@ -90,6 +90,7 @@ The core question evolves throughout: **Which evidence enters the LLM's context,
 
 #### Chapter 07 — BM25 and other lexical ranking models
 
+- **Authored materials:** [Chapter](chapters/chapter-07-bm25-and-other-lexical-ranking-models.md) · [Lab](labs/chapter-07/LAB.md) · [Solutions](solutions/chapter-07-solutions.md) · [V2 BM25 stage](projects/V2/README.md).
 - **Objective:** Calculate and tune BM25, then identify where lexical scoring wins and fails.
 - **Prerequisites:** Chapters 05–06.
 - **Section 1 — Probabilistic ranking intuition.** Topic: relevance evidence; micro-concepts: odds, IDF motivation, term-frequency saturation, document-length normalization, query term summation, `k1` and `b`, nonnegative IDF conventions.
