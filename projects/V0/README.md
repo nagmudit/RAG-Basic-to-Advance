@@ -2,6 +2,8 @@
 
 **Implemented in Chapters 1–2.** Chapter 1 fixes the source and answer contract. [Chapter 2](../../chapters/chapter-02-build-the-first-rag-loop.md) implements a literal-search loop and a minimal request record. The checked-in [ten-document corpus](corpus.json), [engine](engine.py), [behavioral tests](test_engine.py), and [first result record](RESULTS.md) are the reproducible V0 snapshot.
 
+[Chapter 3 characterizes V0's computing costs](CHAPTER_03_MEASUREMENT.md) with a separate exact-ID measurement sidecar. It leaves this engine and its evidence behavior intact; V1's term index is taught later.
+
 ## Tiny corpus and source identity
 
 The fictional snapshot is `support-corpus-2026-05-20`. The implementation contains ten short documents. The three records below bind the Chapter 1 example; the other seven create realistic decoys, a long-section boundary and a restricted source. Keep IDs, versions, dates and location markers rather than anonymous strings.

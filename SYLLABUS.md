@@ -36,6 +36,7 @@ The core question evolves throughout: **Which evidence enters the LLM's context,
 
 #### Chapter 03 — Data, algorithms, and measurements needed for search
 
+- **Authored materials:** [Chapter](chapters/chapter-03-data-algorithms-and-measurements-needed-for-search.md) · [Lab](labs/chapter-03/LAB.md) · [Solutions](solutions/chapter-03-solutions.md) · [V0 characterization](projects/V0/CHAPTER_03_MEASUREMENT.md).
 - **Objective:** Acquire the minimum programming and mathematical vocabulary used by later chapters.
 - **Prerequisites:** Chapter 02.
 - **Section 1 — Data structures and costs.** Topic: storage; micro-concepts: arrays, maps, sets, sorting, hash lookup, bytes vs characters, memory vs disk. Topic: complexity; micro-concepts: input size, linear scan, logarithmic lookup, upper bounds vs measured latency.

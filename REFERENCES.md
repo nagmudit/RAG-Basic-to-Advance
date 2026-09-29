@@ -17,3 +17,12 @@ This register records primary sources used in written chapters. Concept explanat
 | Manning, Raghavan and Schütze, [*Introduction to Information Retrieval*: An Example Information Retrieval Problem](https://nlp.stanford.edu/IR-book/html/htmledition/an-example-information-retrieval-problem-1.html) and [A First Take at Building an Inverted Index](https://nlp.stanford.edu/IR-book/html/htmledition/a-first-take-at-building-an-inverted-index-1.html), 2008 | Linear scan as an instructive baseline; index motivation | V0 deliberately stops before implementing an inverted index, which begins in Chapter 5. |
 | Python Software Foundation, [regular-expression operations](https://docs.python.org/3/library/re.html) | V0's small lexical tokenizer uses `re.compile(...).findall(...)` | The expression chosen by the book is ASCII-oriented and not a general analyzer. |
 | Python Software Foundation, [`time.perf_counter()`](https://docs.python.org/3/library/time.html#time.perf_counter) | Measuring elapsed stage and request durations by differences between calls | One tiny-corpus timing sample does not establish a latency distribution or benchmark result. |
+
+## Chapter 3 — verified 2026-09-29
+
+| Source | Used for | Scope and caution |
+|---|---|---|
+| Python Software Foundation, [Time Complexity](https://wiki.python.org/moin/TimeComplexity) | CPython list, set and dict average/worst-case operation bounds | Implementation and workload assumptions are stated; bounds are not measured latency or universal across runtimes. |
+| Python Software Foundation, [`time.perf_counter_ns()`](https://docs.python.org/3/library/time.html#time.perf_counter_ns) and [`timeit`](https://docs.python.org/3/library/timeit.html) | Elapsed timing, repetition, and interpretation of raw trial variation | The chapter's own sidecar is a local workload study, not a production latency benchmark. |
+| Python Software Foundation, [Unicode HOWTO](https://docs.python.org/3/howto/unicode.html) | Code points versus UTF-8 bytes | A visible glyph, regex term and model token remain separate units. |
+| Python Software Foundation, [`sys.getsizeof`](https://docs.python.org/3/library/sys.html#sys.getsizeof) | Shallow Python object size | It excludes the objects a container refers to; JSON bytes are another representation. |

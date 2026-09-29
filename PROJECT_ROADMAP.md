@@ -4,6 +4,8 @@ Each version is motivated by an observed limitation. Snapshots preserve its code
 
 The [V0 project snapshot](projects/V0/README.md) now includes the Chapter 1 evidence contract, Chapter 2 [full-scan engine](projects/V0/engine.py), ten-document corpus, behavioral tests and [baseline result record](projects/V0/RESULTS.md). Its two frozen questions preserve the first search path and failure cases.
 
+Chapter 3 adds a [read-only V0 measurement sidecar](projects/V0/CHAPTER_03_MEASUREMENT.md) for exact-ID lookup, raw timing data and a reproducible plot. It measures computing primitives before V1 changes the retrieval algorithm. The V0 answer path and frozen evidence tests remain the baseline.
+
 | Version / chapters | Previous limitation | Feature and concept | Implementation task | Observation to test |
 |---|---|---|---|---|
 | V0 / 01–02 | No external evidence | Literal search, explicit context, minimal telemetry | Score text matches; label sources; log request/query ID, source snapshot, retrieved IDs/scores, chosen evidence IDs, status and wall-clock latency | Exact words work; paraphrases and long documents fail; one request is replayable |

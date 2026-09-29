@@ -26,6 +26,28 @@ The glossary will grow with chapter writing. Each future entry will include: **p
 | Retrieval | Finding eligible candidates from a corpus | 01; implementation 02 | Reranking or generation |
 | Index time / preparation time | Work done to prepare searchable source representations before a particular question | 02; deep treatment 05, 19 | Query-time work |
 | Query time | Work done for a particular question using prepared sources | 02 | Index-time preparation |
+| List / array | Ordered collection whose position can be accessed directly; searching unknown content may still require a scan | 03 | Map keyed by known identity |
+| Map / dictionary | Key-to-value structure for lookup by a supplied key | 03 | Content search from an information need |
+| Set | Collection of distinct values supporting membership and overlap operations | 03; first used 02 | Ordered list with repetitions |
+| Hash lookup | Finding a value using a computed key hash; expected fast lookup depends on collision behavior | 03 | Worst-case guarantee or relevance retrieval |
+| Binary search | Repeatedly halving a sorted key range to find an exact key | 03 | Hash lookup or unsorted content search |
+| Time complexity / Big O | Bound on how operation count grows with a named input size under stated assumptions | 03 | Measured seconds or latency SLO |
+| Average case / worst case | Expected work under a stated input distribution versus an upper bound for allowed inputs | 03 | Typical latency versus p99 without a workload |
+| Build cost / amortization | One-time preparation work spread across a declared number of later operations | 03 | A cost that disappears entirely |
+| Shallow container bytes | Memory size of the container object itself, excluding objects it references | 03 | Total resident or serialized bytes |
+| Code point / UTF-8 byte | Abstract Unicode character value versus encoded storage unit | 03 | Visible glyph or model token |
+| Model token | Unit emitted by a particular language-model tokenizer | 03; deep treatment 04 | V0 regex term, whitespace word or character proxy |
+| Workload | Defined distribution of operations, inputs, hit/miss mix and volume under test | 03 | Corpus size alone |
+| Benchmark | Reproducible timed comparison with a declared task, implementation, environment and workload | 03 | Universal performance claim |
+| Mean / median | Arithmetic average versus middle value of sorted observations | 03 | Tail percentile |
+| Percentile estimator | Declared rule mapping a sample and probability to a quantile, such as nearest rank | 03; deep treatment 52 | A unique answer for very small samples |
+| Uncertainty | Limits on what a finite, variable sample can establish about another workload or population | 03; deep treatment 48 | Mere rounding error |
+| Training / validation / test split | Data partitions for fitting, choosing and finally estimating generalization | 03; deep treatment 12, 48 | Reusing one set for all decisions |
+| Data leakage | Evaluation information entering model fitting or design choices and biasing the reported result | 03; deep treatment 12 | Legitimate use of known corpus at inference |
+| Vector / norm / dot product | Ordered numeric coordinates, their magnitude and pairwise product sum | 03; deep treatment 10 | Evidence authority or access right |
+| Cosine similarity | Dot product divided by nonzero vector norms, measuring geometric angle alignment | 03; deep treatment 10 | Calibrated answer correctness |
+| Logarithm | Exponent needed to obtain a positive value from a chosen base; e.g., `log₂ 1024 = 10` | 03; deep treatment 06 | Defined operation at zero |
+| Probability / distribution | Likelihood under a stated model and spread of outcomes across its population | 03; deep treatment 09, 48 | Raw retrieval score or one sample mean |
 | Source locator | Document ID, version, section/span and where needed offset that identify cited source text | 02 | Citation text without a resolvable source |
 | Segment / window | V0 searchable word span derived from one named document section | 02; deep treatment 20 | Whole source document |
 | Tokenization | Converting text into matching units under explicit rules | 02; deep treatment 05 | Model-token counting or semantic understanding |

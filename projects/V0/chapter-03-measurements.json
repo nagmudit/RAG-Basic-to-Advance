@@ -1,0 +1,176 @@
+{
+  "experiment_id": "chapter-03-exact-id-lookup-v1",
+  "measured_at_utc": "2026-09-29T07:01:33.915844+00:00",
+  "code_version": "measurements-v1",
+  "source_context": "V0 teaching project; synthetic records, not V0 lexical retrieval",
+  "python": "3.14.2",
+  "python_implementation": "CPython",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "seed": 20260929,
+  "size_order": [
+    64,
+    256,
+    1024,
+    4096,
+    16384
+  ],
+  "workload": "50% uniformly sampled present IDs, 50% absent IDs; fixed shuffled keys per size",
+  "clock": "time.perf_counter_ns; batched wall time",
+  "results": [
+    {
+      "records": 64,
+      "queries_per_trial": 256,
+      "hits_per_trial": 128,
+      "misses_per_trial": 128,
+      "trials": 7,
+      "scan_us_per_lookup_samples": [
+        1.24609375,
+        1.2296875,
+        1.2671875,
+        1.2515625,
+        1.25234375,
+        1.26328125,
+        1.277734375
+      ],
+      "dict_us_per_lookup_samples": [
+        0.059375,
+        0.0578125,
+        0.056640625,
+        0.0578125,
+        0.058984375,
+        0.058984375,
+        0.06015625
+      ],
+      "scan_median_us_per_lookup": 1.25234375,
+      "dict_median_us_per_lookup": 0.058984375,
+      "dict_build_us_one_sample": 7.3,
+      "list_container_bytes_shallow": 568,
+      "dict_container_bytes_shallow": 1584,
+      "json_utf8_bytes": 3318
+    },
+    {
+      "records": 256,
+      "queries_per_trial": 256,
+      "hits_per_trial": 128,
+      "misses_per_trial": 128,
+      "trials": 7,
+      "scan_us_per_lookup_samples": [
+        12.021484375,
+        12.72734375,
+        11.8421875,
+        11.33125,
+        11.069140625,
+        10.53984375,
+        9.99921875
+      ],
+      "dict_us_per_lookup_samples": [
+        0.158984375,
+        0.152734375,
+        0.14609375,
+        0.143359375,
+        0.13203125,
+        0.125,
+        0.121875
+      ],
+      "scan_median_us_per_lookup": 11.33125,
+      "dict_median_us_per_lookup": 0.143359375,
+      "dict_build_us_one_sample": 21.5,
+      "list_container_bytes_shallow": 2200,
+      "dict_container_bytes_shallow": 6576,
+      "json_utf8_bytes": 13458
+    },
+    {
+      "records": 1024,
+      "queries_per_trial": 256,
+      "hits_per_trial": 128,
+      "misses_per_trial": 128,
+      "trials": 7,
+      "scan_us_per_lookup_samples": [
+        35.99375,
+        37.320703125,
+        35.502734375,
+        30.482421875,
+        28.18203125,
+        28.908984375,
+        30.245703125
+      ],
+      "dict_us_per_lookup_samples": [
+        0.12734375,
+        0.167578125,
+        0.13203125,
+        0.121875,
+        0.1109375,
+        0.08828125,
+        0.12421875
+      ],
+      "scan_median_us_per_lookup": 30.482421875,
+      "dict_median_us_per_lookup": 0.12421875,
+      "dict_build_us_one_sample": 145.2,
+      "list_container_bytes_shallow": 8856,
+      "dict_container_bytes_shallow": 26032,
+      "json_utf8_bytes": 54186
+    },
+    {
+      "records": 4096,
+      "queries_per_trial": 256,
+      "hits_per_trial": 128,
+      "misses_per_trial": 128,
+      "trials": 7,
+      "scan_us_per_lookup_samples": [
+        135.576953125,
+        139.144921875,
+        140.91484375,
+        138.33046875,
+        140.0671875,
+        131.793359375,
+        137.7875
+      ],
+      "dict_us_per_lookup_samples": [
+        0.193359375,
+        0.125,
+        0.178515625,
+        0.115234375,
+        0.176953125,
+        0.110546875,
+        0.18984375
+      ],
+      "scan_median_us_per_lookup": 138.33046875,
+      "dict_median_us_per_lookup": 0.176953125,
+      "dict_build_us_one_sample": 457.8,
+      "list_container_bytes_shallow": 33048,
+      "dict_container_bytes_shallow": 103856,
+      "json_utf8_bytes": 220074
+    },
+    {
+      "records": 16384,
+      "queries_per_trial": 256,
+      "hits_per_trial": 128,
+      "misses_per_trial": 128,
+      "trials": 7,
+      "scan_us_per_lookup_samples": [
+        496.32734375,
+        499.169140625,
+        529.0078125,
+        544.4578125,
+        539.434765625,
+        528.284375,
+        499.31328125
+      ],
+      "dict_us_per_lookup_samples": [
+        0.25859375,
+        0.111328125,
+        0.3421875,
+        0.117578125,
+        0.5203125,
+        0.108203125,
+        0.29453125
+      ],
+      "scan_median_us_per_lookup": 528.284375,
+      "dict_median_us_per_lookup": 0.25859375,
+      "dict_build_us_one_sample": 2349.3,
+      "list_container_bytes_shallow": 136632,
+      "dict_container_bytes_shallow": 415152,
+      "json_utf8_bytes": 890010
+    }
+  ]
+}
