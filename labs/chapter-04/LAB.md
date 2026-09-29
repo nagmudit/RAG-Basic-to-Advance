@@ -22,7 +22,7 @@ python -X utf8 projects/V0/context_probes.py --show-prompt position-middle
 
 Open the [redacted case manifest](../../projects/V0/chapter-04-case-manifest.json). For `position-front`, `position-middle` and `position-end`, record the ordered `context_ids`, required-evidence IDs, source-word count, prompt-character count and prompt hash. Confirm that the same five excerpts are used and only their order changes. Explain why equal character counts do not certify equal counts under a particular model tokenizer.
 
-Draw [Figure 4.01](../../visuals/chapter-04/figure-04-01-prompt-to-claims.svg) from memory. Mark the earliest stage responsible if `D2` appears in `candidate_scores` but is absent from `context_ids`; mark a different stage if `D2` is in context but the answer asserts the stale four-hour value. Explain what V0's exact stub would do on all three position cases and what that **cannot** tell us about a real model.
+Draw [Figure 4.02](../../visuals/chapter-04/figure-04-02-prompt-to-claims.svg) from memory. Mark the earliest stage responsible if `D2` appears in `candidate_scores` but is absent from `context_ids`; mark a different stage if `D2` is in context but the answer asserts the stale four-hour value. Explain what V0's exact stub would do on all three position cases and what that **cannot** tell us about a real model.
 
 ## C. Change one prompt factor at a time
 

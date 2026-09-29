@@ -1,0 +1,150 @@
+# Canonical bibliographic metadata for the book build.
+#
+# Most metadata is parsed from the source registers (REFERENCES.md,
+# PAPER_READING_PATH.md, FRONTIER_RESEARCH.md), which stay the single place
+# where sources, their use, scope/caution notes and verification dates are
+# recorded. Entries here only:
+#   * group several URLs into one work (`match` = URL prefixes), e.g. the
+#     sections of one textbook, so the bibliography lists the work once;
+#   * supply fuller author names, titles, venues or DOIs;
+#   * give software documentation a descriptive in-text label (`cite_text`).
+# A manuscript link whose URL matches an entry is cited as that work.
+# Fields: match, authors, cite, year, title, venue, url, doi, cite_text.
+
+[[work]]
+match = ["https://nlp.stanford.edu/IR-book/"]
+authors = "Manning, C. D., Raghavan, P., & Schütze, H."
+cite = "Manning, Raghavan & Schütze"
+year = "2008"
+title = "Introduction to Information Retrieval"
+venue = "Cambridge University Press"
+url = "https://nlp.stanford.edu/IR-book/"
+
+[[work]]
+match = ["https://arxiv.org/abs/2005.11401"]
+authors = "Lewis, P., et al."
+cite = "Lewis et al."
+year = "2020"
+title = "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks"
+venue = "Advances in Neural Information Processing Systems 33 (NeurIPS 2020)"
+
+[[work]]
+match = ["https://arxiv.org/abs/1706.03762"]
+authors = "Vaswani, A., et al."
+cite = "Vaswani et al."
+year = "2017"
+title = "Attention Is All You Need"
+venue = "Advances in Neural Information Processing Systems 30 (NIPS 2017)"
+
+[[work]]
+match = ["https://arxiv.org/abs/2005.14165"]
+authors = "Brown, T. B., et al."
+cite = "Brown et al."
+year = "2020"
+title = "Language Models are Few-Shot Learners"
+venue = "Advances in Neural Information Processing Systems 33 (NeurIPS 2020)"
+
+[[work]]
+match = ["https://arxiv.org/abs/2203.02155"]
+authors = "Ouyang, L., et al."
+cite = "Ouyang et al."
+year = "2022"
+title = "Training language models to follow instructions with human feedback"
+venue = "Advances in Neural Information Processing Systems 35 (NeurIPS 2022)"
+
+[[work]]
+match = ["https://aclanthology.org/2024.tacl-1.9", "https://arxiv.org/abs/2307.03172"]   # TACL version and its arXiv preprint
+authors = "Liu, N. F., et al."
+cite = "Liu et al."
+year = "2024"
+title = "Lost in the Middle: How Language Models Use Long Contexts"
+venue = "Transactions of the Association for Computational Linguistics, 12"
+
+[[work]]
+match = ["https://arxiv.org/abs/2302.12173"]
+authors = "Greshake, K., et al."
+cite = "Greshake et al."
+year = "2023"
+title = "Not what you've signed up for: Compromising Real-World LLM-Integrated Applications with Indirect Prompt Injection"
+
+[[work]]
+match = ["https://www.staff.city.ac.uk/~sbrp622/papers/foundations_bm25_review.pdf"]
+authors = "Robertson, S., & Zaragoza, H."
+cite = "Robertson & Zaragoza"
+year = "2009"
+title = "The Probabilistic Relevance Framework: BM25 and Beyond"
+venue = "Foundations and Trends in Information Retrieval, 3(4)"
+
+[[work]]
+match = ["https://timan.cs.illinois.edu/czhai/pub/cikm11-bm25.pdf"]
+authors = "Lv, Y., & Zhai, C."
+cite = "Lv & Zhai"
+year = "2011"
+title = "Lower-Bounding Term Frequency Normalization"
+venue = "Proceedings of the 20th ACM International Conference on Information and Knowledge Management (CIKM 2011)"
+
+[[work]]
+match = ["https://doi.org/10.1145/361219.361220"]
+authors = "Salton, G., Wong, A., & Yang, C. S."
+cite = "Salton, Wong & Yang"
+year = "1975"
+title = "A Vector Space Model for Automatic Indexing"
+venue = "Communications of the ACM, 18(11)"
+doi = "10.1145/361219.361220"
+
+# ---- software and standards documentation (descriptive in-text labels)
+
+[[work]]
+match = ["https://docs.python.org/3/"]
+authors = "Python Software Foundation"
+year = "n.d."
+title = "The Python 3 Standard Library and HOWTO documentation"
+url = "https://docs.python.org/3/"
+cite_text = "Python documentation"
+
+[[work]]
+match = ["https://wiki.python.org/moin/TimeComplexity"]
+authors = "Python Software Foundation"
+year = "n.d."
+title = "TimeComplexity"
+venue = "Python Wiki"
+cite_text = "Python Wiki, TimeComplexity"
+
+[[work]]
+match = ["https://lucene.apache.org/core/10_4_0/"]
+authors = "The Apache Software Foundation"
+year = "n.d."
+title = "Apache Lucene 10.4.0 API documentation"
+url = "https://lucene.apache.org/core/10_4_0/"
+cite_text = "Lucene 10.4.0 API"
+
+[[work]]
+match = ["https://lucene.apache.org/core/10_3_1/"]
+authors = "The Apache Software Foundation"
+year = "n.d."
+title = "Apache Lucene 10.3.1 API documentation"
+url = "https://lucene.apache.org/core/10_3_1/"
+cite_text = "Lucene 10.3.1 API"
+
+[[work]]
+match = ["https://lucene.apache.org/core/10_1_0/"]
+authors = "The Apache Software Foundation"
+year = "n.d."
+title = "Apache Lucene 10.1.0 API documentation"
+url = "https://lucene.apache.org/core/10_1_0/"
+cite_text = "Lucene 10.1.0 API"
+
+[[work]]
+match = ["https://www.unicode.org/reports/tr15"]
+authors = "Unicode Consortium"
+year = "n.d."
+title = "Unicode Standard Annex #15: Unicode Normalization Forms"
+cite_text = "Unicode Standard Annex #15"
+
+[[work]]
+match = ["https://trec.nist.gov/data/reljudge_eng.html"]
+authors = "National Institute of Standards and Technology"
+year = "n.d."
+title = "TREC English relevance judgments"
+venue = "Text REtrieval Conference data"
+cite_text = "NIST TREC relevance judgments"

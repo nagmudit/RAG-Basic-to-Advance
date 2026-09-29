@@ -1,0 +1,290 @@
+/* Print stylesheet for tools/book/build_book.py.
+   Running heads and folios are stamped afterwards by PyMuPDF inside the
+   top/bottom margins, so keep those margins at least ~18mm. Minimum sizes
+   are deliberate: overflow is solved by layout (wide/landscape/full-page),
+   never by shrinking type. */
+
+:root {
+  --ink: #1d232b;
+  --muted: #5b6573;
+  --rule: #d5dbe3;
+  --accent: #1f5f8b;
+  --accent-soft: #eaf2f8;
+  --lab: #8a5a14;
+  --lab-soft: #fbf4e8;
+  --code-bg: #f6f8fa;
+  --code-line: 1.42em;
+  --wide-extra: 12mm;           /* = body side padding: printable room beside the text column */
+  --serif: "Charter", "Bitstream Charter", "Georgia", "Cambria", serif;
+  --sans: "Segoe UI", "Helvetica Neue", "Arial", sans-serif;
+  --mono: "Cascadia Mono", "Consolas", "SFMono-Regular", "Menlo", monospace;
+}
+
+/* Chromium clips anything outside the page content box, so side margins live in the
+   body padding: the text column is still 20mm from the edge, and wide material may use
+   the 12mm padding without being cut off. */
+@page { margin: 20mm 8mm; }
+@page landscape { margin: 18mm 8mm; }
+
+html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+body {
+  margin: 0;
+  padding: 0 var(--wide-extra);
+  background: #fff;
+  color: var(--ink);
+  font: 10.5pt/1.52 var(--serif);
+  hyphens: manual;               /* keeps copied and searched text intact */
+  text-rendering: optimizeLegibility;
+}
+
+/* ---------------------------------------------------------------- headings */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--sans);
+  color: var(--ink);
+  line-height: 1.25;
+  break-after: avoid;
+  break-inside: avoid;
+}
+h1 { font-size: 21pt; font-weight: 600; margin: 0 0 14pt; }
+h2 { font-size: 14.5pt; font-weight: 600; margin: 20pt 0 7pt; color: var(--accent); }
+h3 { font-size: 12pt; font-weight: 600; margin: 15pt 0 5pt; }
+h4 { font-size: 10.8pt; font-weight: 600; margin: 12pt 0 4pt; }
+h5, h6 { font-size: 10.4pt; font-weight: 600; margin: 10pt 0 3pt; color: var(--muted); }
+h1 code, h2 code, h3 code { font-size: 0.9em; background: none; padding: 0; }
+h1 + *, h2 + *, h3 + *, h4 + * { break-before: avoid; }
+a.hlink { color: inherit; }
+
+p { margin: 0 0 7pt; orphans: 3; widows: 3; }
+a { color: var(--accent); text-decoration: none; }
+a.cite { color: var(--accent); white-space: nowrap; }
+.pref { color: var(--muted); font-size: 0.92em; white-space: nowrap; }
+strong { font-weight: 700; }
+ul, ol { margin: 0 0 8pt; padding-left: 18pt; }
+li { margin: 1.5pt 0; orphans: 2; widows: 2; }
+li > p { margin-bottom: 3pt; }
+hr { border: 0; border-top: 1px solid var(--rule); margin: 14pt 0; }
+
+blockquote {
+  margin: 10pt 0 12pt;
+  padding: 8pt 12pt;
+  background: var(--accent-soft);
+  border-left: 3.5pt solid var(--accent);
+  border-radius: 0 4pt 4pt 0;
+  break-inside: avoid;
+}
+blockquote p:last-child { margin-bottom: 0; }
+
+/* -------------------------------------------------------------------- code */
+code {
+  font-family: var(--mono);
+  font-size: 0.86em;
+  background: var(--code-bg);
+  padding: 0.5pt 2.5pt;
+  border-radius: 2.5pt;
+  overflow-wrap: anywhere;
+}
+.code { margin: 6pt 0 10pt; }
+.code pre, pre {
+  font-family: var(--mono);
+  font-size: 8.5pt;
+  line-height: 1.42;
+  background: var(--code-bg);
+  border: 1px solid #e4e8ee;
+  border-left: 3pt solid #c9d3de;
+  border-radius: 3pt;
+  padding: 6pt 8pt;
+  margin: 0;
+  white-space: pre-wrap;         /* never clip; wrapped rows get a continuation marker */
+  overflow-wrap: anywhere;
+}
+.code pre code, pre code { background: none; padding: 0; font-size: inherit; }
+/* One block per source line: continuation rows are indented and marked with an
+   arrow drawn as a background image, so copied code gains no extra characters. */
+.code .cl {
+  display: block;
+  padding-left: 1.7ch;
+  text-indent: -1.7ch;
+  background:
+    linear-gradient(var(--code-bg), var(--code-bg)) 0 0 / 1.7ch var(--code-line) no-repeat,
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 12'><path d='M2 2v5h6M6 5l2 2-2 2' fill='none' stroke='%239aa6b3' stroke-width='1.2'/></svg>")
+      0 var(--code-line) / 1.4ch var(--code-line) repeat-y;
+}
+.code.short { break-inside: avoid; }
+.listing pre { font-size: 8.5pt; }
+.hl .linenos { color: #a0a8b3; padding-right: 6pt; user-select: none; }
+.listing-title { font-size: 10pt; margin-top: 16pt; color: var(--ink); }
+.listing-skip { font-size: 9pt; color: var(--muted); }
+
+/* ------------------------------------------------------------------ tables */
+.table-wrap { margin: 8pt 0 12pt; }
+table {
+  border-collapse: collapse;
+  width: 100%;
+  font-family: var(--sans);
+  font-size: 8.8pt;
+  line-height: 1.38;
+}
+th, td { border: 1px solid var(--rule); padding: 3.5pt 5pt; vertical-align: top; text-align: left;
+         overflow-wrap: anywhere; }
+th { background: #eef2f6; font-weight: 600; overflow-wrap: normal; }
+tbody tr:nth-child(even) td { background: #fafbfc; }
+tr { break-inside: avoid; }
+thead { display: table-header-group; break-after: avoid; }
+td code, th code { font-size: 0.92em; }
+
+/* ------------------------------------------------- figures, captions, math */
+figure { margin: 0; }
+figure.img, figure.numbered { margin: 10pt 0 8pt; text-align: center; break-inside: avoid; }
+figure img.fig, figure.img img { max-width: 100%; height: auto; }
+/* Wide figures widen only the image: anchors on the figure/caption must stay inside
+   the text block, or Chromium drops their PDF destinations. */
+figure.layout-wide { display: flex; flex-direction: column; align-items: center; }
+figure.layout-wide > figcaption, figure.layout-wide > .figure-meta { align-self: stretch; }
+figure.layout-wide img.fig { max-width: none; flex: 0 0 auto; }
+.code.layout-wide pre { width: calc(100% + 2 * var(--wide-extra)); box-sizing: border-box;
+                        margin-left: calc(-1 * var(--wide-extra)); }
+figure.layout-fullpage { break-before: page; break-after: page; }
+.layout-landscape { page: landscape; width: var(--landscape-w); margin-left: -5mm; break-inside: avoid; }
+/* Figures on their own page are exactly one page tall: the caption takes what it needs
+   and the image shrinks to the remainder, so caption and figure can never separate. */
+figure.layout-fullpage {
+  display: flex; flex-direction: column; align-items: center; box-sizing: border-box; margin: 0;
+  height: calc(var(--content-h) - 8pt);
+}
+figure.layout-fullpage > figcaption, figure.layout-fullpage > .figure-meta { align-self: stretch; flex: 0 0 auto; }
+figure.layout-fullpage img.fig { flex: 0 1 auto; min-height: 0; max-width: none; object-fit: contain; }
+/* Landscape: plain block flow (Chromium mis-fragments flex boxes on named pages); the
+   image height is capped to what the rotated page leaves after the caption. */
+figure.layout-landscape { display: block; margin: 0; text-align: center; }
+figure.layout-landscape img.fig { max-width: 100%; max-height: calc(var(--landscape-h) - 90pt); object-fit: contain; }
+
+.caption, figcaption { font-family: var(--sans); font-size: 9.2pt; line-height: 1.45; color: #2c3440;
+                       margin: 12pt 0 6pt; text-align: left; break-after: avoid; }
+.caption strong:first-child, figcaption strong:first-child { color: var(--accent); }
+.caption.keep-next { break-after: avoid; }
+figcaption { margin-top: 0; }
+.figure-meta { text-align: left; }
+.figure-note { font-family: var(--sans); font-size: 8.4pt; color: var(--muted); line-height: 1.42; text-align: left; }
+.mermaid-wrap { margin: 8pt 0 12pt; text-align: center; break-inside: avoid; }
+pre.mermaid { background: none; border: 0; padding: 0; white-space: pre; font-family: var(--sans); }
+.math.display { margin: 8pt 0 10pt; overflow: hidden; break-inside: avoid; }
+.katex { font-size: 1.08em; }
+
+/* ------------------------------------------------------------------ cover */
+.cover {
+  height: 100vh;
+  box-sizing: border-box;
+  padding: 0 24mm;
+  position: relative;
+  overflow: hidden;
+  font-family: var(--sans);
+}
+.cover-band {
+  position: absolute; left: 0; right: 0; top: 0; height: 92mm;
+  background: linear-gradient(135deg, #123a57 0%, #1f5f8b 55%, #2f7fae 100%);
+}
+.cover-title { position: relative; padding-top: 108mm; font-size: 34pt; font-weight: 700; line-height: 1.1; color: #0f2f47; }
+.cover-subtitle { position: relative; margin-top: 10mm; font-size: 14pt; line-height: 1.4; color: #3a4654; max-width: 150mm; }
+.cover-edition { position: relative; margin-top: 8mm; font-size: 11pt; letter-spacing: 2pt; text-transform: uppercase;
+                 color: var(--accent); font-weight: 600; }
+.cover-author { position: relative; margin-top: 16mm; font-size: 15pt; font-weight: 600; color: var(--ink); }
+.cover-draft, .cover-release {
+  position: absolute; left: 24mm; bottom: 22mm;
+  font-size: 9pt; line-height: 1.5; color: var(--muted);
+  border-left: 3pt solid #c6843a; padding-left: 8pt;
+}
+.cover-release { border-left-color: var(--accent); font-size: 10pt; }
+
+.colophon { break-after: page; padding-top: 100mm; font-size: 9pt; color: var(--muted); }
+.colophon p { margin-bottom: 9pt; }
+.colophon strong { color: var(--ink); }
+.colophon table.build-info { width: auto; font-size: 8.5pt; margin: 6pt 0 10pt; }
+.colophon table.build-info th { background: none; font-weight: 600; color: var(--ink); }
+.colophon table.build-info th, .colophon table.build-info td { border: 0; padding: 1pt 12pt 1pt 0; background: none !important; }
+
+/* -------------------------------------------------------------- contents */
+.toc-page { break-before: page; }
+.front-title { font-size: 22pt; margin-bottom: 16pt; }
+ul.toc { list-style: none; padding: 0; margin: 0; font-family: var(--sans); }
+ul.toc li { margin: 0; break-inside: avoid; }
+ul.toc a { display: flex; align-items: baseline; color: var(--ink); gap: 4pt; }
+ul.toc .t { flex: 0 1 auto; }
+/* No CSS transforms anywhere: Chromium repaints transformed elements into every page. */
+ul.toc .dots { flex: 1 1 auto; border-bottom: 1px dotted #b9c1cb; position: relative; top: -3pt; min-width: 10pt; }
+ul.toc .pg { flex: 0 0 auto; min-width: 22pt; text-align: right; font-variant-numeric: tabular-nums; }
+.toc-l1 { font-size: 10.6pt; font-weight: 600; margin-top: 8pt !important; break-after: avoid; }
+.toc-l1.toc-part { font-size: 11.2pt; margin-top: 14pt !important; color: var(--accent); }
+.toc-l1.toc-part a { color: var(--accent); }
+.toc-l2 { font-size: 9.9pt; padding-left: 14pt; margin-top: 3pt !important; }
+.toc-l3 { font-size: 9pt; padding-left: 30pt; color: var(--muted); }
+.toc-l3 a { color: #4a5360; }
+.toc-l3.toc-lab a { color: var(--lab); }
+.toc-l4 { font-size: 8.6pt; padding-left: 44pt; }
+.list-of .num { display: inline-block; min-width: 30pt; color: var(--accent); font-weight: 600; }
+
+nav.local-toc {
+  font-family: var(--sans); font-size: 9pt; margin: 4pt 0 16pt; padding: 7pt 10pt 5pt;
+  border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); break-inside: avoid;
+}
+nav.local-toc .lt-title { font-size: 8pt; letter-spacing: 1.5pt; text-transform: uppercase; color: var(--muted); margin-bottom: 3pt; }
+nav.local-toc ol { list-style: none; margin: 0; padding: 0; columns: 2; column-gap: 18pt; }
+nav.local-toc li { margin: 0 0 2pt; break-inside: avoid; }
+nav.local-toc a { display: flex; gap: 6pt; color: var(--ink); }
+nav.local-toc .t { flex: 1 1 auto; }
+nav.local-toc .pg { color: var(--muted); font-variant-numeric: tabular-nums; }
+
+/* ------------------------------------------------------------------ parts */
+.part-page { break-before: page; break-after: page; padding-top: 55mm; font-family: var(--sans); }
+.part-title { font-size: 28pt; margin-bottom: 6pt; }
+.part-title .part-label { display: block; font-size: 12pt; letter-spacing: 3pt; text-transform: uppercase;
+                          color: var(--accent); font-weight: 600; margin-bottom: 8pt; }
+.part-title .part-name { display: block; }
+.part-level { font-size: 9pt; letter-spacing: 1.5pt; color: var(--muted); margin-bottom: 20mm; }
+ul.part-chapters { list-style: none; padding: 0; font-size: 10pt; }
+ul.part-chapters .module { margin-top: 10pt; font-size: 8.8pt; text-transform: uppercase; letter-spacing: 1pt; color: var(--muted); }
+ul.part-chapters .ch { display: flex; gap: 8pt; padding: 2pt 0; }
+ul.part-chapters .ch .n { min-width: 18pt; text-align: right; color: var(--accent); font-weight: 600; }
+ul.part-chapters .ch a { display: flex; gap: 8pt; color: var(--ink); }
+ul.part-chapters .planned { color: #8d96a1; }
+ul.part-chapters .planned .n { color: #aab2bc; }
+ul.part-chapters .tag { font-size: 7.5pt; border: 1px solid #cfd5dc; border-radius: 6pt; padding: 0 5pt; margin-left: 4pt; align-self: center; }
+
+/* --------------------------------------------------------------- chapters */
+article.chapter { break-before: page; }
+h1.chapter-title { margin: 18mm 0 16pt; padding-bottom: 12pt; border-bottom: 2pt solid var(--accent); }
+h1.chapter-title .ch-label { display: block; font-size: 11pt; font-weight: 600; letter-spacing: 2.5pt;
+                             text-transform: uppercase; color: var(--accent); margin-bottom: 8pt; }
+h1.chapter-title .ch-name { display: block; font-size: 24pt; line-height: 1.15; }
+.unit-anchor { display: block; height: 0; }
+
+.lab { break-before: page; }
+h2.lab-title {
+  font-size: 16pt; color: var(--lab); margin-top: 0;
+  padding: 8pt 12pt; background: var(--lab-soft); border-left: 4pt solid var(--lab);
+  border-radius: 0 4pt 4pt 0;
+}
+.lab h3 { color: var(--lab); }
+.practice-title { color: var(--accent); }
+.answer-space { break-before: page; font-family: var(--sans); }
+.answer-space .as-title { font-size: 12pt; font-weight: 600; color: var(--lab); margin-bottom: 8pt; }
+.answer-space .as-lines { height: 225mm; background: repeating-linear-gradient(transparent 0 8.5mm, #d7dde4 8.5mm calc(8.5mm + 0.6pt)); }
+
+/* ------------------------------------------------------ appendices, back */
+.section-start { break-before: page; }
+.front-title, .appendix-title, .back-title { border-bottom: 2pt solid var(--accent); padding-bottom: 10pt; }
+.appendix-title, .back-title { font-size: 22pt; }
+.appendix section.doc + section.doc { break-before: page; }
+.appendix section.doc > h2:first-child { margin-top: 6pt; font-size: 16pt; }
+.lead { font-size: 10.2pt; color: var(--muted); }
+
+p.bib-entry { padding-left: 18pt; text-indent: -18pt; margin-bottom: 6pt; font-size: 9.8pt; line-height: 1.45; }
+p.bib-entry a { overflow-wrap: anywhere; }
+.bib-cited { color: var(--muted); font-size: 0.9em; }
+ul.index { list-style: none; padding: 0; columns: 2; column-gap: 20pt; font-size: 9.5pt; }
+
+.gallery-item { break-inside: avoid-page; margin-bottom: 14pt; }
+.gallery-item h3 { font-size: 11pt; }
+table.assets { font-size: 8.5pt; }
+table.assets td:first-child { width: 28%; color: var(--muted); white-space: nowrap; }
+
+body.cover-doc { padding: 0; }

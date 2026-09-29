@@ -1,0 +1,196 @@
+# Book manifest for tools/book/build_book.py
+#
+# One canonical workspace, several editions. Sections are declared once
+# under [sections.*]; each [profiles.*] picks the sections it prints.
+# Paths are relative to the repository root; `files` entries may be globs
+# (sorted naturally, so V2 precedes V10). Chapters and their labs,
+# solutions and reviews are discovered from [sources], so a new chapter
+# appears in every edition without editing this file.
+
+[book]
+title = "Retrieval-Augmented Generation"
+subtitle = "Build Your Own RAG Engine: from a hand-written search loop to an evaluated, observable evidence platform"
+author = "Mudit Nag"
+version = "0.7"                  # edition/version shown on the cover and colophon
+mode = "draft"                   # draft | release  (override with --release / --draft)
+publication_date = ""            # release cover line, e.g. "2027"; empty -> build year
+repo_url = "https://github.com/nagmudit/RAG-Basic-to-Advance"
+branch = "master"
+paper = "A4"                     # A4 | Letter | B5 | "170mm 240mm" | "7in 10in"
+output_dir = "dist"
+output_name = "rag-book-{profile}.pdf"
+
+[sources]
+chapters = "chapters/chapter-*.md"
+lab = "labs/chapter-{nn}/LAB.md"
+solution = "solutions/chapter-{nn}-solutions.md"
+review = "authoring/reviews/chapter-{nn}.md"
+syllabus = "SYLLABUS.md"                           # Parts / Modules / planned chapters
+bibliography = "book/bibliography.toml"            # canonical metadata overrides
+reference_registers = ["REFERENCES.md"]            # sources relied on by chapters
+reading_registers = ["PAPER_READING_PATH.md"]      # recommended reading
+frontier_registers = ["FRONTIER_RESEARCH.md"]      # time-sensitive research
+
+[layout]
+min_label_pt = 6.5        # smallest acceptable rendered diagram label (publisher floor for figure text)
+max_label_pt = 11.0       # do not enlarge diagrams beyond this label size
+code_pt = 8.5             # code size used for line-length checks (see book.css)
+short_code_lines = 25     # code blocks up to this length are kept on one page
+dense_diagram_nodes = 28  # Mermaid diagrams above this node count get a density warning
+
+# ------------------------------------------------------------------ sections
+[sections.preface]
+title = "Preface"
+files = ["book/front/preface.md"]
+
+[sections.about]
+title = "About this repository"
+files = ["README.md"]
+
+[sections.philosophy]
+files = ["TEACHING_PHILOSOPHY.md"]
+
+[sections.knowledge-map]
+files = ["KNOWLEDGE_MAP.md"]
+
+[sections.roadmap]
+files = ["ROADMAP.md"]
+
+[sections.solutions]
+title = "Worked solutions to the labs"
+auto = "solutions"
+
+[sections.project]
+title = "The running project: Build Your Own RAG Engine"
+files = ["PROJECT_ROADMAP.md", "projects/V*/README.md"]
+
+[sections.project-records]
+title = "The running project: Build Your Own RAG Engine"
+files = ["PROJECT_ROADMAP.md", "projects/V*/README.md", "projects/V*/*.md"]
+
+[sections.architecture]
+title = "Reference architecture"
+files = ["REFERENCE_ARCHITECTURE.md"]
+
+[sections.case-studies]
+title = "Case studies"
+files = ["CASE_STUDIES.md"]
+
+[sections.reading]
+title = "Research reading path and frontier register"
+files = ["PAPER_READING_PATH.md", "FRONTIER_RESEARCH.md"]
+
+[sections.visuals]
+title = "Figures and visual sources"
+auto = "visuals"
+
+[sections.code]
+title = "Source code and data listings"
+auto = "code"
+files = ["projects/**/*.py", "labs/**/*.py", "visuals/**/*.py", "projects/**/*.json"]
+max_bytes = 12000         # larger data files are listed with a repository link instead
+
+[sections.contracts]
+title = "Authoring contracts and checklists"
+files = [
+  "CHAPTER_COMPLETION_CHECKLIST.md",
+  "evaluation/EVALUATION_EXPERIMENT_CONTRACT.md",
+  "observability/OBSERVABILITY_CONTRACT.md",
+  "visuals/VISUAL_ASSET_CONTRACT.md",
+]
+
+[sections.syllabus]
+title = "Complete syllabus"
+files = ["SYLLABUS.md"]
+
+[sections.reviews]
+title = "Chapter authoring reviews"
+auto = "reviews"
+
+[sections.build-info]
+title = "Build information"
+auto = "build-info"
+
+[sections.glossary]
+title = "Glossary"
+files = ["GLOSSARY.md"]
+
+[sections.bibliography]
+title = "Bibliography"
+auto = "bibliography"
+
+[sections.source-notes]
+title = "Source notes and provenance register"
+files = ["REFERENCES.md"]
+
+[sections.index]
+title = "Index"
+auto = "index"            # built only when the manuscript contains @index{...} markers
+
+# ------------------------------------------------------------------ profiles
+# body:        chapters | labs | solutions
+# labs:        inline (lab follows its chapter) | none
+# solutions:   appendix | companion (separate solutions edition) | none
+# toc_depth:   1 Parts/front matter, 2 chapters, 3 chapter sections, 4 subsections
+# bookmark_depth is independent of toc_depth.
+
+[profiles.reader]
+edition = "Reader edition"
+description = "The book for readers: chapters with their labs, running-project guide, glossary and bibliography."
+front = ["preface", "roadmap"]
+body = "chapters"
+labs = "inline"
+solutions = "companion"
+appendices = ["project"]
+back = ["glossary", "bibliography", "source-notes", "index"]
+toc_depth = 2
+toc_labs = true
+bookmark_depth = 4
+local_toc = true
+figure_metadata = false
+page_numbers = "roman-front"      # roman-front | arabic
+xref_pages = "cross-document"     # none | cross-document | all
+
+[profiles.complete]
+extends = "reader"
+edition = "Complete edition"
+description = "Everything in the workspace: reader content plus solutions, project records, listings, contracts, syllabus and reviews."
+front = ["preface", "about", "philosophy", "knowledge-map", "roadmap"]
+solutions = "appendix"
+appendices = ["project-records", "architecture", "case-studies", "reading", "visuals", "code",
+              "contracts", "syllabus", "reviews"]
+toc_depth = 3
+local_toc = false
+figure_metadata = true
+
+[profiles.author]
+extends = "complete"
+edition = "Author edition"
+description = "Complete edition plus build information for authors."
+appendices = ["project-records", "architecture", "case-studies", "reading", "visuals", "code",
+              "contracts", "syllabus", "reviews", "build-info"]
+
+[profiles.workbook]
+extends = "reader"
+edition = "Workbook"
+description = "Labs, chapter practice prompts and project assignments, with space for answers."
+front = []
+body = "labs"
+solutions = "companion"
+practice_sections = ["Practice", "Exercises", "Active recall"]   # chapter headings copied before each lab
+answer_space = true
+appendices = ["project"]
+back = ["glossary"]
+local_toc = false
+
+[profiles.solutions]
+extends = "reader"
+edition = "Solutions companion"
+description = "Worked lab solutions, expected observations and rubrics."
+front = []
+body = "solutions"
+labs = "none"
+solutions = "none"
+appendices = []
+back = []
+local_toc = false
