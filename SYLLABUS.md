@@ -22,6 +22,7 @@ The core question evolves throughout: **Which evidence enters the LLM's context,
 
 #### Chapter 02 — Build the first RAG loop without a framework
 
+- **Authored materials:** [Chapter](chapters/chapter-02-build-the-first-rag-loop.md) · [Lab](labs/chapter-02/LAB.md) · [Solutions](solutions/chapter-02-solutions.md) · [V0 implementation and results](projects/V0/README.md).
 - **Objective:** Implement `documents → segment → search → prompt → answer` and observe a failure at each boundary.
 - **Prerequisites:** Chapter 01; a short in-lab primer teaches the Python lists and dictionaries used here.
 - **Section 1 — Index and query time.** Topic: source representation; micro-concepts: document IDs, text spans, crude splitting, token overlap score. Topic: retrieval; micro-concepts: scoring every span, top-k selection, deterministic tie breaking.

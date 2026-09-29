@@ -1,0 +1,149 @@
+{
+  "snapshot": "support-corpus-2026-05-20",
+  "documents": [
+    {
+      "id": "D1",
+      "title": "Helios Pro Support Agreement v1",
+      "version": "v1",
+      "effective_on": "2025-01-01",
+      "allowed_scopes": ["support-team"],
+      "status": "signed agreement",
+      "sections": [
+        {
+          "span": "§3",
+          "text": "For Sev-1 incidents, the initial response target is four hours."
+        },
+        {
+          "span": "§8",
+          "text": "Either party may terminate this agreement with 30 days' written notice."
+        }
+      ]
+    },
+    {
+      "id": "D2",
+      "title": "Helios Pro Amendment A",
+      "version": "signed-2026-05-12",
+      "effective_on": "2026-05-15",
+      "allowed_scopes": ["support-team"],
+      "status": "signed amendment",
+      "sections": [
+        {
+          "span": "§2",
+          "text": "Section 3’s Sev-1 initial response target is replaced with one hour, effective 15 May 2026."
+        }
+      ]
+    },
+    {
+      "id": "D3",
+      "title": "Helios Pro Support FAQ",
+      "version": "captured-2026-05-10",
+      "effective_on": "2026-05-10",
+      "allowed_scopes": ["support-team"],
+      "status": "informational summary",
+      "sections": [
+        {
+          "span": "FAQ-7",
+          "text": "The Sev-1 initial response target is four hours."
+        }
+      ]
+    },
+    {
+      "id": "D4",
+      "title": "Helios Pro Incident Runbook",
+      "version": "2026-04-18",
+      "effective_on": "2026-04-18",
+      "allowed_scopes": ["support-team"],
+      "status": "operations guide",
+      "sections": [
+        {
+          "span": "step-4",
+          "text": "When an urgent incident arrives, record its time and customer impact. The on-call engineer acknowledges the page and opens a bridge. Before changing service configuration, identify the affected region and check the change log. If symptoms point to a shared dependency, notify the incident commander. The team then records each action, the observed effect, and the next owner in the incident timeline."
+        }
+      ]
+    },
+    {
+      "id": "D5",
+      "title": "Helios Basic Support Agreement",
+      "version": "v2",
+      "effective_on": "2026-01-01",
+      "allowed_scopes": ["support-team"],
+      "status": "signed agreement",
+      "sections": [
+        {
+          "span": "§3",
+          "text": "For Sev-1 incidents on Helios Basic, the initial response target is eight hours."
+        }
+      ]
+    },
+    {
+      "id": "D6",
+      "title": "Helios Pro Price Sheet",
+      "version": "2026-Q2",
+      "effective_on": "2026-04-01",
+      "allowed_scopes": ["support-team"],
+      "status": "pricing reference",
+      "sections": [
+        {
+          "span": "row-2",
+          "text": "The annual Helios Pro support fee is 12000 credits before tax."
+        }
+      ]
+    },
+    {
+      "id": "D7",
+      "title": "Helios Pro Sev-1 Incident Report",
+      "version": "2026-05-18",
+      "effective_on": "2026-05-18",
+      "allowed_scopes": ["support-team"],
+      "status": "historical incident",
+      "sections": [
+        {
+          "span": "timeline",
+          "text": "The measured response to one Sev-1 incident took two hours. This observation does not state the contractual target."
+        }
+      ]
+    },
+    {
+      "id": "D8",
+      "title": "Atlas Pro Support Agreement",
+      "version": "v1",
+      "effective_on": "2025-09-01",
+      "allowed_scopes": ["support-team"],
+      "status": "signed agreement",
+      "sections": [
+        {
+          "span": "§3",
+          "text": "For Sev-1 incidents on Atlas Pro, the initial response target is two hours."
+        }
+      ]
+    },
+    {
+      "id": "D9",
+      "title": "Draft Helios Pro Service Proposal",
+      "version": "draft-2026-05-11",
+      "effective_on": "2026-05-11",
+      "allowed_scopes": ["support-team"],
+      "status": "unsigned draft",
+      "sections": [
+        {
+          "span": "proposal-2",
+          "text": "The proposal suggests a two-hour Sev-1 response target for Helios Pro but has not been signed."
+        }
+      ]
+    },
+    {
+      "id": "D10",
+      "title": "Private Helios Pro Addendum",
+      "version": "private-2026-05-19",
+      "effective_on": "2026-05-19",
+      "allowed_scopes": ["legal-team"],
+      "status": "restricted teaching decoy",
+      "sections": [
+        {
+          "span": "§1",
+          "text": "This restricted teaching decoy mentions a thirty-minute Sev-1 response target for Helios Pro."
+        }
+      ]
+    }
+  ]
+}

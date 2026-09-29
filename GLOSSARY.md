@@ -24,7 +24,20 @@ The glossary will grow with chapter writing. Each future entry will include: **p
 | Unsupported claim | Answer statement that the supplied eligible evidence does not establish | 01; deep treatment 29, 31 | Necessarily false statement |
 | Hallucination | Broad term for generated content presented as fact without adequate support; diagnose the narrower failure when possible | 01 | Every factual error or source error |
 | Retrieval | Finding eligible candidates from a corpus | 01; implementation 02 | Reranking or generation |
-| Ranking | Ordering candidates by a relevance function | 06 | Candidate generation |
+| Index time / preparation time | Work done to prepare searchable source representations before a particular question | 02; deep treatment 05, 19 | Query-time work |
+| Query time | Work done for a particular question using prepared sources | 02 | Index-time preparation |
+| Source locator | Document ID, version, section/span and where needed offset that identify cited source text | 02 | Citation text without a resolvable source |
+| Segment / window | V0 searchable word span derived from one named document section | 02; deep treatment 20 | Whole source document |
+| Tokenization | Converting text into matching units under explicit rules | 02; deep treatment 05 | Model-token counting or semantic understanding |
+| Term | Unit compared by a lexical retrieval rule after tokenization/normalization | 02; deep treatment 05 | Original word or model token |
+| Literal term overlap | Number of distinct query terms shared with a candidate under V0's tokenizer | 02 | Calibrated relevance probability |
+| Top-k | Retaining the k highest-scored candidates under a stated sorting and tie rule | 02; deep treatment 08 | Proof that those k suffice as evidence |
+| Deterministic tie break | Fixed secondary sort rule used when primary scores are equal | 02 | A new relevance signal |
+| Context construction | Selecting and labeling excerpts to supply to an answer process | 02; deep treatment 28 | Candidate retrieval itself |
+| Context budget | Limit on material placed into the request context, measured in a stated unit | 02; deep treatment 28 | True model token limit when only words are counted |
+| Stub generator | Small deterministic task-specific answer function used to expose a pipeline boundary | 02 | General language model or semantic verifier |
+| No-result detection | Recognizing that a retrieval rule returned no candidates under the current query, scope and corpus | 02; deep treatment 23, 36 | Proof that no answer exists |
+| Ranking | Ordering candidates by a score and tie rule | 02; deep treatment 06, 27 | Candidate generation or evidence verification |
 | Reranking | Reordering a preselected candidate set, often with a stronger model | 26 | First-stage retrieval |
 | Dynamic pruning | Safely skipping candidate scoring using upper score bounds during top-k search | 08 | Approximate index search |
 | Inverted index | Term-to-postings lookup structure | 05 | Vector index |

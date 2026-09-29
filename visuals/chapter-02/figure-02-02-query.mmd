@@ -1,0 +1,28 @@
+sequenceDiagram
+    autonumber
+    actor User
+    participant Engine as Engine.run()
+    participant Scan as search()
+    participant Pack as build_context()
+    participant Prompt as build_prompt()
+    participant Stub as stub_answer()
+    participant Trace as Structured trace
+    User->>Engine: Frozen query ID, question, teaching scope
+    Engine->>Scan: Query terms, prebuilt segments, top-k
+    Scan->>Scan: Exclude ineligible segments before scoring
+    loop Each eligible segment
+        Scan->>Scan: Count distinct shared terms in title and text
+    end
+    Scan-->>Engine: Positive-score candidates sorted by score and stable tie-break
+    Engine->>Pack: Ranked candidates, word budget
+    Pack-->>Engine: Selected context excerpts and word count
+    Engine->>Prompt: Question and selected context
+    Prompt-->>Engine: Source-labeled prompt (local only)
+    Engine->>Stub: Frozen query ID and selected context
+    alt Required source spans are present
+        Stub-->>Engine: Cited answer and evidence IDs
+    else Evidence is missing
+        Stub-->>Engine: Abstention and reason code
+    end
+    Engine->>Trace: IDs, scores, context/evidence IDs, status, timing (no raw text)
+    Engine-->>User: Answer or abstention

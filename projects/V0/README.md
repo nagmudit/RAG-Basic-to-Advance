@@ -1,10 +1,10 @@
 # Build Your Own RAG Engine — V0 evidence contract
 
-**Introduced in Chapters 1–2.** Chapter 1 fixes the source and answer contract. Chapter 2 builds the first literal-search implementation and emits a minimal request record. This file is the initial version specification; it does not claim that an engine already exists.
+**Implemented in Chapters 1–2.** Chapter 1 fixes the source and answer contract. [Chapter 2](../../chapters/chapter-02-build-the-first-rag-loop.md) implements a literal-search loop and a minimal request record. The checked-in [ten-document corpus](corpus.json), [engine](engine.py), [behavioral tests](test_engine.py), and [first result record](RESULTS.md) are the reproducible V0 snapshot.
 
 ## Tiny corpus and source identity
 
-The fictional snapshot is `support-corpus-2026-05-20`. Start with these records and expand toward ten short documents in Chapter 2. Keep IDs, versions, dates and location markers rather than anonymous strings.
+The fictional snapshot is `support-corpus-2026-05-20`. The implementation contains ten short documents. The three records below bind the Chapter 1 example; the other seven create realistic decoys, a long-section boundary and a restricted source. Keep IDs, versions, dates and location markers rather than anonymous strings.
 
 | ID | Version and location | Role |
 |---|---|---|
@@ -23,6 +23,19 @@ Use the exact sample clauses in [Chapter 1](../../chapters/chapter-01-a-question
 
 ## Minimal trace and acceptance criteria
 
-Record `request_id`, `query_id`, `corpus_snapshot`, eligible candidate IDs and any raw scores, selected evidence IDs/spans, status, failure/abstention reason and wall-clock latency in milliseconds. Keep raw confidential content out of a broadly accessible trace. A candidate must not be labeled evidence merely because search returned it.
+Record `request_id`, `query_id`, UTC timestamp, `corpus_snapshot`, eligible candidate IDs and any raw scores, selected evidence IDs/spans, status, failure/abstention reason and wall-clock latency in milliseconds. Keep raw confidential content out of a broadly accessible trace. A candidate must not be labeled evidence merely because search returned it.
 
 V0 passes when a reader can inspect one request and identify the source snapshot, candidates, evidence and answer status; when the system does not assert the current target from `D1`/`D3` alone; and when an inaccessible `D2` is excluded before prompt construction. The literal search built in Chapter 2 is expected to fail some paraphrases and longer documents. Preserve those failures as the reason for later upgrades.
+
+## Run and inspect
+
+From the repository root:
+
+```powershell
+python -X utf8 projects/V0/engine.py --top-k 2
+python -X utf8 projects/V0/engine.py --query-id q-termination --top-k 3
+python -X utf8 projects/V0/engine.py --drop-document D2
+python -m unittest discover -s projects/V0 -p 'test_*.py' -v
+```
+
+Preparation validates and splits source sections into 13 segments once. Each request filters scope before scoring, scans every eligible segment, counts distinct literal term overlap, sorts reproducibly, packs source-labeled context, applies the two-task deterministic stub and emits a redacted structured trace. `--scope` is caller-controlled only in this local teaching program; it is not authentication. `--show-prompt` reveals fictional source text locally and is excluded from normal trace output. Word budgets and the character-based token estimate are illustrative, not a real model tokenizer or production control.

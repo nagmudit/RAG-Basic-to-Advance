@@ -1,0 +1,14 @@
+sequenceDiagram
+    autonumber
+    participant File as corpus.json
+    participant Loader as load_corpus()
+    participant Split as segment_corpus()
+    participant Memory as In-memory segment list
+    File->>Loader: 10 documents, snapshot ID, versions, scopes, sections
+    Loader->>Loader: Check unique IDs and section spans
+    Loader->>Split: Validated source records
+    loop Each document section
+        Split->>Split: Split words into windows of at most 24, no overlap
+        Split->>Memory: Segment ID + source span + word offsets + text + scope
+    end
+    Note over File,Memory: Preparation happens once before requests. V0 has 13 segments and no inverted index.
