@@ -8,6 +8,8 @@ Chapter 3 adds a [read-only V0 measurement sidecar](projects/V0/CHAPTER_03_MEASU
 
 Chapter 4 adds [controlled context and prompt probes](projects/V0/CHAPTER_04_CONTEXT_PROBES.md) before any generator is integrated. The probes preserve source identity, eligibility and the two frozen evidence questions; their manifest explicitly records no model results. Generation enters the running engine at V9 after retrieval, ranking and context construction have measurable baselines.
 
+Chapter 5 starts [V1's positional lexical index](projects/V1/README.md). Its default analyzer and unweighted score reproduce V0 candidate order and frozen answer behavior; Boolean, phrase and Unicode diagnostics expose new analyzer choices separately. A raw scan-versus-postings experiment records index build cost, query work and latency. Chapter 6 adds TF-IDF before V1 is considered complete; judged qrels still begin at V2 / Chapter 9.
+
 | Version / chapters | Previous limitation | Feature and concept | Implementation task | Observation to test |
 |---|---|---|---|---|
 | V0 / 01–02 | No external evidence | Literal search, explicit context, minimal telemetry | Score text matches; label sources; log request/query ID, source snapshot, retrieved IDs/scores, chosen evidence IDs, status and wall-clock latency | Exact words work; paraphrases and long documents fail; one request is replayable |

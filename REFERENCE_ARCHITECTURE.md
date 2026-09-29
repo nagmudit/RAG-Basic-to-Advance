@@ -59,6 +59,8 @@ flowchart LR
 
 ## Non-negotiable boundaries
 
+The first implemented lexical-index slice is [V1's Chapter 5 positional index](projects/V1/README.md): a versioned analyzer prepares term postings and a forward source store, while query-time scope membership gates candidate scoring and source fetch. Its static scope fixture is not an authentication service. It retains V0's unweighted ranking and answer stub so later weights and generation can be evaluated against a stable baseline.
+
 1. **Index time vs query time:** source extraction, chunking, embedding, and graph building happen before most questions. Query rewriting, routing, candidate search, reranking, and packing happen for a specific question. Live web retrieval crosses the boundary and must record capture time.
 2. **Eligibility vs relevance:** authorization and tenant scope define what may be searched or shown. A relevance score cannot override that constraint. Postfilter-only designs may underfill and leak through logs or caches.
 3. **Candidate vs evidence:** a high-ranked candidate is a possibility. Evidence entering the answer must retain source ID, version, span/page/coordinate, trust tier, and retrieval timestamp.

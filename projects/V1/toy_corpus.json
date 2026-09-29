@@ -1,0 +1,10 @@
+{
+  "snapshot": "fictional-five-record-index-lab-v1",
+  "documents": [
+    {"id": "S1", "title": "Manual", "version": "v1", "allowed_scopes": ["support-team"], "sections": [{"span": "body", "text": "Helios Pro HX-7A reset guide."}]},
+    {"id": "S2", "title": "Manual", "version": "v1", "allowed_scopes": ["support-team"], "sections": [{"span": "body", "text": "Helios Pro HX-7A reset checklist."}]},
+    {"id": "S3", "title": "Archive", "version": "v1", "allowed_scopes": ["support-team"], "sections": [{"span": "body", "text": "Legacy HX-7A reset guide."}]},
+    {"id": "S4", "title": "Other", "version": "v1", "allowed_scopes": ["support-team"], "sections": [{"span": "body", "text": "Helios Pro HX-7B café reset guide."}]},
+    {"id": "S5", "title": "Private", "version": "v1", "allowed_scopes": ["legal-team"], "sections": [{"span": "body", "text": "HX-7A reset key."}]}
+  ]
+}

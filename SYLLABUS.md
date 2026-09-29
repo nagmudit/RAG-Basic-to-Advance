@@ -64,6 +64,7 @@ The core question evolves throughout: **Which evidence enters the LLM's context,
 
 #### Chapter 05 — Text normalization and inverted indexes
 
+- **Authored materials:** [Chapter](chapters/chapter-05-text-normalization-and-inverted-indexes.md) · [Lab](labs/chapter-05/LAB.md) · [Solutions](solutions/chapter-05-solutions.md) · [V1 index preview](projects/V1/README.md).
 - **Objective:** Build an index that avoids scanning every document for every query.
 - **Prerequisites:** Chapters 02–03.
 - **Section 1 — From text to terms.** Topic: lexical processing; micro-concepts: corpus, document, field, term, token, vocabulary, case and Unicode normalization, stop words, stemming, lemmatization, n-grams, fuzzy matching and their loss of information.

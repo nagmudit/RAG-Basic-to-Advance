@@ -1,0 +1,10 @@
+flowchart TB
+  Q([Query: hx-7a AND guide<br/>scope: support-team]) --> A[Analyze query with index analyzer]
+  A --> L[Fetch postings<br/>hx-7a: S1 S2 S3 S5<br/>guide: S1 S3 S4]
+  S[(Scope membership<br/>S1 S2 S3 S4)] --> E{Keep eligible IDs}
+  L --> E
+  E --> I[Intersect eligible IDs<br/>S1 and S3]
+  I --> C[Fetch source-labeled candidates<br/>S1 and S3]
+  N[QUERY TIME<br/>S5 exists in a posting but never reaches<br/>scoring or source-text fetch.]:::note
+  C --> N
+  classDef note fill:#f5f5f5,stroke:#555,color:#111;

@@ -1,0 +1,9 @@
+flowchart TB
+  D[(Five fictional source records<br/>S1 to S5)] --> A[Keep title and body separate<br/>retain original source text]
+  A --> T[Analyze each field<br/>emit term and position]
+  T --> P[(Inverted store<br/>term to ordered postings)]
+  A --> F[(Forward store<br/>ID, text, version, locator)]
+  D --> S[(Scope membership store<br/>support: S1 to S4; legal: S5)]
+  L[INDEX TIME<br/>Positions restart at zero in each field.<br/>A posting links to a source segment, not an answer.]:::note
+  P --> L
+  classDef note fill:#f5f5f5,stroke:#555,color:#111;

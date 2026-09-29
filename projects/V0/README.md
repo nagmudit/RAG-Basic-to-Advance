@@ -6,6 +6,8 @@
 
 [Chapter 4 studies the context-to-answer boundary](CHAPTER_04_CONTEXT_PROBES.md) with ten controlled prompt stimuli and a redacted manifest. No model outcome is asserted and the V0 answer path remains intact.
 
+[Chapter 5 begins the V1 positional index](../V1/README.md) as a separate project snapshot. Its default analyzer preserves V0's frozen candidate order, scores and answer contract for a controlled scan-versus-postings comparison.
+
 ## Tiny corpus and source identity
 
 The fictional snapshot is `support-corpus-2026-05-20`. The implementation contains ten short documents. The three records below bind the Chapter 1 example; the other seven create realistic decoys, a long-section boundary and a restricted source. Keep IDs, versions, dates and location markers rather than anonymous strings.

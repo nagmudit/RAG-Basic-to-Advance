@@ -68,6 +68,18 @@ The glossary will grow with chapter writing. Each future entry will include: **p
 | Segment / window | V0 searchable word span derived from one named document section | 02; deep treatment 20 | Whole source document |
 | Tokenization | Converting text into matching units under explicit rules | 02; deep treatment 05 | Model-token counting or semantic understanding |
 | Term | Unit compared by a lexical retrieval rule after tokenization/normalization | 02; deep treatment 05 | Original word or model token |
+| Analyzer | Versioned rule sequence mapping document fields and queries to searchable terms | 05 | A model tokenizer or a harmless generic text cleaner |
+| Unicode NFC / NFKC | Canonical composition versus compatibility composition after decomposition; NFKC may merge additional distinctions | 05 | Case folding, tokenization or proof that two identifiers are equivalent |
+| Vocabulary | Distinct indexed terms produced by a specified analyzer on a specified snapshot | 05 | Every surface word or every possible query |
+| Posting / posting list | One term's segment entry, optionally with field frequencies and positions / its ordered entries | 05 | The original source text or eligible result set |
+| Positional index | Inverted index retaining term offsets within each indexed field | 05 | Original byte offsets or cross-field phrase matching |
+| Boolean retrieval | Set combination of term matches using AND, OR and anchored NOT under eligibility | 05 | Ranked relevance or evidence verification |
+| Phrase query | Match requiring analyzed terms at consecutive positions in one field | 05 | Exact character substring or arbitrary semantic paraphrase |
+| Forward index / stored fields | Segment-ID lookup for original text, fields, version, locator and metadata | 05 | Term-to-postings lookup or reconstruction from terms |
+| Analyzed field length | Count of emitted terms in one indexed field under its analyzer version | 05 | Source bytes, whitespace words or model tokens |
+| Term frequency / segment frequency | Occurrence count of a term in a field or segment / count of indexed segments containing it | 05; weighting 06 | Relevance probability or count of distinct source documents when segments are indexed |
+| Stop word / stem / lemma | Optional removal of selected common terms / rule-derived root / linguistically derived base form | 05 | Universally safe normalization; each can change match meaning |
+| N-gram / fuzzy match | Contiguous sequence of n terms or characters / bounded approximate matching under a declared rule | 05; advanced query use 23 | Exact identifier equality or guaranteed typo correction |
 | Literal term overlap | Number of distinct query terms shared with a candidate under V0's tokenizer | 02 | Calibrated relevance probability |
 | Top-k | Retaining the k highest-scored candidates under a stated sorting and tie rule | 02; deep treatment 08 | Proof that those k suffice as evidence |
 | Deterministic tie break | Fixed secondary sort rule used when primary scores are equal | 02 | A new relevance signal |
@@ -78,7 +90,7 @@ The glossary will grow with chapter writing. Each future entry will include: **p
 | Ranking | Ordering candidates by a score and tie rule | 02; deep treatment 06, 27 | Candidate generation or evidence verification |
 | Reranking | Reordering a preselected candidate set, often with a stronger model | 26 | First-stage retrieval |
 | Dynamic pruning | Safely skipping candidate scoring using upper score bounds during top-k search | 08 | Approximate index search |
-| Inverted index | Term-to-postings lookup structure | 05 | Vector index |
+| Inverted index | Analyzer-versioned term-to-postings lookup structure over a declared source snapshot | 05 | Forward store, vector index or access grant |
 | Embedding | Learned numeric representation of an input | 11 | Any vector |
 | Retriever adaptation | Updating a retriever using domain examples while testing generalization | 12 | Choosing a pretrained encoder unchanged |
 | Hard negative | Nonrelevant candidate difficult for a retriever to distinguish from a positive | 12 | False negative, which is actually relevant |
