@@ -5,14 +5,25 @@ The glossary will grow with chapter writing. Each future entry will include: **p
 | Preferred term | Initial meaning | First chapter | Distinguish from |
 |---|---|---|---|
 | Information need | The underlying fact or task a user wants resolved | 01 | Literal query text |
-| Corpus | The collection eligible for search | 02 | A retrieved candidate set |
-| Document | Source record with stable identity and version | 02 | Chunk or model context |
-| Chunk / passage | Searchable span derived from a document | 02; deep treatment 20 | Whole document |
-| Candidate | Item returned for further selection | 02 | Verified evidence |
+| Query | The words or structured request sent to a system to express an information need | 01 | The full underlying need |
+| Model parameters / parametric memory | Learned numerical weights that encode behavior and some knowledge between model updates | 01; deep treatment 04, 55 | Current prompt context or external records |
+| Prompt context | Material supplied to the model for a particular request | 01; deep treatment 28–29 | Fixed model parameters |
+| External source | Record outside model parameters and current prompt that an application can access | 01 | Verified evidence selected from it |
+| Corpus | The collection eligible for a particular search task or snapshot | 01; deep treatment 02 | A retrieved candidate set |
+| Document | Source record with stable identity and version | 01; deep treatment 02, 19 | Chunk or model context |
+| Chunk / passage | Searchable span derived from a document | 01; deep treatment 02, 20 | Whole document |
+| Candidate | Item returned for further selection | 01; deep treatment 02 | Verified evidence |
 | Evidence | Authorized source content used to support a claim | 01 | Mere topical relevance |
 | Grounding | Relating generated claims to supplied evidence | 01; deep treatment 29 | Guaranteed correctness |
 | Provenance | Trace from answer claim to source, version, and span | 01 | Citation text alone |
-| Retrieval | Finding eligible candidates from a corpus | 02 | Reranking or generation |
+| Citation | Pointer from an answer claim to a source version and supporting location | 01 | Proof that the cited source is correct |
+| Abstention | Declining to assert a claim when eligible evidence is insufficient | 01; deep treatment 29 | Uninformative refusal |
+| Answerability | Whether an information need can be resolved from the available eligible evidence under the task constraints | 01; deep treatment 31 | Model willingness to respond |
+| Eligibility | Whether a source may enter search or context for a request under scope, time and authorization rules | 01; deep treatment 21, 49 | Relevance score |
+| Source snapshot | Identified version of the material searchable for a request | 01; deep treatment 22 | The newest source anywhere |
+| Unsupported claim | Answer statement that the supplied eligible evidence does not establish | 01; deep treatment 29, 31 | Necessarily false statement |
+| Hallucination | Broad term for generated content presented as fact without adequate support; diagnose the narrower failure when possible | 01 | Every factual error or source error |
+| Retrieval | Finding eligible candidates from a corpus | 01; implementation 02 | Reranking or generation |
 | Ranking | Ordering candidates by a relevance function | 06 | Candidate generation |
 | Reranking | Reordering a preselected candidate set, often with a stronger model | 26 | First-stage retrieval |
 | Dynamic pruning | Safely skipping candidate scoring using upper score bounds during top-k search | 08 | Approximate index search |

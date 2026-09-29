@@ -10,6 +10,7 @@ The core question evolves throughout: **Which evidence enters the LLM's context,
 
 #### Chapter 01 — A question, a model, and missing evidence
 
+- **Authored materials:** [Chapter](chapters/chapter-01-a-question-a-model-and-missing-evidence.md) · [Lab](labs/chapter-01/LAB.md) · [Solutions](solutions/chapter-01-solutions.md) · [V0 brief](projects/V0/README.md).
 - **Objective:** Decide whether a task needs retrieval and trace the simplest evidence path.
 - **Prerequisites:** None.
 - **Section 1 — Knowledge boundaries.** Topic: model knowledge; micro-concepts: training cutoffs, weights as parametric memory, private facts, stale facts, hallucination, context windows, source provenance. Topic: alternatives; micro-concepts: direct answering, prompt-only context, fine-tuning, tool calls, search without generation.

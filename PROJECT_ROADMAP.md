@@ -2,6 +2,8 @@
 
 Each version is motivated by an observed limitation. Snapshots preserve its code, source manifest, fixed queries, relevance judgments, retrieval trace, latency, and representative failures. Minimal correlated telemetry starts in V0 and gains spans and stage metrics as stages appear. After V2, **every version** reports the frozen query set, relevant evidence IDs, at least one retrieval metric, p50/p95 latency, and two failure examples. After generation begins in V9, every version also reports answer correctness, faithfulness, citation support, and abstention behavior. Production versions add an ingestion trace, version manifest, cost ledger, SLIs/SLOs and a working dashboard under [the observability contract](observability/OBSERVABILITY_CONTRACT.md). A new feature is retained only when its target slice improves without violating authorization or service constraints.
 
+The first authored artifact is the [V0 evidence contract](projects/V0/README.md). Chapter 1 fixes its source and answer expectations; Chapter 2 implements its first search path.
+
 | Version / chapters | Previous limitation | Feature and concept | Implementation task | Observation to test |
 |---|---|---|---|---|
 | V0 / 01–02 | No external evidence | Literal search, explicit context, minimal telemetry | Score text matches; label sources; log request/query ID, source snapshot, retrieved IDs/scores, chosen evidence IDs, status and wall-clock latency | Exact words work; paraphrases and long documents fail; one request is replayable |

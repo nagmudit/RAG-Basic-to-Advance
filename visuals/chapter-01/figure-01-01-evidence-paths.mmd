@@ -1,0 +1,19 @@
+flowchart TB
+  subgraph I[BEFORE THE QUESTION: SOURCE PREPARATION]
+    Source[(External source documents)] --> Corpus[(Searchable corpus snapshot)]
+  end
+  subgraph Q[AT QUESTION TIME]
+    User(User question) --> Direct[Generate from prompt and model parameters]
+    Direct --> DirectAnswer(Unverified answer)
+    User --> Gate{Source eligibility}
+    Corpus --> Gate
+    Gate -->|eligible scope| Search[Search eligible sources]
+    Gate -->|no eligible source| NoSource[Decline without disclosing source]
+    Search --> Candidate[Candidate records]
+    Candidate --> Select{Applicable and sufficient?}
+    Select -->|yes| Evidence[Selected evidence with source and span]
+    Select -->|no| Reject[Discard or investigate]
+    Evidence --> Generate[Generate using supplied context]
+    Generate --> Check[Check claims against evidence]
+    Check --> Output(Cited answer or abstention)
+  end
