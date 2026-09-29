@@ -1,0 +1,17 @@
+sequenceDiagram
+    autonumber
+    actor App as Application
+    participant Tokenizer as Model tokenizer
+    participant Decoder as Autoregressive decoder
+    participant Choice as Decoding rule
+    participant Text as Output text
+    App->>Tokenizer: Trusted instructions + question + source-labeled data
+    Tokenizer->>Decoder: Input token IDs x1 ... xn within context budget
+    loop Until stop token, length cap, or policy stop
+        Decoder->>Decoder: Causal attention over visible input and earlier output tokens
+        Decoder->>Choice: Distribution p(y_t | x, y_before_t)
+        Choice-->>Decoder: Chosen token y_t
+        Decoder->>Decoder: Append y_t to visible prefix
+    end
+    Decoder-->>Text: Decode output token IDs to text
+    Note over Decoder,Text: A fluent output is not a source-grounding judgment.

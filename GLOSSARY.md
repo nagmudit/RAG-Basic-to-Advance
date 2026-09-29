@@ -37,6 +37,22 @@ The glossary will grow with chapter writing. Each future entry will include: **p
 | Shallow container bytes | Memory size of the container object itself, excluding objects it references | 03 | Total resident or serialized bytes |
 | Code point / UTF-8 byte | Abstract Unicode character value versus encoded storage unit | 03 | Visible glyph or model token |
 | Model token | Unit emitted by a particular language-model tokenizer | 03; deep treatment 04 | V0 regex term, whitespace word or character proxy |
+| Prompt | Model-facing input assembled from instructions, question and supplied data for one request | 04; V0 construction 02 | Model weights or source corpus itself |
+| Autoregressive generation | Producing a sequence by conditioning each next-token prediction on visible input and earlier output | 04 | Evidence retrieval or verification |
+| Next-token distribution | Model-assigned conditional probabilities over possible next tokens at one generation step | 04 | Probability that the final claim is true |
+| Decoding rule | Procedure choosing an output token from the next-token distribution, such as greedy choice or sampling | 04 | Source relevance or factual support |
+| Attention / query-key-value | Learned operation that weights visible token representations using query-key compatibility and combines values | 04 | Passage authority, citation or explanation of truth |
+| Causal mask | Constraint preventing an autoregressive output position from reading later output tokens | 04 | Source access-control filter |
+| Context window | Model-specific token capacity available to an inference step under its input/output accounting | 04 | Guarantee that every supplied fact is used |
+| Context position effect | Change in model behavior associated with where otherwise fixed evidence appears in the input | 04 | Universal rule that middle evidence fails |
+| Context distraction / contradiction | Irrelevant or opposing excerpts that can interfere with use of required evidence | 04; deep treatment 28–29 | Proof that a longer input is always worse |
+| Prompt truncation | Omission of input caused by a capacity policy or limit | 04 | Retrieval failure when a candidate was already found |
+| Trusted instruction / untrusted source data | Application-authorized direction versus external content supplied for inspection | 04; deep security 49 | Text that merely looks like a high-priority role label |
+| Indirect prompt injection | Attempt to redirect model behavior using instructions embedded in retrieved or other lower-trust material | 04; deep treatment 49 | Ordinary quotation of an instruction as data |
+| Claim-level support check | Review of each answer assertion against eligible source spans, versions and valid derivations | 04; deep treatment 29–31 | Presence of a citation string |
+| In-context example | Example in the request input used to elicit a behavior without updating model weights | 04 | Source establishing a current private fact |
+| Fine-tuning / continued pretraining | Updating model weights on task examples or broader domain text respectively | 04; deep treatment 12, 55 | Per-request retrieval of current evidence |
+| Tool call | Invocation of an external function or source during a request | 04; deep treatment 37, 41 | Automatically agentic behavior or verified result |
 | Workload | Defined distribution of operations, inputs, hit/miss mix and volume under test | 03 | Corpus size alone |
 | Benchmark | Reproducible timed comparison with a declared task, implementation, environment and workload | 03 | Universal performance claim |
 | Mean / median | Arithmetic average versus middle value of sorted observations | 03 | Tail percentile |

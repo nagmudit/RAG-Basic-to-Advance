@@ -48,6 +48,7 @@ The core question evolves throughout: **Which evidence enters the LLM's context,
 
 #### Chapter 04 — What an LLM does with supplied context
 
+- **Authored materials:** [Chapter](chapters/chapter-04-what-an-llm-does-with-supplied-context.md) · [Lab](labs/chapter-04/LAB.md) · [Solutions](solutions/chapter-04-solutions.md) · [V0 context probes](projects/V0/CHAPTER_04_CONTEXT_PROBES.md).
 - **Objective:** Explain why retrieving relevant text is necessary but insufficient for grounded answers.
 - **Prerequisites:** Chapters 01–03.
 - **Section 1 — Minimal language-model mechanics.** Topic: tokens and generation; micro-concepts: tokenization, next-token prediction, attention intuition, context position, instructions vs untrusted data. Topic: context limitations; micro-concepts: truncation, distraction, conflicting passages, answerability.

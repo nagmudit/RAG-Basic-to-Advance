@@ -26,3 +26,14 @@ This register records primary sources used in written chapters. Concept explanat
 | Python Software Foundation, [`time.perf_counter_ns()`](https://docs.python.org/3/library/time.html#time.perf_counter_ns) and [`timeit`](https://docs.python.org/3/library/timeit.html) | Elapsed timing, repetition, and interpretation of raw trial variation | The chapter's own sidecar is a local workload study, not a production latency benchmark. |
 | Python Software Foundation, [Unicode HOWTO](https://docs.python.org/3/howto/unicode.html) | Code points versus UTF-8 bytes | A visible glyph, regex term and model token remain separate units. |
 | Python Software Foundation, [`sys.getsizeof`](https://docs.python.org/3/library/sys.html#sys.getsizeof) | Shallow Python object size | It excludes the objects a container refers to; JSON bytes are another representation. |
+
+## Chapter 4 — verified 2026-09-29
+
+| Source | Used for | Scope and caution |
+|---|---|---|
+| Vaswani et al., [*Attention Is All You Need*](https://arxiv.org/abs/1706.03762), 2017 | Scaled dot-product attention, masking and the original Transformer | The original model is encoder–decoder; the chapter's autoregressive decoder sketch is a general teaching abstraction, not a claim that all LLMs share one architecture. |
+| Brown et al., [*Language Models are Few-Shot Learners*](https://arxiv.org/abs/2005.14165), 2020 | Autoregressive generation and in-context examples in one large decoder-only family | Its results do not guarantee that examples supply current private facts or that every model responds alike. |
+| Ouyang et al., [*Training language models to follow instructions with human feedback*](https://arxiv.org/abs/2203.02155), 2022 | Instruction-following model adaptation | Following instructions does not make a retrieved source true or enforce authorization. |
+| Liu et al., [*Lost in the Middle: How Language Models Use Long Contexts*](https://aclanthology.org/2024.tacl-1.9/), 2024 | Empirical motivation for controlled evidence-position tests | Position effects are model/task/workload dependent; V0 has no measured LLM outputs. |
+| Greshake et al., [*Not what you've signed up for*](https://arxiv.org/abs/2302.12173), 2023 | Indirect prompt injection through retrieved data | A lab-only fictional probe illustrates the mechanism; no defense guarantee is inferred from prompt wording. |
+| Lewis et al., [*Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks*](https://arxiv.org/abs/2005.11401), 2020 | Distinction between learned retrieval–generation architectures and application engineering RAG | Detailed model-architecture history is reserved for Chapter 55. |

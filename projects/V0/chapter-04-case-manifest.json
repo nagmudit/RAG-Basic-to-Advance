@@ -1,0 +1,230 @@
+{
+  "record_type": "fictional_prompt_probe_manifest_no_model_outputs",
+  "created_at_utc": "2026-09-29T07:18:00.737466+00:00",
+  "code_version": "context-probes-v1",
+  "base_corpus_snapshot": "support-corpus-2026-05-20",
+  "frozen_question_id": "q-contract-change",
+  "required_evidence_ids": [
+    "D1:\u00a73:0",
+    "D2:\u00a72:0"
+  ],
+  "model_name": null,
+  "model_token_count": null,
+  "model_result": null,
+  "cases": [
+    {
+      "case_id": "position-front",
+      "family": "position",
+      "query_id": "q-contract-change",
+      "source_snapshot": "support-corpus-2026-05-20",
+      "scope_ref": "support-team",
+      "context_ids": [
+        "D1:\u00a73:0",
+        "D2:\u00a72:0",
+        "D3:FAQ-7:0",
+        "D7:timeline:0",
+        "D9:proposal-2:0"
+      ],
+      "required_evidence_ids_present": [
+        "D1:\u00a73:0",
+        "D2:\u00a72:0"
+      ],
+      "instructions_id": "v0-base",
+      "source_words": 67,
+      "prompt_characters": 809,
+      "prompt_sha256": "a911af5a09d35ca4c33099025d669436fa446ace09137003e22925b473225571"
+    },
+    {
+      "case_id": "position-middle",
+      "family": "position",
+      "query_id": "q-contract-change",
+      "source_snapshot": "support-corpus-2026-05-20",
+      "scope_ref": "support-team",
+      "context_ids": [
+        "D3:FAQ-7:0",
+        "D1:\u00a73:0",
+        "D2:\u00a72:0",
+        "D7:timeline:0",
+        "D9:proposal-2:0"
+      ],
+      "required_evidence_ids_present": [
+        "D1:\u00a73:0",
+        "D2:\u00a72:0"
+      ],
+      "instructions_id": "v0-base",
+      "source_words": 67,
+      "prompt_characters": 809,
+      "prompt_sha256": "e8689e5bb38de5d7d8a42e8b4972326e99cce4a3c22e617dd695f5660fbed0a4"
+    },
+    {
+      "case_id": "position-end",
+      "family": "position",
+      "query_id": "q-contract-change",
+      "source_snapshot": "support-corpus-2026-05-20",
+      "scope_ref": "support-team",
+      "context_ids": [
+        "D3:FAQ-7:0",
+        "D7:timeline:0",
+        "D9:proposal-2:0",
+        "D1:\u00a73:0",
+        "D2:\u00a72:0"
+      ],
+      "required_evidence_ids_present": [
+        "D1:\u00a73:0",
+        "D2:\u00a72:0"
+      ],
+      "instructions_id": "v0-base",
+      "source_words": 67,
+      "prompt_characters": 809,
+      "prompt_sha256": "231990acbe2df51d8639883fca254d4894e27790e3767b21a2675d8865e73c17"
+    },
+    {
+      "case_id": "conflict-neutral",
+      "family": "conflict",
+      "query_id": "q-contract-change",
+      "source_snapshot": "support-corpus-2026-05-20-ch04-neutral-probe",
+      "scope_ref": "support-team",
+      "context_ids": [
+        "D1:\u00a73:0",
+        "D2:\u00a72:0",
+        "P1:probe:0",
+        "D7:timeline:0",
+        "D9:proposal-2:0"
+      ],
+      "required_evidence_ids_present": [
+        "D1:\u00a73:0",
+        "D2:\u00a72:0"
+      ],
+      "instructions_id": "v0-base",
+      "source_words": 67,
+      "prompt_characters": 813,
+      "prompt_sha256": "330a67f14b572ade55b362fadb4eeadad2040a81aab6432e129539b1e999028b"
+    },
+    {
+      "case_id": "conflict-stale",
+      "family": "conflict",
+      "query_id": "q-contract-change",
+      "source_snapshot": "support-corpus-2026-05-20",
+      "scope_ref": "support-team",
+      "context_ids": [
+        "D1:\u00a73:0",
+        "D2:\u00a72:0",
+        "D3:FAQ-7:0",
+        "D7:timeline:0",
+        "D9:proposal-2:0"
+      ],
+      "required_evidence_ids_present": [
+        "D1:\u00a73:0",
+        "D2:\u00a72:0"
+      ],
+      "instructions_id": "v0-base",
+      "source_words": 67,
+      "prompt_characters": 809,
+      "prompt_sha256": "a911af5a09d35ca4c33099025d669436fa446ace09137003e22925b473225571"
+    },
+    {
+      "case_id": "instruction-base",
+      "family": "trusted_instruction",
+      "query_id": "q-contract-change",
+      "source_snapshot": "support-corpus-2026-05-20",
+      "scope_ref": "support-team",
+      "context_ids": [
+        "D1:\u00a73:0",
+        "D2:\u00a72:0",
+        "D3:FAQ-7:0",
+        "D7:timeline:0",
+        "D9:proposal-2:0"
+      ],
+      "required_evidence_ids_present": [
+        "D1:\u00a73:0",
+        "D2:\u00a72:0"
+      ],
+      "instructions_id": "v0-base",
+      "source_words": 67,
+      "prompt_characters": 809,
+      "prompt_sha256": "a911af5a09d35ca4c33099025d669436fa446ace09137003e22925b473225571"
+    },
+    {
+      "case_id": "instruction-explicit",
+      "family": "trusted_instruction",
+      "query_id": "q-contract-change",
+      "source_snapshot": "support-corpus-2026-05-20",
+      "scope_ref": "support-team",
+      "context_ids": [
+        "D1:\u00a73:0",
+        "D2:\u00a72:0",
+        "D3:FAQ-7:0",
+        "D7:timeline:0",
+        "D9:proposal-2:0"
+      ],
+      "required_evidence_ids_present": [
+        "D1:\u00a73:0",
+        "D2:\u00a72:0"
+      ],
+      "instructions_id": "ch04-explicit-v1",
+      "source_words": 67,
+      "prompt_characters": 907,
+      "prompt_sha256": "bf6831901ea717e8a4332f5729714da7f0684d65238ecf1869320b723fb8914f"
+    },
+    {
+      "case_id": "untrusted-neutral",
+      "family": "untrusted_instruction",
+      "query_id": "q-contract-change",
+      "source_snapshot": "support-corpus-2026-05-20-ch04-neutral-probe",
+      "scope_ref": "support-team",
+      "context_ids": [
+        "D1:\u00a73:0",
+        "D2:\u00a72:0",
+        "P1:probe:0"
+      ],
+      "required_evidence_ids_present": [
+        "D1:\u00a73:0",
+        "D2:\u00a72:0"
+      ],
+      "instructions_id": "v0-base",
+      "source_words": 33,
+      "prompt_characters": 544,
+      "prompt_sha256": "69a2ea2a27372bf984e70724a0e558388d3dfea3fbe4459316545087c906acf6"
+    },
+    {
+      "case_id": "untrusted-injected",
+      "family": "untrusted_instruction",
+      "query_id": "q-contract-change",
+      "source_snapshot": "support-corpus-2026-05-20-ch04-injected-probe",
+      "scope_ref": "support-team",
+      "context_ids": [
+        "D1:\u00a73:0",
+        "D2:\u00a72:0",
+        "P1:probe:0"
+      ],
+      "required_evidence_ids_present": [
+        "D1:\u00a73:0",
+        "D2:\u00a72:0"
+      ],
+      "instructions_id": "v0-base",
+      "source_words": 42,
+      "prompt_characters": 594,
+      "prompt_sha256": "f45046af7a6cb41639271fe3d4a3c3b42e689b02a8d11b6ef53723e6c3f56f2d"
+    },
+    {
+      "case_id": "missing-amendment",
+      "family": "missing_evidence",
+      "query_id": "q-contract-change",
+      "source_snapshot": "support-corpus-2026-05-20",
+      "scope_ref": "support-team",
+      "context_ids": [
+        "D1:\u00a73:0",
+        "D3:FAQ-7:0",
+        "D7:timeline:0",
+        "D9:proposal-2:0"
+      ],
+      "required_evidence_ids_present": [
+        "D1:\u00a73:0"
+      ],
+      "instructions_id": "v0-base",
+      "source_words": 52,
+      "prompt_characters": 691,
+      "prompt_sha256": "15ba3e7a875a9d341c06e25db1f8e6e0ad653f420f7f7eb7cd399b6cb6f245fe"
+    }
+  ]
+}

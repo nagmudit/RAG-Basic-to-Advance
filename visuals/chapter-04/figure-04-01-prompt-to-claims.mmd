@@ -1,0 +1,39 @@
+flowchart TB
+    subgraph PREP[INDEX TIME - frozen V0 snapshot]
+        Sources[(Versioned source segments)]
+    end
+    subgraph QUERY[QUERY TIME - evidence path]
+        Q([Question and request scope])
+        Gate{Eligible for this scope?}
+        Search[Literal retrieval]
+        Cand[Candidate IDs and scores]
+        Pack[Context construction]
+        Ctx[Selected source-labeled excerpts]
+        Prompt[Trusted instructions + question + untrusted excerpts]
+        Model[Generator - conceptual LLM or V0 stub]
+        Claims[Proposed answer claims]
+        Check[Check claims against eligible spans and versions]
+        Answer[Supported answer or abstention]
+    end
+    Sources -->|prepared records| Gate
+    Q -->|scope| Gate
+    Q -->|question| Search
+    Gate -->|eligible only| Search
+    Search --> Cand
+    Cand --> Pack
+    Pack --> Ctx
+    Ctx -->|quoted data with source labels| Prompt
+    Q -->|question| Prompt
+    Prompt --> Model
+    Model --> Claims
+    Claims --> Check
+    Ctx -->|possible supporting spans| Check
+    Check --> Answer
+    classDef source fill:#e8f1f8,stroke:#194d70,color:#111;
+    classDef action fill:#f6f6f6,stroke:#444,color:#111;
+    classDef boundary fill:#fff2d5,stroke:#8a5700,color:#111;
+    classDef output fill:#eaf4e8,stroke:#356b2e,color:#111;
+    class Sources source;
+    class Q,Gate,Prompt boundary;
+    class Search,Cand,Pack,Ctx,Model,Claims,Check action;
+    class Answer output;
