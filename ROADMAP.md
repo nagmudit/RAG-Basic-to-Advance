@@ -13,7 +13,7 @@ Stages are gates, not fixed durations. Complete a gate when its artifact and exp
 ## Milestone projects
 
 1. **Local search laboratory:** hand-built Boolean, TF-IDF, BM25, safe top-k pruning and relevance judgments over 20–100 documents.
-2. **Hybrid corpus engine:** embeddings, a small domain adaptation experiment, exact KNN, ANN, metadata, RRF, reranking and a measured chunk-size comparison.
+2. **Hybrid corpus engine:** exact vector KNN on declared coordinates, then learned embeddings, a small domain adaptation experiment, ANN, metadata, RRF, reranking and a measured chunk-size comparison.
 3. **Evaluated evidence-aware assistant:** source IDs, context budgets, citations and abstention; the Chapters 30–33 harness reports retrieval, context and answer quality before advanced architectures begin.
 4. **Multi-source decision engine:** conversational, multi-hop, adaptive and bounded agentic paths across graph, live web, SQL, document images, code and multiple indexes. Every path is compared with the evaluated baseline.
 5. **Production RAG platform:** multi-source ingestion; incremental updates; ACL-safe retrieval; tenant-safe caching, query/ingest tracing, SLIs/SLOs, a working dashboard and alerts, APIs, UI, deployment, backup and cost ledger. Diagnose a staged incident and demonstrate deletion propagation and cross-tenant isolation against explicit quality, latency, reliability, freshness, security and cost gates.

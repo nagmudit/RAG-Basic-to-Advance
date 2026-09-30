@@ -62,6 +62,15 @@ The glossary will grow with chapter writing. Each future entry will include: **p
 | Data leakage | Evaluation information entering model fitting or design choices and biasing the reported result | 03; deep treatment 12 | Legitimate use of known corpus at inference |
 | Vector / norm / dot product | Ordered numeric coordinates, their magnitude and pairwise product sum | 03; deep treatment 10 | Evidence authority or access right |
 | Cosine similarity | Dot product divided by nonzero vector norms, measuring geometric angle alignment | 03; deep treatment 10 | Calibrated answer correctness |
+| Vector dimension / coordinate schema | Number and ordered meaning of numeric features shared by query and indexed items; a matching dimension alone does not prove the same schema or encoder version | 10 | Searchable source text or an interchangeable embedding model |
+| Dense vector / binary lexical vector | Explicit coordinate array, including zero positions / Chapter 10's one-or-zero term-presence array over a frozen vocabulary | 10 | Learned semantic embedding; “dense” does not mean semantically trained |
+| Unit vector / L2 normalization | Nonzero vector divided by its Euclidean norm, producing magnitude one | 10 | Zero-vector operation or proof of semantic relevance |
+| Inner product / dot similarity | Sum of corresponding coordinate products; for nonzero vectors equals product of norms times cosine and therefore may use magnitude | 10 | Cosine unless both sides have unit norm |
+| Euclidean / L2 distance | Square root of sum of squared coordinate differences; lower means closer in the declared coordinate system | 10 | Cosine order for unnormalized vectors |
+| Manhattan / L1 distance | Sum of absolute coordinate differences; lower means closer under coordinate-wise deviations | 10 | Euclidean or angular distance |
+| Exact vector KNN / oracle | Scoring every eligible vector under one fixed metric, schema, snapshot and tie rule to return the true top-k by that score | 10 | Judged relevance, evidence correctness or later approximate ANN results |
+| Anisotropy (vector population) | Uneven spread of representation vectors across directions; a geometric property to inspect on a specified population | 10 | A universal failure diagnosis from a two-dimensional drawing |
+| Zero-vector cosine policy | Explicit handling of a query or item with zero norm, for which cosine has no defined value | 10 | Automatically assigning similarity zero or declaring the information need unanswerable |
 | Logarithm | Exponent needed to obtain a positive value from a chosen base; e.g., `log₂ 1024 = 10` | 03; deep treatment 06 | Defined operation at zero |
 | Probability / distribution | Likelihood under a stated model and spread of outcomes across its population | 03; deep treatment 09, 48 | Raw retrieval score or one sample mean |
 | Source locator | Document ID, version, section/span and where needed offset that identify cited source text | 02 | Citation text without a resolvable source |

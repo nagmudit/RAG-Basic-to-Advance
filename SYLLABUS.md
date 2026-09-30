@@ -130,6 +130,7 @@ The core question evolves throughout: **Which evidence enters the LLM's context,
 
 #### Chapter 10 — Vectors, distance, and exact similarity
 
+- **Authored materials:** [Chapter](chapters/chapter-10-vectors-distance-and-exact-similarity.md) · [Lab](labs/chapter-10/LAB.md) · [Solutions](solutions/chapter-10-solutions.md) · [V3 exact-vector foundation](projects/V3/README.md).
 - **Objective:** Calculate similarities and explain how metric choice changes nearest neighbors.
 - **Prerequisites:** Chapter 03 and lexical sparse vectors from Chapter 06.
 - **Section 1 — Geometry.** Topic: representation; micro-concepts: dimensions, coordinates, sparse vs dense, norm, normalization, anisotropy intuition. Topic: comparisons; micro-concepts: dot product, inner product, cosine, Euclidean and Manhattan distance, unit-vector relationships.

@@ -1,0 +1,4368 @@
+{
+  "experiment_id": "ch10-v3-exact-binary-vector-v1",
+  "created_at_utc": "2026-09-30T07:38:13.843059+00:00",
+  "measurement_window_utc": {
+    "start": "2026-09-30T07:38:13.749580+00:00",
+    "end": "2026-09-30T07:38:13.843071+00:00"
+  },
+  "question": "Does changing from V2 BM25 to cosine over exact dense binary lexical features improve judged ranking?",
+  "hypothesis": "It improves macro positive-query NDCG@2; exact search scores every eligible vector. This is falsifiable and no speed gain is predicted.",
+  "baseline": "V2 exhaustive BM25; k1=1.2, b=0.75",
+  "primary_variable": "BM25 term scoring/posting-union execution versus exact cosine of binary title-plus-body term presence",
+  "controls": [
+    "V0 source/segment snapshot",
+    "V1 analyzer and fixed vocabulary",
+    "support-team static eligibility",
+    "V2 Chapter 9 frozen qrels/questions",
+    "same top-k and 120-source-word context selection"
+  ],
+  "representation": "One dense coordinate per sorted V1 vocabulary term, 1 iff title or body contains it; query uses the same analyzer and binary coordinates; no learned model, IDF, or domain adaptation.",
+  "zero_query_policy": "If no analyzed query term is in the frozen vocabulary, return no candidates; cosine of the zero vector is undefined.",
+  "zero_positive_policy": "Recall, Hit, F1, RR, AP, NDCG and direct recall null/excluded from positive macro; zero-positive candidate rate separate.",
+  "metric_policy": "V2 Chapter 9 graded qrels and formulas unchanged; exact cosine is a geometric score, not relevance probability.",
+  "corpus_snapshot": "support-corpus-2026-05-20",
+  "qrel_version": "ch09-segment-qrels-v1",
+  "query_count": 14,
+  "eligible_segments": 12,
+  "judged_pairs": 168,
+  "vocabulary_dimension": 119,
+  "vector_index_version": "ch10-binary-vocab-v1-ch05-support-corpus-2026-05-20-v0",
+  "hash_policy": "SHA256 of UTF-8 bytes with CRLF canonicalized to LF",
+  "corpus_sha256": "ee0c2ee166bd2124079f04150cceeb48a8b3df06d1d8414e97f5de2bec423b16",
+  "qrels_sha256": "ad9231da7c847625f8390d38ff39f5cba7c20e6fd697495303551bcb097e81de",
+  "vector_code_sha256": "ee840a3d19189b8d19d433b05ac947a6a5b2731b24afab0e6012615508e29b25",
+  "experiment_code_sha256": "b1565b674e595ffbf950a478b4f0d23cf253c34a0903ca7d0cd0571e656e7e6b",
+  "seed": 10102026,
+  "warm_calls_per_mode_case": 1,
+  "trials_per_mode_case": 11,
+  "timing": "Search call only; randomized pair order; microseconds from perf_counter_ns; no build, context or stub time. Samples are local, not service tails.",
+  "environment": {
+    "python": "3.14.2",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "processor": "Intel64 Family 6 Model 186 Stepping 2, GenuineIntel"
+  },
+  "cases": [
+    {
+      "query_id": "q-contract-change",
+      "slice": "dated_multi_evidence",
+      "origin": "frozen_v0",
+      "top_k": 2,
+      "modes": {
+        "bm25": {
+          "candidate_ids": [
+            "D2:§2:0",
+            "D3:FAQ-7:0"
+          ],
+          "candidate_scores_raw": [
+            5.6038139497493535,
+            2.489762912159853
+          ],
+          "ranking_metrics": {
+            "k": 2,
+            "retrieved_count": 2,
+            "relevant_count": 2,
+            "direct_count": 2,
+            "binary_hits": 1,
+            "direct_hits": 1,
+            "precision_at_k": 0.5,
+            "recall_at_k": 0.5,
+            "hit_at_k": 1,
+            "f1_at_k": 0.5,
+            "rr_at_k": 1.0,
+            "ap_at_k": 0.5,
+            "dcg_at_k": 3.0,
+            "idcg_at_k": 4.892789260714372,
+            "ndcg_at_k": 0.6131471927654584,
+            "direct_recall_at_k": 0.5,
+            "all_direct_at_k": false,
+            "no_positive_candidate_returned": null
+          },
+          "context_ids": [
+            "D2:§2:0",
+            "D3:FAQ-7:0"
+          ],
+          "context_source_words": 23,
+          "context_direct_recall": 0.5,
+          "stub_status": "abstained",
+          "stub_reason": "missing_required_evidence",
+          "stub_supporting_ids": [],
+          "work": {
+            "eligible_segments": 12,
+            "eligible_posting_visits": 57,
+            "scored_segments": 12,
+            "query_term_count": 14,
+            "zero_score_candidates": 0
+          },
+          "search_latency_us": {
+            "raw": [
+              48.3,
+              41.7,
+              44.3,
+              41.0,
+              41.6,
+              38.8,
+              49.5,
+              44.4,
+              45.7,
+              41.7,
+              44.7
+            ],
+            "p50_nearest_rank": 44.3,
+            "p95_nearest_rank": 49.5
+          }
+        },
+        "binary_cosine": {
+          "candidate_ids": [
+            "D3:FAQ-7:0",
+            "D2:§2:0"
+          ],
+          "candidate_scores_raw": [
+            0.5773502691896257,
+            0.5217491947499509
+          ],
+          "ranking_metrics": {
+            "k": 2,
+            "retrieved_count": 2,
+            "relevant_count": 2,
+            "direct_count": 2,
+            "binary_hits": 1,
+            "direct_hits": 1,
+            "precision_at_k": 0.5,
+            "recall_at_k": 0.5,
+            "hit_at_k": 1,
+            "f1_at_k": 0.5,
+            "rr_at_k": 0.5,
+            "ap_at_k": 0.25,
+            "dcg_at_k": 1.8927892607143724,
+            "idcg_at_k": 4.892789260714372,
+            "ndcg_at_k": 0.3868528072345416,
+            "direct_recall_at_k": 0.5,
+            "all_direct_at_k": false,
+            "no_positive_candidate_returned": null
+          },
+          "context_ids": [
+            "D3:FAQ-7:0",
+            "D2:§2:0"
+          ],
+          "context_source_words": 23,
+          "context_direct_recall": 0.5,
+          "stub_status": "abstained",
+          "stub_reason": "missing_required_evidence",
+          "stub_supporting_ids": [],
+          "work": {
+            "indexed_vectors": 13,
+            "eligible_vectors": 12,
+            "scored_vectors": 12,
+            "dimension": 119,
+            "coordinate_comparisons": 1428,
+            "plan": "heap"
+          },
+          "search_latency_us": {
+            "raw": [
+              126.8,
+              125.8,
+              120.5,
+              122.7,
+              119.8,
+              123.1,
+              127.1,
+              128.1,
+              125.8,
+              128.5,
+              128.3
+            ],
+            "p50_nearest_rank": 125.8,
+            "p95_nearest_rank": 128.5
+          }
+        }
+      }
+    },
+    {
+      "query_id": "q-contract-change",
+      "slice": "dated_multi_evidence",
+      "origin": "frozen_v0",
+      "top_k": 8,
+      "modes": {
+        "bm25": {
+          "candidate_ids": [
+            "D2:§2:0",
+            "D3:FAQ-7:0",
+            "D4:step-4:1",
+            "D1:§3:0",
+            "D7:timeline:0",
+            "D5:§3:0",
+            "D8:§3:0",
+            "D9:proposal-2:0"
+          ],
+          "candidate_scores_raw": [
+            5.6038139497493535,
+            2.489762912159853,
+            2.3579662540448423,
+            2.314777405969009,
+            2.237614250330723,
+            2.128193518549652,
+            2.128193518549652,
+            2.121855208573605
+          ],
+          "ranking_metrics": {
+            "k": 8,
+            "retrieved_count": 8,
+            "relevant_count": 2,
+            "direct_count": 2,
+            "binary_hits": 2,
+            "direct_hits": 2,
+            "precision_at_k": 0.25,
+            "recall_at_k": 1.0,
+            "hit_at_k": 1,
+            "f1_at_k": 0.4,
+            "rr_at_k": 1.0,
+            "ap_at_k": 0.75,
+            "dcg_at_k": 4.29202967422018,
+            "idcg_at_k": 4.892789260714372,
+            "ndcg_at_k": 0.8772153153380493,
+            "direct_recall_at_k": 1.0,
+            "all_direct_at_k": true,
+            "no_positive_candidate_returned": null
+          },
+          "context_ids": [
+            "D2:§2:0",
+            "D3:FAQ-7:0",
+            "D4:step-4:1",
+            "D1:§3:0",
+            "D7:timeline:0",
+            "D5:§3:0",
+            "D8:§3:0",
+            "D9:proposal-2:0"
+          ],
+          "context_source_words": 117,
+          "context_direct_recall": 1.0,
+          "stub_status": "answered",
+          "stub_reason": null,
+          "stub_supporting_ids": [
+            "D1:§3:0",
+            "D2:§2:0"
+          ],
+          "work": {
+            "eligible_segments": 12,
+            "eligible_posting_visits": 57,
+            "scored_segments": 12,
+            "query_term_count": 14,
+            "zero_score_candidates": 0
+          },
+          "search_latency_us": {
+            "raw": [
+              47.4,
+              47.3,
+              45.8,
+              53.2,
+              43.1,
+              46.4,
+              44.6,
+              46.9,
+              46.5,
+              47.4,
+              45.2
+            ],
+            "p50_nearest_rank": 46.5,
+            "p95_nearest_rank": 53.2
+          }
+        },
+        "binary_cosine": {
+          "candidate_ids": [
+            "D3:FAQ-7:0",
+            "D2:§2:0",
+            "D1:§3:0",
+            "D9:proposal-2:0",
+            "D7:timeline:0",
+            "D5:§3:0",
+            "D8:§3:0",
+            "D6:row-2:0"
+          ],
+          "candidate_scores_raw": [
+            0.5773502691896257,
+            0.5217491947499509,
+            0.5163977794943222,
+            0.47140452079103173,
+            0.44721359549995787,
+            0.4303314829119351,
+            0.4303314829119351,
+            0.2773500981126146
+          ],
+          "ranking_metrics": {
+            "k": 8,
+            "retrieved_count": 8,
+            "relevant_count": 2,
+            "direct_count": 2,
+            "binary_hits": 2,
+            "direct_hits": 2,
+            "precision_at_k": 0.25,
+            "recall_at_k": 1.0,
+            "hit_at_k": 1,
+            "f1_at_k": 0.4,
+            "rr_at_k": 0.5,
+            "ap_at_k": 0.5833333333333333,
+            "dcg_at_k": 3.3927892607143724,
+            "idcg_at_k": 4.892789260714372,
+            "ndcg_at_k": 0.6934264036172708,
+            "direct_recall_at_k": 1.0,
+            "all_direct_at_k": true,
+            "no_positive_candidate_returned": null
+          },
+          "context_ids": [
+            "D3:FAQ-7:0",
+            "D2:§2:0",
+            "D1:§3:0",
+            "D9:proposal-2:0",
+            "D7:timeline:0",
+            "D5:§3:0",
+            "D8:§3:0",
+            "D6:row-2:0"
+          ],
+          "context_source_words": 104,
+          "context_direct_recall": 1.0,
+          "stub_status": "answered",
+          "stub_reason": null,
+          "stub_supporting_ids": [
+            "D1:§3:0",
+            "D2:§2:0"
+          ],
+          "work": {
+            "indexed_vectors": 13,
+            "eligible_vectors": 12,
+            "scored_vectors": 12,
+            "dimension": 119,
+            "coordinate_comparisons": 1428,
+            "plan": "heap"
+          },
+          "search_latency_us": {
+            "raw": [
+              133.7,
+              131.0,
+              132.2,
+              135.5,
+              138.5,
+              134.5,
+              141.3,
+              140.2,
+              139.4,
+              139.1,
+              211.5
+            ],
+            "p50_nearest_rank": 138.5,
+            "p95_nearest_rank": 211.5
+          }
+        }
+      }
+    },
+    {
+      "query_id": "q-termination",
+      "slice": "exact_clause",
+      "origin": "frozen_v0",
+      "top_k": 2,
+      "modes": {
+        "bm25": {
+          "candidate_ids": [
+            "D4:step-4:2",
+            "D1:§8:0"
+          ],
+          "candidate_scores_raw": [
+            2.806149552159276,
+            1.7927631409623426
+          ],
+          "ranking_metrics": {
+            "k": 2,
+            "retrieved_count": 2,
+            "relevant_count": 1,
+            "direct_count": 1,
+            "binary_hits": 1,
+            "direct_hits": 1,
+            "precision_at_k": 0.5,
+            "recall_at_k": 1.0,
+            "hit_at_k": 1,
+            "f1_at_k": 0.6666666666666666,
+            "rr_at_k": 0.5,
+            "ap_at_k": 0.5,
+            "dcg_at_k": 1.8927892607143724,
+            "idcg_at_k": 3.0,
+            "ndcg_at_k": 0.6309297535714574,
+            "direct_recall_at_k": 1.0,
+            "all_direct_at_k": true,
+            "no_positive_candidate_returned": null
+          },
+          "context_ids": [
+            "D4:step-4:2",
+            "D1:§8:0"
+          ],
+          "context_source_words": 25,
+          "context_direct_recall": 1.0,
+          "stub_status": "answered",
+          "stub_reason": null,
+          "stub_supporting_ids": [
+            "D1:§8:0"
+          ],
+          "work": {
+            "eligible_segments": 12,
+            "eligible_posting_visits": 37,
+            "scored_segments": 12,
+            "query_term_count": 8,
+            "zero_score_candidates": 0
+          },
+          "search_latency_us": {
+            "raw": [
+              37.5,
+              32.9,
+              33.5,
+              35.0,
+              33.4,
+              36.4,
+              35.5,
+              34.6,
+              35.3,
+              32.5,
+              36.0
+            ],
+            "p50_nearest_rank": 35.0,
+            "p95_nearest_rank": 37.5
+          }
+        },
+        "binary_cosine": {
+          "candidate_ids": [
+            "D1:§3:0",
+            "D4:step-4:2"
+          ],
+          "candidate_scores_raw": [
+            0.46188021535170054,
+            0.46188021535170054
+          ],
+          "ranking_metrics": {
+            "k": 2,
+            "retrieved_count": 2,
+            "relevant_count": 1,
+            "direct_count": 1,
+            "binary_hits": 0,
+            "direct_hits": 0,
+            "precision_at_k": 0.0,
+            "recall_at_k": 0.0,
+            "hit_at_k": 0,
+            "f1_at_k": 0.0,
+            "rr_at_k": 0.0,
+            "ap_at_k": 0.0,
+            "dcg_at_k": 0.0,
+            "idcg_at_k": 3.0,
+            "ndcg_at_k": 0.0,
+            "direct_recall_at_k": 0.0,
+            "all_direct_at_k": false,
+            "no_positive_candidate_returned": null
+          },
+          "context_ids": [
+            "D1:§3:0",
+            "D4:step-4:2"
+          ],
+          "context_source_words": 24,
+          "context_direct_recall": 0.0,
+          "stub_status": "abstained",
+          "stub_reason": "missing_required_evidence",
+          "stub_supporting_ids": [],
+          "work": {
+            "indexed_vectors": 13,
+            "eligible_vectors": 12,
+            "scored_vectors": 12,
+            "dimension": 119,
+            "coordinate_comparisons": 1428,
+            "plan": "heap"
+          },
+          "search_latency_us": {
+            "raw": [
+              136.5,
+              137.1,
+              135.5,
+              131.9,
+              135.1,
+              144.8,
+              135.4,
+              136.6,
+              135.3,
+              137.4,
+              135.5
+            ],
+            "p50_nearest_rank": 135.5,
+            "p95_nearest_rank": 144.8
+          }
+        }
+      }
+    },
+    {
+      "query_id": "q-termination",
+      "slice": "exact_clause",
+      "origin": "frozen_v0",
+      "top_k": 8,
+      "modes": {
+        "bm25": {
+          "candidate_ids": [
+            "D4:step-4:2",
+            "D1:§8:0",
+            "D1:§3:0",
+            "D5:§3:0",
+            "D8:§3:0",
+            "D6:row-2:0",
+            "D3:FAQ-7:0",
+            "D4:step-4:1"
+          ],
+          "candidate_scores_raw": [
+            2.806149552159276,
+            1.7927631409623426,
+            1.6679897110954476,
+            1.5103544648059477,
+            1.5103544648059477,
+            0.5935349219860405,
+            0.541628662408442,
+            0.5410406967239133
+          ],
+          "ranking_metrics": {
+            "k": 8,
+            "retrieved_count": 8,
+            "relevant_count": 1,
+            "direct_count": 1,
+            "binary_hits": 1,
+            "direct_hits": 1,
+            "precision_at_k": 0.125,
+            "recall_at_k": 1.0,
+            "hit_at_k": 1,
+            "f1_at_k": 0.2222222222222222,
+            "rr_at_k": 0.5,
+            "ap_at_k": 0.5,
+            "dcg_at_k": 1.8927892607143724,
+            "idcg_at_k": 3.0,
+            "ndcg_at_k": 0.6309297535714574,
+            "direct_recall_at_k": 1.0,
+            "all_direct_at_k": true,
+            "no_positive_candidate_returned": null
+          },
+          "context_ids": [
+            "D4:step-4:2",
+            "D1:§8:0",
+            "D1:§3:0",
+            "D5:§3:0",
+            "D8:§3:0",
+            "D6:row-2:0",
+            "D3:FAQ-7:0",
+            "D4:step-4:1"
+          ],
+          "context_source_words": 104,
+          "context_direct_recall": 1.0,
+          "stub_status": "answered",
+          "stub_reason": null,
+          "stub_supporting_ids": [
+            "D1:§8:0"
+          ],
+          "work": {
+            "eligible_segments": 12,
+            "eligible_posting_visits": 37,
+            "scored_segments": 12,
+            "query_term_count": 8,
+            "zero_score_candidates": 0
+          },
+          "search_latency_us": {
+            "raw": [
+              39.2,
+              36.0,
+              35.4,
+              32.3,
+              36.8,
+              33.0,
+              35.3,
+              35.9,
+              35.3,
+              33.7,
+              36.0
+            ],
+            "p50_nearest_rank": 35.4,
+            "p95_nearest_rank": 39.2
+          }
+        },
+        "binary_cosine": {
+          "candidate_ids": [
+            "D1:§3:0",
+            "D4:step-4:2",
+            "D3:FAQ-7:0",
+            "D6:row-2:0",
+            "D1:§8:0",
+            "D5:§3:0",
+            "D8:§3:0",
+            "D9:proposal-2:0"
+          ],
+          "candidate_scores_raw": [
+            0.46188021535170054,
+            0.46188021535170054,
+            0.3872983346207417,
+            0.3721042037676254,
+            0.3464101615137754,
+            0.3464101615137754,
+            0.3464101615137754,
+            0.316227766016838
+          ],
+          "ranking_metrics": {
+            "k": 8,
+            "retrieved_count": 8,
+            "relevant_count": 1,
+            "direct_count": 1,
+            "binary_hits": 1,
+            "direct_hits": 1,
+            "precision_at_k": 0.125,
+            "recall_at_k": 1.0,
+            "hit_at_k": 1,
+            "f1_at_k": 0.2222222222222222,
+            "rr_at_k": 0.2,
+            "ap_at_k": 0.2,
+            "dcg_at_k": 1.1605584217036249,
+            "idcg_at_k": 3.0,
+            "ndcg_at_k": 0.38685280723454163,
+            "direct_recall_at_k": 1.0,
+            "all_direct_at_k": true,
+            "no_positive_candidate_returned": null
+          },
+          "context_ids": [
+            "D1:§3:0",
+            "D4:step-4:2",
+            "D3:FAQ-7:0",
+            "D6:row-2:0",
+            "D1:§8:0",
+            "D5:§3:0",
+            "D8:§3:0",
+            "D9:proposal-2:0"
+          ],
+          "context_source_words": 96,
+          "context_direct_recall": 1.0,
+          "stub_status": "answered",
+          "stub_reason": null,
+          "stub_supporting_ids": [
+            "D1:§8:0"
+          ],
+          "work": {
+            "indexed_vectors": 13,
+            "eligible_vectors": 12,
+            "scored_vectors": 12,
+            "dimension": 119,
+            "coordinate_comparisons": 1428,
+            "plan": "heap"
+          },
+          "search_latency_us": {
+            "raw": [
+              139.4,
+              135.1,
+              140.2,
+              145.7,
+              134.4,
+              139.4,
+              138.5,
+              137.3,
+              139.6,
+              138.8,
+              139.3
+            ],
+            "p50_nearest_rank": 139.3,
+            "p95_nearest_rank": 145.7
+          }
+        }
+      }
+    },
+    {
+      "query_id": "q-price",
+      "slice": "numeric_lookup",
+      "origin": "chapter09_authored",
+      "top_k": 2,
+      "modes": {
+        "bm25": {
+          "candidate_ids": [
+            "D6:row-2:0",
+            "D4:step-4:2"
+          ],
+          "candidate_scores_raw": [
+            13.405861021693433,
+            2.806149552159276
+          ],
+          "ranking_metrics": {
+            "k": 2,
+            "retrieved_count": 2,
+            "relevant_count": 1,
+            "direct_count": 1,
+            "binary_hits": 1,
+            "direct_hits": 1,
+            "precision_at_k": 0.5,
+            "recall_at_k": 1.0,
+            "hit_at_k": 1,
+            "f1_at_k": 0.6666666666666666,
+            "rr_at_k": 1.0,
+            "ap_at_k": 1.0,
+            "dcg_at_k": 3.0,
+            "idcg_at_k": 3.0,
+            "ndcg_at_k": 1.0,
+            "direct_recall_at_k": 1.0,
+            "all_direct_at_k": true,
+            "no_positive_candidate_returned": null
+          },
+          "context_ids": [
+            "D6:row-2:0",
+            "D4:step-4:2"
+          ],
+          "context_source_words": 25,
+          "context_direct_recall": 1.0,
+          "stub_status": null,
+          "stub_reason": null,
+          "stub_supporting_ids": [],
+          "work": {
+            "eligible_segments": 12,
+            "eligible_posting_visits": 51,
+            "scored_segments": 12,
+            "query_term_count": 12,
+            "zero_score_candidates": 0
+          },
+          "search_latency_us": {
+            "raw": [
+              47.0,
+              42.4,
+              43.9,
+              44.7,
+              41.5,
+              44.0,
+              43.6,
+              43.8,
+              43.7,
+              44.0,
+              41.4
+            ],
+            "p50_nearest_rank": 43.8,
+            "p95_nearest_rank": 47.0
+          }
+        },
+        "binary_cosine": {
+          "candidate_ids": [
+            "D6:row-2:0",
+            "D3:FAQ-7:0"
+          ],
+          "candidate_scores_raw": [
+            0.8362420100070909,
+            0.4351941398892446
+          ],
+          "ranking_metrics": {
+            "k": 2,
+            "retrieved_count": 2,
+            "relevant_count": 1,
+            "direct_count": 1,
+            "binary_hits": 1,
+            "direct_hits": 1,
+            "precision_at_k": 0.5,
+            "recall_at_k": 1.0,
+            "hit_at_k": 1,
+            "f1_at_k": 0.6666666666666666,
+            "rr_at_k": 1.0,
+            "ap_at_k": 1.0,
+            "dcg_at_k": 3.0,
+            "idcg_at_k": 3.0,
+            "ndcg_at_k": 1.0,
+            "direct_recall_at_k": 1.0,
+            "all_direct_at_k": true,
+            "no_positive_candidate_returned": null
+          },
+          "context_ids": [
+            "D6:row-2:0",
+            "D3:FAQ-7:0"
+          ],
+          "context_source_words": 19,
+          "context_direct_recall": 1.0,
+          "stub_status": null,
+          "stub_reason": null,
+          "stub_supporting_ids": [],
+          "work": {
+            "indexed_vectors": 13,
+            "eligible_vectors": 12,
+            "scored_vectors": 12,
+            "dimension": 119,
+            "coordinate_comparisons": 1428,
+            "plan": "heap"
+          },
+          "search_latency_us": {
+            "raw": [
+              138.5,
+              137.8,
+              136.0,
+              134.7,
+              138.9,
+              137.7,
+              134.6,
+              134.2,
+              136.4,
+              136.4,
+              143.2
+            ],
+            "p50_nearest_rank": 136.4,
+            "p95_nearest_rank": 143.2
+          }
+        }
+      }
+    },
+    {
+      "query_id": "q-price",
+      "slice": "numeric_lookup",
+      "origin": "chapter09_authored",
+      "top_k": 8,
+      "modes": {
+        "bm25": {
+          "candidate_ids": [
+            "D6:row-2:0",
+            "D4:step-4:2",
+            "D3:FAQ-7:0",
+            "D1:§3:0",
+            "D4:step-4:0",
+            "D5:§3:0",
+            "D8:§3:0",
+            "D1:§8:0"
+          ],
+          "candidate_scores_raw": [
+            13.405861021693433,
+            2.806149552159276,
+            2.1782710952751354,
+            2.0251778556072084,
+            1.853407509543433,
+            1.8515557383656693,
+            1.8515557383656693,
+            1.0063713932191027
+          ],
+          "ranking_metrics": {
+            "k": 8,
+            "retrieved_count": 8,
+            "relevant_count": 1,
+            "direct_count": 1,
+            "binary_hits": 1,
+            "direct_hits": 1,
+            "precision_at_k": 0.125,
+            "recall_at_k": 1.0,
+            "hit_at_k": 1,
+            "f1_at_k": 0.2222222222222222,
+            "rr_at_k": 1.0,
+            "ap_at_k": 1.0,
+            "dcg_at_k": 3.0,
+            "idcg_at_k": 3.0,
+            "ndcg_at_k": 1.0,
+            "direct_recall_at_k": 1.0,
+            "all_direct_at_k": true,
+            "no_positive_candidate_returned": null
+          },
+          "context_ids": [
+            "D6:row-2:0",
+            "D4:step-4:2",
+            "D3:FAQ-7:0",
+            "D1:§3:0",
+            "D4:step-4:0",
+            "D5:§3:0",
+            "D8:§3:0",
+            "D1:§8:0"
+          ],
+          "context_source_words": 104,
+          "context_direct_recall": 1.0,
+          "stub_status": null,
+          "stub_reason": null,
+          "stub_supporting_ids": [],
+          "work": {
+            "eligible_segments": 12,
+            "eligible_posting_visits": 51,
+            "scored_segments": 12,
+            "query_term_count": 12,
+            "zero_score_candidates": 0
+          },
+          "search_latency_us": {
+            "raw": [
+              46.9,
+              45.7,
+              47.2,
+              42.0,
+              45.4,
+              42.4,
+              42.7,
+              44.0,
+              47.5,
+              42.8,
+              42.4
+            ],
+            "p50_nearest_rank": 44.0,
+            "p95_nearest_rank": 47.5
+          }
+        },
+        "binary_cosine": {
+          "candidate_ids": [
+            "D6:row-2:0",
+            "D3:FAQ-7:0",
+            "D1:§3:0",
+            "D4:step-4:2",
+            "D5:§3:0",
+            "D8:§3:0",
+            "D4:step-4:0",
+            "D1:§8:0"
+          ],
+          "candidate_scores_raw": [
+            0.8362420100070909,
+            0.4351941398892446,
+            0.3892494720807615,
+            0.3113995776646092,
+            0.3113995776646092,
+            0.3113995776646092,
+            0.24120907566221092,
+            0.23354968324845687
+          ],
+          "ranking_metrics": {
+            "k": 8,
+            "retrieved_count": 8,
+            "relevant_count": 1,
+            "direct_count": 1,
+            "binary_hits": 1,
+            "direct_hits": 1,
+            "precision_at_k": 0.125,
+            "recall_at_k": 1.0,
+            "hit_at_k": 1,
+            "f1_at_k": 0.2222222222222222,
+            "rr_at_k": 1.0,
+            "ap_at_k": 1.0,
+            "dcg_at_k": 3.0,
+            "idcg_at_k": 3.0,
+            "ndcg_at_k": 1.0,
+            "direct_recall_at_k": 1.0,
+            "all_direct_at_k": true,
+            "no_positive_candidate_returned": null
+          },
+          "context_ids": [
+            "D6:row-2:0",
+            "D3:FAQ-7:0",
+            "D1:§3:0",
+            "D4:step-4:2",
+            "D5:§3:0",
+            "D8:§3:0",
+            "D4:step-4:0",
+            "D1:§8:0"
+          ],
+          "context_source_words": 104,
+          "context_direct_recall": 1.0,
+          "stub_status": null,
+          "stub_reason": null,
+          "stub_supporting_ids": [],
+          "work": {
+            "indexed_vectors": 13,
+            "eligible_vectors": 12,
+            "scored_vectors": 12,
+            "dimension": 119,
+            "coordinate_comparisons": 1428,
+            "plan": "heap"
+          },
+          "search_latency_us": {
+            "raw": [
+              139.2,
+              144.7,
+              144.1,
+              142.3,
+              140.4,
+              142.0,
+              140.7,
+              138.9,
+              140.1,
+              136.7,
+              138.6
+            ],
+            "p50_nearest_rank": 140.4,
+            "p95_nearest_rank": 144.7
+          }
+        }
+      }
+    },
+    {
+      "query_id": "q-basic-target",
+      "slice": "entity_disambiguation",
+      "origin": "chapter09_authored",
+      "top_k": 2,
+      "modes": {
+        "bm25": {
+          "candidate_ids": [
+            "D5:§3:0",
+            "D1:§3:0"
+          ],
+          "candidate_scores_raw": [
+            7.935965491828663,
+            5.049612006173455
+          ],
+          "ranking_metrics": {
+            "k": 2,
+            "retrieved_count": 2,
+            "relevant_count": 1,
+            "direct_count": 1,
+            "binary_hits": 1,
+            "direct_hits": 1,
+            "precision_at_k": 0.5,
+            "recall_at_k": 1.0,
+            "hit_at_k": 1,
+            "f1_at_k": 0.6666666666666666,
+            "rr_at_k": 1.0,
+            "ap_at_k": 1.0,
+            "dcg_at_k": 3.0,
+            "idcg_at_k": 3.0,
+            "ndcg_at_k": 1.0,
+            "direct_recall_at_k": 1.0,
+            "all_direct_at_k": true,
+            "no_positive_candidate_returned": null
+          },
+          "context_ids": [
+            "D5:§3:0",
+            "D1:§3:0"
+          ],
+          "context_source_words": 23,
+          "context_direct_recall": 1.0,
+          "stub_status": null,
+          "stub_reason": null,
+          "stub_supporting_ids": [],
+          "work": {
+            "eligible_segments": 12,
+            "eligible_posting_visits": 58,
+            "scored_segments": 12,
+            "query_term_count": 10,
+            "zero_score_candidates": 0
+          },
+          "search_latency_us": {
+            "raw": [
+              46.0,
+              77.3,
+              48.4,
+              42.9,
+              67.4,
+              49.2,
+              47.6,
+              46.5,
+              44.7,
+              44.5,
+              43.7
+            ],
+            "p50_nearest_rank": 46.5,
+            "p95_nearest_rank": 77.3
+          }
+        },
+        "binary_cosine": {
+          "candidate_ids": [
+            "D5:§3:0",
+            "D1:§3:0"
+          ],
+          "candidate_scores_raw": [
+            0.7745966692414833,
+            0.6885303726590962
+          ],
+          "ranking_metrics": {
+            "k": 2,
+            "retrieved_count": 2,
+            "relevant_count": 1,
+            "direct_count": 1,
+            "binary_hits": 1,
+            "direct_hits": 1,
+            "precision_at_k": 0.5,
+            "recall_at_k": 1.0,
+            "hit_at_k": 1,
+            "f1_at_k": 0.6666666666666666,
+            "rr_at_k": 1.0,
+            "ap_at_k": 1.0,
+            "dcg_at_k": 3.0,
+            "idcg_at_k": 3.0,
+            "ndcg_at_k": 1.0,
+            "direct_recall_at_k": 1.0,
+            "all_direct_at_k": true,
+            "no_positive_candidate_returned": null
+          },
+          "context_ids": [
+            "D5:§3:0",
+            "D1:§3:0"
+          ],
+          "context_source_words": 23,
+          "context_direct_recall": 1.0,
+          "stub_status": null,
+          "stub_reason": null,
+          "stub_supporting_ids": [],
+          "work": {
+            "indexed_vectors": 13,
+            "eligible_vectors": 12,
+            "scored_vectors": 12,
+            "dimension": 119,
+            "coordinate_comparisons": 1428,
+            "plan": "heap"
+          },
+          "search_latency_us": {
+            "raw": [
+              140.7,
+              136.5,
+              160.8,
+              267.1,
+              148.2,
+              141.6,
+              138.2,
+              177.9,
+              138.5,
+              138.3,
+              138.6
+            ],
+            "p50_nearest_rank": 140.7,
+            "p95_nearest_rank": 267.1
+          }
+        }
+      }
+    },
+    {
+      "query_id": "q-basic-target",
+      "slice": "entity_disambiguation",
+      "origin": "chapter09_authored",
+      "top_k": 8,
+      "modes": {
+        "bm25": {
+          "candidate_ids": [
+            "D5:§3:0",
+            "D1:§3:0",
+            "D8:§3:0",
+            "D3:FAQ-7:0",
+            "D2:§2:0",
+            "D9:proposal-2:0",
+            "D7:timeline:0",
+            "D6:row-2:0"
+          ],
+          "candidate_scores_raw": [
+            7.935965491828663,
+            5.049612006173455,
+            4.695056692638298,
+            4.1788845607541285,
+            3.2679639378415573,
+            2.978616134533815,
+            2.124284372766382,
+            1.1747863779967975
+          ],
+          "ranking_metrics": {
+            "k": 8,
+            "retrieved_count": 8,
+            "relevant_count": 1,
+            "direct_count": 1,
+            "binary_hits": 1,
+            "direct_hits": 1,
+            "precision_at_k": 0.125,
+            "recall_at_k": 1.0,
+            "hit_at_k": 1,
+            "f1_at_k": 0.2222222222222222,
+            "rr_at_k": 1.0,
+            "ap_at_k": 1.0,
+            "dcg_at_k": 3.0,
+            "idcg_at_k": 3.0,
+            "ndcg_at_k": 1.0,
+            "direct_recall_at_k": 1.0,
+            "all_direct_at_k": true,
+            "no_positive_candidate_returned": null
+          },
+          "context_ids": [
+            "D5:§3:0",
+            "D1:§3:0",
+            "D8:§3:0",
+            "D3:FAQ-7:0",
+            "D2:§2:0",
+            "D9:proposal-2:0",
+            "D7:timeline:0",
+            "D6:row-2:0"
+          ],
+          "context_source_words": 104,
+          "context_direct_recall": 1.0,
+          "stub_status": null,
+          "stub_reason": null,
+          "stub_supporting_ids": [],
+          "work": {
+            "eligible_segments": 12,
+            "eligible_posting_visits": 58,
+            "scored_segments": 12,
+            "query_term_count": 10,
+            "zero_score_candidates": 0
+          },
+          "search_latency_us": {
+            "raw": [
+              46.0,
+              49.1,
+              46.2,
+              46.7,
+              44.6,
+              47.4,
+              46.2,
+              45.8,
+              47.8,
+              44.9,
+              45.9
+            ],
+            "p50_nearest_rank": 46.2,
+            "p95_nearest_rank": 49.1
+          }
+        },
+        "binary_cosine": {
+          "candidate_ids": [
+            "D5:§3:0",
+            "D1:§3:0",
+            "D3:FAQ-7:0",
+            "D8:§3:0",
+            "D9:proposal-2:0",
+            "D2:§2:0",
+            "D7:timeline:0",
+            "D6:row-2:0"
+          ],
+          "candidate_scores_raw": [
+            0.7745966692414833,
+            0.6885303726590962,
+            0.6735753140545634,
+            0.6024640760767092,
+            0.47140452079103173,
+            0.44721359549995787,
+            0.3726779962499649,
+            0.2773500981126146
+          ],
+          "ranking_metrics": {
+            "k": 8,
+            "retrieved_count": 8,
+            "relevant_count": 1,
+            "direct_count": 1,
+            "binary_hits": 1,
+            "direct_hits": 1,
+            "precision_at_k": 0.125,
+            "recall_at_k": 1.0,
+            "hit_at_k": 1,
+            "f1_at_k": 0.2222222222222222,
+            "rr_at_k": 1.0,
+            "ap_at_k": 1.0,
+            "dcg_at_k": 3.0,
+            "idcg_at_k": 3.0,
+            "ndcg_at_k": 1.0,
+            "direct_recall_at_k": 1.0,
+            "all_direct_at_k": true,
+            "no_positive_candidate_returned": null
+          },
+          "context_ids": [
+            "D5:§3:0",
+            "D1:§3:0",
+            "D3:FAQ-7:0",
+            "D8:§3:0",
+            "D9:proposal-2:0",
+            "D2:§2:0",
+            "D7:timeline:0",
+            "D6:row-2:0"
+          ],
+          "context_source_words": 104,
+          "context_direct_recall": 1.0,
+          "stub_status": null,
+          "stub_reason": null,
+          "stub_supporting_ids": [],
+          "work": {
+            "indexed_vectors": 13,
+            "eligible_vectors": 12,
+            "scored_vectors": 12,
+            "dimension": 119,
+            "coordinate_comparisons": 1428,
+            "plan": "heap"
+          },
+          "search_latency_us": {
+            "raw": [
+              145.2,
+              184.6,
+              145.7,
+              143.8,
+              143.7,
+              141.8,
+              143.7,
+              143.2,
+              150.8,
+              143.9,
+              139.1
+            ],
+            "p50_nearest_rank": 143.8,
+            "p95_nearest_rank": 184.6
+          }
+        }
+      }
+    },
+    {
+      "query_id": "q-atlas-target",
+      "slice": "entity_disambiguation",
+      "origin": "chapter09_authored",
+      "top_k": 2,
+      "modes": {
+        "bm25": {
+          "candidate_ids": [
+            "D8:§3:0",
+            "D1:§3:0"
+          ],
+          "candidate_scores_raw": [
+            7.935965491828663,
+            5.049612006173455
+          ],
+          "ranking_metrics": {
+            "k": 2,
+            "retrieved_count": 2,
+            "relevant_count": 1,
+            "direct_count": 1,
+            "binary_hits": 1,
+            "direct_hits": 1,
+            "precision_at_k": 0.5,
+            "recall_at_k": 1.0,
+            "hit_at_k": 1,
+            "f1_at_k": 0.6666666666666666,
+            "rr_at_k": 1.0,
+            "ap_at_k": 1.0,
+            "dcg_at_k": 3.0,
+            "idcg_at_k": 3.0,
+            "ndcg_at_k": 1.0,
+            "direct_recall_at_k": 1.0,
+            "all_direct_at_k": true,
+            "no_positive_candidate_returned": null
+          },
+          "context_ids": [
+            "D8:§3:0",
+            "D1:§3:0"
+          ],
+          "context_source_words": 23,
+          "context_direct_recall": 1.0,
+          "stub_status": null,
+          "stub_reason": null,
+          "stub_supporting_ids": [],
+          "work": {
+            "eligible_segments": 12,
+            "eligible_posting_visits": 58,
+            "scored_segments": 12,
+            "query_term_count": 10,
+            "zero_score_candidates": 0
+          },
+          "search_latency_us": {
+            "raw": [
+              46.3,
+              44.3,
+              43.2,
+              40.8,
+              44.0,
+              44.0,
+              44.4,
+              42.4,
+              44.6,
+              42.0,
+              45.6
+            ],
+            "p50_nearest_rank": 44.0,
+            "p95_nearest_rank": 46.3
+          }
+        },
+        "binary_cosine": {
+          "candidate_ids": [
+            "D8:§3:0",
+            "D1:§3:0"
+          ],
+          "candidate_scores_raw": [
+            0.7745966692414833,
+            0.6885303726590962
+          ],
+          "ranking_metrics": {
+            "k": 2,
+            "retrieved_count": 2,
+            "relevant_count": 1,
+            "direct_count": 1,
+            "binary_hits": 1,
+            "direct_hits": 1,
+            "precision_at_k": 0.5,
+            "recall_at_k": 1.0,
+            "hit_at_k": 1,
+            "f1_at_k": 0.6666666666666666,
+            "rr_at_k": 1.0,
+            "ap_at_k": 1.0,
+            "dcg_at_k": 3.0,
+            "idcg_at_k": 3.0,
+            "ndcg_at_k": 1.0,
+            "direct_recall_at_k": 1.0,
+            "all_direct_at_k": true,
+            "no_positive_candidate_returned": null
+          },
+          "context_ids": [
+            "D8:§3:0",
+            "D1:§3:0"
+          ],
+          "context_source_words": 23,
+          "context_direct_recall": 1.0,
+          "stub_status": null,
+          "stub_reason": null,
+          "stub_supporting_ids": [],
+          "work": {
+            "indexed_vectors": 13,
+            "eligible_vectors": 12,
+            "scored_vectors": 12,
+            "dimension": 119,
+            "coordinate_comparisons": 1428,
+            "plan": "heap"
+          },
+          "search_latency_us": {
+            "raw": [
+              134.5,
+              138.1,
+              135.7,
+              135.1,
+              132.6,
+              139.9,
+              132.9,
+              133.4,
+              132.2,
+              134.7,
+              129.8
+            ],
+            "p50_nearest_rank": 134.5,
+            "p95_nearest_rank": 139.9
+          }
+        }
+      }
+    },
+    {
+      "query_id": "q-atlas-target",
+      "slice": "entity_disambiguation",
+      "origin": "chapter09_authored",
+      "top_k": 8,
+      "modes": {
+        "bm25": {
+          "candidate_ids": [
+            "D8:§3:0",
+            "D1:§3:0",
+            "D5:§3:0",
+            "D3:FAQ-7:0",
+            "D2:§2:0",
+            "D9:proposal-2:0",
+            "D7:timeline:0",
+            "D6:row-2:0"
+          ],
+          "candidate_scores_raw": [
+            7.935965491828663,
+            5.049612006173455,
+            4.695056692638298,
+            4.1788845607541285,
+            3.2679639378415573,
+            2.978616134533815,
+            2.124284372766382,
+            1.1747863779967975
+          ],
+          "ranking_metrics": {
+            "k": 8,
+            "retrieved_count": 8,
+            "relevant_count": 1,
+            "direct_count": 1,
+            "binary_hits": 1,
+            "direct_hits": 1,
+            "precision_at_k": 0.125,
+            "recall_at_k": 1.0,
+            "hit_at_k": 1,
+            "f1_at_k": 0.2222222222222222,
+            "rr_at_k": 1.0,
+            "ap_at_k": 1.0,
+            "dcg_at_k": 3.0,
+            "idcg_at_k": 3.0,
+            "ndcg_at_k": 1.0,
+            "direct_recall_at_k": 1.0,
+            "all_direct_at_k": true,
+            "no_positive_candidate_returned": null
+          },
+          "context_ids": [
+            "D8:§3:0",
+            "D1:§3:0",
+            "D5:§3:0",
+            "D3:FAQ-7:0",
+            "D2:§2:0",
+            "D9:proposal-2:0",
+            "D7:timeline:0",
+            "D6:row-2:0"
+          ],
+          "context_source_words": 104,
+          "context_direct_recall": 1.0,
+          "stub_status": null,
+          "stub_reason": null,
+          "stub_supporting_ids": [],
+          "work": {
+            "eligible_segments": 12,
+            "eligible_posting_visits": 58,
+            "scored_segments": 12,
+            "query_term_count": 10,
+            "zero_score_candidates": 0
+          },
+          "search_latency_us": {
+            "raw": [
+              44.2,
+              53.0,
+              73.8,
+              67.1,
+              51.3,
+              47.6,
+              44.6,
+              46.6,
+              46.5,
+              55.3,
+              46.0
+            ],
+            "p50_nearest_rank": 47.6,
+            "p95_nearest_rank": 73.8
+          }
+        },
+        "binary_cosine": {
+          "candidate_ids": [
+            "D8:§3:0",
+            "D1:§3:0",
+            "D3:FAQ-7:0",
+            "D5:§3:0",
+            "D9:proposal-2:0",
+            "D2:§2:0",
+            "D7:timeline:0",
+            "D6:row-2:0"
+          ],
+          "candidate_scores_raw": [
+            0.7745966692414833,
+            0.6885303726590962,
+            0.6735753140545634,
+            0.6024640760767092,
+            0.47140452079103173,
+            0.44721359549995787,
+            0.3726779962499649,
+            0.2773500981126146
+          ],
+          "ranking_metrics": {
+            "k": 8,
+            "retrieved_count": 8,
+            "relevant_count": 1,
+            "direct_count": 1,
+            "binary_hits": 1,
+            "direct_hits": 1,
+            "precision_at_k": 0.125,
+            "recall_at_k": 1.0,
+            "hit_at_k": 1,
+            "f1_at_k": 0.2222222222222222,
+            "rr_at_k": 1.0,
+            "ap_at_k": 1.0,
+            "dcg_at_k": 3.0,
+            "idcg_at_k": 3.0,
+            "ndcg_at_k": 1.0,
+            "direct_recall_at_k": 1.0,
+            "all_direct_at_k": true,
+            "no_positive_candidate_returned": null
+          },
+          "context_ids": [
+            "D8:§3:0",
+            "D1:§3:0",
+            "D3:FAQ-7:0",
+            "D5:§3:0",
+            "D9:proposal-2:0",
+            "D2:§2:0",
+            "D7:timeline:0",
+            "D6:row-2:0"
+          ],
+          "context_source_words": 104,
+          "context_direct_recall": 1.0,
+          "stub_status": null,
+          "stub_reason": null,
+          "stub_supporting_ids": [],
+          "work": {
+            "indexed_vectors": 13,
+            "eligible_vectors": 12,
+            "scored_vectors": 12,
+            "dimension": 119,
+            "coordinate_comparisons": 1428,
+            "plan": "heap"
+          },
+          "search_latency_us": {
+            "raw": [
+              137.2,
+              139.1,
+              191.8,
+              149.1,
+              139.9,
+              139.2,
+              141.1,
+              157.3,
+              139.5,
+              139.2,
+              141.0
+            ],
+            "p50_nearest_rank": 139.9,
+            "p95_nearest_rank": 191.8
+          }
+        }
+      }
+    },
+    {
+      "query_id": "q-urgent-arrival",
+      "slice": "procedure_segment",
+      "origin": "chapter09_authored",
+      "top_k": 2,
+      "modes": {
+        "bm25": {
+          "candidate_ids": [
+            "D4:step-4:0",
+            "D4:step-4:2"
+          ],
+          "candidate_scores_raw": [
+            12.452839624554779,
+            1.824158101731107
+          ],
+          "ranking_metrics": {
+            "k": 2,
+            "retrieved_count": 2,
+            "relevant_count": 2,
+            "direct_count": 1,
+            "binary_hits": 1,
+            "direct_hits": 1,
+            "precision_at_k": 0.5,
+            "recall_at_k": 0.5,
+            "hit_at_k": 1,
+            "f1_at_k": 0.5,
+            "rr_at_k": 1.0,
+            "ap_at_k": 0.5,
+            "dcg_at_k": 3.0,
+            "idcg_at_k": 3.6309297535714578,
+            "ndcg_at_k": 0.8262346571285599,
+            "direct_recall_at_k": 1.0,
+            "all_direct_at_k": true,
+            "no_positive_candidate_returned": null
+          },
+          "context_ids": [
+            "D4:step-4:0",
+            "D4:step-4:2"
+          ],
+          "context_source_words": 38,
+          "context_direct_recall": 1.0,
+          "stub_status": null,
+          "stub_reason": null,
+          "stub_supporting_ids": [],
+          "work": {
+            "eligible_segments": 12,
+            "eligible_posting_visits": 20,
+            "scored_segments": 10,
+            "query_term_count": 11,
+            "zero_score_candidates": 0
+          },
+          "search_latency_us": {
+            "raw": [
+              35.7,
+              40.3,
+              130.5,
+              180.7,
+              48.6,
+              101.3,
+              51.3,
+              53.2,
+              50.8,
+              49.0,
+              50.6
+            ],
+            "p50_nearest_rank": 50.8,
+            "p95_nearest_rank": 180.7
+          }
+        },
+        "binary_cosine": {
+          "candidate_ids": [
+            "D4:step-4:0",
+            "D4:step-4:2"
+          ],
+          "candidate_scores_raw": [
+            0.565685424949238,
+            0.18257418583505533
+          ],
+          "ranking_metrics": {
+            "k": 2,
+            "retrieved_count": 2,
+            "relevant_count": 2,
+            "direct_count": 1,
+            "binary_hits": 1,
+            "direct_hits": 1,
+            "precision_at_k": 0.5,
+            "recall_at_k": 0.5,
+            "hit_at_k": 1,
+            "f1_at_k": 0.5,
+            "rr_at_k": 1.0,
+            "ap_at_k": 0.5,
+            "dcg_at_k": 3.0,
+            "idcg_at_k": 3.6309297535714578,
+            "ndcg_at_k": 0.8262346571285599,
+            "direct_recall_at_k": 1.0,
+            "all_direct_at_k": true,
+            "no_positive_candidate_returned": null
+          },
+          "context_ids": [
+            "D4:step-4:0",
+            "D4:step-4:2"
+          ],
+          "context_source_words": 38,
+          "context_direct_recall": 1.0,
+          "stub_status": null,
+          "stub_reason": null,
+          "stub_supporting_ids": [],
+          "work": {
+            "indexed_vectors": 13,
+            "eligible_vectors": 12,
+            "scored_vectors": 12,
+            "dimension": 119,
+            "coordinate_comparisons": 1428,
+            "plan": "heap"
+          },
+          "search_latency_us": {
+            "raw": [
+              475.7,
+              514.5,
+              354.3,
+              409.6,
+              238.0,
+              3550.0,
+              262.8,
+              222.9,
+              218.8,
+              217.4,
+              221.4
+            ],
+            "p50_nearest_rank": 262.8,
+            "p95_nearest_rank": 3550.0
+          }
+        }
+      }
+    },
+    {
+      "query_id": "q-urgent-arrival",
+      "slice": "procedure_segment",
+      "origin": "chapter09_authored",
+      "top_k": 8,
+      "modes": {
+        "bm25": {
+          "candidate_ids": [
+            "D4:step-4:0",
+            "D4:step-4:2",
+            "D7:timeline:0",
+            "D4:step-4:1",
+            "D3:FAQ-7:0",
+            "D1:§3:0",
+            "D6:row-2:0",
+            "D5:§3:0"
+          ],
+          "candidate_scores_raw": [
+            12.452839624554779,
+            1.824158101731107,
+            1.6590422095640875,
+            1.6260516004123051,
+            0.25214301155113833,
+            0.2344218975071972,
+            0.2344218975071972,
+            0.2239297446142103
+          ],
+          "ranking_metrics": {
+            "k": 8,
+            "retrieved_count": 8,
+            "relevant_count": 2,
+            "direct_count": 1,
+            "binary_hits": 2,
+            "direct_hits": 1,
+            "precision_at_k": 0.25,
+            "recall_at_k": 1.0,
+            "hit_at_k": 1,
+            "f1_at_k": 0.4,
+            "rr_at_k": 1.0,
+            "ap_at_k": 0.75,
+            "dcg_at_k": 3.430676558073393,
+            "idcg_at_k": 3.6309297535714578,
+            "ndcg_at_k": 0.944847956559586,
+            "direct_recall_at_k": 1.0,
+            "all_direct_at_k": true,
+            "no_positive_candidate_returned": null
+          },
+          "context_ids": [
+            "D4:step-4:0",
+            "D4:step-4:2",
+            "D7:timeline:0",
+            "D4:step-4:1",
+            "D3:FAQ-7:0",
+            "D1:§3:0",
+            "D6:row-2:0"
+          ],
+          "context_source_words": 109,
+          "context_direct_recall": 1.0,
+          "stub_status": null,
+          "stub_reason": null,
+          "stub_supporting_ids": [],
+          "work": {
+            "eligible_segments": 12,
+            "eligible_posting_visits": 20,
+            "scored_segments": 10,
+            "query_term_count": 11,
+            "zero_score_candidates": 0
+          },
+          "search_latency_us": {
+            "raw": [
+              52.9,
+              59.4,
+              30.8,
+              25.2,
+              28.3,
+              28.7,
+              26.1,
+              30.0,
+              27.0,
+              30.1,
+              70.9
+            ],
+            "p50_nearest_rank": 30.0,
+            "p95_nearest_rank": 70.9
+          }
+        },
+        "binary_cosine": {
+          "candidate_ids": [
+            "D4:step-4:0",
+            "D4:step-4:2",
+            "D7:timeline:0",
+            "D4:step-4:1",
+            "D3:FAQ-7:0",
+            "D6:row-2:0",
+            "D1:§3:0",
+            "D5:§3:0"
+          ],
+          "candidate_scores_raw": [
+            0.565685424949238,
+            0.18257418583505533,
+            0.15811388300841894,
+            0.14433756729740646,
+            0.10206207261596575,
+            0.09805806756909201,
+            0.09128709291752767,
+            0.09128709291752767
+          ],
+          "ranking_metrics": {
+            "k": 8,
+            "retrieved_count": 8,
+            "relevant_count": 2,
+            "direct_count": 1,
+            "binary_hits": 2,
+            "direct_hits": 1,
+            "precision_at_k": 0.25,
+            "recall_at_k": 1.0,
+            "hit_at_k": 1,
+            "f1_at_k": 0.4,
+            "rr_at_k": 1.0,
+            "ap_at_k": 0.75,
+            "dcg_at_k": 3.430676558073393,
+            "idcg_at_k": 3.6309297535714578,
+            "ndcg_at_k": 0.944847956559586,
+            "direct_recall_at_k": 1.0,
+            "all_direct_at_k": true,
+            "no_positive_candidate_returned": null
+          },
+          "context_ids": [
+            "D4:step-4:0",
+            "D4:step-4:2",
+            "D7:timeline:0",
+            "D4:step-4:1",
+            "D3:FAQ-7:0",
+            "D6:row-2:0",
+            "D1:§3:0"
+          ],
+          "context_source_words": 109,
+          "context_direct_recall": 1.0,
+          "stub_status": null,
+          "stub_reason": null,
+          "stub_supporting_ids": [],
+          "work": {
+            "indexed_vectors": 13,
+            "eligible_vectors": 12,
+            "scored_vectors": 12,
+            "dimension": 119,
+            "coordinate_comparisons": 1428,
+            "plan": "heap"
+          },
+          "search_latency_us": {
+            "raw": [
+              220.1,
+              286.7,
+              152.2,
+              136.0,
+              144.7,
+              127.9,
+              132.1,
+              137.1,
+              138.1,
+              137.9,
+              223.4
+            ],
+            "p50_nearest_rank": 138.1,
+            "p95_nearest_rank": 286.7
+          }
+        }
+      }
+    },
+    {
+      "query_id": "q-shared-dependency",
+      "slice": "multi_segment_procedure",
+      "origin": "chapter09_authored",
+      "top_k": 2,
+      "modes": {
+        "bm25": {
+          "candidate_ids": [
+            "D4:step-4:2",
+            "D4:step-4:1"
+          ],
+          "candidate_scores_raw": [
+            7.599116296223394,
+            7.256523142263381
+          ],
+          "ranking_metrics": {
+            "k": 2,
+            "retrieved_count": 2,
+            "relevant_count": 2,
+            "direct_count": 2,
+            "binary_hits": 2,
+            "direct_hits": 2,
+            "precision_at_k": 1.0,
+            "recall_at_k": 1.0,
+            "hit_at_k": 1,
+            "f1_at_k": 1.0,
+            "rr_at_k": 1.0,
+            "ap_at_k": 1.0,
+            "dcg_at_k": 4.892789260714372,
+            "idcg_at_k": 4.892789260714372,
+            "ndcg_at_k": 1.0,
+            "direct_recall_at_k": 1.0,
+            "all_direct_at_k": true,
+            "no_positive_candidate_returned": null
+          },
+          "context_ids": [
+            "D4:step-4:2",
+            "D4:step-4:1"
+          ],
+          "context_source_words": 38,
+          "context_direct_recall": 1.0,
+          "stub_status": null,
+          "stub_reason": null,
+          "stub_supporting_ids": [],
+          "work": {
+            "eligible_segments": 12,
+            "eligible_posting_visits": 35,
+            "scored_segments": 11,
+            "query_term_count": 15,
+            "zero_score_candidates": 0
+          },
+          "search_latency_us": {
+            "raw": [
+              81.9,
+              299.3,
+              72.9,
+              96.2,
+              260.4,
+              84.4,
+              167.5,
+              95.8,
+              96.8,
+              134.4,
+              92.7
+            ],
+            "p50_nearest_rank": 96.2,
+            "p95_nearest_rank": 299.3
+          }
+        },
+        "binary_cosine": {
+          "candidate_ids": [
+            "D4:step-4:2",
+            "D4:step-4:1"
+          ],
+          "candidate_scores_raw": [
+            0.40824829046386296,
+            0.3872983346207417
+          ],
+          "ranking_metrics": {
+            "k": 2,
+            "retrieved_count": 2,
+            "relevant_count": 2,
+            "direct_count": 2,
+            "binary_hits": 2,
+            "direct_hits": 2,
+            "precision_at_k": 1.0,
+            "recall_at_k": 1.0,
+            "hit_at_k": 1,
+            "f1_at_k": 1.0,
+            "rr_at_k": 1.0,
+            "ap_at_k": 1.0,
+            "dcg_at_k": 4.892789260714372,
+            "idcg_at_k": 4.892789260714372,
+            "ndcg_at_k": 1.0,
+            "direct_recall_at_k": 1.0,
+            "all_direct_at_k": true,
+            "no_positive_candidate_returned": null
+          },
+          "context_ids": [
+            "D4:step-4:2",
+            "D4:step-4:1"
+          ],
+          "context_source_words": 38,
+          "context_direct_recall": 1.0,
+          "stub_status": null,
+          "stub_reason": null,
+          "stub_supporting_ids": [],
+          "work": {
+            "indexed_vectors": 13,
+            "eligible_vectors": 12,
+            "scored_vectors": 12,
+            "dimension": 119,
+            "coordinate_comparisons": 1428,
+            "plan": "heap"
+          },
+          "search_latency_us": {
+            "raw": [
+              240.6,
+              251.4,
+              330.4,
+              407.3,
+              681.6,
+              277.5,
+              253.2,
+              334.3,
+              304.4,
+              296.9,
+              265.7
+            ],
+            "p50_nearest_rank": 296.9,
+            "p95_nearest_rank": 681.6
+          }
+        }
+      }
+    },
+    {
+      "query_id": "q-shared-dependency",
+      "slice": "multi_segment_procedure",
+      "origin": "chapter09_authored",
+      "top_k": 8,
+      "modes": {
+        "bm25": {
+          "candidate_ids": [
+            "D4:step-4:2",
+            "D4:step-4:1",
+            "D4:step-4:0",
+            "D9:proposal-2:0",
+            "D1:§3:0",
+            "D5:§3:0",
+            "D8:§3:0",
+            "D2:§2:0"
+          ],
+          "candidate_scores_raw": [
+            7.599116296223394,
+            7.256523142263381,
+            4.041096978931857,
+            2.247377175664328,
+            2.1596576577459725,
+            2.062996643640475,
+            2.062996643640475,
+            1.7233663795535443
+          ],
+          "ranking_metrics": {
+            "k": 8,
+            "retrieved_count": 8,
+            "relevant_count": 2,
+            "direct_count": 2,
+            "binary_hits": 2,
+            "direct_hits": 2,
+            "precision_at_k": 0.25,
+            "recall_at_k": 1.0,
+            "hit_at_k": 1,
+            "f1_at_k": 0.4,
+            "rr_at_k": 1.0,
+            "ap_at_k": 1.0,
+            "dcg_at_k": 4.892789260714372,
+            "idcg_at_k": 4.892789260714372,
+            "ndcg_at_k": 1.0,
+            "direct_recall_at_k": 1.0,
+            "all_direct_at_k": true,
+            "no_positive_candidate_returned": null
+          },
+          "context_ids": [
+            "D4:step-4:2",
+            "D4:step-4:1",
+            "D4:step-4:0",
+            "D9:proposal-2:0",
+            "D1:§3:0",
+            "D5:§3:0",
+            "D8:§3:0"
+          ],
+          "context_source_words": 114,
+          "context_direct_recall": 1.0,
+          "stub_status": null,
+          "stub_reason": null,
+          "stub_supporting_ids": [],
+          "work": {
+            "eligible_segments": 12,
+            "eligible_posting_visits": 35,
+            "scored_segments": 11,
+            "query_term_count": 15,
+            "zero_score_candidates": 0
+          },
+          "search_latency_us": {
+            "raw": [
+              104.0,
+              76.2,
+              83.8,
+              85.1,
+              111.4,
+              88.9,
+              86.6,
+              85.9,
+              74.3,
+              91.8,
+              73.8
+            ],
+            "p50_nearest_rank": 85.9,
+            "p95_nearest_rank": 111.4
+          }
+        },
+        "binary_cosine": {
+          "candidate_ids": [
+            "D4:step-4:2",
+            "D4:step-4:1",
+            "D4:step-4:0",
+            "D1:§3:0",
+            "D5:§3:0",
+            "D8:§3:0",
+            "D9:proposal-2:0",
+            "D3:FAQ-7:0"
+          ],
+          "candidate_scores_raw": [
+            0.40824829046386296,
+            0.3872983346207417,
+            0.2529822128134704,
+            0.2449489742783178,
+            0.2449489742783178,
+            0.2449489742783178,
+            0.22360679774997902,
+            0.1825741858350554
+          ],
+          "ranking_metrics": {
+            "k": 8,
+            "retrieved_count": 8,
+            "relevant_count": 2,
+            "direct_count": 2,
+            "binary_hits": 2,
+            "direct_hits": 2,
+            "precision_at_k": 0.25,
+            "recall_at_k": 1.0,
+            "hit_at_k": 1,
+            "f1_at_k": 0.4,
+            "rr_at_k": 1.0,
+            "ap_at_k": 1.0,
+            "dcg_at_k": 4.892789260714372,
+            "idcg_at_k": 4.892789260714372,
+            "ndcg_at_k": 1.0,
+            "direct_recall_at_k": 1.0,
+            "all_direct_at_k": true,
+            "no_positive_candidate_returned": null
+          },
+          "context_ids": [
+            "D4:step-4:2",
+            "D4:step-4:1",
+            "D4:step-4:0",
+            "D1:§3:0",
+            "D5:§3:0",
+            "D8:§3:0",
+            "D9:proposal-2:0"
+          ],
+          "context_source_words": 114,
+          "context_direct_recall": 1.0,
+          "stub_status": null,
+          "stub_reason": null,
+          "stub_supporting_ids": [],
+          "work": {
+            "indexed_vectors": 13,
+            "eligible_vectors": 12,
+            "scored_vectors": 12,
+            "dimension": 119,
+            "coordinate_comparisons": 1428,
+            "plan": "heap"
+          },
+          "search_latency_us": {
+            "raw": [
+              532.8,
+              285.5,
+              280.1,
+              286.1,
+              289.4,
+              288.0,
+              285.8,
+              288.9,
+              287.2,
+              308.3,
+              372.0
+            ],
+            "p50_nearest_rank": 288.0,
+            "p95_nearest_rank": 532.8
+          }
+        }
+      }
+    },
+    {
+      "query_id": "q-incident-timeline",
+      "slice": "procedure_segment",
+      "origin": "chapter09_authored",
+      "top_k": 2,
+      "modes": {
+        "bm25": {
+          "candidate_ids": [
+            "D4:step-4:2",
+            "D4:step-4:0"
+          ],
+          "candidate_scores_raw": [
+            9.813747488304477,
+            4.965436550042705
+          ],
+          "ranking_metrics": {
+            "k": 2,
+            "retrieved_count": 2,
+            "relevant_count": 2,
+            "direct_count": 1,
+            "binary_hits": 2,
+            "direct_hits": 1,
+            "precision_at_k": 1.0,
+            "recall_at_k": 1.0,
+            "hit_at_k": 1,
+            "f1_at_k": 1.0,
+            "rr_at_k": 1.0,
+            "ap_at_k": 1.0,
+            "dcg_at_k": 3.6309297535714578,
+            "idcg_at_k": 3.6309297535714578,
+            "ndcg_at_k": 1.0,
+            "direct_recall_at_k": 1.0,
+            "all_direct_at_k": true,
+            "no_positive_candidate_returned": null
+          },
+          "context_ids": [
+            "D4:step-4:2",
+            "D4:step-4:0"
+          ],
+          "context_source_words": 38,
+          "context_direct_recall": 1.0,
+          "stub_status": null,
+          "stub_reason": null,
+          "stub_supporting_ids": [],
+          "work": {
+            "eligible_segments": 12,
+            "eligible_posting_visits": 22,
+            "scored_segments": 10,
+            "query_term_count": 12,
+            "zero_score_candidates": 0
+          },
+          "search_latency_us": {
+            "raw": [
+              185.1,
+              54.6,
+              96.5,
+              68.6,
+              96.8,
+              72.9,
+              58.9,
+              65.6,
+              57.1,
+              92.7,
+              103.0
+            ],
+            "p50_nearest_rank": 72.9,
+            "p95_nearest_rank": 185.1
+          }
+        },
+        "binary_cosine": {
+          "candidate_ids": [
+            "D4:step-4:2",
+            "D4:step-4:1"
+          ],
+          "candidate_scores_raw": [
+            0.547722557505166,
+            0.2886751345948129
+          ],
+          "ranking_metrics": {
+            "k": 2,
+            "retrieved_count": 2,
+            "relevant_count": 2,
+            "direct_count": 1,
+            "binary_hits": 1,
+            "direct_hits": 1,
+            "precision_at_k": 0.5,
+            "recall_at_k": 0.5,
+            "hit_at_k": 1,
+            "f1_at_k": 0.5,
+            "rr_at_k": 1.0,
+            "ap_at_k": 0.5,
+            "dcg_at_k": 3.0,
+            "idcg_at_k": 3.6309297535714578,
+            "ndcg_at_k": 0.8262346571285599,
+            "direct_recall_at_k": 1.0,
+            "all_direct_at_k": true,
+            "no_positive_candidate_returned": null
+          },
+          "context_ids": [
+            "D4:step-4:2",
+            "D4:step-4:1"
+          ],
+          "context_source_words": 38,
+          "context_direct_recall": 1.0,
+          "stub_status": null,
+          "stub_reason": null,
+          "stub_supporting_ids": [],
+          "work": {
+            "indexed_vectors": 13,
+            "eligible_vectors": 12,
+            "scored_vectors": 12,
+            "dimension": 119,
+            "coordinate_comparisons": 1428,
+            "plan": "heap"
+          },
+          "search_latency_us": {
+            "raw": [
+              227.9,
+              176.6,
+              374.3,
+              322.2,
+              410.7,
+              303.6,
+              284.5,
+              276.3,
+              282.8,
+              322.6,
+              398.1
+            ],
+            "p50_nearest_rank": 303.6,
+            "p95_nearest_rank": 410.7
+          }
+        }
+      }
+    },
+    {
+      "query_id": "q-incident-timeline",
+      "slice": "procedure_segment",
+      "origin": "chapter09_authored",
+      "top_k": 8,
+      "modes": {
+        "bm25": {
+          "candidate_ids": [
+            "D4:step-4:2",
+            "D4:step-4:0",
+            "D4:step-4:1",
+            "D7:timeline:0",
+            "D3:FAQ-7:0",
+            "D1:§3:0",
+            "D6:row-2:0",
+            "D5:§3:0"
+          ],
+          "candidate_scores_raw": [
+            9.813747488304477,
+            4.965436550042705,
+            4.547011598732372,
+            1.6590422095640875,
+            0.25214301155113833,
+            0.2344218975071972,
+            0.2344218975071972,
+            0.2239297446142103
+          ],
+          "ranking_metrics": {
+            "k": 8,
+            "retrieved_count": 8,
+            "relevant_count": 2,
+            "direct_count": 1,
+            "binary_hits": 2,
+            "direct_hits": 1,
+            "precision_at_k": 0.25,
+            "recall_at_k": 1.0,
+            "hit_at_k": 1,
+            "f1_at_k": 0.4,
+            "rr_at_k": 1.0,
+            "ap_at_k": 1.0,
+            "dcg_at_k": 3.6309297535714578,
+            "idcg_at_k": 3.6309297535714578,
+            "ndcg_at_k": 1.0,
+            "direct_recall_at_k": 1.0,
+            "all_direct_at_k": true,
+            "no_positive_candidate_returned": null
+          },
+          "context_ids": [
+            "D4:step-4:2",
+            "D4:step-4:0",
+            "D4:step-4:1",
+            "D7:timeline:0",
+            "D3:FAQ-7:0",
+            "D1:§3:0",
+            "D6:row-2:0"
+          ],
+          "context_source_words": 109,
+          "context_direct_recall": 1.0,
+          "stub_status": null,
+          "stub_reason": null,
+          "stub_supporting_ids": [],
+          "work": {
+            "eligible_segments": 12,
+            "eligible_posting_visits": 22,
+            "scored_segments": 10,
+            "query_term_count": 12,
+            "zero_score_candidates": 0
+          },
+          "search_latency_us": {
+            "raw": [
+              42.8,
+              62.9,
+              40.1,
+              41.4,
+              36.4,
+              39.5,
+              42.8,
+              36.5,
+              47.8,
+              61.2,
+              41.2
+            ],
+            "p50_nearest_rank": 41.4,
+            "p95_nearest_rank": 62.9
+          }
+        },
+        "binary_cosine": {
+          "candidate_ids": [
+            "D4:step-4:2",
+            "D4:step-4:1",
+            "D4:step-4:0",
+            "D7:timeline:0",
+            "D3:FAQ-7:0",
+            "D6:row-2:0",
+            "D1:§3:0",
+            "D5:§3:0"
+          ],
+          "candidate_scores_raw": [
+            0.547722557505166,
+            0.2886751345948129,
+            0.282842712474619,
+            0.15811388300841894,
+            0.10206207261596575,
+            0.09805806756909201,
+            0.09128709291752767,
+            0.09128709291752767
+          ],
+          "ranking_metrics": {
+            "k": 8,
+            "retrieved_count": 8,
+            "relevant_count": 2,
+            "direct_count": 1,
+            "binary_hits": 2,
+            "direct_hits": 1,
+            "precision_at_k": 0.25,
+            "recall_at_k": 1.0,
+            "hit_at_k": 1,
+            "f1_at_k": 0.4,
+            "rr_at_k": 1.0,
+            "ap_at_k": 0.8333333333333333,
+            "dcg_at_k": 3.5,
+            "idcg_at_k": 3.6309297535714578,
+            "ndcg_at_k": 0.9639404333166532,
+            "direct_recall_at_k": 1.0,
+            "all_direct_at_k": true,
+            "no_positive_candidate_returned": null
+          },
+          "context_ids": [
+            "D4:step-4:2",
+            "D4:step-4:1",
+            "D4:step-4:0",
+            "D7:timeline:0",
+            "D3:FAQ-7:0",
+            "D6:row-2:0",
+            "D1:§3:0"
+          ],
+          "context_source_words": 109,
+          "context_direct_recall": 1.0,
+          "stub_status": null,
+          "stub_reason": null,
+          "stub_supporting_ids": [],
+          "work": {
+            "indexed_vectors": 13,
+            "eligible_vectors": 12,
+            "scored_vectors": 12,
+            "dimension": 119,
+            "coordinate_comparisons": 1428,
+            "plan": "heap"
+          },
+          "search_latency_us": {
+            "raw": [
+              471.8,
+              227.0,
+              187.6,
+              177.6,
+              180.1,
+              175.5,
+              201.0,
+              184.3,
+              210.9,
+              236.2,
+              188.6
+            ],
+            "p50_nearest_rank": 188.6,
+            "p95_nearest_rank": 471.8
+          }
+        }
+      }
+    },
+    {
+      "query_id": "q-observed-response",
+      "slice": "observation_vs_contract",
+      "origin": "chapter09_authored",
+      "top_k": 2,
+      "modes": {
+        "bm25": {
+          "candidate_ids": [
+            "D7:timeline:0",
+            "D4:step-4:1"
+          ],
+          "candidate_scores_raw": [
+            6.403657124238865,
+            3.013183733014924
+          ],
+          "ranking_metrics": {
+            "k": 2,
+            "retrieved_count": 2,
+            "relevant_count": 1,
+            "direct_count": 1,
+            "binary_hits": 1,
+            "direct_hits": 1,
+            "precision_at_k": 0.5,
+            "recall_at_k": 1.0,
+            "hit_at_k": 1,
+            "f1_at_k": 0.6666666666666666,
+            "rr_at_k": 1.0,
+            "ap_at_k": 1.0,
+            "dcg_at_k": 3.0,
+            "idcg_at_k": 3.0,
+            "ndcg_at_k": 1.0,
+            "direct_recall_at_k": 1.0,
+            "all_direct_at_k": true,
+            "no_positive_candidate_returned": null
+          },
+          "context_ids": [
+            "D7:timeline:0",
+            "D4:step-4:1"
+          ],
+          "context_source_words": 42,
+          "context_direct_recall": 1.0,
+          "stub_status": null,
+          "stub_reason": null,
+          "stub_supporting_ids": [],
+          "work": {
+            "eligible_segments": 12,
+            "eligible_posting_visits": 31,
+            "scored_segments": 11,
+            "query_term_count": 11,
+            "zero_score_candidates": 0
+          },
+          "search_latency_us": {
+            "raw": [
+              45.6,
+              44.0,
+              47.2,
+              45.4,
+              44.0,
+              47.5,
+              40.2,
+              50.6,
+              40.7,
+              48.1,
+              49.7
+            ],
+            "p50_nearest_rank": 45.6,
+            "p95_nearest_rank": 50.6
+          }
+        },
+        "binary_cosine": {
+          "candidate_ids": [
+            "D7:timeline:0",
+            "D3:FAQ-7:0"
+          ],
+          "candidate_scores_raw": [
+            0.5477225575051662,
+            0.35355339059327384
+          ],
+          "ranking_metrics": {
+            "k": 2,
+            "retrieved_count": 2,
+            "relevant_count": 1,
+            "direct_count": 1,
+            "binary_hits": 1,
+            "direct_hits": 1,
+            "precision_at_k": 0.5,
+            "recall_at_k": 1.0,
+            "hit_at_k": 1,
+            "f1_at_k": 0.6666666666666666,
+            "rr_at_k": 1.0,
+            "ap_at_k": 1.0,
+            "dcg_at_k": 3.0,
+            "idcg_at_k": 3.0,
+            "ndcg_at_k": 1.0,
+            "direct_recall_at_k": 1.0,
+            "all_direct_at_k": true,
+            "no_positive_candidate_returned": null
+          },
+          "context_ids": [
+            "D7:timeline:0",
+            "D3:FAQ-7:0"
+          ],
+          "context_source_words": 26,
+          "context_direct_recall": 1.0,
+          "stub_status": null,
+          "stub_reason": null,
+          "stub_supporting_ids": [],
+          "work": {
+            "indexed_vectors": 13,
+            "eligible_vectors": 12,
+            "scored_vectors": 12,
+            "dimension": 119,
+            "coordinate_comparisons": 1428,
+            "plan": "heap"
+          },
+          "search_latency_us": {
+            "raw": [
+              185.6,
+              205.3,
+              189.9,
+              189.9,
+              189.5,
+              189.2,
+              193.0,
+              187.5,
+              195.8,
+              204.7,
+              190.0
+            ],
+            "p50_nearest_rank": 189.9,
+            "p95_nearest_rank": 205.3
+          }
+        }
+      }
+    },
+    {
+      "query_id": "q-observed-response",
+      "slice": "observation_vs_contract",
+      "origin": "chapter09_authored",
+      "top_k": 8,
+      "modes": {
+        "bm25": {
+          "candidate_ids": [
+            "D7:timeline:0",
+            "D4:step-4:1",
+            "D4:step-4:2",
+            "D4:step-4:0",
+            "D3:FAQ-7:0",
+            "D1:§3:0",
+            "D5:§3:0",
+            "D8:§3:0"
+          ],
+          "candidate_scores_raw": [
+            6.403657124238865,
+            3.013183733014924,
+            1.824158101731107,
+            1.5512862806292058,
+            1.5508991780520789,
+            1.441898888748636,
+            1.3773630081084152,
+            1.3773630081084152
+          ],
+          "ranking_metrics": {
+            "k": 8,
+            "retrieved_count": 8,
+            "relevant_count": 1,
+            "direct_count": 1,
+            "binary_hits": 1,
+            "direct_hits": 1,
+            "precision_at_k": 0.125,
+            "recall_at_k": 1.0,
+            "hit_at_k": 1,
+            "f1_at_k": 0.2222222222222222,
+            "rr_at_k": 1.0,
+            "ap_at_k": 1.0,
+            "dcg_at_k": 3.0,
+            "idcg_at_k": 3.0,
+            "ndcg_at_k": 1.0,
+            "direct_recall_at_k": 1.0,
+            "all_direct_at_k": true,
+            "no_positive_candidate_returned": null
+          },
+          "context_ids": [
+            "D7:timeline:0",
+            "D4:step-4:1",
+            "D4:step-4:2",
+            "D4:step-4:0",
+            "D3:FAQ-7:0",
+            "D1:§3:0",
+            "D5:§3:0"
+          ],
+          "context_source_words": 111,
+          "context_direct_recall": 1.0,
+          "stub_status": null,
+          "stub_reason": null,
+          "stub_supporting_ids": [],
+          "work": {
+            "eligible_segments": 12,
+            "eligible_posting_visits": 31,
+            "scored_segments": 11,
+            "query_term_count": 11,
+            "zero_score_candidates": 0
+          },
+          "search_latency_us": {
+            "raw": [
+              48.8,
+              95.2,
+              213.1,
+              107.9,
+              99.7,
+              97.3,
+              79.9,
+              93.3,
+              87.3,
+              83.0,
+              88.0
+            ],
+            "p50_nearest_rank": 93.3,
+            "p95_nearest_rank": 213.1
+          }
+        },
+        "binary_cosine": {
+          "candidate_ids": [
+            "D7:timeline:0",
+            "D3:FAQ-7:0",
+            "D1:§3:0",
+            "D5:§3:0",
+            "D8:§3:0",
+            "D9:proposal-2:0",
+            "D4:step-4:1",
+            "D4:step-4:2"
+          ],
+          "candidate_scores_raw": [
+            0.5477225575051662,
+            0.35355339059327384,
+            0.31622776601683794,
+            0.31622776601683794,
+            0.31622776601683794,
+            0.2886751345948129,
+            0.25000000000000006,
+            0.21081851067789195
+          ],
+          "ranking_metrics": {
+            "k": 8,
+            "retrieved_count": 8,
+            "relevant_count": 1,
+            "direct_count": 1,
+            "binary_hits": 1,
+            "direct_hits": 1,
+            "precision_at_k": 0.125,
+            "recall_at_k": 1.0,
+            "hit_at_k": 1,
+            "f1_at_k": 0.2222222222222222,
+            "rr_at_k": 1.0,
+            "ap_at_k": 1.0,
+            "dcg_at_k": 3.0,
+            "idcg_at_k": 3.0,
+            "ndcg_at_k": 1.0,
+            "direct_recall_at_k": 1.0,
+            "all_direct_at_k": true,
+            "no_positive_candidate_returned": null
+          },
+          "context_ids": [
+            "D7:timeline:0",
+            "D3:FAQ-7:0",
+            "D1:§3:0",
+            "D5:§3:0",
+            "D8:§3:0",
+            "D9:proposal-2:0",
+            "D4:step-4:1",
+            "D4:step-4:2"
+          ],
+          "context_source_words": 116,
+          "context_direct_recall": 1.0,
+          "stub_status": null,
+          "stub_reason": null,
+          "stub_supporting_ids": [],
+          "work": {
+            "indexed_vectors": 13,
+            "eligible_vectors": 12,
+            "scored_vectors": 12,
+            "dimension": 119,
+            "coordinate_comparisons": 1428,
+            "plan": "heap"
+          },
+          "search_latency_us": {
+            "raw": [
+              194.1,
+              477.4,
+              387.8,
+              325.2,
+              340.7,
+              372.5,
+              346.6,
+              329.8,
+              317.6,
+              315.1,
+              334.9
+            ],
+            "p50_nearest_rank": 334.9,
+            "p95_nearest_rank": 477.4
+          }
+        }
+      }
+    },
+    {
+      "query_id": "q-unsigned-proposal",
+      "slice": "source_status",
+      "origin": "chapter09_authored",
+      "top_k": 2,
+      "modes": {
+        "bm25": {
+          "candidate_ids": [
+            "D9:proposal-2:0",
+            "D3:FAQ-7:0"
+          ],
+          "candidate_scores_raw": [
+            5.01335833155007,
+            2.489762912159853
+          ],
+          "ranking_metrics": {
+            "k": 2,
+            "retrieved_count": 2,
+            "relevant_count": 1,
+            "direct_count": 1,
+            "binary_hits": 1,
+            "direct_hits": 1,
+            "precision_at_k": 0.5,
+            "recall_at_k": 1.0,
+            "hit_at_k": 1,
+            "f1_at_k": 0.6666666666666666,
+            "rr_at_k": 1.0,
+            "ap_at_k": 1.0,
+            "dcg_at_k": 3.0,
+            "idcg_at_k": 3.0,
+            "ndcg_at_k": 1.0,
+            "direct_recall_at_k": 1.0,
+            "all_direct_at_k": true,
+            "no_positive_candidate_returned": null
+          },
+          "context_ids": [
+            "D9:proposal-2:0",
+            "D3:FAQ-7:0"
+          ],
+          "context_source_words": 24,
+          "context_direct_recall": 1.0,
+          "stub_status": null,
+          "stub_reason": null,
+          "stub_supporting_ids": [],
+          "work": {
+            "eligible_segments": 12,
+            "eligible_posting_visits": 54,
+            "scored_segments": 12,
+            "query_term_count": 11,
+            "zero_score_candidates": 0
+          },
+          "search_latency_us": {
+            "raw": [
+              98.7,
+              98.4,
+              96.6,
+              96.5,
+              90.7,
+              94.1,
+              84.5,
+              92.9,
+              85.3,
+              59.8,
+              57.9
+            ],
+            "p50_nearest_rank": 92.9,
+            "p95_nearest_rank": 98.7
+          }
+        },
+        "binary_cosine": {
+          "candidate_ids": [
+            "D3:FAQ-7:0",
+            "D9:proposal-2:0"
+          ],
+          "candidate_scores_raw": [
+            0.6546536707079772,
+            0.6236095644623235
+          ],
+          "ranking_metrics": {
+            "k": 2,
+            "retrieved_count": 2,
+            "relevant_count": 1,
+            "direct_count": 1,
+            "binary_hits": 1,
+            "direct_hits": 1,
+            "precision_at_k": 0.5,
+            "recall_at_k": 1.0,
+            "hit_at_k": 1,
+            "f1_at_k": 0.6666666666666666,
+            "rr_at_k": 0.5,
+            "ap_at_k": 0.5,
+            "dcg_at_k": 1.8927892607143724,
+            "idcg_at_k": 3.0,
+            "ndcg_at_k": 0.6309297535714574,
+            "direct_recall_at_k": 1.0,
+            "all_direct_at_k": true,
+            "no_positive_candidate_returned": null
+          },
+          "context_ids": [
+            "D3:FAQ-7:0",
+            "D9:proposal-2:0"
+          ],
+          "context_source_words": 24,
+          "context_direct_recall": 1.0,
+          "stub_status": null,
+          "stub_reason": null,
+          "stub_supporting_ids": [],
+          "work": {
+            "indexed_vectors": 13,
+            "eligible_vectors": 12,
+            "scored_vectors": 12,
+            "dimension": 119,
+            "coordinate_comparisons": 1428,
+            "plan": "heap"
+          },
+          "search_latency_us": {
+            "raw": [
+              293.6,
+              307.1,
+              292.2,
+              285.7,
+              289.0,
+              274.7,
+              293.9,
+              278.8,
+              206.1,
+              183.6,
+              174.8
+            ],
+            "p50_nearest_rank": 285.7,
+            "p95_nearest_rank": 307.1
+          }
+        }
+      }
+    },
+    {
+      "query_id": "q-unsigned-proposal",
+      "slice": "source_status",
+      "origin": "chapter09_authored",
+      "top_k": 8,
+      "modes": {
+        "bm25": {
+          "candidate_ids": [
+            "D9:proposal-2:0",
+            "D3:FAQ-7:0",
+            "D1:§3:0",
+            "D7:timeline:0",
+            "D5:§3:0",
+            "D8:§3:0",
+            "D2:§2:0",
+            "D6:row-2:0"
+          ],
+          "candidate_scores_raw": [
+            5.01335833155007,
+            2.489762912159853,
+            2.314777405969009,
+            2.237614250330723,
+            2.128193518549652,
+            2.128193518549652,
+            1.8622211444677579,
+            0.5935349219860405
+          ],
+          "ranking_metrics": {
+            "k": 8,
+            "retrieved_count": 8,
+            "relevant_count": 1,
+            "direct_count": 1,
+            "binary_hits": 1,
+            "direct_hits": 1,
+            "precision_at_k": 0.125,
+            "recall_at_k": 1.0,
+            "hit_at_k": 1,
+            "f1_at_k": 0.2222222222222222,
+            "rr_at_k": 1.0,
+            "ap_at_k": 1.0,
+            "dcg_at_k": 3.0,
+            "idcg_at_k": 3.0,
+            "ndcg_at_k": 1.0,
+            "direct_recall_at_k": 1.0,
+            "all_direct_at_k": true,
+            "no_positive_candidate_returned": null
+          },
+          "context_ids": [
+            "D9:proposal-2:0",
+            "D3:FAQ-7:0",
+            "D1:§3:0",
+            "D7:timeline:0",
+            "D5:§3:0",
+            "D8:§3:0",
+            "D2:§2:0",
+            "D6:row-2:0"
+          ],
+          "context_source_words": 104,
+          "context_direct_recall": 1.0,
+          "stub_status": null,
+          "stub_reason": null,
+          "stub_supporting_ids": [],
+          "work": {
+            "eligible_segments": 12,
+            "eligible_posting_visits": 54,
+            "scored_segments": 12,
+            "query_term_count": 11,
+            "zero_score_candidates": 0
+          },
+          "search_latency_us": {
+            "raw": [
+              111.5,
+              98.5,
+              103.7,
+              55.6,
+              51.5,
+              57.9,
+              49.6,
+              52.2,
+              54.4,
+              52.3,
+              52.0
+            ],
+            "p50_nearest_rank": 54.4,
+            "p95_nearest_rank": 111.5
+          }
+        },
+        "binary_cosine": {
+          "candidate_ids": [
+            "D3:FAQ-7:0",
+            "D9:proposal-2:0",
+            "D1:§3:0",
+            "D7:timeline:0",
+            "D5:§3:0",
+            "D8:§3:0",
+            "D2:§2:0",
+            "D6:row-2:0"
+          ],
+          "candidate_scores_raw": [
+            0.6546536707079772,
+            0.6236095644623235,
+            0.5855400437691198,
+            0.50709255283711,
+            0.4879500364742665,
+            0.4879500364742665,
+            0.42257712736425823,
+            0.3144854510165755
+          ],
+          "ranking_metrics": {
+            "k": 8,
+            "retrieved_count": 8,
+            "relevant_count": 1,
+            "direct_count": 1,
+            "binary_hits": 1,
+            "direct_hits": 1,
+            "precision_at_k": 0.125,
+            "recall_at_k": 1.0,
+            "hit_at_k": 1,
+            "f1_at_k": 0.2222222222222222,
+            "rr_at_k": 0.5,
+            "ap_at_k": 0.5,
+            "dcg_at_k": 1.8927892607143724,
+            "idcg_at_k": 3.0,
+            "ndcg_at_k": 0.6309297535714574,
+            "direct_recall_at_k": 1.0,
+            "all_direct_at_k": true,
+            "no_positive_candidate_returned": null
+          },
+          "context_ids": [
+            "D3:FAQ-7:0",
+            "D9:proposal-2:0",
+            "D1:§3:0",
+            "D7:timeline:0",
+            "D5:§3:0",
+            "D8:§3:0",
+            "D2:§2:0",
+            "D6:row-2:0"
+          ],
+          "context_source_words": 104,
+          "context_direct_recall": 1.0,
+          "stub_status": null,
+          "stub_reason": null,
+          "stub_supporting_ids": [],
+          "work": {
+            "indexed_vectors": 13,
+            "eligible_vectors": 12,
+            "scored_vectors": 12,
+            "dimension": 119,
+            "coordinate_comparisons": 1428,
+            "plan": "heap"
+          },
+          "search_latency_us": {
+            "raw": [
+              203.1,
+              254.1,
+              249.6,
+              198.9,
+              178.3,
+              169.2,
+              169.3,
+              181.7,
+              169.6,
+              168.4,
+              165.2
+            ],
+            "p50_nearest_rank": 178.3,
+            "p95_nearest_rank": 254.1
+          }
+        }
+      }
+    },
+    {
+      "query_id": "q-current-target",
+      "slice": "dated_authority",
+      "origin": "chapter09_authored",
+      "top_k": 2,
+      "modes": {
+        "bm25": {
+          "candidate_ids": [
+            "D2:§2:0",
+            "D9:proposal-2:0"
+          ],
+          "candidate_scores_raw": [
+            6.284847878610192,
+            3.9944884064092623
+          ],
+          "ranking_metrics": {
+            "k": 2,
+            "retrieved_count": 2,
+            "relevant_count": 2,
+            "direct_count": 1,
+            "binary_hits": 1,
+            "direct_hits": 1,
+            "precision_at_k": 0.5,
+            "recall_at_k": 0.5,
+            "hit_at_k": 1,
+            "f1_at_k": 0.5,
+            "rr_at_k": 1.0,
+            "ap_at_k": 0.5,
+            "dcg_at_k": 3.0,
+            "idcg_at_k": 3.6309297535714578,
+            "ndcg_at_k": 0.8262346571285599,
+            "direct_recall_at_k": 1.0,
+            "all_direct_at_k": true,
+            "no_positive_candidate_returned": null
+          },
+          "context_ids": [
+            "D2:§2:0",
+            "D9:proposal-2:0"
+          ],
+          "context_source_words": 31,
+          "context_direct_recall": 1.0,
+          "stub_status": null,
+          "stub_reason": null,
+          "stub_supporting_ids": [],
+          "work": {
+            "eligible_segments": 12,
+            "eligible_posting_visits": 54,
+            "scored_segments": 12,
+            "query_term_count": 15,
+            "zero_score_candidates": 0
+          },
+          "search_latency_us": {
+            "raw": [
+              55.5,
+              55.1,
+              52.5,
+              56.9,
+              49.3,
+              53.8,
+              49.7,
+              51.4,
+              50.8,
+              55.2,
+              52.0
+            ],
+            "p50_nearest_rank": 52.5,
+            "p95_nearest_rank": 56.9
+          }
+        },
+        "binary_cosine": {
+          "candidate_ids": [
+            "D2:§2:0",
+            "D3:FAQ-7:0"
+          ],
+          "candidate_scores_raw": [
+            0.565685424949238,
+            0.5477225575051663
+          ],
+          "ranking_metrics": {
+            "k": 2,
+            "retrieved_count": 2,
+            "relevant_count": 2,
+            "direct_count": 1,
+            "binary_hits": 1,
+            "direct_hits": 1,
+            "precision_at_k": 0.5,
+            "recall_at_k": 0.5,
+            "hit_at_k": 1,
+            "f1_at_k": 0.5,
+            "rr_at_k": 1.0,
+            "ap_at_k": 0.5,
+            "dcg_at_k": 3.0,
+            "idcg_at_k": 3.6309297535714578,
+            "ndcg_at_k": 0.8262346571285599,
+            "direct_recall_at_k": 1.0,
+            "all_direct_at_k": true,
+            "no_positive_candidate_returned": null
+          },
+          "context_ids": [
+            "D2:§2:0",
+            "D3:FAQ-7:0"
+          ],
+          "context_source_words": 23,
+          "context_direct_recall": 1.0,
+          "stub_status": null,
+          "stub_reason": null,
+          "stub_supporting_ids": [],
+          "work": {
+            "indexed_vectors": 13,
+            "eligible_vectors": 12,
+            "scored_vectors": 12,
+            "dimension": 119,
+            "coordinate_comparisons": 1428,
+            "plan": "heap"
+          },
+          "search_latency_us": {
+            "raw": [
+              165.2,
+              164.0,
+              161.1,
+              168.5,
+              156.4,
+              153.9,
+              156.9,
+              155.2,
+              158.3,
+              153.9,
+              158.1
+            ],
+            "p50_nearest_rank": 158.1,
+            "p95_nearest_rank": 168.5
+          }
+        }
+      }
+    },
+    {
+      "query_id": "q-current-target",
+      "slice": "dated_authority",
+      "origin": "chapter09_authored",
+      "top_k": 8,
+      "modes": {
+        "bm25": {
+          "candidate_ids": [
+            "D2:§2:0",
+            "D9:proposal-2:0",
+            "D3:FAQ-7:0",
+            "D1:§3:0",
+            "D5:§3:0",
+            "D8:§3:0",
+            "D4:step-4:2",
+            "D1:§8:0"
+          ],
+          "candidate_scores_raw": [
+            6.284847878610192,
+            3.9944884064092623,
+            3.055941117042061,
+            2.8411634767119907,
+            2.631019831464104,
+            2.631019831464104,
+            2.466097649230334,
+            2.0311462791535724
+          ],
+          "ranking_metrics": {
+            "k": 8,
+            "retrieved_count": 8,
+            "relevant_count": 2,
+            "direct_count": 1,
+            "binary_hits": 2,
+            "direct_hits": 1,
+            "precision_at_k": 0.25,
+            "recall_at_k": 1.0,
+            "hit_at_k": 1,
+            "f1_at_k": 0.4,
+            "rr_at_k": 1.0,
+            "ap_at_k": 0.75,
+            "dcg_at_k": 3.430676558073393,
+            "idcg_at_k": 3.6309297535714578,
+            "ndcg_at_k": 0.944847956559586,
+            "direct_recall_at_k": 1.0,
+            "all_direct_at_k": true,
+            "no_positive_candidate_returned": null
+          },
+          "context_ids": [
+            "D2:§2:0",
+            "D9:proposal-2:0",
+            "D3:FAQ-7:0",
+            "D1:§3:0",
+            "D5:§3:0",
+            "D8:§3:0",
+            "D4:step-4:2",
+            "D1:§8:0"
+          ],
+          "context_source_words": 100,
+          "context_direct_recall": 1.0,
+          "stub_status": null,
+          "stub_reason": null,
+          "stub_supporting_ids": [],
+          "work": {
+            "eligible_segments": 12,
+            "eligible_posting_visits": 54,
+            "scored_segments": 12,
+            "query_term_count": 15,
+            "zero_score_candidates": 0
+          },
+          "search_latency_us": {
+            "raw": [
+              53.5,
+              50.8,
+              49.2,
+              47.1,
+              49.7,
+              50.0,
+              45.7,
+              57.2,
+              46.7,
+              48.5,
+              48.0
+            ],
+            "p50_nearest_rank": 49.2,
+            "p95_nearest_rank": 57.2
+          }
+        },
+        "binary_cosine": {
+          "candidate_ids": [
+            "D2:§2:0",
+            "D3:FAQ-7:0",
+            "D1:§3:0",
+            "D9:proposal-2:0",
+            "D5:§3:0",
+            "D8:§3:0",
+            "D7:timeline:0",
+            "D6:row-2:0"
+          ],
+          "candidate_scores_raw": [
+            0.565685424949238,
+            0.5477225575051663,
+            0.4898979485566356,
+            0.44721359549995804,
+            0.40824829046386296,
+            0.40824829046386296,
+            0.35355339059327373,
+            0.2631174057921088
+          ],
+          "ranking_metrics": {
+            "k": 8,
+            "retrieved_count": 8,
+            "relevant_count": 2,
+            "direct_count": 1,
+            "binary_hits": 2,
+            "direct_hits": 1,
+            "precision_at_k": 0.25,
+            "recall_at_k": 1.0,
+            "hit_at_k": 1,
+            "f1_at_k": 0.4,
+            "rr_at_k": 1.0,
+            "ap_at_k": 0.8333333333333333,
+            "dcg_at_k": 3.5,
+            "idcg_at_k": 3.6309297535714578,
+            "ndcg_at_k": 0.9639404333166532,
+            "direct_recall_at_k": 1.0,
+            "all_direct_at_k": true,
+            "no_positive_candidate_returned": null
+          },
+          "context_ids": [
+            "D2:§2:0",
+            "D3:FAQ-7:0",
+            "D1:§3:0",
+            "D9:proposal-2:0",
+            "D5:§3:0",
+            "D8:§3:0",
+            "D7:timeline:0",
+            "D6:row-2:0"
+          ],
+          "context_source_words": 104,
+          "context_direct_recall": 1.0,
+          "stub_status": null,
+          "stub_reason": null,
+          "stub_supporting_ids": [],
+          "work": {
+            "indexed_vectors": 13,
+            "eligible_vectors": 12,
+            "scored_vectors": 12,
+            "dimension": 119,
+            "coordinate_comparisons": 1428,
+            "plan": "heap"
+          },
+          "search_latency_us": {
+            "raw": [
+              154.6,
+              157.4,
+              153.4,
+              155.3,
+              152.3,
+              151.4,
+              152.4,
+              146.6,
+              150.2,
+              149.0,
+              148.2
+            ],
+            "p50_nearest_rank": 152.3,
+            "p95_nearest_rank": 157.4
+          }
+        }
+      }
+    },
+    {
+      "query_id": "q-no-result",
+      "slice": "no_result_exact",
+      "origin": "chapter08_frozen_probe",
+      "top_k": 2,
+      "modes": {
+        "bm25": {
+          "candidate_ids": [],
+          "candidate_scores_raw": [],
+          "ranking_metrics": {
+            "k": 2,
+            "retrieved_count": 0,
+            "relevant_count": 0,
+            "direct_count": 0,
+            "binary_hits": 0,
+            "direct_hits": 0,
+            "precision_at_k": 0.0,
+            "recall_at_k": null,
+            "hit_at_k": null,
+            "f1_at_k": null,
+            "rr_at_k": null,
+            "ap_at_k": null,
+            "dcg_at_k": 0.0,
+            "idcg_at_k": 0.0,
+            "ndcg_at_k": null,
+            "direct_recall_at_k": null,
+            "all_direct_at_k": null,
+            "no_positive_candidate_returned": false
+          },
+          "context_ids": [],
+          "context_source_words": 0,
+          "context_direct_recall": null,
+          "stub_status": null,
+          "stub_reason": null,
+          "stub_supporting_ids": [],
+          "work": {
+            "eligible_segments": 12,
+            "eligible_posting_visits": 0,
+            "scored_segments": 0,
+            "query_term_count": 1,
+            "zero_score_candidates": 0
+          },
+          "search_latency_us": {
+            "raw": [
+              4.6,
+              4.1,
+              4.5,
+              4.0,
+              4.1,
+              3.9,
+              3.5,
+              3.7,
+              4.0,
+              3.9,
+              3.6
+            ],
+            "p50_nearest_rank": 4.0,
+            "p95_nearest_rank": 4.6
+          }
+        },
+        "binary_cosine": {
+          "candidate_ids": [],
+          "candidate_scores_raw": [],
+          "ranking_metrics": {
+            "k": 2,
+            "retrieved_count": 0,
+            "relevant_count": 0,
+            "direct_count": 0,
+            "binary_hits": 0,
+            "direct_hits": 0,
+            "precision_at_k": 0.0,
+            "recall_at_k": null,
+            "hit_at_k": null,
+            "f1_at_k": null,
+            "rr_at_k": null,
+            "ap_at_k": null,
+            "dcg_at_k": 0.0,
+            "idcg_at_k": 0.0,
+            "ndcg_at_k": null,
+            "direct_recall_at_k": null,
+            "all_direct_at_k": null,
+            "no_positive_candidate_returned": false
+          },
+          "context_ids": [],
+          "context_source_words": 0,
+          "context_direct_recall": null,
+          "stub_status": null,
+          "stub_reason": null,
+          "stub_supporting_ids": [],
+          "work": {
+            "indexed_vectors": 13,
+            "eligible_vectors": 12,
+            "scored_vectors": 0,
+            "dimension": 119,
+            "coordinate_comparisons": 0,
+            "reason": "zero_in_vocabulary_query"
+          },
+          "search_latency_us": {
+            "raw": [
+              13.0,
+              11.7,
+              12.1,
+              11.8,
+              12.7,
+              11.7,
+              11.8,
+              12.2,
+              11.6,
+              11.9,
+              11.9
+            ],
+            "p50_nearest_rank": 11.9,
+            "p95_nearest_rank": 13.0
+          }
+        }
+      }
+    },
+    {
+      "query_id": "q-no-result",
+      "slice": "no_result_exact",
+      "origin": "chapter08_frozen_probe",
+      "top_k": 8,
+      "modes": {
+        "bm25": {
+          "candidate_ids": [],
+          "candidate_scores_raw": [],
+          "ranking_metrics": {
+            "k": 8,
+            "retrieved_count": 0,
+            "relevant_count": 0,
+            "direct_count": 0,
+            "binary_hits": 0,
+            "direct_hits": 0,
+            "precision_at_k": 0.0,
+            "recall_at_k": null,
+            "hit_at_k": null,
+            "f1_at_k": null,
+            "rr_at_k": null,
+            "ap_at_k": null,
+            "dcg_at_k": 0.0,
+            "idcg_at_k": 0.0,
+            "ndcg_at_k": null,
+            "direct_recall_at_k": null,
+            "all_direct_at_k": null,
+            "no_positive_candidate_returned": false
+          },
+          "context_ids": [],
+          "context_source_words": 0,
+          "context_direct_recall": null,
+          "stub_status": null,
+          "stub_reason": null,
+          "stub_supporting_ids": [],
+          "work": {
+            "eligible_segments": 12,
+            "eligible_posting_visits": 0,
+            "scored_segments": 0,
+            "query_term_count": 1,
+            "zero_score_candidates": 0
+          },
+          "search_latency_us": {
+            "raw": [
+              3.9,
+              4.4,
+              3.7,
+              3.7,
+              3.6,
+              4.1,
+              3.7,
+              4.0,
+              4.2,
+              3.6,
+              4.2
+            ],
+            "p50_nearest_rank": 3.9,
+            "p95_nearest_rank": 4.4
+          }
+        },
+        "binary_cosine": {
+          "candidate_ids": [],
+          "candidate_scores_raw": [],
+          "ranking_metrics": {
+            "k": 8,
+            "retrieved_count": 0,
+            "relevant_count": 0,
+            "direct_count": 0,
+            "binary_hits": 0,
+            "direct_hits": 0,
+            "precision_at_k": 0.0,
+            "recall_at_k": null,
+            "hit_at_k": null,
+            "f1_at_k": null,
+            "rr_at_k": null,
+            "ap_at_k": null,
+            "dcg_at_k": 0.0,
+            "idcg_at_k": 0.0,
+            "ndcg_at_k": null,
+            "direct_recall_at_k": null,
+            "all_direct_at_k": null,
+            "no_positive_candidate_returned": false
+          },
+          "context_ids": [],
+          "context_source_words": 0,
+          "context_direct_recall": null,
+          "stub_status": null,
+          "stub_reason": null,
+          "stub_supporting_ids": [],
+          "work": {
+            "indexed_vectors": 13,
+            "eligible_vectors": 12,
+            "scored_vectors": 0,
+            "dimension": 119,
+            "coordinate_comparisons": 0,
+            "reason": "zero_in_vocabulary_query"
+          },
+          "search_latency_us": {
+            "raw": [
+              12.5,
+              12.0,
+              12.3,
+              11.9,
+              11.7,
+              11.7,
+              12.2,
+              12.2,
+              12.1,
+              12.3,
+              11.6
+            ],
+            "p50_nearest_rank": 12.1,
+            "p95_nearest_rank": 12.5
+          }
+        }
+      }
+    },
+    {
+      "query_id": "q-unknown-renewal",
+      "slice": "unanswerable_lexical_overlap",
+      "origin": "chapter09_authored",
+      "top_k": 2,
+      "modes": {
+        "bm25": {
+          "candidate_ids": [
+            "D3:FAQ-7:0",
+            "D1:§3:0"
+          ],
+          "candidate_scores_raw": [
+            1.8887854444178316,
+            1.7560378340075546
+          ],
+          "ranking_metrics": {
+            "k": 2,
+            "retrieved_count": 2,
+            "relevant_count": 0,
+            "direct_count": 0,
+            "binary_hits": 0,
+            "direct_hits": 0,
+            "precision_at_k": 0.0,
+            "recall_at_k": null,
+            "hit_at_k": null,
+            "f1_at_k": null,
+            "rr_at_k": null,
+            "ap_at_k": null,
+            "dcg_at_k": 0.0,
+            "idcg_at_k": 0.0,
+            "ndcg_at_k": null,
+            "direct_recall_at_k": null,
+            "all_direct_at_k": null,
+            "no_positive_candidate_returned": true
+          },
+          "context_ids": [
+            "D3:FAQ-7:0",
+            "D1:§3:0"
+          ],
+          "context_source_words": 18,
+          "context_direct_recall": null,
+          "stub_status": null,
+          "stub_reason": null,
+          "stub_supporting_ids": [],
+          "work": {
+            "eligible_segments": 12,
+            "eligible_posting_visits": 22,
+            "scored_segments": 12,
+            "query_term_count": 8,
+            "zero_score_candidates": 0
+          },
+          "search_latency_us": {
+            "raw": [
+              30.5,
+              28.4,
+              30.2,
+              26.2,
+              29.4,
+              25.1,
+              27.4,
+              26.9,
+              30.1,
+              37.7,
+              29.1
+            ],
+            "p50_nearest_rank": 29.1,
+            "p95_nearest_rank": 37.7
+          }
+        },
+        "binary_cosine": {
+          "candidate_ids": [
+            "D3:FAQ-7:0",
+            "D6:row-2:0"
+          ],
+          "candidate_scores_raw": [
+            0.5000000000000001,
+            0.4803844614152615
+          ],
+          "ranking_metrics": {
+            "k": 2,
+            "retrieved_count": 2,
+            "relevant_count": 0,
+            "direct_count": 0,
+            "binary_hits": 0,
+            "direct_hits": 0,
+            "precision_at_k": 0.0,
+            "recall_at_k": null,
+            "hit_at_k": null,
+            "f1_at_k": null,
+            "rr_at_k": null,
+            "ap_at_k": null,
+            "dcg_at_k": 0.0,
+            "idcg_at_k": 0.0,
+            "ndcg_at_k": null,
+            "direct_recall_at_k": null,
+            "all_direct_at_k": null,
+            "no_positive_candidate_returned": true
+          },
+          "context_ids": [
+            "D3:FAQ-7:0",
+            "D6:row-2:0"
+          ],
+          "context_source_words": 19,
+          "context_direct_recall": null,
+          "stub_status": null,
+          "stub_reason": null,
+          "stub_supporting_ids": [],
+          "work": {
+            "indexed_vectors": 13,
+            "eligible_vectors": 12,
+            "scored_vectors": 12,
+            "dimension": 119,
+            "coordinate_comparisons": 1428,
+            "plan": "heap"
+          },
+          "search_latency_us": {
+            "raw": [
+              140.9,
+              139.5,
+              143.3,
+              138.1,
+              134.1,
+              136.9,
+              135.9,
+              137.1,
+              136.9,
+              168.1,
+              158.0
+            ],
+            "p50_nearest_rank": 138.1,
+            "p95_nearest_rank": 168.1
+          }
+        }
+      }
+    },
+    {
+      "query_id": "q-unknown-renewal",
+      "slice": "unanswerable_lexical_overlap",
+      "origin": "chapter09_authored",
+      "top_k": 8,
+      "modes": {
+        "bm25": {
+          "candidate_ids": [
+            "D3:FAQ-7:0",
+            "D1:§3:0",
+            "D6:row-2:0",
+            "D5:§3:0",
+            "D8:§3:0",
+            "D1:§8:0",
+            "D2:§2:0",
+            "D4:step-4:2"
+          ],
+          "candidate_scores_raw": [
+            1.8887854444178316,
+            1.7560378340075546,
+            1.7560378340075546,
+            1.6774418596715348,
+            1.6774418596715348,
+            0.7433922707997718,
+            0.6810339288608396,
+            0.34005190292894233
+          ],
+          "ranking_metrics": {
+            "k": 8,
+            "retrieved_count": 8,
+            "relevant_count": 0,
+            "direct_count": 0,
+            "binary_hits": 0,
+            "direct_hits": 0,
+            "precision_at_k": 0.0,
+            "recall_at_k": null,
+            "hit_at_k": null,
+            "f1_at_k": null,
+            "rr_at_k": null,
+            "ap_at_k": null,
+            "dcg_at_k": 0.0,
+            "idcg_at_k": 0.0,
+            "ndcg_at_k": null,
+            "direct_recall_at_k": null,
+            "all_direct_at_k": null,
+            "no_positive_candidate_returned": true
+          },
+          "context_ids": [
+            "D3:FAQ-7:0",
+            "D1:§3:0",
+            "D6:row-2:0",
+            "D5:§3:0",
+            "D8:§3:0",
+            "D1:§8:0",
+            "D2:§2:0",
+            "D4:step-4:2"
+          ],
+          "context_source_words": 95,
+          "context_direct_recall": null,
+          "stub_status": null,
+          "stub_reason": null,
+          "stub_supporting_ids": [],
+          "work": {
+            "eligible_segments": 12,
+            "eligible_posting_visits": 22,
+            "scored_segments": 12,
+            "query_term_count": 8,
+            "zero_score_candidates": 0
+          },
+          "search_latency_us": {
+            "raw": [
+              35.9,
+              30.2,
+              28.7,
+              27.2,
+              26.7,
+              28.0,
+              27.2,
+              24.7,
+              27.4,
+              28.2,
+              26.4
+            ],
+            "p50_nearest_rank": 27.4,
+            "p95_nearest_rank": 35.9
+          }
+        },
+        "binary_cosine": {
+          "candidate_ids": [
+            "D3:FAQ-7:0",
+            "D6:row-2:0",
+            "D1:§3:0",
+            "D5:§3:0",
+            "D8:§3:0",
+            "D1:§8:0",
+            "D4:step-4:2",
+            "D9:proposal-2:0"
+          ],
+          "candidate_scores_raw": [
+            0.5000000000000001,
+            0.4803844614152615,
+            0.447213595499958,
+            0.447213595499958,
+            0.447213595499958,
+            0.14907119849998599,
+            0.14907119849998599,
+            0.13608276348795437
+          ],
+          "ranking_metrics": {
+            "k": 8,
+            "retrieved_count": 8,
+            "relevant_count": 0,
+            "direct_count": 0,
+            "binary_hits": 0,
+            "direct_hits": 0,
+            "precision_at_k": 0.0,
+            "recall_at_k": null,
+            "hit_at_k": null,
+            "f1_at_k": null,
+            "rr_at_k": null,
+            "ap_at_k": null,
+            "dcg_at_k": 0.0,
+            "idcg_at_k": 0.0,
+            "ndcg_at_k": null,
+            "direct_recall_at_k": null,
+            "all_direct_at_k": null,
+            "no_positive_candidate_returned": true
+          },
+          "context_ids": [
+            "D3:FAQ-7:0",
+            "D6:row-2:0",
+            "D1:§3:0",
+            "D5:§3:0",
+            "D8:§3:0",
+            "D1:§8:0",
+            "D4:step-4:2",
+            "D9:proposal-2:0"
+          ],
+          "context_source_words": 96,
+          "context_direct_recall": null,
+          "stub_status": null,
+          "stub_reason": null,
+          "stub_supporting_ids": [],
+          "work": {
+            "indexed_vectors": 13,
+            "eligible_vectors": 12,
+            "scored_vectors": 12,
+            "dimension": 119,
+            "coordinate_comparisons": 1428,
+            "plan": "heap"
+          },
+          "search_latency_us": {
+            "raw": [
+              145.2,
+              141.4,
+              141.5,
+              137.0,
+              135.4,
+              134.9,
+              136.2,
+              136.8,
+              135.1,
+              134.2,
+              135.6
+            ],
+            "p50_nearest_rank": 136.2,
+            "p95_nearest_rank": 145.2
+          }
+        }
+      }
+    },
+    {
+      "query_id": "q-private-target",
+      "slice": "permission_no_eligible_evidence",
+      "origin": "chapter09_authored",
+      "top_k": 2,
+      "modes": {
+        "bm25": {
+          "candidate_ids": [
+            "D7:timeline:0",
+            "D3:FAQ-7:0"
+          ],
+          "candidate_scores_raw": [
+            5.721491878873767,
+            1.8403848289093825
+          ],
+          "ranking_metrics": {
+            "k": 2,
+            "retrieved_count": 2,
+            "relevant_count": 0,
+            "direct_count": 0,
+            "binary_hits": 0,
+            "direct_hits": 0,
+            "precision_at_k": 0.0,
+            "recall_at_k": null,
+            "hit_at_k": null,
+            "f1_at_k": null,
+            "rr_at_k": null,
+            "ap_at_k": null,
+            "dcg_at_k": 0.0,
+            "idcg_at_k": 0.0,
+            "ndcg_at_k": null,
+            "direct_recall_at_k": null,
+            "all_direct_at_k": null,
+            "no_positive_candidate_returned": true
+          },
+          "context_ids": [
+            "D7:timeline:0",
+            "D3:FAQ-7:0"
+          ],
+          "context_source_words": 26,
+          "context_direct_recall": null,
+          "stub_status": null,
+          "stub_reason": null,
+          "stub_supporting_ids": [],
+          "work": {
+            "eligible_segments": 12,
+            "eligible_posting_visits": 48,
+            "scored_segments": 12,
+            "query_term_count": 11,
+            "zero_score_candidates": 0
+          },
+          "search_latency_us": {
+            "raw": [
+              39.9,
+              41.6,
+              37.1,
+              40.3,
+              41.0,
+              37.8,
+              39.7,
+              36.9,
+              40.2,
+              43.1,
+              39.1
+            ],
+            "p50_nearest_rank": 39.9,
+            "p95_nearest_rank": 43.1
+          }
+        },
+        "binary_cosine": {
+          "candidate_ids": [
+            "D7:timeline:0",
+            "D3:FAQ-7:0"
+          ],
+          "candidate_scores_raw": [
+            0.4949747468305833,
+            0.4564354645876385
+          ],
+          "ranking_metrics": {
+            "k": 2,
+            "retrieved_count": 2,
+            "relevant_count": 0,
+            "direct_count": 0,
+            "binary_hits": 0,
+            "direct_hits": 0,
+            "precision_at_k": 0.0,
+            "recall_at_k": null,
+            "hit_at_k": null,
+            "f1_at_k": null,
+            "rr_at_k": null,
+            "ap_at_k": null,
+            "dcg_at_k": 0.0,
+            "idcg_at_k": 0.0,
+            "ndcg_at_k": null,
+            "direct_recall_at_k": null,
+            "all_direct_at_k": null,
+            "no_positive_candidate_returned": true
+          },
+          "context_ids": [
+            "D7:timeline:0",
+            "D3:FAQ-7:0"
+          ],
+          "context_source_words": 26,
+          "context_direct_recall": null,
+          "stub_status": null,
+          "stub_reason": null,
+          "stub_supporting_ids": [],
+          "work": {
+            "indexed_vectors": 13,
+            "eligible_vectors": 12,
+            "scored_vectors": 12,
+            "dimension": 119,
+            "coordinate_comparisons": 1428,
+            "plan": "heap"
+          },
+          "search_latency_us": {
+            "raw": [
+              135.6,
+              135.8,
+              137.1,
+              135.9,
+              131.8,
+              134.0,
+              132.9,
+              133.3,
+              133.5,
+              135.8,
+              133.7
+            ],
+            "p50_nearest_rank": 134.0,
+            "p95_nearest_rank": 137.1
+          }
+        }
+      }
+    },
+    {
+      "query_id": "q-private-target",
+      "slice": "permission_no_eligible_evidence",
+      "origin": "chapter09_authored",
+      "top_k": 8,
+      "modes": {
+        "bm25": {
+          "candidate_ids": [
+            "D7:timeline:0",
+            "D3:FAQ-7:0",
+            "D1:§3:0",
+            "D9:proposal-2:0",
+            "D5:§3:0",
+            "D8:§3:0",
+            "D2:§2:0",
+            "D6:row-2:0"
+          ],
+          "candidate_scores_raw": [
+            5.721491878873767,
+            1.8403848289093825,
+            1.7110389103482895,
+            1.5925219136303725,
+            1.5514768868025497,
+            1.5514768868025497,
+            1.3217872678053275,
+            0.5935349219860405
+          ],
+          "ranking_metrics": {
+            "k": 8,
+            "retrieved_count": 8,
+            "relevant_count": 0,
+            "direct_count": 0,
+            "binary_hits": 0,
+            "direct_hits": 0,
+            "precision_at_k": 0.0,
+            "recall_at_k": null,
+            "hit_at_k": null,
+            "f1_at_k": null,
+            "rr_at_k": null,
+            "ap_at_k": null,
+            "dcg_at_k": 0.0,
+            "idcg_at_k": 0.0,
+            "ndcg_at_k": null,
+            "direct_recall_at_k": null,
+            "all_direct_at_k": null,
+            "no_positive_candidate_returned": true
+          },
+          "context_ids": [
+            "D7:timeline:0",
+            "D3:FAQ-7:0",
+            "D1:§3:0",
+            "D9:proposal-2:0",
+            "D5:§3:0",
+            "D8:§3:0",
+            "D2:§2:0",
+            "D6:row-2:0"
+          ],
+          "context_source_words": 104,
+          "context_direct_recall": null,
+          "stub_status": null,
+          "stub_reason": null,
+          "stub_supporting_ids": [],
+          "work": {
+            "eligible_segments": 12,
+            "eligible_posting_visits": 48,
+            "scored_segments": 12,
+            "query_term_count": 11,
+            "zero_score_candidates": 0
+          },
+          "search_latency_us": {
+            "raw": [
+              40.2,
+              40.8,
+              42.3,
+              38.6,
+              41.0,
+              41.8,
+              46.3,
+              37.8,
+              40.8,
+              37.7,
+              40.5
+            ],
+            "p50_nearest_rank": 40.8,
+            "p95_nearest_rank": 46.3
+          }
+        },
+        "binary_cosine": {
+          "candidate_ids": [
+            "D7:timeline:0",
+            "D3:FAQ-7:0",
+            "D1:§3:0",
+            "D9:proposal-2:0",
+            "D5:§3:0",
+            "D8:§3:0",
+            "D2:§2:0",
+            "D6:row-2:0"
+          ],
+          "candidate_scores_raw": [
+            0.4949747468305833,
+            0.4564354645876385,
+            0.40824829046386296,
+            0.372677996249965,
+            0.3265986323710904,
+            0.3265986323710904,
+            0.282842712474619,
+            0.2631174057921088
+          ],
+          "ranking_metrics": {
+            "k": 8,
+            "retrieved_count": 8,
+            "relevant_count": 0,
+            "direct_count": 0,
+            "binary_hits": 0,
+            "direct_hits": 0,
+            "precision_at_k": 0.0,
+            "recall_at_k": null,
+            "hit_at_k": null,
+            "f1_at_k": null,
+            "rr_at_k": null,
+            "ap_at_k": null,
+            "dcg_at_k": 0.0,
+            "idcg_at_k": 0.0,
+            "ndcg_at_k": null,
+            "direct_recall_at_k": null,
+            "all_direct_at_k": null,
+            "no_positive_candidate_returned": true
+          },
+          "context_ids": [
+            "D7:timeline:0",
+            "D3:FAQ-7:0",
+            "D1:§3:0",
+            "D9:proposal-2:0",
+            "D5:§3:0",
+            "D8:§3:0",
+            "D2:§2:0",
+            "D6:row-2:0"
+          ],
+          "context_source_words": 104,
+          "context_direct_recall": null,
+          "stub_status": null,
+          "stub_reason": null,
+          "stub_supporting_ids": [],
+          "work": {
+            "indexed_vectors": 13,
+            "eligible_vectors": 12,
+            "scored_vectors": 12,
+            "dimension": 119,
+            "coordinate_comparisons": 1428,
+            "plan": "heap"
+          },
+          "search_latency_us": {
+            "raw": [
+              137.8,
+              147.7,
+              135.2,
+              137.5,
+              136.6,
+              135.0,
+              138.4,
+              138.2,
+              137.0,
+              139.1,
+              136.4
+            ],
+            "p50_nearest_rank": 137.5,
+            "p95_nearest_rank": 147.7
+          }
+        }
+      }
+    }
+  ],
+  "summaries": {
+    "2": {
+      "bm25": {
+        "positive_queries": 11,
+        "zero_positive_queries": 3,
+        "macro_positive_query_mean": {
+          "precision_at_k": 0.5909090909090909,
+          "recall_at_k": 0.8636363636363636,
+          "hit_at_k": 1,
+          "f1_at_k": 0.6818181818181818,
+          "rr_at_k": 0.9545454545454546,
+          "ap_at_k": 0.8181818181818182,
+          "ndcg_at_k": 0.8996860236903669,
+          "direct_recall_at_k": 0.9545454545454546,
+          "all_direct_at_k": 0.9090909090909091
+        },
+        "micro_recall_at_k": 0.8125,
+        "zero_positive_candidate_rate": 0.6666666666666666,
+        "search_latency_us_equal_query_mix": {
+          "samples": 154,
+          "p50_nearest_rank": 44.5,
+          "p95_nearest_rank": 103.0
+        },
+        "mean_scored_segments": 10.714285714285714
+      },
+      "binary_cosine": {
+        "positive_queries": 11,
+        "zero_positive_queries": 3,
+        "macro_positive_query_mean": {
+          "precision_at_k": 0.5,
+          "recall_at_k": 0.7272727272727273,
+          "hit_at_k": 0.9090909090909091,
+          "f1_at_k": 0.5757575757575757,
+          "rr_at_k": 0.8181818181818182,
+          "ap_at_k": 0.6590909090909091,
+          "ndcg_at_k": 0.7724078665628799,
+          "direct_recall_at_k": 0.8636363636363636,
+          "all_direct_at_k": 0.8181818181818182
+        },
+        "micro_recall_at_k": 0.6875,
+        "zero_positive_candidate_rate": 0.6666666666666666,
+        "search_latency_us_equal_query_mix": {
+          "samples": 154,
+          "p50_nearest_rank": 140.7,
+          "p95_nearest_rank": 398.1
+        },
+        "mean_scored_segments": 11.142857142857142
+      }
+    },
+    "8": {
+      "bm25": {
+        "positive_queries": 11,
+        "zero_positive_queries": 3,
+        "macro_positive_query_mean": {
+          "precision_at_k": 0.18181818181818182,
+          "recall_at_k": 1.0,
+          "hit_at_k": 1,
+          "f1_at_k": 0.30303030303030304,
+          "rr_at_k": 0.9545454545454546,
+          "ap_at_k": 0.8863636363636364,
+          "ndcg_at_k": 0.9452582710935162,
+          "direct_recall_at_k": 1.0,
+          "all_direct_at_k": 1
+        },
+        "micro_recall_at_k": 1.0,
+        "zero_positive_candidate_rate": 0.6666666666666666,
+        "search_latency_us_equal_query_mix": {
+          "samples": 154,
+          "p50_nearest_rank": 45.8,
+          "p95_nearest_rank": 98.5
+        },
+        "mean_scored_segments": 10.714285714285714
+      },
+      "binary_cosine": {
+        "positive_queries": 11,
+        "zero_positive_queries": 3,
+        "macro_positive_query_mean": {
+          "precision_at_k": 0.18181818181818182,
+          "recall_at_k": 1.0,
+          "hit_at_k": 1,
+          "f1_at_k": 0.30303030303030304,
+          "rr_at_k": 0.8363636363636364,
+          "ap_at_k": 0.7909090909090909,
+          "ndcg_at_k": 0.8712670716014693,
+          "direct_recall_at_k": 1.0,
+          "all_direct_at_k": 1
+        },
+        "micro_recall_at_k": 1.0,
+        "zero_positive_candidate_rate": 0.6666666666666666,
+        "search_latency_us_equal_query_mix": {
+          "samples": 154,
+          "p50_nearest_rank": 143.2,
+          "p95_nearest_rank": 340.7
+        },
+        "mean_scored_segments": 11.142857142857142
+      }
+    }
+  },
+  "limitations": [
+    "Single-author tiny qrel set, partly known V0 failures; not held out.",
+    "Binary lexical coordinates do not encode semantic paraphrase.",
+    "Dense Python tuples are intentionally unoptimized; no production latency conclusion.",
+    "Static scope fixture is not authentication or a live ACL service.",
+    "No general generator or answer judgment; V0 stub only for two tasks."
+  ]
+}

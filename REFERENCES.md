@@ -86,3 +86,11 @@ This register records primary sources used in written chapters. Concept explanat
 | NIST TREC, [TREC 2024 overview](https://trec.nist.gov/pubs/trec33/papers/overview_33.pdf) | Primary account of pooling assumptions, unjudged items and graded judgments in a modern TREC setting | Pooling can miss relevant items and bias novel systems; V2 instead reviews all twelve eligible items per question. |
 | NIST TREC, [English relevance judgments](https://trec.nist.gov/data/reljudge_eng.html) | Official qrel/collection matching guidance | TREC's task-specific label definitions and collection permissions do not transfer automatically to the fictional Helios set. |
 | NIST, [`trec_eval` README](https://github.com/usnistgov/trec_eval/blob/main/README) | Official evaluation-tool context and measure-name comparison | V2 implements declared educational metric conventions independently; numeric parity with every `trec_eval` option is not claimed. |
+
+## Chapter 10 — verified 2026-09-30
+
+| Source | Used for | Scope and caution |
+|---|---|---|
+| Manning, Raghavan and Schütze, [Dot products and cosine](https://nlp.stanford.edu/IR-book/html/htmledition/dot-products-1.html), [queries as vectors](https://nlp.stanford.edu/IR-book/html/htmledition/queries-as-vectors-1.html), [computing vector scores](https://nlp.stanford.edu/IR-book/html/htmledition/computing-vector-scores-1.html), 2008 | Vector-space representation, length normalization and the cost of scoring document vectors | Their sparse term-vector mechanics motivate Chapter 10's lexical comparison; no learned semantic meaning is inferred. |
+| scikit-learn, [Nearest Neighbor Algorithms](https://scikit-learn.org/stable/modules/neighbors.html), accessed 2026-09-30 | Brute-force query work and the contrast with tree-based methods | Library implementation choices change by version and data; V3 uses a standard-library full scan, not scikit-learn or ANN. |
+| NumPy, [`matmul`](https://numpy.org/doc/stable/reference/generated/numpy.matmul.html) and [`linalg.norm`](https://numpy.org/doc/stable/reference/generated/numpy.linalg.norm.html), accessed 2026-09-30 | Matrix multiplication and vector-norm production analogues | V3 does not depend on NumPy; packed matrices, kernel speed and floating-point parity were not benchmarked. |

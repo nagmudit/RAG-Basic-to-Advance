@@ -1,6 +1,6 @@
 # Production RAG observability contract
 
-This is the authoritative engineering contract for request and ingestion telemetry. Chapters 02, 09, 30–32, 48, 50–52, and 56 implement it progressively. The question is: **what did the system do, what evidence did it use, where did time and money go, why did it fail, and is it degrading?** See [the evaluation contract](../evaluation/EVALUATION_EXPERIMENT_CONTRACT.md) for judgments and experiment design. Telemetry never substitutes for relevance judgments.
+This is the authoritative engineering contract for request and ingestion telemetry. Chapters 02, 09–10, 30–32, 48, 50–52, and 56 implement it progressively. The question is: **what did the system do, what evidence did it use, where did time and money go, why did it fail, and is it degrading?** See [the evaluation contract](../evaluation/EVALUATION_EXPERIMENT_CONTRACT.md) for judgments and experiment design. Telemetry never substitutes for relevance judgments.
 
 ## Five records with different purposes
 
