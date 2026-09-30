@@ -1,0 +1,43 @@
+{
+  "version": "ch12-domain-split-v1",
+  "review_date": "2026-09-30",
+  "corpus_snapshot": "support-corpus-2026-05-20",
+  "scope_fixture": "support-team",
+  "retrieval_unit": "indexed_segment",
+  "binary_relevant_at_or_above": 1,
+  "review_method": "One author wrote and judged all questions against all twelve eligible V0 segments before running the Chapter 12 adapter. Source-document IDs, not just questions, are separated by split. Known Chapter 9 and 11 probes are excluded from selection and are only retrospective regressions. This is an authored fictional teaching set, not an independent external benchmark.",
+  "zero_policy": "Every eligible segment not in grade_1 or grade_2 is grade zero after source review. Legal-only D10 is not eligible.",
+  "eligible_segment_ids": ["D1:§3:0", "D1:§8:0", "D2:§2:0", "D3:FAQ-7:0", "D4:step-4:0", "D4:step-4:1", "D4:step-4:2", "D5:§3:0", "D6:row-2:0", "D7:timeline:0", "D8:§3:0", "D9:proposal-2:0"],
+  "document_split": {"train": ["D1", "D2", "D4", "D6"], "validation": ["D3", "D7"], "test": ["D5", "D8", "D9"]},
+  "training_pairs": [
+    {"query_id": "tr-termination-a", "question": "Which signed agreement explains ending support with written notice?", "positive_id": "D1:§8:0", "unsafe_negative_ids": []},
+    {"query_id": "tr-termination-b", "question": "Where does the contract say either party can terminate after thirty days?", "positive_id": "D1:§8:0", "unsafe_negative_ids": []},
+    {"query_id": "tr-amendment-a", "question": "Which signed amendment replaces the severe-incident response target?", "positive_id": "D2:§2:0", "unsafe_negative_ids": ["D1:§3:0"]},
+    {"query_id": "tr-amendment-b", "question": "Find the effective May 2026 replacement for the original first-response clause.", "positive_id": "D2:§2:0", "unsafe_negative_ids": ["D1:§3:0"]},
+    {"query_id": "tr-change-a", "question": "Which runbook step checks the affected region and change log?", "positive_id": "D4:step-4:1", "unsafe_negative_ids": ["D4:step-4:0", "D4:step-4:2"]},
+    {"query_id": "tr-change-b", "question": "Where should responders look for a common dependency before a service change?", "positive_id": "D4:step-4:1", "unsafe_negative_ids": ["D4:step-4:0", "D4:step-4:2"]},
+    {"query_id": "tr-timeline-a", "question": "Which runbook span records each action, its effect, and the next owner?", "positive_id": "D4:step-4:2", "unsafe_negative_ids": ["D4:step-4:0", "D4:step-4:1"]},
+    {"query_id": "tr-timeline-b", "question": "Where does the incident team log interventions and handoff ownership?", "positive_id": "D4:step-4:2", "unsafe_negative_ids": ["D4:step-4:0", "D4:step-4:1"]},
+    {"query_id": "tr-fee-a", "question": "Which pricing row gives the annual Helios Pro fee before tax?", "positive_id": "D6:row-2:0", "unsafe_negative_ids": []},
+    {"query_id": "tr-fee-b", "question": "Find the yearly price in credits for Pro support.", "positive_id": "D6:row-2:0", "unsafe_negative_ids": []}
+  ],
+  "validation_queries": [
+    {"query_id": "va-faq-a", "question": "Which informational FAQ repeats the old four-hour severity-one target?", "slice": "source_type", "grade_2": ["D3:FAQ-7:0"], "grade_1": [], "rationale": "The FAQ states the old four-hour target; the signed v1 contract is a different source type."},
+    {"query_id": "va-faq-b", "question": "Find the support FAQ's outdated first response statement.", "slice": "source_type", "grade_2": ["D3:FAQ-7:0"], "grade_1": [], "rationale": "Only the FAQ is the requested summary; signed agreements are not FAQ entries."},
+    {"query_id": "va-incident-a", "question": "Which incident report measures an actual two-hour first response?", "slice": "observed", "grade_2": ["D7:timeline:0"], "grade_1": [], "rationale": "The incident timeline reports the observed duration, not a contractual target."},
+    {"query_id": "va-incident-b", "question": "Find the historical observation rather than a promised response time.", "slice": "observed", "grade_2": ["D7:timeline:0"], "grade_1": [], "rationale": "The report describes an actual elapsed response and distinguishes that from a contract."}
+  ],
+  "test_queries": [
+    {"query_id": "te-basic-a", "question": "Which signed Basic-tier agreement promises an eight-hour severe-incident response?", "slice": "basic", "grade_2": ["D5:§3:0"], "grade_1": [], "rationale": "D5 is the signed Helios Basic agreement with the eight-hour target."},
+    {"query_id": "te-basic-b", "question": "For Helios Basic, how long can the first Sev-1 response take?", "slice": "basic", "grade_2": ["D5:§3:0"], "grade_1": [], "rationale": "The Basic agreement explicitly says eight hours; Pro agreements concern another tier."},
+    {"query_id": "te-basic-c", "question": "Find the Basic plan's one-third-day initial response commitment.", "slice": "basic", "grade_2": ["D5:§3:0"], "grade_1": [], "rationale": "One third of 24 hours is eight hours; D5 is the Basic source."},
+    {"query_id": "te-atlas-a", "question": "What initial response target does the Atlas Pro agreement set?", "slice": "atlas", "grade_2": ["D8:§3:0"], "grade_1": [], "rationale": "D8 is the Atlas Pro signed agreement; Helios documents concern another product."},
+    {"query_id": "te-atlas-b", "question": "Which signed product contract sets a two-hour Sev-1 first response?", "slice": "atlas", "grade_2": ["D8:§3:0"], "grade_1": [], "rationale": "The Atlas signed contract sets two hours; the Helios proposal is unsigned and incident report is observed."},
+    {"query_id": "te-atlas-c", "question": "For Atlas Pro severity-one incidents, when must support initially respond?", "slice": "atlas", "grade_2": ["D8:§3:0"], "grade_1": [], "rationale": "D8 gives the Atlas Pro target of two hours."},
+    {"query_id": "te-draft-a", "question": "Which unsigned document proposes two hours for Helios Pro?", "slice": "draft", "grade_2": ["D9:proposal-2:0"], "grade_1": [], "rationale": "D9 is explicitly an unsigned Helios proposal, unlike the signed target and observed incident."},
+    {"query_id": "te-draft-b", "question": "Locate the proposal not yet signed for Helios Pro severe incidents.", "slice": "draft", "grade_2": ["D9:proposal-2:0"], "grade_1": [], "rationale": "The requested source is the draft proposal."},
+    {"query_id": "te-draft-c", "question": "What draft suggests a 120-minute target for Helios Pro?", "slice": "draft", "grade_2": ["D9:proposal-2:0"], "grade_1": [], "rationale": "120 minutes is two hours; D9 alone is the draft Helios Pro proposal."},
+    {"query_id": "te-none-a", "question": "Where is the Polaris Plus uptime guarantee?", "slice": "no_eligible_evidence", "grade_2": [], "grade_1": [], "rationale": "No eligible source concerns Polaris Plus or an uptime guarantee."},
+    {"query_id": "te-none-b", "question": "What is the private legal addendum's thirty-minute promise?", "slice": "no_eligible_evidence", "grade_2": [], "grade_1": [], "rationale": "Only legal-only D10 contains the private decoy; it is ineligible for support-team."}
+  ]
+}

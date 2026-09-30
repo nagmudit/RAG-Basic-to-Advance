@@ -105,3 +105,16 @@ This register records primary sources used in written chapters. Concept explanat
 | Sentence Transformers, [all-MiniLM-L6-v2 model card](https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/blob/8b3219a92973c328a8e22fadcfa821b5dc75636a/README.md), accessed 2026-09-30 | Public Apache-2.0 model, 384 dimensions, mean pooling, 256-word-piece default truncation, contrastive training description | Experiment pins revision `8b3219a92973c328a8e22fadcfa821b5dc75636a`; weights are external, frozen and not committed. Model-card intended use does not certify a domain retrieval gain. |
 | Sentence Transformers, [query/document encoding usage](https://www.sbert.net/docs/sentence_transformer/usage/usage.html), accessed 2026-09-30 | Current API distinction for models with separate prompts/routes | The pinned symmetric model's experiment uses one shared `encode` path without prefixes; changing input format requires new index/version and measurement. |
 | Kusupati et al., [Matryoshka Representation Learning](https://arxiv.org/abs/2205.13147), 2022 | Training nested useful vector prefixes | The Chapter 11 checkpoint is not asserted to support arbitrary prefix truncation; each prefix needs its own held-out retrieval test. |
+
+## Chapter 12 — verified 2026-09-30
+
+| Source | Used for | Scope and caution |
+|---|---|---|
+| Karpukhin et al., [Dense Passage Retrieval](https://arxiv.org/abs/2004.04906), 2020 | Dual-encoder question/passage training with negatives | Its open-domain QA results are not a claim for the fictional support corpus or this query-only adapter. |
+| Xiong et al., [ANCE](https://arxiv.org/abs/2007.00808), 2020 | Iterative ANN-based negative mining | Chapter 12 explains its mining mechanism; the local runner does not build an ANN index. |
+| Wang et al., [GPL](https://arxiv.org/abs/2112.07577), 2021 | Synthetic questions and cross-encoder pseudo-labels for unsupervised domain adaptation | The V3 training questions are human-authored; no GPL teacher or reported gain is reproduced. |
+| Microsoft, [MS MARCO ranking datasets](https://github.com/microsoft/msmarco/blob/master/Datasets.md), accessed 2026-09-30 | Passage ranking, sparse labels, query/passage data and task boundaries | A leaderboard rank does not guarantee complete evidence or corpus transfer. |
+| Thakur et al., [BEIR](https://arxiv.org/abs/2104.08663), 2021 | Heterogeneous zero-shot retrieval and BM25 comparator | Heterogeneous average can hide a support-domain failure; V3 does not run BEIR. |
+| Muennighoff et al., [MTEB](https://arxiv.org/abs/2210.07316), 2022 | Embedding evaluation across tasks and languages | Overall embedding ranking is not a domain-specific retrieval test. |
+| Zhang et al., [MIRACL](https://arxiv.org/abs/2210.09984), 2022 | Monolingual ad hoc retrieval across 18 languages | Does not by itself measure cross-lingual query-to-document search; V3 English-only results imply no multilingual gain. |
+| Sentence Transformers, [all-MiniLM-L6-v2 pinned model card](https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/blob/8b3219a92973c328a8e22fadcfa821b5dc75636a/README.md), accessed 2026-09-30 | License and base model configuration reused from Chapter 11 | The Chapter 12 adapter is trained locally; base weights remain external and frozen. |

@@ -141,6 +141,20 @@ The glossary will grow with chapter writing. Each future entry will include: **p
 | Embedding | Learned numeric representation of an input | 11 | Any vector |
 | Retriever adaptation | Updating a retriever using domain examples while testing generalization | 12 | Choosing a pretrained encoder unchanged |
 | Hard negative | Nonrelevant candidate difficult for a retriever to distinguish from a positive | 12 | False negative, which is actually relevant |
+| Positive pair / explicit negative | Query–passage pair reviewed as useful / reviewed as unsuitable for that query | 12 | A passage's universal relevance or an access grant |
+| In-batch negative | Another training query's positive passage provisionally used as a negative for this query | 12 | A verified negative; duplicates and alternate answers can invalidate it |
+| Mined negative | Candidate supplied by a retriever or teacher for negative review and possible training | 12 | Guaranteed irrelevance because it ranked highly |
+| False negative | Useful or partially useful passage wrongly labeled as a training negative | 12 | A hard but genuinely irrelevant candidate |
+| Weak supervision / synthetic query | Imperfect proxy label / generated question paired with a passage under a declared origin and review rule | 12 | Human-judged relevance or proof that other passages do not answer |
+| Contrastive row-softmax / InfoNCE | Training objective raising positive score relative to declared row candidates at a temperature | 11; deep treatment 12 | Calibrated live relevance or answer probability |
+| Temperature (retriever loss) | Positive divisor of training logits that changes softmax sharpness and gradients | 11; deep treatment 12 | A relevance threshold or model certainty |
+| Triplet margin loss | Hinge penalty when a positive fails to beat a negative by a chosen score margin | 12 | A corpus-wide ranking metric |
+| Hard-negative mining | Retrieving high-scoring candidate mistakes, verifying labels, and adding them to training | 12 | Automatically labeling all top nonpositives irrelevant |
+| Score / ranking distillation | Teaching a student from teacher score relationships / candidate order preferences | 12 | Ground-truth relevance or teacher authorization |
+| Query-side adapter | Trainable transformation of query embeddings while base query encoder and passage encoder remain frozen | 12 | Full transformer or two-tower fine-tuning |
+| Domain adaptation / over-specialization | Updating representations for a target distribution / fitting sampled pairs while losing held-out behavior | 12 | Guaranteed improvement from lower training loss |
+| Source-disjoint split | Training, validation and test labels assigned to different source-document identities | 12 | Complete independence when revisions, translations or authors' prior knowledge overlap |
+| Multilingual / cross-lingual retrieval | Query and corpus within each of several languages / query and evidence in different languages | 12 | One benchmark or translated query proving all language directions |
 | Vector index | Data structure for vector similarity lookup | 15 | Vector database/service |
 | Exact KNN | Top-k closest items under a chosen metric, found without approximation | 10 | ANN |
 | ANN | Search that trades exact-neighbor recall for speed, memory, or I/O | 15 | Relevance ranking quality |

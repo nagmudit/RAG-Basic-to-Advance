@@ -1,0 +1,2259 @@
+{
+  "experiment_id": "ch12-v3-query-adapter-v1",
+  "created_at_utc": "2026-09-30T09:41:04.725988+00:00",
+  "measurement_window_utc": {
+    "start": "2026-09-30T09:40:58.748483+00:00",
+    "end": "2026-09-30T09:41:04.725998+00:00"
+  },
+  "question": "Does a small domain-trained query adapter improve retrieval of held-out source documents over the frozen encoder?",
+  "hypothesis": "Macro held-out Recall@2 improves over frozen while no-evidence candidate behavior remains visible; a regression is acceptable.",
+  "acceptance_gate": "Keep the adapter only if held-out positive-query Recall@2 exceeds frozen without a validation or no-evidence regression; this small set is diagnostic, not a production release gate.",
+  "baseline": "Chapter 11 pinned frozen sentence encoder with exact cosine; V2 BM25 is a lexical reference",
+  "primary_variable": "A trained rank-16 residual projection on query vectors; document encoder and exact scorer remain frozen",
+  "controls": [
+    "unchanged V0 corpus and support-team eligibility",
+    "same 384d base encoder, title/body passage format, normalization, exact cosine and tie order",
+    "source-disjoint train/validation/test query targets",
+    "same complete 12-segment qrel roster, top-2, context word budget"
+  ],
+  "judgment_policy": "One author wrote and judged all questions against all twelve eligible V0 segments before running the Chapter 12 adapter. Source-document IDs, not just questions, are separated by split. Known Chapter 9 and 11 probes are excluded from selection and are only retrospective regressions. This is an authored fictional teaching set, not an independent external benchmark.",
+  "qrel_policy": "Every eligible segment not in grade_1 or grade_2 is grade zero after source review. Legal-only D10 is not eligible.",
+  "procedure": "Validate frozen split/roster; encode eligible passages and train/validation queries; train only on train-document pairs with unsafe negatives masked; choose epoch by validation NDCG@2 then Recall@2; encode and score test queries once; compare BM25, frozen and adapted with fixed top-2/context policy; warm and time local queries.",
+  "model": {
+    "model_id": "sentence-transformers/all-MiniLM-L6-v2",
+    "model_revision": "8b3219a92973c328a8e22fadcfa821b5dc75636a",
+    "dimension": 384,
+    "max_sequence_length_wordpieces": 256,
+    "device": "cpu",
+    "torch_threads": 2,
+    "sentence_transformers_version": "5.2.2",
+    "transformers_version": "4.57.3",
+    "torch_version": "2.10.0+cpu",
+    "load_ms": 95.879,
+    "encode_policy": "title newline segment text; one shared frozen encoder for questions and passages; normalized float32 sentence embeddings; no instruction prefixes"
+  },
+  "corpus_snapshot": "support-corpus-2026-05-20",
+  "qrel_version": "ch12-domain-split-v1",
+  "index_version": "v1-ch05-support-corpus-2026-05-20-v0",
+  "document_split": {
+    "train": [
+      "D1",
+      "D2",
+      "D4",
+      "D6"
+    ],
+    "validation": [
+      "D3",
+      "D7"
+    ],
+    "test": [
+      "D5",
+      "D8",
+      "D9"
+    ]
+  },
+  "training_pairs": 10,
+  "validation_queries": 4,
+  "test_queries": 11,
+  "test_judged_pairs": 132,
+  "training": {
+    "seed": 12092026,
+    "epochs": 60,
+    "selected_epoch": 1,
+    "rank": 16,
+    "temperature": 0.12,
+    "learning_rate": 0.04,
+    "optimizer": "Adam",
+    "loss": "masked row softmax cross entropy plus 0.01 mean squared residual projection",
+    "negative_policy": "All other train-document passages except listed potentially relevant neighbors; validation/test documents never mined or used as negatives",
+    "usable_query_negative_pairs": 50,
+    "history": [
+      {
+        "epoch": 1,
+        "train_loss": 0.248746,
+        "validation_ndcg_at_2": 0.7231973151785931,
+        "validation_recall_at_2": 1.0
+      },
+      {
+        "epoch": 5,
+        "train_loss": 0.01265,
+        "validation_ndcg_at_2": 0.0,
+        "validation_recall_at_2": 0.0
+      },
+      {
+        "epoch": 10,
+        "train_loss": 0.006681,
+        "validation_ndcg_at_2": 0.0,
+        "validation_recall_at_2": 0.0
+      },
+      {
+        "epoch": 20,
+        "train_loss": 0.005459,
+        "validation_ndcg_at_2": 0.0,
+        "validation_recall_at_2": 0.0
+      },
+      {
+        "epoch": 40,
+        "train_loss": 0.005124,
+        "validation_ndcg_at_2": 0.0,
+        "validation_recall_at_2": 0.0
+      },
+      {
+        "epoch": 60,
+        "train_loss": 0.004764,
+        "validation_ndcg_at_2": 0.0,
+        "validation_recall_at_2": 0.0
+      }
+    ],
+    "adapter_sha256": "a2dfaf484f76787c4a4c2ddafdd7b3cfacc8763500a29cea5edd4e1332da2d17",
+    "adapter_parameters": 12288,
+    "train_ms": 66.772
+  },
+  "passage_build_ms": 123.8,
+  "validation": {
+    "frozen": {
+      "cases": [
+        {
+          "query_id": "va-faq-a",
+          "slice": "source_type",
+          "candidate_ids": [
+            "D2:§2:0",
+            "D3:FAQ-7:0"
+          ],
+          "candidate_scores_raw": [
+            0.49688178300857544,
+            0.38566678762435913
+          ],
+          "context_ids": [
+            "D2:§2:0",
+            "D3:FAQ-7:0"
+          ],
+          "ranking_metrics": {
+            "k": 2,
+            "retrieved_count": 2,
+            "relevant_count": 1,
+            "direct_count": 1,
+            "binary_hits": 1,
+            "direct_hits": 1,
+            "precision_at_k": 0.5,
+            "recall_at_k": 1.0,
+            "hit_at_k": 1,
+            "f1_at_k": 0.6666666666666666,
+            "rr_at_k": 0.5,
+            "ap_at_k": 0.5,
+            "dcg_at_k": 1.8927892607143724,
+            "idcg_at_k": 3.0,
+            "ndcg_at_k": 0.6309297535714574,
+            "direct_recall_at_k": 1.0,
+            "all_direct_at_k": true,
+            "no_positive_candidate_returned": null
+          },
+          "generation_status": null
+        },
+        {
+          "query_id": "va-faq-b",
+          "slice": "source_type",
+          "candidate_ids": [
+            "D2:§2:0",
+            "D3:FAQ-7:0"
+          ],
+          "candidate_scores_raw": [
+            0.36915722489356995,
+            0.35300981998443604
+          ],
+          "context_ids": [
+            "D2:§2:0",
+            "D3:FAQ-7:0"
+          ],
+          "ranking_metrics": {
+            "k": 2,
+            "retrieved_count": 2,
+            "relevant_count": 1,
+            "direct_count": 1,
+            "binary_hits": 1,
+            "direct_hits": 1,
+            "precision_at_k": 0.5,
+            "recall_at_k": 1.0,
+            "hit_at_k": 1,
+            "f1_at_k": 0.6666666666666666,
+            "rr_at_k": 0.5,
+            "ap_at_k": 0.5,
+            "dcg_at_k": 1.8927892607143724,
+            "idcg_at_k": 3.0,
+            "ndcg_at_k": 0.6309297535714574,
+            "direct_recall_at_k": 1.0,
+            "all_direct_at_k": true,
+            "no_positive_candidate_returned": null
+          },
+          "generation_status": null
+        },
+        {
+          "query_id": "va-incident-a",
+          "slice": "observed",
+          "candidate_ids": [
+            "D7:timeline:0",
+            "D1:§3:0"
+          ],
+          "candidate_scores_raw": [
+            0.6163150072097778,
+            0.519442081451416
+          ],
+          "context_ids": [
+            "D7:timeline:0",
+            "D1:§3:0"
+          ],
+          "ranking_metrics": {
+            "k": 2,
+            "retrieved_count": 2,
+            "relevant_count": 1,
+            "direct_count": 1,
+            "binary_hits": 1,
+            "direct_hits": 1,
+            "precision_at_k": 0.5,
+            "recall_at_k": 1.0,
+            "hit_at_k": 1,
+            "f1_at_k": 0.6666666666666666,
+            "rr_at_k": 1.0,
+            "ap_at_k": 1.0,
+            "dcg_at_k": 3.0,
+            "idcg_at_k": 3.0,
+            "ndcg_at_k": 1.0,
+            "direct_recall_at_k": 1.0,
+            "all_direct_at_k": true,
+            "no_positive_candidate_returned": null
+          },
+          "generation_status": null
+        },
+        {
+          "query_id": "va-incident-b",
+          "slice": "observed",
+          "candidate_ids": [
+            "D2:§2:0",
+            "D7:timeline:0"
+          ],
+          "candidate_scores_raw": [
+            0.4139290750026703,
+            0.3933800458908081
+          ],
+          "context_ids": [
+            "D2:§2:0",
+            "D7:timeline:0"
+          ],
+          "ranking_metrics": {
+            "k": 2,
+            "retrieved_count": 2,
+            "relevant_count": 1,
+            "direct_count": 1,
+            "binary_hits": 1,
+            "direct_hits": 1,
+            "precision_at_k": 0.5,
+            "recall_at_k": 1.0,
+            "hit_at_k": 1,
+            "f1_at_k": 0.6666666666666666,
+            "rr_at_k": 0.5,
+            "ap_at_k": 0.5,
+            "dcg_at_k": 1.8927892607143724,
+            "idcg_at_k": 3.0,
+            "ndcg_at_k": 0.6309297535714574,
+            "direct_recall_at_k": 1.0,
+            "all_direct_at_k": true,
+            "no_positive_candidate_returned": null
+          },
+          "generation_status": null
+        }
+      ],
+      "summary": {
+        "positive_queries": 4,
+        "zero_positive_queries": 0,
+        "macro_positive_query_mean": {
+          "precision_at_k": 0.5,
+          "recall_at_k": 1.0,
+          "hit_at_k": 1,
+          "f1_at_k": 0.6666666666666666,
+          "rr_at_k": 0.625,
+          "ap_at_k": 0.625,
+          "ndcg_at_k": 0.7231973151785931,
+          "direct_recall_at_k": 1.0,
+          "all_direct_at_k": 1
+        },
+        "micro_recall_at_k": 1.0,
+        "zero_positive_candidate_rate": null
+      },
+      "by_slice": {
+        "observed": {
+          "positive_queries": 2,
+          "zero_positive_queries": 0,
+          "macro_positive_query_mean": {
+            "precision_at_k": 0.5,
+            "recall_at_k": 1.0,
+            "hit_at_k": 1,
+            "f1_at_k": 0.6666666666666666,
+            "rr_at_k": 0.75,
+            "ap_at_k": 0.75,
+            "ndcg_at_k": 0.8154648767857287,
+            "direct_recall_at_k": 1.0,
+            "all_direct_at_k": 1
+          },
+          "micro_recall_at_k": 1.0,
+          "zero_positive_candidate_rate": null
+        },
+        "source_type": {
+          "positive_queries": 2,
+          "zero_positive_queries": 0,
+          "macro_positive_query_mean": {
+            "precision_at_k": 0.5,
+            "recall_at_k": 1.0,
+            "hit_at_k": 1,
+            "f1_at_k": 0.6666666666666666,
+            "rr_at_k": 0.5,
+            "ap_at_k": 0.5,
+            "ndcg_at_k": 0.6309297535714574,
+            "direct_recall_at_k": 1.0,
+            "all_direct_at_k": 1
+          },
+          "micro_recall_at_k": 1.0,
+          "zero_positive_candidate_rate": null
+        }
+      }
+    },
+    "adapted": {
+      "cases": [
+        {
+          "query_id": "va-faq-a",
+          "slice": "source_type",
+          "candidate_ids": [
+            "D2:§2:0",
+            "D3:FAQ-7:0"
+          ],
+          "candidate_scores_raw": [
+            0.4981290400028229,
+            0.38428157567977905
+          ],
+          "context_ids": [
+            "D2:§2:0",
+            "D3:FAQ-7:0"
+          ],
+          "ranking_metrics": {
+            "k": 2,
+            "retrieved_count": 2,
+            "relevant_count": 1,
+            "direct_count": 1,
+            "binary_hits": 1,
+            "direct_hits": 1,
+            "precision_at_k": 0.5,
+            "recall_at_k": 1.0,
+            "hit_at_k": 1,
+            "f1_at_k": 0.6666666666666666,
+            "rr_at_k": 0.5,
+            "ap_at_k": 0.5,
+            "dcg_at_k": 1.8927892607143724,
+            "idcg_at_k": 3.0,
+            "ndcg_at_k": 0.6309297535714574,
+            "direct_recall_at_k": 1.0,
+            "all_direct_at_k": true,
+            "no_positive_candidate_returned": null
+          },
+          "generation_status": null
+        },
+        {
+          "query_id": "va-faq-b",
+          "slice": "source_type",
+          "candidate_ids": [
+            "D2:§2:0",
+            "D3:FAQ-7:0"
+          ],
+          "candidate_scores_raw": [
+            0.35404789447784424,
+            0.3400992155075073
+          ],
+          "context_ids": [
+            "D2:§2:0",
+            "D3:FAQ-7:0"
+          ],
+          "ranking_metrics": {
+            "k": 2,
+            "retrieved_count": 2,
+            "relevant_count": 1,
+            "direct_count": 1,
+            "binary_hits": 1,
+            "direct_hits": 1,
+            "precision_at_k": 0.5,
+            "recall_at_k": 1.0,
+            "hit_at_k": 1,
+            "f1_at_k": 0.6666666666666666,
+            "rr_at_k": 0.5,
+            "ap_at_k": 0.5,
+            "dcg_at_k": 1.8927892607143724,
+            "idcg_at_k": 3.0,
+            "ndcg_at_k": 0.6309297535714574,
+            "direct_recall_at_k": 1.0,
+            "all_direct_at_k": true,
+            "no_positive_candidate_returned": null
+          },
+          "generation_status": null
+        },
+        {
+          "query_id": "va-incident-a",
+          "slice": "observed",
+          "candidate_ids": [
+            "D7:timeline:0",
+            "D1:§3:0"
+          ],
+          "candidate_scores_raw": [
+            0.6116673946380615,
+            0.5141449570655823
+          ],
+          "context_ids": [
+            "D7:timeline:0",
+            "D1:§3:0"
+          ],
+          "ranking_metrics": {
+            "k": 2,
+            "retrieved_count": 2,
+            "relevant_count": 1,
+            "direct_count": 1,
+            "binary_hits": 1,
+            "direct_hits": 1,
+            "precision_at_k": 0.5,
+            "recall_at_k": 1.0,
+            "hit_at_k": 1,
+            "f1_at_k": 0.6666666666666666,
+            "rr_at_k": 1.0,
+            "ap_at_k": 1.0,
+            "dcg_at_k": 3.0,
+            "idcg_at_k": 3.0,
+            "ndcg_at_k": 1.0,
+            "direct_recall_at_k": 1.0,
+            "all_direct_at_k": true,
+            "no_positive_candidate_returned": null
+          },
+          "generation_status": null
+        },
+        {
+          "query_id": "va-incident-b",
+          "slice": "observed",
+          "candidate_ids": [
+            "D2:§2:0",
+            "D7:timeline:0"
+          ],
+          "candidate_scores_raw": [
+            0.4178822934627533,
+            0.38642364740371704
+          ],
+          "context_ids": [
+            "D2:§2:0",
+            "D7:timeline:0"
+          ],
+          "ranking_metrics": {
+            "k": 2,
+            "retrieved_count": 2,
+            "relevant_count": 1,
+            "direct_count": 1,
+            "binary_hits": 1,
+            "direct_hits": 1,
+            "precision_at_k": 0.5,
+            "recall_at_k": 1.0,
+            "hit_at_k": 1,
+            "f1_at_k": 0.6666666666666666,
+            "rr_at_k": 0.5,
+            "ap_at_k": 0.5,
+            "dcg_at_k": 1.8927892607143724,
+            "idcg_at_k": 3.0,
+            "ndcg_at_k": 0.6309297535714574,
+            "direct_recall_at_k": 1.0,
+            "all_direct_at_k": true,
+            "no_positive_candidate_returned": null
+          },
+          "generation_status": null
+        }
+      ],
+      "summary": {
+        "positive_queries": 4,
+        "zero_positive_queries": 0,
+        "macro_positive_query_mean": {
+          "precision_at_k": 0.5,
+          "recall_at_k": 1.0,
+          "hit_at_k": 1,
+          "f1_at_k": 0.6666666666666666,
+          "rr_at_k": 0.625,
+          "ap_at_k": 0.625,
+          "ndcg_at_k": 0.7231973151785931,
+          "direct_recall_at_k": 1.0,
+          "all_direct_at_k": 1
+        },
+        "micro_recall_at_k": 1.0,
+        "zero_positive_candidate_rate": null
+      },
+      "by_slice": {
+        "observed": {
+          "positive_queries": 2,
+          "zero_positive_queries": 0,
+          "macro_positive_query_mean": {
+            "precision_at_k": 0.5,
+            "recall_at_k": 1.0,
+            "hit_at_k": 1,
+            "f1_at_k": 0.6666666666666666,
+            "rr_at_k": 0.75,
+            "ap_at_k": 0.75,
+            "ndcg_at_k": 0.8154648767857287,
+            "direct_recall_at_k": 1.0,
+            "all_direct_at_k": 1
+          },
+          "micro_recall_at_k": 1.0,
+          "zero_positive_candidate_rate": null
+        },
+        "source_type": {
+          "positive_queries": 2,
+          "zero_positive_queries": 0,
+          "macro_positive_query_mean": {
+            "precision_at_k": 0.5,
+            "recall_at_k": 1.0,
+            "hit_at_k": 1,
+            "f1_at_k": 0.6666666666666666,
+            "rr_at_k": 0.5,
+            "ap_at_k": 0.5,
+            "ndcg_at_k": 0.6309297535714574,
+            "direct_recall_at_k": 1.0,
+            "all_direct_at_k": 1
+          },
+          "micro_recall_at_k": 1.0,
+          "zero_positive_candidate_rate": null
+        }
+      }
+    }
+  },
+  "test": {
+    "bm25": {
+      "cases": [
+        {
+          "query_id": "te-basic-a",
+          "slice": "basic",
+          "candidate_ids": [
+            "D9:proposal-2:0",
+            "D4:step-4:0"
+          ],
+          "candidate_scores_raw": [
+            2.607498053735181,
+            1.8169255573209289
+          ],
+          "context_ids": [
+            "D9:proposal-2:0",
+            "D4:step-4:0"
+          ],
+          "ranking_metrics": {
+            "k": 2,
+            "retrieved_count": 2,
+            "relevant_count": 1,
+            "direct_count": 1,
+            "binary_hits": 0,
+            "direct_hits": 0,
+            "precision_at_k": 0.0,
+            "recall_at_k": 0.0,
+            "hit_at_k": 0,
+            "f1_at_k": 0.0,
+            "rr_at_k": 0.0,
+            "ap_at_k": 0.0,
+            "dcg_at_k": 0.0,
+            "idcg_at_k": 3.0,
+            "ndcg_at_k": 0.0,
+            "direct_recall_at_k": 0.0,
+            "all_direct_at_k": false,
+            "no_positive_candidate_returned": null
+          },
+          "generation_status": null
+        },
+        {
+          "query_id": "te-basic-b",
+          "slice": "basic",
+          "candidate_ids": [
+            "D5:§3:0",
+            "D1:§3:0"
+          ],
+          "candidate_scores_raw": [
+            5.730582648796382,
+            2.7408966915370594
+          ],
+          "context_ids": [
+            "D5:§3:0",
+            "D1:§3:0"
+          ],
+          "ranking_metrics": {
+            "k": 2,
+            "retrieved_count": 2,
+            "relevant_count": 1,
+            "direct_count": 1,
+            "binary_hits": 1,
+            "direct_hits": 1,
+            "precision_at_k": 0.5,
+            "recall_at_k": 1.0,
+            "hit_at_k": 1,
+            "f1_at_k": 0.6666666666666666,
+            "rr_at_k": 1.0,
+            "ap_at_k": 1.0,
+            "dcg_at_k": 3.0,
+            "idcg_at_k": 3.0,
+            "ndcg_at_k": 1.0,
+            "direct_recall_at_k": 1.0,
+            "all_direct_at_k": true,
+            "no_positive_candidate_returned": null
+          },
+          "generation_status": null
+        },
+        {
+          "query_id": "te-basic-c",
+          "slice": "basic",
+          "candidate_ids": [
+            "D5:§3:0",
+            "D2:§2:0"
+          ],
+          "candidate_scores_raw": [
+            4.769351450614058,
+            3.5073481880715587
+          ],
+          "context_ids": [
+            "D5:§3:0",
+            "D2:§2:0"
+          ],
+          "ranking_metrics": {
+            "k": 2,
+            "retrieved_count": 2,
+            "relevant_count": 1,
+            "direct_count": 1,
+            "binary_hits": 1,
+            "direct_hits": 1,
+            "precision_at_k": 0.5,
+            "recall_at_k": 1.0,
+            "hit_at_k": 1,
+            "f1_at_k": 0.6666666666666666,
+            "rr_at_k": 1.0,
+            "ap_at_k": 1.0,
+            "dcg_at_k": 3.0,
+            "idcg_at_k": 3.0,
+            "ndcg_at_k": 1.0,
+            "direct_recall_at_k": 1.0,
+            "all_direct_at_k": true,
+            "no_positive_candidate_returned": null
+          },
+          "generation_status": null
+        },
+        {
+          "query_id": "te-atlas-a",
+          "slice": "atlas",
+          "candidate_ids": [
+            "D8:§3:0",
+            "D1:§3:0"
+          ],
+          "candidate_scores_raw": [
+            6.632492802552898,
+            3.6850655423025573
+          ],
+          "context_ids": [
+            "D8:§3:0",
+            "D1:§3:0"
+          ],
+          "ranking_metrics": {
+            "k": 2,
+            "retrieved_count": 2,
+            "relevant_count": 1,
+            "direct_count": 1,
+            "binary_hits": 1,
+            "direct_hits": 1,
+            "precision_at_k": 0.5,
+            "recall_at_k": 1.0,
+            "hit_at_k": 1,
+            "f1_at_k": 0.6666666666666666,
+            "rr_at_k": 1.0,
+            "ap_at_k": 1.0,
+            "dcg_at_k": 3.0,
+            "idcg_at_k": 3.0,
+            "ndcg_at_k": 1.0,
+            "direct_recall_at_k": 1.0,
+            "all_direct_at_k": true,
+            "no_positive_candidate_returned": null
+          },
+          "generation_status": null
+        },
+        {
+          "query_id": "te-atlas-b",
+          "slice": "atlas",
+          "candidate_ids": [
+            "D9:proposal-2:0",
+            "D2:§2:0"
+          ],
+          "candidate_scores_raw": [
+            6.2359189148243805,
+            2.1232002040175653
+          ],
+          "context_ids": [
+            "D9:proposal-2:0",
+            "D2:§2:0"
+          ],
+          "ranking_metrics": {
+            "k": 2,
+            "retrieved_count": 2,
+            "relevant_count": 1,
+            "direct_count": 1,
+            "binary_hits": 0,
+            "direct_hits": 0,
+            "precision_at_k": 0.0,
+            "recall_at_k": 0.0,
+            "hit_at_k": 0,
+            "f1_at_k": 0.0,
+            "rr_at_k": 0.0,
+            "ap_at_k": 0.0,
+            "dcg_at_k": 0.0,
+            "idcg_at_k": 3.0,
+            "ndcg_at_k": 0.0,
+            "direct_recall_at_k": 0.0,
+            "all_direct_at_k": false,
+            "no_positive_candidate_returned": null
+          },
+          "generation_status": null
+        },
+        {
+          "query_id": "te-atlas-c",
+          "slice": "atlas",
+          "candidate_ids": [
+            "D8:§3:0",
+            "D1:§3:0"
+          ],
+          "candidate_scores_raw": [
+            6.4557865411857165,
+            3.500079768472185
+          ],
+          "context_ids": [
+            "D8:§3:0",
+            "D1:§3:0"
+          ],
+          "ranking_metrics": {
+            "k": 2,
+            "retrieved_count": 2,
+            "relevant_count": 1,
+            "direct_count": 1,
+            "binary_hits": 1,
+            "direct_hits": 1,
+            "precision_at_k": 0.5,
+            "recall_at_k": 1.0,
+            "hit_at_k": 1,
+            "f1_at_k": 0.6666666666666666,
+            "rr_at_k": 1.0,
+            "ap_at_k": 1.0,
+            "dcg_at_k": 3.0,
+            "idcg_at_k": 3.0,
+            "ndcg_at_k": 1.0,
+            "direct_recall_at_k": 1.0,
+            "all_direct_at_k": true,
+            "no_positive_candidate_returned": null
+          },
+          "generation_status": null
+        },
+        {
+          "query_id": "te-draft-a",
+          "slice": "draft",
+          "candidate_ids": [
+            "D8:§3:0",
+            "D7:timeline:0"
+          ],
+          "candidate_scores_raw": [
+            3.916932604050232,
+            2.5457739399114905
+          ],
+          "context_ids": [
+            "D8:§3:0",
+            "D7:timeline:0"
+          ],
+          "ranking_metrics": {
+            "k": 2,
+            "retrieved_count": 2,
+            "relevant_count": 1,
+            "direct_count": 1,
+            "binary_hits": 0,
+            "direct_hits": 0,
+            "precision_at_k": 0.0,
+            "recall_at_k": 0.0,
+            "hit_at_k": 0,
+            "f1_at_k": 0.0,
+            "rr_at_k": 0.0,
+            "ap_at_k": 0.0,
+            "dcg_at_k": 0.0,
+            "idcg_at_k": 3.0,
+            "ndcg_at_k": 0.0,
+            "direct_recall_at_k": 0.0,
+            "all_direct_at_k": false,
+            "no_positive_candidate_returned": null
+          },
+          "generation_status": null
+        },
+        {
+          "query_id": "te-draft-b",
+          "slice": "draft",
+          "candidate_ids": [
+            "D9:proposal-2:0",
+            "D1:§3:0"
+          ],
+          "candidate_scores_raw": [
+            8.111021259247503,
+            3.10826370852903
+          ],
+          "context_ids": [
+            "D9:proposal-2:0",
+            "D1:§3:0"
+          ],
+          "ranking_metrics": {
+            "k": 2,
+            "retrieved_count": 2,
+            "relevant_count": 1,
+            "direct_count": 1,
+            "binary_hits": 1,
+            "direct_hits": 1,
+            "precision_at_k": 0.5,
+            "recall_at_k": 1.0,
+            "hit_at_k": 1,
+            "f1_at_k": 0.6666666666666666,
+            "rr_at_k": 1.0,
+            "ap_at_k": 1.0,
+            "dcg_at_k": 3.0,
+            "idcg_at_k": 3.0,
+            "ndcg_at_k": 1.0,
+            "direct_recall_at_k": 1.0,
+            "all_direct_at_k": true,
+            "no_positive_candidate_returned": null
+          },
+          "generation_status": null
+        },
+        {
+          "query_id": "te-draft-c",
+          "slice": "draft",
+          "candidate_ids": [
+            "D9:proposal-2:0",
+            "D1:§3:0"
+          ],
+          "candidate_scores_raw": [
+            7.055832190022784,
+            2.0373063092089696
+          ],
+          "context_ids": [
+            "D9:proposal-2:0",
+            "D1:§3:0"
+          ],
+          "ranking_metrics": {
+            "k": 2,
+            "retrieved_count": 2,
+            "relevant_count": 1,
+            "direct_count": 1,
+            "binary_hits": 1,
+            "direct_hits": 1,
+            "precision_at_k": 0.5,
+            "recall_at_k": 1.0,
+            "hit_at_k": 1,
+            "f1_at_k": 0.6666666666666666,
+            "rr_at_k": 1.0,
+            "ap_at_k": 1.0,
+            "dcg_at_k": 3.0,
+            "idcg_at_k": 3.0,
+            "ndcg_at_k": 1.0,
+            "direct_recall_at_k": 1.0,
+            "all_direct_at_k": true,
+            "no_positive_candidate_returned": null
+          },
+          "generation_status": null
+        },
+        {
+          "query_id": "te-none-a",
+          "slice": "no_eligible_evidence",
+          "candidate_ids": [
+            "D3:FAQ-7:0",
+            "D1:§3:0"
+          ],
+          "candidate_scores_raw": [
+            1.070464227984485,
+            0.9952298657573759
+          ],
+          "context_ids": [
+            "D3:FAQ-7:0",
+            "D1:§3:0"
+          ],
+          "ranking_metrics": {
+            "k": 2,
+            "retrieved_count": 2,
+            "relevant_count": 0,
+            "direct_count": 0,
+            "binary_hits": 0,
+            "direct_hits": 0,
+            "precision_at_k": 0.0,
+            "recall_at_k": null,
+            "hit_at_k": null,
+            "f1_at_k": null,
+            "rr_at_k": null,
+            "ap_at_k": null,
+            "dcg_at_k": 0.0,
+            "idcg_at_k": 0.0,
+            "ndcg_at_k": null,
+            "direct_recall_at_k": null,
+            "all_direct_at_k": null,
+            "no_positive_candidate_returned": true
+          },
+          "generation_status": null
+        },
+        {
+          "query_id": "te-none-b",
+          "slice": "no_eligible_evidence",
+          "candidate_ids": [
+            "D2:§2:0",
+            "D3:FAQ-7:0"
+          ],
+          "candidate_scores_raw": [
+            2.802779618516775,
+            1.070464227984485
+          ],
+          "context_ids": [
+            "D2:§2:0",
+            "D3:FAQ-7:0"
+          ],
+          "ranking_metrics": {
+            "k": 2,
+            "retrieved_count": 2,
+            "relevant_count": 0,
+            "direct_count": 0,
+            "binary_hits": 0,
+            "direct_hits": 0,
+            "precision_at_k": 0.0,
+            "recall_at_k": null,
+            "hit_at_k": null,
+            "f1_at_k": null,
+            "rr_at_k": null,
+            "ap_at_k": null,
+            "dcg_at_k": 0.0,
+            "idcg_at_k": 0.0,
+            "ndcg_at_k": null,
+            "direct_recall_at_k": null,
+            "all_direct_at_k": null,
+            "no_positive_candidate_returned": true
+          },
+          "generation_status": null
+        }
+      ],
+      "summary": {
+        "positive_queries": 9,
+        "zero_positive_queries": 2,
+        "macro_positive_query_mean": {
+          "precision_at_k": 0.3333333333333333,
+          "recall_at_k": 0.6666666666666666,
+          "hit_at_k": 0.6666666666666666,
+          "f1_at_k": 0.4444444444444444,
+          "rr_at_k": 0.6666666666666666,
+          "ap_at_k": 0.6666666666666666,
+          "ndcg_at_k": 0.6666666666666666,
+          "direct_recall_at_k": 0.6666666666666666,
+          "all_direct_at_k": 0.6666666666666666
+        },
+        "micro_recall_at_k": 0.6666666666666666,
+        "zero_positive_candidate_rate": 1
+      },
+      "by_slice": {
+        "atlas": {
+          "positive_queries": 3,
+          "zero_positive_queries": 0,
+          "macro_positive_query_mean": {
+            "precision_at_k": 0.3333333333333333,
+            "recall_at_k": 0.6666666666666666,
+            "hit_at_k": 0.6666666666666666,
+            "f1_at_k": 0.4444444444444444,
+            "rr_at_k": 0.6666666666666666,
+            "ap_at_k": 0.6666666666666666,
+            "ndcg_at_k": 0.6666666666666666,
+            "direct_recall_at_k": 0.6666666666666666,
+            "all_direct_at_k": 0.6666666666666666
+          },
+          "micro_recall_at_k": 0.6666666666666666,
+          "zero_positive_candidate_rate": null
+        },
+        "basic": {
+          "positive_queries": 3,
+          "zero_positive_queries": 0,
+          "macro_positive_query_mean": {
+            "precision_at_k": 0.3333333333333333,
+            "recall_at_k": 0.6666666666666666,
+            "hit_at_k": 0.6666666666666666,
+            "f1_at_k": 0.4444444444444444,
+            "rr_at_k": 0.6666666666666666,
+            "ap_at_k": 0.6666666666666666,
+            "ndcg_at_k": 0.6666666666666666,
+            "direct_recall_at_k": 0.6666666666666666,
+            "all_direct_at_k": 0.6666666666666666
+          },
+          "micro_recall_at_k": 0.6666666666666666,
+          "zero_positive_candidate_rate": null
+        },
+        "draft": {
+          "positive_queries": 3,
+          "zero_positive_queries": 0,
+          "macro_positive_query_mean": {
+            "precision_at_k": 0.3333333333333333,
+            "recall_at_k": 0.6666666666666666,
+            "hit_at_k": 0.6666666666666666,
+            "f1_at_k": 0.4444444444444444,
+            "rr_at_k": 0.6666666666666666,
+            "ap_at_k": 0.6666666666666666,
+            "ndcg_at_k": 0.6666666666666666,
+            "direct_recall_at_k": 0.6666666666666666,
+            "all_direct_at_k": 0.6666666666666666
+          },
+          "micro_recall_at_k": 0.6666666666666666,
+          "zero_positive_candidate_rate": null
+        },
+        "no_eligible_evidence": {
+          "queries": 2,
+          "candidate_return_rate": 1.0
+        }
+      }
+    },
+    "frozen": {
+      "cases": [
+        {
+          "query_id": "te-basic-a",
+          "slice": "basic",
+          "candidate_ids": [
+            "D5:§3:0",
+            "D7:timeline:0"
+          ],
+          "candidate_scores_raw": [
+            0.4564247727394104,
+            0.44932374358177185
+          ],
+          "context_ids": [
+            "D5:§3:0",
+            "D7:timeline:0"
+          ],
+          "ranking_metrics": {
+            "k": 2,
+            "retrieved_count": 2,
+            "relevant_count": 1,
+            "direct_count": 1,
+            "binary_hits": 1,
+            "direct_hits": 1,
+            "precision_at_k": 0.5,
+            "recall_at_k": 1.0,
+            "hit_at_k": 1,
+            "f1_at_k": 0.6666666666666666,
+            "rr_at_k": 1.0,
+            "ap_at_k": 1.0,
+            "dcg_at_k": 3.0,
+            "idcg_at_k": 3.0,
+            "ndcg_at_k": 1.0,
+            "direct_recall_at_k": 1.0,
+            "all_direct_at_k": true,
+            "no_positive_candidate_returned": null
+          },
+          "generation_status": null
+        },
+        {
+          "query_id": "te-basic-b",
+          "slice": "basic",
+          "candidate_ids": [
+            "D3:FAQ-7:0",
+            "D5:§3:0"
+          ],
+          "candidate_scores_raw": [
+            0.8507108688354492,
+            0.8475751876831055
+          ],
+          "context_ids": [
+            "D3:FAQ-7:0",
+            "D5:§3:0"
+          ],
+          "ranking_metrics": {
+            "k": 2,
+            "retrieved_count": 2,
+            "relevant_count": 1,
+            "direct_count": 1,
+            "binary_hits": 1,
+            "direct_hits": 1,
+            "precision_at_k": 0.5,
+            "recall_at_k": 1.0,
+            "hit_at_k": 1,
+            "f1_at_k": 0.6666666666666666,
+            "rr_at_k": 0.5,
+            "ap_at_k": 0.5,
+            "dcg_at_k": 1.8927892607143724,
+            "idcg_at_k": 3.0,
+            "ndcg_at_k": 0.6309297535714574,
+            "direct_recall_at_k": 1.0,
+            "all_direct_at_k": true,
+            "no_positive_candidate_returned": null
+          },
+          "generation_status": null
+        },
+        {
+          "query_id": "te-basic-c",
+          "slice": "basic",
+          "candidate_ids": [
+            "D2:§2:0",
+            "D5:§3:0"
+          ],
+          "candidate_scores_raw": [
+            0.41070473194122314,
+            0.37776437401771545
+          ],
+          "context_ids": [
+            "D2:§2:0",
+            "D5:§3:0"
+          ],
+          "ranking_metrics": {
+            "k": 2,
+            "retrieved_count": 2,
+            "relevant_count": 1,
+            "direct_count": 1,
+            "binary_hits": 1,
+            "direct_hits": 1,
+            "precision_at_k": 0.5,
+            "recall_at_k": 1.0,
+            "hit_at_k": 1,
+            "f1_at_k": 0.6666666666666666,
+            "rr_at_k": 0.5,
+            "ap_at_k": 0.5,
+            "dcg_at_k": 1.8927892607143724,
+            "idcg_at_k": 3.0,
+            "ndcg_at_k": 0.6309297535714574,
+            "direct_recall_at_k": 1.0,
+            "all_direct_at_k": true,
+            "no_positive_candidate_returned": null
+          },
+          "generation_status": null
+        },
+        {
+          "query_id": "te-atlas-a",
+          "slice": "atlas",
+          "candidate_ids": [
+            "D8:§3:0",
+            "D1:§3:0"
+          ],
+          "candidate_scores_raw": [
+            0.7189650535583496,
+            0.5030349493026733
+          ],
+          "context_ids": [
+            "D8:§3:0",
+            "D1:§3:0"
+          ],
+          "ranking_metrics": {
+            "k": 2,
+            "retrieved_count": 2,
+            "relevant_count": 1,
+            "direct_count": 1,
+            "binary_hits": 1,
+            "direct_hits": 1,
+            "precision_at_k": 0.5,
+            "recall_at_k": 1.0,
+            "hit_at_k": 1,
+            "f1_at_k": 0.6666666666666666,
+            "rr_at_k": 1.0,
+            "ap_at_k": 1.0,
+            "dcg_at_k": 3.0,
+            "idcg_at_k": 3.0,
+            "ndcg_at_k": 1.0,
+            "direct_recall_at_k": 1.0,
+            "all_direct_at_k": true,
+            "no_positive_candidate_returned": null
+          },
+          "generation_status": null
+        },
+        {
+          "query_id": "te-atlas-b",
+          "slice": "atlas",
+          "candidate_ids": [
+            "D7:timeline:0",
+            "D9:proposal-2:0"
+          ],
+          "candidate_scores_raw": [
+            0.6511919498443604,
+            0.606749415397644
+          ],
+          "context_ids": [
+            "D7:timeline:0",
+            "D9:proposal-2:0"
+          ],
+          "ranking_metrics": {
+            "k": 2,
+            "retrieved_count": 2,
+            "relevant_count": 1,
+            "direct_count": 1,
+            "binary_hits": 0,
+            "direct_hits": 0,
+            "precision_at_k": 0.0,
+            "recall_at_k": 0.0,
+            "hit_at_k": 0,
+            "f1_at_k": 0.0,
+            "rr_at_k": 0.0,
+            "ap_at_k": 0.0,
+            "dcg_at_k": 0.0,
+            "idcg_at_k": 3.0,
+            "ndcg_at_k": 0.0,
+            "direct_recall_at_k": 0.0,
+            "all_direct_at_k": false,
+            "no_positive_candidate_returned": null
+          },
+          "generation_status": null
+        },
+        {
+          "query_id": "te-atlas-c",
+          "slice": "atlas",
+          "candidate_ids": [
+            "D8:§3:0",
+            "D1:§3:0"
+          ],
+          "candidate_scores_raw": [
+            0.7033175230026245,
+            0.48704084753990173
+          ],
+          "context_ids": [
+            "D8:§3:0",
+            "D1:§3:0"
+          ],
+          "ranking_metrics": {
+            "k": 2,
+            "retrieved_count": 2,
+            "relevant_count": 1,
+            "direct_count": 1,
+            "binary_hits": 1,
+            "direct_hits": 1,
+            "precision_at_k": 0.5,
+            "recall_at_k": 1.0,
+            "hit_at_k": 1,
+            "f1_at_k": 0.6666666666666666,
+            "rr_at_k": 1.0,
+            "ap_at_k": 1.0,
+            "dcg_at_k": 3.0,
+            "idcg_at_k": 3.0,
+            "ndcg_at_k": 1.0,
+            "direct_recall_at_k": 1.0,
+            "all_direct_at_k": true,
+            "no_positive_candidate_returned": null
+          },
+          "generation_status": null
+        },
+        {
+          "query_id": "te-draft-a",
+          "slice": "draft",
+          "candidate_ids": [
+            "D9:proposal-2:0",
+            "D1:§8:0"
+          ],
+          "candidate_scores_raw": [
+            0.6188597679138184,
+            0.6074971556663513
+          ],
+          "context_ids": [
+            "D9:proposal-2:0",
+            "D1:§8:0"
+          ],
+          "ranking_metrics": {
+            "k": 2,
+            "retrieved_count": 2,
+            "relevant_count": 1,
+            "direct_count": 1,
+            "binary_hits": 1,
+            "direct_hits": 1,
+            "precision_at_k": 0.5,
+            "recall_at_k": 1.0,
+            "hit_at_k": 1,
+            "f1_at_k": 0.6666666666666666,
+            "rr_at_k": 1.0,
+            "ap_at_k": 1.0,
+            "dcg_at_k": 3.0,
+            "idcg_at_k": 3.0,
+            "ndcg_at_k": 1.0,
+            "direct_recall_at_k": 1.0,
+            "all_direct_at_k": true,
+            "no_positive_candidate_returned": null
+          },
+          "generation_status": null
+        },
+        {
+          "query_id": "te-draft-b",
+          "slice": "draft",
+          "candidate_ids": [
+            "D9:proposal-2:0",
+            "D1:§8:0"
+          ],
+          "candidate_scores_raw": [
+            0.6525013446807861,
+            0.5797164440155029
+          ],
+          "context_ids": [
+            "D9:proposal-2:0",
+            "D1:§8:0"
+          ],
+          "ranking_metrics": {
+            "k": 2,
+            "retrieved_count": 2,
+            "relevant_count": 1,
+            "direct_count": 1,
+            "binary_hits": 1,
+            "direct_hits": 1,
+            "precision_at_k": 0.5,
+            "recall_at_k": 1.0,
+            "hit_at_k": 1,
+            "f1_at_k": 0.6666666666666666,
+            "rr_at_k": 1.0,
+            "ap_at_k": 1.0,
+            "dcg_at_k": 3.0,
+            "idcg_at_k": 3.0,
+            "ndcg_at_k": 1.0,
+            "direct_recall_at_k": 1.0,
+            "all_direct_at_k": true,
+            "no_positive_candidate_returned": null
+          },
+          "generation_status": null
+        },
+        {
+          "query_id": "te-draft-c",
+          "slice": "draft",
+          "candidate_ids": [
+            "D9:proposal-2:0",
+            "D1:§3:0"
+          ],
+          "candidate_scores_raw": [
+            0.6394075155258179,
+            0.592868447303772
+          ],
+          "context_ids": [
+            "D9:proposal-2:0",
+            "D1:§3:0"
+          ],
+          "ranking_metrics": {
+            "k": 2,
+            "retrieved_count": 2,
+            "relevant_count": 1,
+            "direct_count": 1,
+            "binary_hits": 1,
+            "direct_hits": 1,
+            "precision_at_k": 0.5,
+            "recall_at_k": 1.0,
+            "hit_at_k": 1,
+            "f1_at_k": 0.6666666666666666,
+            "rr_at_k": 1.0,
+            "ap_at_k": 1.0,
+            "dcg_at_k": 3.0,
+            "idcg_at_k": 3.0,
+            "ndcg_at_k": 1.0,
+            "direct_recall_at_k": 1.0,
+            "all_direct_at_k": true,
+            "no_positive_candidate_returned": null
+          },
+          "generation_status": null
+        },
+        {
+          "query_id": "te-none-a",
+          "slice": "no_eligible_evidence",
+          "candidate_ids": [
+            "D2:§2:0",
+            "D3:FAQ-7:0"
+          ],
+          "candidate_scores_raw": [
+            0.35811570286750793,
+            0.3544002175331116
+          ],
+          "context_ids": [
+            "D2:§2:0",
+            "D3:FAQ-7:0"
+          ],
+          "ranking_metrics": {
+            "k": 2,
+            "retrieved_count": 2,
+            "relevant_count": 0,
+            "direct_count": 0,
+            "binary_hits": 0,
+            "direct_hits": 0,
+            "precision_at_k": 0.0,
+            "recall_at_k": null,
+            "hit_at_k": null,
+            "f1_at_k": null,
+            "rr_at_k": null,
+            "ap_at_k": null,
+            "dcg_at_k": 0.0,
+            "idcg_at_k": 0.0,
+            "ndcg_at_k": null,
+            "direct_recall_at_k": null,
+            "all_direct_at_k": null,
+            "no_positive_candidate_returned": true
+          },
+          "generation_status": null
+        },
+        {
+          "query_id": "te-none-b",
+          "slice": "no_eligible_evidence",
+          "candidate_ids": [
+            "D1:§8:0",
+            "D2:§2:0"
+          ],
+          "candidate_scores_raw": [
+            0.315196692943573,
+            0.28055524826049805
+          ],
+          "context_ids": [
+            "D1:§8:0",
+            "D2:§2:0"
+          ],
+          "ranking_metrics": {
+            "k": 2,
+            "retrieved_count": 2,
+            "relevant_count": 0,
+            "direct_count": 0,
+            "binary_hits": 0,
+            "direct_hits": 0,
+            "precision_at_k": 0.0,
+            "recall_at_k": null,
+            "hit_at_k": null,
+            "f1_at_k": null,
+            "rr_at_k": null,
+            "ap_at_k": null,
+            "dcg_at_k": 0.0,
+            "idcg_at_k": 0.0,
+            "ndcg_at_k": null,
+            "direct_recall_at_k": null,
+            "all_direct_at_k": null,
+            "no_positive_candidate_returned": true
+          },
+          "generation_status": null
+        }
+      ],
+      "summary": {
+        "positive_queries": 9,
+        "zero_positive_queries": 2,
+        "macro_positive_query_mean": {
+          "precision_at_k": 0.4444444444444444,
+          "recall_at_k": 0.8888888888888888,
+          "hit_at_k": 0.8888888888888888,
+          "f1_at_k": 0.5925925925925926,
+          "rr_at_k": 0.7777777777777778,
+          "ap_at_k": 0.7777777777777778,
+          "ndcg_at_k": 0.806873278571435,
+          "direct_recall_at_k": 0.8888888888888888,
+          "all_direct_at_k": 0.8888888888888888
+        },
+        "micro_recall_at_k": 0.8888888888888888,
+        "zero_positive_candidate_rate": 1
+      },
+      "by_slice": {
+        "atlas": {
+          "positive_queries": 3,
+          "zero_positive_queries": 0,
+          "macro_positive_query_mean": {
+            "precision_at_k": 0.3333333333333333,
+            "recall_at_k": 0.6666666666666666,
+            "hit_at_k": 0.6666666666666666,
+            "f1_at_k": 0.4444444444444444,
+            "rr_at_k": 0.6666666666666666,
+            "ap_at_k": 0.6666666666666666,
+            "ndcg_at_k": 0.6666666666666666,
+            "direct_recall_at_k": 0.6666666666666666,
+            "all_direct_at_k": 0.6666666666666666
+          },
+          "micro_recall_at_k": 0.6666666666666666,
+          "zero_positive_candidate_rate": null
+        },
+        "basic": {
+          "positive_queries": 3,
+          "zero_positive_queries": 0,
+          "macro_positive_query_mean": {
+            "precision_at_k": 0.5,
+            "recall_at_k": 1.0,
+            "hit_at_k": 1,
+            "f1_at_k": 0.6666666666666666,
+            "rr_at_k": 0.6666666666666666,
+            "ap_at_k": 0.6666666666666666,
+            "ndcg_at_k": 0.7539531690476383,
+            "direct_recall_at_k": 1.0,
+            "all_direct_at_k": 1
+          },
+          "micro_recall_at_k": 1.0,
+          "zero_positive_candidate_rate": null
+        },
+        "draft": {
+          "positive_queries": 3,
+          "zero_positive_queries": 0,
+          "macro_positive_query_mean": {
+            "precision_at_k": 0.5,
+            "recall_at_k": 1.0,
+            "hit_at_k": 1,
+            "f1_at_k": 0.6666666666666666,
+            "rr_at_k": 1.0,
+            "ap_at_k": 1.0,
+            "ndcg_at_k": 1.0,
+            "direct_recall_at_k": 1.0,
+            "all_direct_at_k": 1
+          },
+          "micro_recall_at_k": 1.0,
+          "zero_positive_candidate_rate": null
+        },
+        "no_eligible_evidence": {
+          "queries": 2,
+          "candidate_return_rate": 1.0
+        }
+      }
+    },
+    "adapted": {
+      "cases": [
+        {
+          "query_id": "te-basic-a",
+          "slice": "basic",
+          "candidate_ids": [
+            "D5:§3:0",
+            "D7:timeline:0"
+          ],
+          "candidate_scores_raw": [
+            0.45521682500839233,
+            0.4472631812095642
+          ],
+          "context_ids": [
+            "D5:§3:0",
+            "D7:timeline:0"
+          ],
+          "ranking_metrics": {
+            "k": 2,
+            "retrieved_count": 2,
+            "relevant_count": 1,
+            "direct_count": 1,
+            "binary_hits": 1,
+            "direct_hits": 1,
+            "precision_at_k": 0.5,
+            "recall_at_k": 1.0,
+            "hit_at_k": 1,
+            "f1_at_k": 0.6666666666666666,
+            "rr_at_k": 1.0,
+            "ap_at_k": 1.0,
+            "dcg_at_k": 3.0,
+            "idcg_at_k": 3.0,
+            "ndcg_at_k": 1.0,
+            "direct_recall_at_k": 1.0,
+            "all_direct_at_k": true,
+            "no_positive_candidate_returned": null
+          },
+          "generation_status": null
+        },
+        {
+          "query_id": "te-basic-b",
+          "slice": "basic",
+          "candidate_ids": [
+            "D3:FAQ-7:0",
+            "D5:§3:0"
+          ],
+          "candidate_scores_raw": [
+            0.8477391004562378,
+            0.8428307175636292
+          ],
+          "context_ids": [
+            "D3:FAQ-7:0",
+            "D5:§3:0"
+          ],
+          "ranking_metrics": {
+            "k": 2,
+            "retrieved_count": 2,
+            "relevant_count": 1,
+            "direct_count": 1,
+            "binary_hits": 1,
+            "direct_hits": 1,
+            "precision_at_k": 0.5,
+            "recall_at_k": 1.0,
+            "hit_at_k": 1,
+            "f1_at_k": 0.6666666666666666,
+            "rr_at_k": 0.5,
+            "ap_at_k": 0.5,
+            "dcg_at_k": 1.8927892607143724,
+            "idcg_at_k": 3.0,
+            "ndcg_at_k": 0.6309297535714574,
+            "direct_recall_at_k": 1.0,
+            "all_direct_at_k": true,
+            "no_positive_candidate_returned": null
+          },
+          "generation_status": null
+        },
+        {
+          "query_id": "te-basic-c",
+          "slice": "basic",
+          "candidate_ids": [
+            "D2:§2:0",
+            "D5:§3:0"
+          ],
+          "candidate_scores_raw": [
+            0.4117315411567688,
+            0.3737921118736267
+          ],
+          "context_ids": [
+            "D2:§2:0",
+            "D5:§3:0"
+          ],
+          "ranking_metrics": {
+            "k": 2,
+            "retrieved_count": 2,
+            "relevant_count": 1,
+            "direct_count": 1,
+            "binary_hits": 1,
+            "direct_hits": 1,
+            "precision_at_k": 0.5,
+            "recall_at_k": 1.0,
+            "hit_at_k": 1,
+            "f1_at_k": 0.6666666666666666,
+            "rr_at_k": 0.5,
+            "ap_at_k": 0.5,
+            "dcg_at_k": 1.8927892607143724,
+            "idcg_at_k": 3.0,
+            "ndcg_at_k": 0.6309297535714574,
+            "direct_recall_at_k": 1.0,
+            "all_direct_at_k": true,
+            "no_positive_candidate_returned": null
+          },
+          "generation_status": null
+        },
+        {
+          "query_id": "te-atlas-a",
+          "slice": "atlas",
+          "candidate_ids": [
+            "D8:§3:0",
+            "D1:§3:0"
+          ],
+          "candidate_scores_raw": [
+            0.7140369415283203,
+            0.49739623069763184
+          ],
+          "context_ids": [
+            "D8:§3:0",
+            "D1:§3:0"
+          ],
+          "ranking_metrics": {
+            "k": 2,
+            "retrieved_count": 2,
+            "relevant_count": 1,
+            "direct_count": 1,
+            "binary_hits": 1,
+            "direct_hits": 1,
+            "precision_at_k": 0.5,
+            "recall_at_k": 1.0,
+            "hit_at_k": 1,
+            "f1_at_k": 0.6666666666666666,
+            "rr_at_k": 1.0,
+            "ap_at_k": 1.0,
+            "dcg_at_k": 3.0,
+            "idcg_at_k": 3.0,
+            "ndcg_at_k": 1.0,
+            "direct_recall_at_k": 1.0,
+            "all_direct_at_k": true,
+            "no_positive_candidate_returned": null
+          },
+          "generation_status": null
+        },
+        {
+          "query_id": "te-atlas-b",
+          "slice": "atlas",
+          "candidate_ids": [
+            "D7:timeline:0",
+            "D9:proposal-2:0"
+          ],
+          "candidate_scores_raw": [
+            0.6436636447906494,
+            0.6029353737831116
+          ],
+          "context_ids": [
+            "D7:timeline:0",
+            "D9:proposal-2:0"
+          ],
+          "ranking_metrics": {
+            "k": 2,
+            "retrieved_count": 2,
+            "relevant_count": 1,
+            "direct_count": 1,
+            "binary_hits": 0,
+            "direct_hits": 0,
+            "precision_at_k": 0.0,
+            "recall_at_k": 0.0,
+            "hit_at_k": 0,
+            "f1_at_k": 0.0,
+            "rr_at_k": 0.0,
+            "ap_at_k": 0.0,
+            "dcg_at_k": 0.0,
+            "idcg_at_k": 3.0,
+            "ndcg_at_k": 0.0,
+            "direct_recall_at_k": 0.0,
+            "all_direct_at_k": false,
+            "no_positive_candidate_returned": null
+          },
+          "generation_status": null
+        },
+        {
+          "query_id": "te-atlas-c",
+          "slice": "atlas",
+          "candidate_ids": [
+            "D8:§3:0",
+            "D1:§3:0"
+          ],
+          "candidate_scores_raw": [
+            0.7045812606811523,
+            0.48808541893959045
+          ],
+          "context_ids": [
+            "D8:§3:0",
+            "D1:§3:0"
+          ],
+          "ranking_metrics": {
+            "k": 2,
+            "retrieved_count": 2,
+            "relevant_count": 1,
+            "direct_count": 1,
+            "binary_hits": 1,
+            "direct_hits": 1,
+            "precision_at_k": 0.5,
+            "recall_at_k": 1.0,
+            "hit_at_k": 1,
+            "f1_at_k": 0.6666666666666666,
+            "rr_at_k": 1.0,
+            "ap_at_k": 1.0,
+            "dcg_at_k": 3.0,
+            "idcg_at_k": 3.0,
+            "ndcg_at_k": 1.0,
+            "direct_recall_at_k": 1.0,
+            "all_direct_at_k": true,
+            "no_positive_candidate_returned": null
+          },
+          "generation_status": null
+        },
+        {
+          "query_id": "te-draft-a",
+          "slice": "draft",
+          "candidate_ids": [
+            "D9:proposal-2:0",
+            "D1:§8:0"
+          ],
+          "candidate_scores_raw": [
+            0.6114077568054199,
+            0.5997637510299683
+          ],
+          "context_ids": [
+            "D9:proposal-2:0",
+            "D1:§8:0"
+          ],
+          "ranking_metrics": {
+            "k": 2,
+            "retrieved_count": 2,
+            "relevant_count": 1,
+            "direct_count": 1,
+            "binary_hits": 1,
+            "direct_hits": 1,
+            "precision_at_k": 0.5,
+            "recall_at_k": 1.0,
+            "hit_at_k": 1,
+            "f1_at_k": 0.6666666666666666,
+            "rr_at_k": 1.0,
+            "ap_at_k": 1.0,
+            "dcg_at_k": 3.0,
+            "idcg_at_k": 3.0,
+            "ndcg_at_k": 1.0,
+            "direct_recall_at_k": 1.0,
+            "all_direct_at_k": true,
+            "no_positive_candidate_returned": null
+          },
+          "generation_status": null
+        },
+        {
+          "query_id": "te-draft-b",
+          "slice": "draft",
+          "candidate_ids": [
+            "D9:proposal-2:0",
+            "D1:§8:0"
+          ],
+          "candidate_scores_raw": [
+            0.6415688395500183,
+            0.5637446641921997
+          ],
+          "context_ids": [
+            "D9:proposal-2:0",
+            "D1:§8:0"
+          ],
+          "ranking_metrics": {
+            "k": 2,
+            "retrieved_count": 2,
+            "relevant_count": 1,
+            "direct_count": 1,
+            "binary_hits": 1,
+            "direct_hits": 1,
+            "precision_at_k": 0.5,
+            "recall_at_k": 1.0,
+            "hit_at_k": 1,
+            "f1_at_k": 0.6666666666666666,
+            "rr_at_k": 1.0,
+            "ap_at_k": 1.0,
+            "dcg_at_k": 3.0,
+            "idcg_at_k": 3.0,
+            "ndcg_at_k": 1.0,
+            "direct_recall_at_k": 1.0,
+            "all_direct_at_k": true,
+            "no_positive_candidate_returned": null
+          },
+          "generation_status": null
+        },
+        {
+          "query_id": "te-draft-c",
+          "slice": "draft",
+          "candidate_ids": [
+            "D9:proposal-2:0",
+            "D2:§2:0"
+          ],
+          "candidate_scores_raw": [
+            0.6333849430084229,
+            0.586551308631897
+          ],
+          "context_ids": [
+            "D9:proposal-2:0",
+            "D2:§2:0"
+          ],
+          "ranking_metrics": {
+            "k": 2,
+            "retrieved_count": 2,
+            "relevant_count": 1,
+            "direct_count": 1,
+            "binary_hits": 1,
+            "direct_hits": 1,
+            "precision_at_k": 0.5,
+            "recall_at_k": 1.0,
+            "hit_at_k": 1,
+            "f1_at_k": 0.6666666666666666,
+            "rr_at_k": 1.0,
+            "ap_at_k": 1.0,
+            "dcg_at_k": 3.0,
+            "idcg_at_k": 3.0,
+            "ndcg_at_k": 1.0,
+            "direct_recall_at_k": 1.0,
+            "all_direct_at_k": true,
+            "no_positive_candidate_returned": null
+          },
+          "generation_status": null
+        },
+        {
+          "query_id": "te-none-a",
+          "slice": "no_eligible_evidence",
+          "candidate_ids": [
+            "D2:§2:0",
+            "D3:FAQ-7:0"
+          ],
+          "candidate_scores_raw": [
+            0.351792573928833,
+            0.3496261239051819
+          ],
+          "context_ids": [
+            "D2:§2:0",
+            "D3:FAQ-7:0"
+          ],
+          "ranking_metrics": {
+            "k": 2,
+            "retrieved_count": 2,
+            "relevant_count": 0,
+            "direct_count": 0,
+            "binary_hits": 0,
+            "direct_hits": 0,
+            "precision_at_k": 0.0,
+            "recall_at_k": null,
+            "hit_at_k": null,
+            "f1_at_k": null,
+            "rr_at_k": null,
+            "ap_at_k": null,
+            "dcg_at_k": 0.0,
+            "idcg_at_k": 0.0,
+            "ndcg_at_k": null,
+            "direct_recall_at_k": null,
+            "all_direct_at_k": null,
+            "no_positive_candidate_returned": true
+          },
+          "generation_status": null
+        },
+        {
+          "query_id": "te-none-b",
+          "slice": "no_eligible_evidence",
+          "candidate_ids": [
+            "D1:§8:0",
+            "D2:§2:0"
+          ],
+          "candidate_scores_raw": [
+            0.3237351179122925,
+            0.28241223096847534
+          ],
+          "context_ids": [
+            "D1:§8:0",
+            "D2:§2:0"
+          ],
+          "ranking_metrics": {
+            "k": 2,
+            "retrieved_count": 2,
+            "relevant_count": 0,
+            "direct_count": 0,
+            "binary_hits": 0,
+            "direct_hits": 0,
+            "precision_at_k": 0.0,
+            "recall_at_k": null,
+            "hit_at_k": null,
+            "f1_at_k": null,
+            "rr_at_k": null,
+            "ap_at_k": null,
+            "dcg_at_k": 0.0,
+            "idcg_at_k": 0.0,
+            "ndcg_at_k": null,
+            "direct_recall_at_k": null,
+            "all_direct_at_k": null,
+            "no_positive_candidate_returned": true
+          },
+          "generation_status": null
+        }
+      ],
+      "summary": {
+        "positive_queries": 9,
+        "zero_positive_queries": 2,
+        "macro_positive_query_mean": {
+          "precision_at_k": 0.4444444444444444,
+          "recall_at_k": 0.8888888888888888,
+          "hit_at_k": 0.8888888888888888,
+          "f1_at_k": 0.5925925925925926,
+          "rr_at_k": 0.7777777777777778,
+          "ap_at_k": 0.7777777777777778,
+          "ndcg_at_k": 0.806873278571435,
+          "direct_recall_at_k": 0.8888888888888888,
+          "all_direct_at_k": 0.8888888888888888
+        },
+        "micro_recall_at_k": 0.8888888888888888,
+        "zero_positive_candidate_rate": 1
+      },
+      "by_slice": {
+        "atlas": {
+          "positive_queries": 3,
+          "zero_positive_queries": 0,
+          "macro_positive_query_mean": {
+            "precision_at_k": 0.3333333333333333,
+            "recall_at_k": 0.6666666666666666,
+            "hit_at_k": 0.6666666666666666,
+            "f1_at_k": 0.4444444444444444,
+            "rr_at_k": 0.6666666666666666,
+            "ap_at_k": 0.6666666666666666,
+            "ndcg_at_k": 0.6666666666666666,
+            "direct_recall_at_k": 0.6666666666666666,
+            "all_direct_at_k": 0.6666666666666666
+          },
+          "micro_recall_at_k": 0.6666666666666666,
+          "zero_positive_candidate_rate": null
+        },
+        "basic": {
+          "positive_queries": 3,
+          "zero_positive_queries": 0,
+          "macro_positive_query_mean": {
+            "precision_at_k": 0.5,
+            "recall_at_k": 1.0,
+            "hit_at_k": 1,
+            "f1_at_k": 0.6666666666666666,
+            "rr_at_k": 0.6666666666666666,
+            "ap_at_k": 0.6666666666666666,
+            "ndcg_at_k": 0.7539531690476383,
+            "direct_recall_at_k": 1.0,
+            "all_direct_at_k": 1
+          },
+          "micro_recall_at_k": 1.0,
+          "zero_positive_candidate_rate": null
+        },
+        "draft": {
+          "positive_queries": 3,
+          "zero_positive_queries": 0,
+          "macro_positive_query_mean": {
+            "precision_at_k": 0.5,
+            "recall_at_k": 1.0,
+            "hit_at_k": 1,
+            "f1_at_k": 0.6666666666666666,
+            "rr_at_k": 1.0,
+            "ap_at_k": 1.0,
+            "ndcg_at_k": 1.0,
+            "direct_recall_at_k": 1.0,
+            "all_direct_at_k": 1
+          },
+          "micro_recall_at_k": 1.0,
+          "zero_positive_candidate_rate": null
+        },
+        "no_eligible_evidence": {
+          "queries": 2,
+          "candidate_return_rate": 1.0
+        }
+      }
+    }
+  },
+  "test_timing": {
+    "bm25": {
+      "samples_us": [
+        22.1,
+        19.5,
+        27.9,
+        24.1,
+        29.3,
+        17.0,
+        16.0,
+        21.7,
+        28.0,
+        19.7,
+        25.9,
+        23.8,
+        29.4,
+        18.9,
+        20.0,
+        21.5,
+        16.1,
+        26.7,
+        15.4,
+        27.0,
+        18.3,
+        28.9,
+        26.8,
+        21.5,
+        18.5,
+        33.1,
+        15.0,
+        19.6,
+        26.1,
+        28.6,
+        16.7,
+        16.6,
+        28.0,
+        27.7,
+        28.2,
+        15.3,
+        26.1,
+        15.0,
+        25.4,
+        17.0,
+        21.4,
+        23.3,
+        17.9,
+        68.8,
+        16.3,
+        19.8,
+        39.4,
+        23.1,
+        27.2,
+        28.4,
+        46.9,
+        16.9,
+        18.4,
+        24.8,
+        20.4
+      ],
+      "p50_us": 22.1,
+      "p95_us": 39.4,
+      "by_slice": {
+        "no_eligible_evidence": {
+          "samples": 10,
+          "p50_us": 16.6,
+          "p95_us": 22.1
+        },
+        "atlas": {
+          "samples": 15,
+          "p50_us": 21.5,
+          "p95_us": 39.4
+        },
+        "basic": {
+          "samples": 15,
+          "p50_us": 20.0,
+          "p95_us": 68.8
+        },
+        "draft": {
+          "samples": 15,
+          "p50_us": 26.7,
+          "p95_us": 46.9
+        }
+      }
+    },
+    "frozen": {
+      "samples_us": [
+        8525.9,
+        7459.0,
+        8674.4,
+        7976.6,
+        7739.2,
+        7695.0,
+        9621.8,
+        6758.2,
+        8448.4,
+        7423.4,
+        7533.3,
+        7665.6,
+        6648.2,
+        6345.8,
+        8293.3,
+        7581.8,
+        9195.9,
+        7500.6,
+        6730.6,
+        7851.5,
+        7282.8,
+        7785.7,
+        8464.3,
+        7474.0,
+        9875.4,
+        6533.5,
+        9787.7,
+        8932.8,
+        9078.3,
+        7669.1,
+        7875.3,
+        7367.4,
+        7280.2,
+        8383.0,
+        8855.6,
+        8340.6,
+        7485.0,
+        8509.3,
+        8127.0,
+        7539.0,
+        7786.7,
+        8669.5,
+        7445.8,
+        8297.8,
+        8608.0,
+        8965.0,
+        7126.2,
+        7902.1,
+        8245.3,
+        8251.7,
+        8037.7,
+        7652.2,
+        9405.1,
+        8293.1,
+        8507.9
+      ],
+      "p50_us": 7902.1,
+      "p95_us": 9621.8,
+      "by_slice": {
+        "draft": {
+          "samples": 15,
+          "p50_us": 7739.2,
+          "p95_us": 9875.4
+        },
+        "atlas": {
+          "samples": 15,
+          "p50_us": 7581.8,
+          "p95_us": 9405.1
+        },
+        "basic": {
+          "samples": 15,
+          "p50_us": 8251.7,
+          "p95_us": 9787.7
+        },
+        "no_eligible_evidence": {
+          "samples": 10,
+          "p50_us": 7786.7,
+          "p95_us": 8932.8
+        }
+      }
+    },
+    "adapted": {
+      "samples_us": [
+        6985.2,
+        7156.6,
+        7906.3,
+        9043.3,
+        8048.8,
+        6556.0,
+        10507.5,
+        8170.5,
+        9204.7,
+        7901.7,
+        9817.7,
+        7799.6,
+        7639.9,
+        10169.1,
+        9209.5,
+        7912.2,
+        7426.6,
+        8972.5,
+        7481.0,
+        8529.4,
+        7632.5,
+        7498.2,
+        7870.0,
+        8817.3,
+        7933.0,
+        9404.9,
+        8914.0,
+        9436.5,
+        8153.7,
+        9163.1,
+        8726.9,
+        8481.6,
+        6974.4,
+        7736.8,
+        7141.0,
+        9283.6,
+        10038.8,
+        7882.8,
+        9236.7,
+        7614.9,
+        9223.4,
+        8151.2,
+        7442.2,
+        9698.0,
+        7705.2,
+        10016.2,
+        9192.3,
+        7408.7,
+        8142.2,
+        8807.8,
+        9028.6,
+        6978.1,
+        10270.1,
+        8241.9,
+        7811.9
+      ],
+      "p50_us": 8153.7,
+      "p95_us": 10169.1,
+      "by_slice": {
+        "draft": {
+          "samples": 15,
+          "p50_us": 7933.0,
+          "p95_us": 9698.0
+        },
+        "atlas": {
+          "samples": 15,
+          "p50_us": 7870.0,
+          "p95_us": 9283.6
+        },
+        "basic": {
+          "samples": 15,
+          "p50_us": 9043.3,
+          "p95_us": 10507.5
+        },
+        "no_eligible_evidence": {
+          "samples": 10,
+          "p50_us": 8481.6,
+          "p95_us": 10169.1
+        }
+      }
+    }
+  },
+  "timing_policy": "5 warmed CPU samples per test query/method, method-specific query encode plus exact score or BM25 search; excludes model load, passage build, training and context. Local microbenchmarks are not production tails.",
+  "candidate_context_answer_policy": "Candidate IDs/scores, selected context IDs and absent generation labels are separate. No answer generator was run on the new split.",
+  "failure_examples": [
+    "te-atlas-b: all three routes omit the signed Atlas contract from top two; dense routes choose observed incident and unsigned draft",
+    "te-none-a and te-none-b: every route returns candidates despite no eligible evidence",
+    "later adapter checkpoints fit train pairs while validation Recall@2 falls to zero"
+  ],
+  "conclusion": "The selected adapter ties the frozen encoder on held-out Recall@2 and NDCG@2; the hypothesized gain is not observed.",
+  "decision": "Reject the adapter as a replacement on this evidence; preserve it as a training and over-specialization demonstration.",
+  "hash_policy": "SHA256 UTF-8 bytes with CRLF normalized to LF",
+  "corpus_sha256": "ee0c2ee166bd2124079f04150cceeb48a8b3df06d1d8414e97f5de2bec423b16",
+  "qrels_sha256": "16975e5542893a3fd07ab493dc0d945f04fcca9ad493f0dd5b6cfafd5379a68a",
+  "experiment_code_sha256": "f66d1467321bec74abbe6c1453f5f3c7b3150a8e5315d18ddab8f59775f08caa",
+  "environment": {
+    "python": "3.14.2",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "torch": "2.10.0+cpu"
+  },
+  "limitations": [
+    "One author created and graded all fictional questions while knowing the source facts and prior failures; no independent assessment.",
+    "Ten authored training queries and nine positive held-out test queries span only three test documents; no statistical generalization claim.",
+    "Source-disjoint targets prevent document-identity leakage but test documents are still embedded into the retrieval index as production would require; related Helios wording crosses documents.",
+    "Only a query-side low-rank adapter is trained; the transformer and passage encoder are frozen, so this is not full dual-encoder fine-tuning.",
+    "The English-only fixture cannot measure multilingual or cross-lingual transfer.",
+    "No answer generator runs; answer quality, calibration, live authorization, ANN scale and production latency remain untested."
+  ]
+}

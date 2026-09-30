@@ -154,6 +154,7 @@ The core question evolves throughout: **Which evidence enters the LLM's context,
 
 #### Chapter 12 — Retriever training and domain adaptation
 
+- **Authored materials:** [Chapter](chapters/chapter-12-retriever-training-and-domain-adaptation.md) · [Lab](labs/chapter-12/LAB.md) · [Solutions](solutions/chapter-12-solutions.md) · [V3 adaptation stage](projects/V3/README.md).
 - **Objective:** Train or adapt a dual encoder, then test whether the gain survives domain and language shifts.
 - **Prerequisites:** Chapters 09–11 and relevance judgments in Chapter 09.
 - **Section 1 — Training signal.** Topic: pairs and objectives; micro-concepts: queries and passages, positives, explicit/in-batch/mined/hard negatives, false negatives, weak supervision, teacher labels, synthetic query generation, softmax/InfoNCE, temperature, triplet/margin losses, pairwise/listwise variants and score distributions

@@ -55,6 +55,8 @@ flowchart LR
 | Observability | request → correlated trace → stage logs/metrics → versioned quality evaluations → dashboard → alert → incident diagnosis | A failure is visible only as a bad answer or a generic timeout. |
 | Improvement loop | offline evaluation → regression gate → canary/deployment → online monitoring → drift detection → reviewed new offline dataset | A frozen benchmark stays green while the real workload deteriorates. |
 
+Chapter 12 makes the retriever-learning branch executable in [V3](projects/V3/README.md): source-disjoint training pairs update a query projection; validation qrels choose its checkpoint; held-out test qrels judge it against the frozen encoder and BM25. The indexed search corpus contains all eligible source documents, while the gradient and checkpoint paths use only their assigned label splits. Falling training loss alongside collapsing validation quality is the concrete dependency warning before Chapter 13's retrieval operations.
+
 ```mermaid
 flowchart LR
   Req[Request] --> Trace[Correlated trace]

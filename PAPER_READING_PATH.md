@@ -21,6 +21,7 @@ This is a curriculum, not an instruction to read every paper. **CORE** papers an
 | IMPORTANT | [ANCE](https://arxiv.org/abs/2007.00808), Xiong et al., 2020 | ANN-mined negatives during retriever learning; inspect distribution mismatch, stale indexes and false negatives. |
 | IMPORTANT | [RocketQA](https://arxiv.org/abs/2010.08191), Qu et al., 2020 | Cross-batch negatives, denoising and augmentation; test whether more difficult negatives help without contaminating labels. |
 | OPTIONAL | [Optimizing Dense Retrieval Model Training with Hard Negatives](https://arxiv.org/abs/2104.08051), Zhan et al., 2021 | Static vs dynamic hard-negative mining; trace the stability/quality trade-off. |
+| IMPORTANT | [Generative Pseudo Labeling](https://arxiv.org/abs/2112.07577), Wang et al., 2021 | Synthetic domain questions and cross-encoder pseudo-labels; separate teacher error from tested relevance and read after Chapter 12. |
 
 ## Track C — Retrieval benchmarks (after Chapters 12 and 33)
 
