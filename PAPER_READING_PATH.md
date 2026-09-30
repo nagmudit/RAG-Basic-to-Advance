@@ -12,7 +12,7 @@ This is a curriculum, not an instruction to read every paper. **CORE** papers an
 | IMPORTANT | [Faster Top-k Document Retrieval Using Block-Max Indexes](https://research.engineering.nyu.edu/~suel/papers/bmw.pdf), Ding & Suel, 2011 | Safe block upper bounds and early termination: how can the same top-k be returned after scoring fewer documents? Compare with Chapter 08's toy pruner. |
 | IMPORTANT | [TREC: An Overview](https://www.nist.gov/publications/trec-overview), NIST / Voorhees, 2006 | Test collections and relevance judgments: why do pooling and task definitions affect claims of retrieval quality? |
 
-## Track B — Dense retrieval and retriever training (after Chapters 10–13)
+## Track B — Dense retrieval and retriever training (core papers after Chapter 11; mining papers after Chapters 12–13)
 
 | Tier | Paper | Mechanism and reading question |
 |---|---|---|

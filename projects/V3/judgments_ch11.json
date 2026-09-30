@@ -1,0 +1,39 @@
+{
+  "version": "ch11-frozen-encoder-probe-v1",
+  "review_date": "2026-09-30",
+  "corpus_snapshot": "support-corpus-2026-05-20",
+  "scope_fixture": "support-team",
+  "retrieval_unit": "indexed_segment",
+  "review_method": "One author reviewed every one of the twelve support-team eligible indexed segments for each of seventeen newly worded fictional questions before running the frozen encoder. The author knew the source corpus and earlier lexical failures. No model outputs were used to select or revise questions. This is a small diagnostic probe, not an independently assessed or held-out benchmark.",
+  "grade_policy": {
+    "0": "Reviewed; does not help answer or identify the requested eligible source under this snapshot.",
+    "1": "Useful but incomplete or a partial segment for the requested action.",
+    "2": "Direct eligible segment containing the requested fact or named locator; the named segment is the target for exact-ID requests."
+  },
+  "binary_relevant_at_or_above": 1,
+  "zero_policy": "Every eligible ID not named in grade_1 or grade_2 was individually reviewed and assigned grade 0. The legal-only D10 is outside the support-team roster, not a zero-grade eligible document.",
+  "eligible_segment_ids": [
+    "D1:§3:0", "D1:§8:0", "D2:§2:0", "D3:FAQ-7:0",
+    "D4:step-4:0", "D4:step-4:1", "D4:step-4:2", "D5:§3:0",
+    "D6:row-2:0", "D7:timeline:0", "D8:§3:0", "D9:proposal-2:0"
+  ],
+  "queries": [
+    {"query_id": "p-cancel", "question": "How can one side cancel the support contract with written warning?", "slice": "paraphrase", "grade_2": ["D1:§8:0"], "grade_1": [], "rationale": "The signed agreement termination clause establishes either party and 30 days' written notice."},
+    {"query_id": "p-fee", "question": "What is the yearly pre-tax price for Helios Pro help?", "slice": "paraphrase", "grade_2": ["D6:row-2:0"], "grade_1": [], "rationale": "The price-sheet row gives the annual support fee and tax status."},
+    {"query_id": "p-shared", "question": "Who needs an alert when several systems fail because of one common component?", "slice": "paraphrase", "grade_2": ["D4:step-4:1"], "grade_1": [], "rationale": "The second runbook window says to notify the incident commander for a shared dependency."},
+    {"query_id": "p-owner", "question": "Where are the actions, their effects, and the next responsible person written down?", "slice": "paraphrase", "grade_2": ["D4:step-4:2"], "grade_1": [], "rationale": "The third runbook window names action, observed effect, next owner and timeline."},
+    {"query_id": "p-observed", "question": "What was the actual elapsed first-response time in the incident report?", "slice": "paraphrase", "grade_2": ["D7:timeline:0"], "grade_1": [], "rationale": "The incident report states an observed two hours; contract targets and drafts are different facts."},
+    {"query_id": "p-arrival", "question": "When an emergency comes in, what are the first things the on-call person does?", "slice": "paraphrase", "grade_2": ["D4:step-4:0"], "grade_1": [], "rationale": "The first runbook window covers arrival, impact, page acknowledgment and bridge."},
+    {"query_id": "p-change-log", "question": "What should responders inspect before they modify the service setup?", "slice": "paraphrase", "grade_2": ["D4:step-4:1"], "grade_1": ["D4:step-4:0"], "rationale": "The second runbook window specifies affected region and change log; the first ends after 'Before changing service' and is partial context."},
+    {"query_id": "p-basic", "question": "For the Basic tier, what response commitment applies to a severe incident?", "slice": "paraphrase", "grade_2": ["D5:§3:0"], "grade_1": [], "rationale": "The Helios Basic signed agreement supplies its eight-hour target; Pro and Atlas are other products."},
+    {"query_id": "i-segment", "question": "Find indexed segment D1:§8:0.", "slice": "exact_identifier", "grade_2": ["D1:§8:0"], "grade_1": [], "rationale": "The requested literal segment ID identifies the termination clause; the ID is metadata and was not inserted into either retriever's searchable text."},
+    {"query_id": "i-price-id", "question": "Find source D6:row-2:0.", "slice": "exact_identifier", "grade_2": ["D6:row-2:0"], "grade_1": [], "rationale": "The literal segment ID identifies the price row; neither current text representation indexes this ID as a term."},
+    {"query_id": "i-price-number", "question": "Which price record states 12000 credits?", "slice": "exact_identifier", "grade_2": ["D6:row-2:0"], "grade_1": [], "rationale": "The price row contains the exact numeric amount and unit."},
+    {"query_id": "i-atlas", "question": "What is the Atlas Pro Sev-1 first response target?", "slice": "exact_identifier", "grade_2": ["D8:§3:0"], "grade_1": [], "rationale": "The Atlas Pro agreement gives its two-hour target; Helios records have similar wording for different products."},
+    {"query_id": "i-date", "question": "Which signed change took effect on 15 May 2026?", "slice": "exact_identifier", "grade_2": ["D2:§2:0"], "grade_1": [], "rationale": "The signed amendment says the replacement target became effective on that date."},
+    {"query_id": "i-proposal", "question": "Find the unsigned Helios Pro proposal suggesting a two-hour Sev-1 target.", "slice": "exact_identifier", "grade_2": ["D9:proposal-2:0"], "grade_1": [], "rationale": "The question explicitly requests the draft proposal; its unsigned status is part of the target, not a reason to substitute a signed record."},
+    {"query_id": "n-sku", "question": "Where is support SKU ZX-991 defined?", "slice": "no_eligible_evidence", "grade_2": [], "grade_1": [], "rationale": "No eligible source defines this invented SKU."},
+    {"query_id": "n-private", "question": "What thirty-minute target is in the private Helios Pro addendum?", "slice": "no_eligible_evidence", "grade_2": [], "grade_1": [], "rationale": "Only D10 mentions the private target; D10 is legal-only and not an eligible support-team candidate."},
+    {"query_id": "n-renewal", "question": "Give the renewal identifier for the Nebula X support plan.", "slice": "no_eligible_evidence", "grade_2": [], "grade_1": [], "rationale": "No eligible Nebula X renewal source exists; generic support wording is not evidence."}
+  ]
+}

@@ -142,6 +142,7 @@ The core question evolves throughout: **Which evidence enters the LLM's context,
 
 #### Chapter 11 — How embedding models learn retrieval spaces
 
+- **Authored materials:** [Chapter](chapters/chapter-11-how-embedding-models-learn-retrieval-spaces.md) · [Lab](labs/chapter-11/LAB.md) · [Solutions](solutions/chapter-11-solutions.md) · [V3 frozen-encoder stage](projects/V3/README.md).
 - **Objective:** Explain what an encoder maps into a vector and how training makes proximity useful.
 - **Prerequisites:** Chapters 04 and 10.
 - **Section 1 — Representations.** Topic: embedding pipeline; micro-concepts: word vs contextual token vs sentence/document vectors, pooling, bi-encoder/dual-encoder, query/document asymmetry, instruction prefixes, multilingual and domain shift.
