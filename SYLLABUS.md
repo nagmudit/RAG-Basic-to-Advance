@@ -168,6 +168,7 @@ The core question evolves throughout: **Which evidence enters the LLM's context,
 
 #### Chapter 13 — Dense candidate retrieval in practice
 
+- **Authored materials:** [Chapter](chapters/chapter-13-dense-candidate-retrieval-in-practice.md) · [Lab](labs/chapter-13/LAB.md) · [Solutions](solutions/chapter-13-solutions.md) · [V3 materialized exact-dense stage](projects/V3/README.md).
 - **Objective:** Build a dense index and diagnose representation, metric, and domain failures.
 - **Prerequisites:** Chapters 09–11.
 - **Section 1 — Indexing and querying.** Topic: pipeline; micro-concepts: batching, embedding versions, vector IDs, normalization, exact score, top-k, query and document encoder pairing. Topic: benchmarks; micro-concepts: quality by query slice, cold vs warm latency, embeddings per second.

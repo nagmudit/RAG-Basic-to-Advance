@@ -140,6 +140,13 @@ The glossary will grow with chapter writing. Each future entry will include: **p
 | Inverted index | Analyzer-versioned term-to-postings lookup structure over a declared source snapshot | 05 | Forward store, vector index or access grant |
 | Embedding | Learned numeric representation of an input | 11 | Any vector |
 | Retriever adaptation | Updating a retriever using domain examples while testing generalization | 12 | Choosing a pretrained encoder unchanged |
+| Embedding/index contract | Declared source, text formatting, encoder roles and revision, pooling, dimension, normalization, metric and ID mapping required for compatible search | 11; operational form 13 | A checkpoint name or vector dimension alone |
+| Materialized dense index | Persisted vector rows plus an ordered ID/scope map and checked manifest for later similarity search | 13 | A judged evidence set or ANN by default |
+| Batch encoding throughput | Indexed texts encoded per second under declared corpus, batch size, model, device and timing boundary | 13 | Single-query search latency or universal hardware capacity |
+| Query encoding latency | Time to map one question to a vector under a declared model/input contract | 13 | Vector scan time or end-to-end answer latency |
+| Exact dense scan | Scoring every eligible stored vector under a declared metric before deterministic top-k selection | 10; materialized form 13 | ANN, human relevance or permission grant |
+| Index manifest / payload checksum | Versioned description of vector rows and their source/model contract / digest detecting changed stored bytes | 13 | Live authorization or semantic correctness of the model |
+| Exact-neighbor parity | Agreement of ordered nearest-neighbor IDs under the same representation, metric, scope and tie rule | 13 | Agreement with human qrels or answer faithfulness |
 | Hard negative | Nonrelevant candidate difficult for a retriever to distinguish from a positive | 12 | False negative, which is actually relevant |
 | Positive pair / explicit negative | Query–passage pair reviewed as useful / reviewed as unsuitable for that query | 12 | A passage's universal relevance or an access grant |
 | In-batch negative | Another training query's positive passage provisionally used as a negative for this query | 12 | A verified negative; duplicates and alternate answers can invalidate it |

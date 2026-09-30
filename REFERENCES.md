@@ -118,3 +118,13 @@ This register records primary sources used in written chapters. Concept explanat
 | Muennighoff et al., [MTEB](https://arxiv.org/abs/2210.07316), 2022 | Embedding evaluation across tasks and languages | Overall embedding ranking is not a domain-specific retrieval test. |
 | Zhang et al., [MIRACL](https://arxiv.org/abs/2210.09984), 2022 | Monolingual ad hoc retrieval across 18 languages | Does not by itself measure cross-lingual query-to-document search; V3 English-only results imply no multilingual gain. |
 | Sentence Transformers, [all-MiniLM-L6-v2 pinned model card](https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/blob/8b3219a92973c328a8e22fadcfa821b5dc75636a/README.md), accessed 2026-09-30 | License and base model configuration reused from Chapter 11 | The Chapter 12 adapter is trained locally; base weights remain external and frozen. |
+
+## Chapter 13 — verified 2026-09-30
+
+| Source | Used for | Scope and caution |
+|---|---|---|
+| Sentence Transformers, [query/document encoding usage](https://www.sbert.net/docs/sentence_transformer/usage/usage.html), accessed 2026-09-30 | Query/document prompt and task routes, batch encoding interface | The pinned Chapter 11 model has no specialized prompt; V3 retains one shared `encode()` path. A different model needs a new checked contract. |
+| Sentence Transformers, [semantic-search guide](https://www.sbert.net/examples/sentence_transformer/applications/semantic-search/README.html), accessed 2026-09-30 | Independent corpus/query embedding and exact scoring for smaller corpora | The guide's scale advice is not a benchmark of V3's Python CPU implementation. |
+| Faiss maintainers, [MetricType and distances](https://github.com/facebookresearch/faiss/wiki/MetricType-and-distances), accessed 2026-09-30 | Cosine versus inner product and the normalization requirement | Chapter 13 implements its own exact scorer, not Faiss; actual service performance is not inferred. |
+| Faiss maintainers, [Faiss indexes](https://github.com/facebookresearch/faiss/wiki/Faiss-indexes), accessed 2026-09-30 | Flat exact index representation and raw vector storage analogue | V3's manifest/ID map and scope gate are explicit teaching code, not a Faiss feature test. |
+| Sentence Transformers, [all-MiniLM-L6-v2 pinned model card](https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/blob/8b3219a92973c328a8e22fadcfa821b5dc75636a/README.md), accessed 2026-09-30 | Model revision, short-text input limit, 384 dimensions and Apache-2.0 license | The 14-query diagnostic probe is fictional and gives no broader model-selection or multilingual claim. |

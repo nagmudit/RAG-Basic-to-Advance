@@ -1,0 +1,111 @@
+{
+  "format": "little-endian-float32-row-major-v1",
+  "dimension": 384,
+  "count": 13,
+  "corpus_snapshot": "support-corpus-2026-05-20",
+  "model_id": "sentence-transformers/all-MiniLM-L6-v2",
+  "model_revision": "8b3219a92973c328a8e22fadcfa821b5dc75636a",
+  "encoder_roles": "shared encode for query and passage",
+  "text_policy": "title + newline + indexed segment body; no ID/status/date in searchable text",
+  "max_sequence_length_wordpieces": 256,
+  "pooling_policy": "attention-mask-aware mean pooling from pinned checkpoint",
+  "normalization": "L2 unit vectors before float32 storage",
+  "metric": "cosine",
+  "tie_rule": "score descending, segment ID ascending",
+  "vector_file": "vectors.f32",
+  "vector_sha256": "148edc5c4d6c2c6e63ec56d0e6a0ba283fede17ee0a6896f8ba80c87a29ebf76",
+  "records": [
+    {
+      "segment_id": "D1:§3:0",
+      "allowed_scopes": [
+        "support-team"
+      ],
+      "searchable_text_sha256": "fd6b9f4863b1d7131482c17ef4dd47bec71e28aa7fa5ec7bfa16f41cd9e98f3a"
+    },
+    {
+      "segment_id": "D1:§8:0",
+      "allowed_scopes": [
+        "support-team"
+      ],
+      "searchable_text_sha256": "cda3cdec3818447360372b4face61129037cb4d50cee88f835ccfb5142a4386a"
+    },
+    {
+      "segment_id": "D2:§2:0",
+      "allowed_scopes": [
+        "support-team"
+      ],
+      "searchable_text_sha256": "65c1e7a67d7e5c74f4005605315c026a65d2de4b13ac32696815056acc2dc177"
+    },
+    {
+      "segment_id": "D3:FAQ-7:0",
+      "allowed_scopes": [
+        "support-team"
+      ],
+      "searchable_text_sha256": "765226b5cccdd4d20213507a7b5395ac85f458c22e30cedffd78549891ae4012"
+    },
+    {
+      "segment_id": "D4:step-4:0",
+      "allowed_scopes": [
+        "support-team"
+      ],
+      "searchable_text_sha256": "2229c9d2fa416519f4ee38373ff3fecefd7d96301748512df381014f2ce3ed5b"
+    },
+    {
+      "segment_id": "D4:step-4:1",
+      "allowed_scopes": [
+        "support-team"
+      ],
+      "searchable_text_sha256": "e4829a8e3d3d33d726a0b321be0644affde5ddbd5821aa8b58089b00ce384b60"
+    },
+    {
+      "segment_id": "D4:step-4:2",
+      "allowed_scopes": [
+        "support-team"
+      ],
+      "searchable_text_sha256": "38bcefd561c508be3dffe9a38ec7d1ac581dcc0a620e578b07939c2f281818cc"
+    },
+    {
+      "segment_id": "D5:§3:0",
+      "allowed_scopes": [
+        "support-team"
+      ],
+      "searchable_text_sha256": "09904f52ff0e714de7b464bb77d1d8654854015fb6df51fa42c96c242a939ce1"
+    },
+    {
+      "segment_id": "D6:row-2:0",
+      "allowed_scopes": [
+        "support-team"
+      ],
+      "searchable_text_sha256": "93d5e6603101280ff8a60f79d20aed857934f8f53a547a1adb08ff94a82cac70"
+    },
+    {
+      "segment_id": "D7:timeline:0",
+      "allowed_scopes": [
+        "support-team"
+      ],
+      "searchable_text_sha256": "8f48b75a6b44b09fcc9ef3ab63ab7867c91da8aa5b692ed2cd675bdd3fd7790d"
+    },
+    {
+      "segment_id": "D8:§3:0",
+      "allowed_scopes": [
+        "support-team"
+      ],
+      "searchable_text_sha256": "3a839788dcfde2ee178904594fa48be7e012fa34c21b1e5ffe664a094796a143"
+    },
+    {
+      "segment_id": "D9:proposal-2:0",
+      "allowed_scopes": [
+        "support-team"
+      ],
+      "searchable_text_sha256": "0e256093cb1eaf8910606b1355641246b544e9c53a16f44e21156f417162de27"
+    },
+    {
+      "segment_id": "D10:§1:0",
+      "allowed_scopes": [
+        "legal-team"
+      ],
+      "searchable_text_sha256": "1f5bded4ef73a2db2c70139646fa3af8ad326d556fd56daebbef8e1258973752"
+    }
+  ],
+  "index_version": "ch13-exact-6ffbcad2d2bfa1f6"
+}

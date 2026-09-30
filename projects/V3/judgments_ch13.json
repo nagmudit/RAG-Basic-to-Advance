@@ -1,0 +1,27 @@
+{
+  "version": "ch13-dense-operations-probes-v1",
+  "review_date": "2026-09-30",
+  "corpus_snapshot": "support-corpus-2026-05-20",
+  "scope_fixture": "support-team",
+  "retrieval_unit": "indexed_segment",
+  "binary_relevant_at_or_above": 1,
+  "review_method": "One author wrote diagnostic questions while knowing the fictional V0 corpus, then reviewed each of the twelve eligible segments per query before running Chapter 13. The Spanish questions are author-composed exploratory translations, without an independent native assessor. No model or BM25 output was used to select or relabel questions. This is a stress fixture, not a generalization benchmark.",
+  "zero_policy": "Every eligible segment not listed under grade_1 or grade_2 was reviewed as grade zero. D10 is legal-only and outside the support-team judgment universe.",
+  "eligible_segment_ids": ["D1:§3:0", "D1:§8:0", "D2:§2:0", "D3:FAQ-7:0", "D4:step-4:0", "D4:step-4:1", "D4:step-4:2", "D5:§3:0", "D6:row-2:0", "D7:timeline:0", "D8:§3:0", "D9:proposal-2:0"],
+  "queries": [
+    {"query_id": "acronym-sla", "question": "What is the current Helios Pro Sev-1 SLA initial response?", "slice": "acronym", "grade_2": ["D2:§2:0"], "grade_1": ["D1:§3:0"], "rationale": "The signed amendment supplies the current one-hour target; signed v1 is historical context, not the current target. SLA is absent from indexed text."},
+    {"query_id": "acronym-ic", "question": "When a shared dependency fails, who alerts the IC?", "slice": "acronym", "grade_2": ["D4:step-4:1"], "grade_1": [], "rationale": "The runbook says to notify the incident commander; IC is a query-only abbreviation."},
+    {"query_id": "code-segment", "question": "Find indexed segment D6:row-2:0.", "slice": "exact_code", "grade_2": ["D6:row-2:0"], "grade_1": [], "rationale": "The requested literal metadata ID names the price segment but is not embedded in title/body text."},
+    {"query_id": "code-sev", "question": "In Atlas Pro, what target is attached to the exact code Sev-1?", "slice": "exact_code", "grade_2": ["D8:§3:0"], "grade_1": [], "rationale": "The Atlas agreement has the exact Sev-1 code and its two-hour response target."},
+    {"query_id": "neg-draft", "question": "Which two-hour Helios Pro proposal has not been signed?", "slice": "negation", "grade_2": ["D9:proposal-2:0"], "grade_1": [], "rationale": "The unsigned proposal is explicitly requested, rather than a signed target or observed incident."},
+    {"query_id": "neg-observed", "question": "Which record says a two-hour observation is not the contractual target?", "slice": "negation", "grade_2": ["D7:timeline:0"], "grade_1": [], "rationale": "The incident report distinguishes its observed duration from a contractual target."},
+    {"query_id": "num-basic", "question": "Which signed agreement gives an eight-hour Sev-1 target?", "slice": "numeric_constraint", "grade_2": ["D5:§3:0"], "grade_1": [], "rationale": "Helios Basic signed agreement gives eight hours; Pro and Atlas differ."},
+    {"query_id": "num-amend", "question": "Which signed amendment makes one hour effective on 15 May 2026?", "slice": "numeric_constraint", "grade_2": ["D2:§2:0"], "grade_1": [], "rationale": "The Helios Pro signed amendment gives the one-hour replacement and date."},
+    {"query_id": "style-ticket", "question": "A real ticket's clock ran for 120 minutes before support replied; where was that observation?", "slice": "out_of_domain_style", "grade_2": ["D7:timeline:0"], "grade_1": [], "rationale": "The report describes one observed two-hour response, unlike targets and proposals."},
+    {"query_id": "style-handoff", "question": "Where's the handoff note for who's got the next incident step?", "slice": "out_of_domain_style", "grade_2": ["D4:step-4:2"], "grade_1": [], "rationale": "The runbook's third window records the next owner in the timeline."},
+    {"query_id": "spanish-atlas", "question": "¿Cuál es el plazo de respuesta inicial de Atlas Pro para Sev-1?", "slice": "exploratory_cross_lingual", "grade_2": ["D8:§3:0"], "grade_1": [], "rationale": "Author-composed Spanish request for the Atlas Pro first-response target; English passage D8 states two hours. No independent language assessment."},
+    {"query_id": "spanish-fee", "question": "¿Cuál es la tarifa anual antes de impuestos de Helios Pro?", "slice": "exploratory_cross_lingual", "grade_2": ["D6:row-2:0"], "grade_1": [], "rationale": "Author-composed Spanish request for the annual pre-tax Helios Pro fee; D6 has the English answer. No independent language assessment."},
+    {"query_id": "none-orion", "question": "Where is the Orion Prime warranty code documented?", "slice": "no_eligible_evidence", "grade_2": [], "grade_1": [], "rationale": "No eligible source concerns an Orion Prime warranty."},
+    {"query_id": "none-private", "question": "What target does the restricted thirty-minute legal addendum promise?", "slice": "no_eligible_evidence", "grade_2": [], "grade_1": [], "rationale": "Only legal-only D10 contains the restricted decoy; it is ineligible to the support-team scope."}
+  ]
+}
