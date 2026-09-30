@@ -128,3 +128,12 @@ This register records primary sources used in written chapters. Concept explanat
 | Faiss maintainers, [MetricType and distances](https://github.com/facebookresearch/faiss/wiki/MetricType-and-distances), accessed 2026-09-30 | Cosine versus inner product and the normalization requirement | Chapter 13 implements its own exact scorer, not Faiss; actual service performance is not inferred. |
 | Faiss maintainers, [Faiss indexes](https://github.com/facebookresearch/faiss/wiki/Faiss-indexes), accessed 2026-09-30 | Flat exact index representation and raw vector storage analogue | V3's manifest/ID map and scope gate are explicit teaching code, not a Faiss feature test. |
 | Sentence Transformers, [all-MiniLM-L6-v2 pinned model card](https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/blob/8b3219a92973c328a8e22fadcfa821b5dc75636a/README.md), accessed 2026-09-30 | Model revision, short-text input limit, 384 dimensions and Apache-2.0 license | The 14-query diagnostic probe is fictional and gives no broader model-selection or multilingual claim. |
+
+## Chapter 14 — verified 2026-10-01
+
+| Source | Used for | Scope and caution |
+|---|---|---|
+| Formal, Piwowarski & Clinchant, [SPLADE](https://arxiv.org/abs/2107.05720), 2021 | Learned sparse first-stage retrieval, expansion, log saturation and regularization | The original formulation uses sum pooling; V3's hand-authored logits do not reproduce its trained model or benchmark results. |
+| Formal et al., [SPLADE v2](https://arxiv.org/html/2109.10086v1), 2021 | Max-pooling equation, separate query/document sparsity penalties, FLOPS surrogate and document-only variant | The V3 code implements only the fixed-logit max pool and exact posting accumulation, without training or latency claims for a neural encoder. |
+| Khattab & Zaharia, [ColBERT](https://arxiv.org/html/2004.12832v2), 2020 | Independent contextual query/document token encoders, MaxSim, reranking and end-to-end token-index search | V3 computes MaxSim on hand-authored unit vectors; no ColBERT checkpoint, token ANN or paper-reported speedup is reproduced. |
+| Santhanam et al., [ColBERTv2](https://arxiv.org/abs/2112.01488), 2021 | Residual compression and denoised supervision as a storage/quality research direction | Its reported compression or benchmark quality does not transfer to the uncompressed V3 toy. |

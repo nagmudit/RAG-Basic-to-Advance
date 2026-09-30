@@ -180,6 +180,7 @@ The core question evolves throughout: **Which evidence enters the LLM's context,
 
 #### Chapter 14 — Sparse neural search and late interaction
 
+- **Authored materials:** [Chapter](chapters/chapter-14-sparse-neural-search-and-late-interaction.md) · [Lab](labs/chapter-14/LAB.md) · [Solutions](solutions/chapter-14-solutions.md) · [V3 mechanism sandbox](projects/V3/README.md).
 - **Objective:** Place learned sparse and token-level interaction models between lexical and single-vector retrieval.
 - **Prerequisites:** Chapters 06–13.
 - **Section 1 — Learned sparse retrieval.** Topic: SPLADE-style methods; micro-concepts: vocabulary-space weights, expansion terms, sparsity regularization, inverted-index compatibility, index size and latency.

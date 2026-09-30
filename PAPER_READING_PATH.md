@@ -39,6 +39,7 @@ This is a curriculum, not an instruction to read every paper. **CORE** papers an
 | Tier | Paper | Mechanism and reading question |
 |---|---|---|
 | CORE | [SPLADE](https://arxiv.org/abs/2107.05720), Formal, Piwowarski & Clinchant, 2021 | Learned vocabulary weights and expansion executed in an inverted index; quantify sparsity/index cost. |
+| IMPORTANT | [SPLADE v2](https://arxiv.org/abs/2109.10086), Formal et al., 2021 | Compare original sum pooling with max pooling, query versus document expansion, and the ranking–FLOPS trade-off; Chapter 14's toy implements only the max-pooling arithmetic. |
 | CORE | [ColBERT](https://arxiv.org/abs/2004.12832), Khattab & Zaharia, 2020 | Separate token encoders and MaxSim; calculate one score matrix and compare with a single-vector dot product. |
 | OPTIONAL | [ColBERTv2](https://arxiv.org/abs/2112.01488), Santhanam et al., 2021 | Compression and denoised supervision in late interaction; compare storage with the original design. |
 

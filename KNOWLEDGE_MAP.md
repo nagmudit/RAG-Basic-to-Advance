@@ -58,6 +58,8 @@ flowchart LR
 
 Chapter 12 makes the retriever-learning branch executable in [V3](projects/V3/README.md): source-disjoint training pairs update a query projection; validation qrels choose its checkpoint; held-out test qrels judge it against the frozen encoder and BM25. The indexed search corpus contains all eligible source documents, while the gradient and checkpoint paths use only their assigned label splits. Falling training loss alongside collapsing validation quality is the concrete dependency warning before Chapter 13's retrieval operations.
 
+Chapter 14 branches from the existing lexical, vector and training foundations: **contextual vocabulary logits → sparse nonzero weights → weighted postings → eligible candidate scores**; and **independent query/document token vectors → token score grid → per-query-token maxima → exact MaxSim → candidates**. A fixed [V3 mechanism fixture](projects/V3/README.md) makes both computations inspectable without implying that its hand-authored representations are trained SPLADE or ColBERT. Chapter 13's judged BM25/frozen-dense comparison remains the V0 baseline for any future model selection.
+
 ```mermaid
 flowchart LR
   Req[Request] --> Trace[Correlated trace]

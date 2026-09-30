@@ -1,0 +1,460 @@
+{
+  "experiment_id": "ch14-fixed-mechanism-probe",
+  "date_utc": "2026-09-30T18:37:45.597260+00:00",
+  "question": "Can vocabulary expansion and token-level MaxSim change rankings on fully judged toy cases?",
+  "hypothesis": "Expansion retrieves the incident at rank one where surface matching does not; MaxSim ranks the two-signal document above a generic one where pooled cosine does not.",
+  "baseline": "Exact surface-term weighted postings and cosine of hand-authored mean-pooled unit token vectors",
+  "independent_variables": [
+    "add two manually authored query expansion terms",
+    "replace pooled cosine with exact MaxSim"
+  ],
+  "controls": "Fixed toy documents, qrels, vectors, scope, top-k and deterministic tie rule; no trained weights or generator",
+  "procedure": "Freeze hand-authored fixtures and complete three-row judgments; run surface/expanded weighted postings and pooled/MaxSim exact scoring at k=3; warm each Python path once, then time 31 samples in a seeded shuffled method order; inspect rankings, work and failures.",
+  "workload_slices": {
+    "sparse_vocabulary_mismatch": {
+      "question": "ticket reply latency",
+      "documents": {
+        "incident": "incident response took 120 minutes",
+        "ticket_sale": "ticket sale",
+        "reply_template": "reply template"
+      }
+    },
+    "token_pooling_dilution": {
+      "question": "match both abstract token needs",
+      "documents": {
+        "A_both_with_noise": "two exact directions plus two distractors",
+        "B_generic": "one generic direction",
+        "C_one_signal": "one exact direction"
+      }
+    }
+  },
+  "frozen_judgments": {
+    "sparse": {
+      "incident": 2,
+      "ticket_sale": 0,
+      "reply_template": 0
+    },
+    "token": {
+      "A_both_with_noise": 2,
+      "B_generic": 0,
+      "C_one_signal": 1
+    },
+    "eligible_sparse_rows": 3,
+    "assessor": "author",
+    "rubric": "2 complete direct match; 1 partial; 0 irrelevant"
+  },
+  "source": {
+    "chapter_13_baseline": "projects/V3/chapter-13-experiment.json",
+    "code_sha256": "bc8115b7a369e717b39f0379e78f16575cd61ad802a73b0f671dd8ef93a42760",
+    "runner_sha256": "07bc3e049f9d28b365356d328194b152fb14564501e343833760255f1d29c4ba",
+    "fixture_version": "ch14-toy-1",
+    "model_version": null,
+    "index_version": "in-memory-fixed-weights-1",
+    "seed": 14092026
+  },
+  "sparse": {
+    "surface_only": {
+      "query_weights": {
+        "ticket": 1.0986122886681098,
+        "reply": 1.0986122886681098
+      },
+      "ranking": [
+        [
+          "reply_template",
+          1.206948960812582
+        ],
+        [
+          "ticket_sale",
+          1.206948960812582
+        ]
+      ],
+      "work": {
+        "eligible_rows": 3,
+        "posting_entries_scored": 2,
+        "positive_score_candidates": 2
+      },
+      "recall_at_1": 0
+    },
+    "expanded": {
+      "query_weights": {
+        "ticket": 1.0986122886681098,
+        "incident": 1.0296194171811581,
+        "reply": 1.0986122886681098,
+        "response": 1.0296194171811581
+      },
+      "ranking": [
+        [
+          "incident",
+          2.2623050887330347
+        ],
+        [
+          "reply_template",
+          1.206948960812582
+        ],
+        [
+          "ticket_sale",
+          1.206948960812582
+        ]
+      ],
+      "work": {
+        "eligible_rows": 3,
+        "posting_entries_scored": 4,
+        "positive_score_candidates": 3
+      },
+      "recall_at_1": 1
+    }
+  },
+  "token": {
+    "A_both_with_noise": {
+      "maxsim": 2.0,
+      "pooled_cosine": -1.0,
+      "grid": [
+        [
+          1.0,
+          0.0,
+          -0.7071067811865476,
+          -0.7071067811865476
+        ],
+        [
+          0.0,
+          1.0,
+          -0.7071067811865476,
+          -0.7071067811865476
+        ]
+      ],
+      "winner_indices": [
+        0,
+        1
+      ],
+      "grade": 2
+    },
+    "B_generic": {
+      "maxsim": 1.4142135623730951,
+      "pooled_cosine": 1.0,
+      "grid": [
+        [
+          0.7071067811865476
+        ],
+        [
+          0.7071067811865476
+        ]
+      ],
+      "winner_indices": [
+        0,
+        0
+      ],
+      "grade": 0
+    },
+    "C_one_signal": {
+      "maxsim": 1.0,
+      "pooled_cosine": 0.7071067811865475,
+      "grid": [
+        [
+          1.0
+        ],
+        [
+          0.0
+        ]
+      ],
+      "winner_indices": [
+        0,
+        0
+      ],
+      "grade": 1
+    }
+  },
+  "token_rankings": {
+    "exact_maxsim": [
+      "A_both_with_noise",
+      "B_generic",
+      "C_one_signal"
+    ],
+    "pooled_cosine": [
+      "B_generic",
+      "C_one_signal",
+      "A_both_with_noise"
+    ]
+  },
+  "request_trace_examples": [
+    {
+      "request_id": "toy-sparse-surface_only",
+      "query_id": "toy-sparse-1",
+      "timestamp_utc": "2026-09-30T18:37:45.597260+00:00",
+      "corpus_snapshot": "ch14-toy-1",
+      "index_version": "in-memory-fixed-weights-1",
+      "scope_fixture": "support-team",
+      "eligible_rows": 3,
+      "retrieved_ids": [
+        "reply_template",
+        "ticket_sale"
+      ],
+      "raw_scores": [
+        1.206948960812582,
+        1.206948960812582
+      ],
+      "elapsed_ms": 0.0044,
+      "selected_context_ids": null,
+      "answer_status": "not_run",
+      "latency_summary_ref": "latency.methods.surface_postings",
+      "status": "scored",
+      "failure_reason": null
+    },
+    {
+      "request_id": "toy-sparse-expanded",
+      "query_id": "toy-sparse-1",
+      "timestamp_utc": "2026-09-30T18:37:45.597260+00:00",
+      "corpus_snapshot": "ch14-toy-1",
+      "index_version": "in-memory-fixed-weights-1",
+      "scope_fixture": "support-team",
+      "eligible_rows": 3,
+      "retrieved_ids": [
+        "incident",
+        "reply_template",
+        "ticket_sale"
+      ],
+      "raw_scores": [
+        2.2623050887330347,
+        1.206948960812582,
+        1.206948960812582
+      ],
+      "elapsed_ms": 0.0055,
+      "selected_context_ids": null,
+      "answer_status": "not_run",
+      "latency_summary_ref": "latency.methods.expanded_postings",
+      "status": "scored",
+      "failure_reason": null
+    },
+    {
+      "request_id": "toy-token-exact_maxsim",
+      "query_id": "toy-token-1",
+      "timestamp_utc": "2026-09-30T18:37:45.597260+00:00",
+      "corpus_snapshot": "ch14-toy-1",
+      "index_version": "in-memory-fixed-vectors-1",
+      "scope_fixture": "all-three-public",
+      "eligible_rows": 3,
+      "retrieved_ids": [
+        "A_both_with_noise",
+        "B_generic",
+        "C_one_signal"
+      ],
+      "raw_scores": [
+        2.0,
+        1.4142135623730951,
+        1.0
+      ],
+      "elapsed_ms": 0.0348,
+      "selected_context_ids": null,
+      "answer_status": "not_run",
+      "latency_summary_ref": "latency.methods.exact_maxsim_three",
+      "status": "scored",
+      "failure_reason": null
+    },
+    {
+      "request_id": "toy-token-pooled_cosine",
+      "query_id": "toy-token-1",
+      "timestamp_utc": "2026-09-30T18:37:45.597260+00:00",
+      "corpus_snapshot": "ch14-toy-1",
+      "index_version": "in-memory-fixed-vectors-1",
+      "scope_fixture": "all-three-public",
+      "eligible_rows": 3,
+      "retrieved_ids": [
+        "B_generic",
+        "C_one_signal",
+        "A_both_with_noise"
+      ],
+      "raw_scores": [
+        1.0,
+        0.7071067811865475,
+        -1.0
+      ],
+      "elapsed_ms": 0.0233,
+      "selected_context_ids": null,
+      "answer_status": "not_run",
+      "latency_summary_ref": "latency.methods.pooled_cosine_three",
+      "status": "scored",
+      "failure_reason": null
+    }
+  ],
+  "latency": {
+    "environment": {
+      "python": "3.14.2",
+      "platform": "Windows-11-10.0.26200-SP0"
+    },
+    "boundary": "warm in-process scoring only; excludes neural encoding, building, I/O, context and generation",
+    "method_order": [
+      "B_generic",
+      "C_one_signal",
+      "A_both_with_noise"
+    ],
+    "methods": {
+      "surface_postings": {
+        "unit": "microseconds",
+        "samples": [
+          5.0,
+          4.1,
+          3.3,
+          3.0,
+          3.0,
+          3.0,
+          3.0,
+          3.1,
+          3.1,
+          3.2,
+          3.0,
+          3.4,
+          3.0,
+          3.0,
+          2.9,
+          3.1,
+          3.0,
+          3.2,
+          2.9,
+          2.9,
+          7.8,
+          5.0,
+          5.1,
+          5.2,
+          3.7,
+          3.5,
+          3.0,
+          3.1,
+          2.9,
+          3.6,
+          3.0
+        ],
+        "p50_nearest_rank": 3.1,
+        "p95_nearest_rank": 5.2
+      },
+      "exact_maxsim_three": {
+        "unit": "microseconds",
+        "samples": [
+          26.5,
+          25.5,
+          25.3,
+          24.9,
+          25.4,
+          24.5,
+          26.0,
+          24.9,
+          24.6,
+          25.0,
+          24.7,
+          24.5,
+          25.5,
+          24.1,
+          25.3,
+          24.7,
+          24.7,
+          25.1,
+          24.6,
+          24.3,
+          25.0,
+          28.4,
+          26.7,
+          24.4,
+          25.1,
+          25.2,
+          24.6,
+          24.4,
+          24.3,
+          24.8,
+          25.2
+        ],
+        "p50_nearest_rank": 24.9,
+        "p95_nearest_rank": 26.7
+      },
+      "pooled_cosine_three": {
+        "unit": "microseconds",
+        "samples": [
+          23.9,
+          24.0,
+          22.7,
+          22.9,
+          23.3,
+          23.1,
+          21.4,
+          21.7,
+          33.0,
+          21.4,
+          21.5,
+          21.3,
+          21.1,
+          21.7,
+          20.8,
+          21.8,
+          21.4,
+          21.5,
+          22.3,
+          21.4,
+          21.5,
+          21.3,
+          21.6,
+          21.3,
+          22.1,
+          21.9,
+          21.4,
+          22.2,
+          21.4,
+          21.4,
+          21.0
+        ],
+        "p50_nearest_rank": 21.5,
+        "p95_nearest_rank": 24.0
+      },
+      "expanded_postings": {
+        "unit": "microseconds",
+        "samples": [
+          4.9,
+          4.2,
+          4.2,
+          4.2,
+          4.0,
+          4.0,
+          4.0,
+          4.4,
+          4.0,
+          4.2,
+          4.0,
+          4.3,
+          4.0,
+          4.0,
+          4.1,
+          4.1,
+          3.9,
+          3.9,
+          4.1,
+          4.0,
+          4.1,
+          4.3,
+          4.0,
+          4.4,
+          4.0,
+          4.0,
+          4.9,
+          4.0,
+          4.2,
+          4.0,
+          4.1
+        ],
+        "p50_nearest_rank": 4.1,
+        "p95_nearest_rank": 4.9
+      }
+    }
+  },
+  "failure_examples": [
+    "Surface-only postings miss incident at every depth because there is no shared term.",
+    "Pooled cosine favors B_generic; it dilutes A_both_with_noise's two exact matches.",
+    "Expanded query also scores unrelated literal matches; no-result or precision is not solved.",
+    "The legal-team private row is not scored for support-team."
+  ],
+  "decision": "keep as a mechanism fixture; no production retriever selected",
+  "limitations": [
+    "Fixed logits and token vectors are hand-authored, not trained SPLADE or ColBERT.",
+    "The sparse and token tasks are separate, tiny, one-author judged fixtures; their scores and latencies are not comparable to Chapter 13 BM25/dense measurements.",
+    "No confidence interval or transfer claim is possible from one query per task.",
+    "Fixed timing method order and tiny in-process Python loops make the microsecond percentiles sensitive to measurement overhead and cache state.",
+    "Exact MaxSim scans all toy token vectors; no ANN, compression, model forward pass or production latency is measured.",
+    "Static scope is an eligibility demonstration, not authenticated authorization.",
+    "No selected context, answer, citation, faithfulness or abstention outcome is measured."
+  ]
+}
