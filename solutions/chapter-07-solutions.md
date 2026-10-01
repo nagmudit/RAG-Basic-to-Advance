@@ -34,3 +34,15 @@ An appropriate decision is to **retain BM25 as a transparent V2 comparator**, no
 The dated-change failure first occurs at **candidate ranking/depth**: `D1 §3` is indexed and eligible, but sits below the top-two cutoff; it never reaches context. Prompt wording cannot restore missing evidence. A title boost could be tested as a new independent variable on labeled data, but this result alone does not justify tuning it. For termination, BM25 moves `D1 §8` into top two, which is a specific evidence-coverage gain. The simultaneous dated-change loss prevents a general superiority claim.
 
 A BM25 score of 5.6 is an uncalibrated sum of formula contributions, not 56% or any other answer probability. A candidate may be out of context; a context passage may be stale, in conflict, or insufficient; the stub's output is not a model-quality judgment. Calibration would need labels, a declared score population and validation of the intended event. BM25+ guards a matched-term lower bound in very long documents; BM25F models separate fields; a smoothed query-likelihood model estimates query generation from document and collection frequencies; exact/fuzzy matching changes which candidates can enter scoring. None grants authorization or verifies a final claim. Chapter 8 asks how to return the **same exact top-k** with less scoring work. Chapter 9 asks which ranks are actually relevant across a defensible judged query set.
+
+## Independent bounded mechanism: reasoning and answer
+
+Compute statistics on the eligible roster, calculate a separate IDF and normalized saturated TF for each distinct query term, then sum. Empty matches score zero; document length is analyzed tokens, not bytes.
+
+The separate [worked implementation](code/chapter_07_mechanisms.py) uses standard-library code and imports no supplied project engine or learner scaffold. After comparing your reasoning, verify it on the new fixtures:
+
+```powershell
+python -X utf8 labs/chapter-07/check_implementation.py --implementation solutions/code/chapter_07_mechanisms.py
+```
+
+Rubric: correct intermediate mechanism (40%), deterministic and edge-case behavior (20%), independently written code (20%), and explanation of exact parity or measured approximation failure (20%). Passing output alone is insufficient. A loop-based implementation is appropriate; premature abstraction is unnecessary.

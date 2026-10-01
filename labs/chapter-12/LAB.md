@@ -10,13 +10,22 @@ The baseline is Chapter 11's frozen 384-dimensional encoder, with V2 BM25 as a l
 
 1. Open [the split manifest](../../projects/V3/judgments_ch12.json). List train, validation, and test source IDs. Verify that no source ID appears in two groups. Count the 12 eligible segments, 10 training pairs, four validation queries, and 11 test queries. How many validation/test query–segment pairs were reviewed? Why is D10 absent rather than assigned grade zero?
 2. For `tr-change-a`, explain why two adjacent runbook spans are in `unsafe_negative_ids`. For `tr-amendment-a`, explain why the older signed clause is masked. Give one truly irrelevant explicit negative for each. Which labels would be unsafe to obtain by blindly treating a BM25 top result as negative?
-3. Write a two-sentence leakage policy for translated copies and near-duplicate agreement revisions. State whether the Chapter 11 probe is an untouched test.
+3. Read `generalization_unit` and `source_family`. List family overlap across train/validation/test: disjoint document IDs do not imply disjoint semantic families. Explain the narrower new-query/document-target holdout being tested here, and why it does not establish unseen-family/domain transfer. For a future family-holdout experiment, write a leakage policy grouping translations and agreement revisions. State whether the inspected Chapter 11 probe is an untouched test.
 
 ## B. Work the loss by hand
 
 For one query with positive cosine `0.8` and two reviewed negative cosines `0.6` and `0.2`, set temperature `0.2`. Calculate the three logits, positive softmax probability, and loss in natural-log units. Then calculate the triplet hinge loss for positive `0.8`, negative `0.6`, margin `0.3`. Explain what changes if the `0.6` passage is a second relevant result.
 
 ## C. Run the reproducible adaptation
+
+Before opening the companion calculation, work the chapter's `u=(1,2)ᵀ`, `W=I` example independently. State each dimension; derive the four W derivatives; apply `η=.1`; recompute scores, positive probability and loss. Explain why rank can remain wrong while loss improves. Show why subtracting the maximum preserves all probabilities. Then run:
+
+```powershell
+python -B -X utf8 projects/V3/training_bridge.py
+python -B -X utf8 -m unittest discover -s projects/V3 -p 'test_training_bridge.py' -v
+```
+
+Explain the central-difference tolerance, why the normalized derivative differs, and how the hand gradient relates to `loss.backward()` and Adam's `optimizer.step()`. Include this derivation in your submission.
 
 The default runner uses the locally cached pinned model. It never downloads silently. If the model is absent, follow V3's pinned-revision setup before continuing.
 

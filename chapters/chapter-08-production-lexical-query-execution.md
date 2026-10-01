@@ -4,6 +4,10 @@ Chapter 7 gave us a credible lexical score. Its V2 program still visits every el
 
 This chapter keeps the Chapter 7 analyzer, corpus, authorization fixture, BM25 parameters, numeric scores, tie rule, context budget, and answer stub fixed. We change only query execution. That makes the claim testable: an exact optimizer should return the same ordered candidate IDs and scores, while doing less score work on some queries. It need not improve answer quality; the dated-contract evidence omission must remain visible.
 
+**Workload identity:** `v0-frozen-tasks-v1`; see the [comparison registry](../evaluation/WORKLOAD_REGISTRY.md). Metrics across different workloads do not form an improvement sequence.
+
+**Independent construction gate:** Read the mechanism explanations first. Before inspecting supplied Python reference code, attempt [lab A0](../labs/chapter-08/LAB.md#a0-independent-bounded-mechanism) on your own tiny fixture. Open the separate worked answer afterward; existing calculation, debugging and project-comparison tasks still apply.
+
 ## 1. A posting is a cursor over an on-disk structure
 
 Recall Chapter 5's inverted index: a term maps to an increasing list of document IDs, with counts and optionally positions. An **index-time** writer analyzes fields, assigns local IDs, and writes those lists. At **query time**, a reader opens only the lists named by the analyzed query, advances cursors and ranks eligible documents. The logical order is independent of physical byte layout. Our [V1 index](../projects/V1/lexical_index.py) holds Python objects in RAM so that we can inspect it; a production index usually compresses postings and reads them in blocks.

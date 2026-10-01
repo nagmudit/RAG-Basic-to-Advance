@@ -2,6 +2,22 @@
 
 Read [Chapter 14](../../chapters/chapter-14-sparse-neural-search-and-late-interaction.md) first. This lab has two **fixed mechanism tasks**. The sparse logits and token vectors are hand-authored; no SPLADE or ColBERT network is trained or benchmarked. Keep Chapter 13's BM25/frozen-dense results as the operational baseline, and do not present this toy's Recall@1 as a gain over that different corpus.
 
+## A0. Independent bounded mechanism
+
+Implement `weighted_sparse_score(query, postings, eligible_ids)` and `maxsim(query, document)` in [implement.py](implement.py) before opening the supplied mechanism or solution. This is scoring on fixed weights/vectors, not training SPLADE or ColBERT.
+
+Weighted postings map each term to `(ID, positive document weight)` pairs. Query weights are finite/nonnegative. Filter eligibility **before** accumulating each product and return descending score/ascending ID pairs. Zero query weights contribute no candidates. MaxSim receives nonempty equal-dimension unit token vectors; form every dot product, choose the first document-token position on a tie in each query row, then sum row maxima. Return `(score, grid, winner_indices)`.
+
+Use your own two-term postings fixture including one ineligible record, and a 2x3 token matrix with a tie. Show products, row maxima and winners by hand, then implement. The checker supplies different fixtures. Explain why sparse weighted accumulation and MaxSim have different storage/work, and preserve the existing pooling-failure calculations.
+
+After your first attempt, run from the repository root:
+
+```powershell
+python -X utf8 labs/chapter-14/check_implementation.py
+```
+
+The starter intentionally raises `NotImplementedError`. Tests are feedback fixtures, not a concealed grading service. Submit your implementation, hand predictions, checker output and one diagnosis of a failing case. Open the separate chapter solutions only after attempting this task. Existing calculation, experiment and debugging tasks below still apply.
+
 ## Setup and release boundary
 
 From the repository root, run:
@@ -37,3 +53,11 @@ The runner writes a local record; compare its rankings, score grids and work cou
 A manager proposes replacing BM25 with a late-interaction model because its toy MaxSim score is `2.000`. Respond in five sentences: what that number means, what it does **not** mean, the candidate coverage test, the latency/storage test, and the authorization/answer path that still must be verified.
 
 Check your work against the [separate solutions](../../solutions/chapter-14-solutions.md). An acceptable conclusion can be negative: the local fixture explains operator behavior but cannot select a production retriever.
+
+## Part III cumulative checkpoint
+
+Close Chapters 10-14 and their figures. Draw the full representation/training/index/query/evaluation path and answer Chapter 14's six cumulative questions. Include raw text/analyzer or tokenizer, dimensions, frozen versus trainable weights, exact index, eligibility, scores, candidate IDs and judged metrics. Keep context and answer evaluation downstream.
+
+After drawing, use the unchanged Chapter 13 stress record (`ch13-stress-probes-v1`) to compare lexical and dense acronym, exact-code, numeric-constraint and no-evidence failures. State the query/slice denominator and metric. Explain the preserved V2 -> V3 project steps: no representation change in exact WAND; binary lexical vectors; pinned encoder; failed adaptation; checked materialized exact oracle; separate sparse and token scoring sandboxes. Show why workload definitions prohibit a cross-chapter improvement curve.
+
+Identify approximation that has **not** yet been introduced: no lossy ANN bucket/list/graph omission or PQ code distortion in the current exact dense oracle; WAND's safe bounds preserve exact rankings. MaxSim/sparse toy inputs are authored fixtures, not trained production models. Submit your first diagram, answers, paired same-workload failure table, version comparison and teach-back. Repeat recall at day 3 and day 7 before consulting the rubric again.

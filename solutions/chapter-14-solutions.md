@@ -27,3 +27,25 @@ The record asks whether expansion and MaxSim change the intended rankings. It fr
 A fair future comparison would freeze model/tokenizer/query-document input contracts and source/index snapshots; build learned-sparse and token-vector indexes from V0; tune on one set and test once on a separately reviewed set; retain the support-team eligible roster and test D10 exclusion; compare with V2 BM25 and Chapter 13 frozen dense at equal depths; report binary/graded qrel metrics, no-evidence returns, index bytes/build time, encoder/search/refine p50/p95, and exact-neighbor versus approximate loss. The Chapter 13 SLA, metadata ID and no-evidence queries are **inspected regression cases**; they are not a fresh held-out set. A separate source-disjoint or independently reviewed future query sample is needed for a general gain statement. If candidate gain is real, context and generation evaluation still follow later.
 
 The manager's `2.000` is a sum of two best token similarities in a constructed two-dimensional example. It is neither a relevance probability nor a BM25/dense comparable score. We would first measure judged candidate recall, including a case absent from the first-stage candidate set. We would then measure token-index bytes, build/refresh cost and complete warm query latency under a representative workload. We would still check trusted eligibility, selected evidence and grounded answer behavior before changing the deployed path.
+
+## Independent bounded mechanism: reasoning and answer
+
+Multiply shared term weights only after eligibility; MaxSim instead keeps a full token-pair grid and selects one maximum per query row. The answer exposes grid/winners so the mechanism remains inspectable.
+
+The separate [worked implementation](code/chapter_14_mechanisms.py) uses standard-library code and imports no supplied project engine or learner scaffold. After comparing your reasoning, verify it on the new fixtures:
+
+```powershell
+python -X utf8 labs/chapter-14/check_implementation.py --implementation solutions/code/chapter_14_mechanisms.py
+```
+
+Rubric: correct intermediate mechanism (40%), deterministic and edge-case behavior (20%), independently written code (20%), and explanation of exact parity or measured approximation failure (20%). Passing output alone is insufficient. A loop-based implementation is appropriate; premature abstraction is unnecessary.
+
+## Part III cumulative checkpoint: answer and rubric
+
+At build time sources become lexical weights, pooled sentence vectors or token vectors under an explicit model/input contract; materialized exact vectors keep ID/scope/model/source manifests. A query follows the same representation contract, then eligibility gates scoring. Training pairs/loss/gradient/updates are a separate path; validation selects, test reports. Candidate scoring and qrels measure different things, and context/generation remain downstream.
+
+Quiz answers: (1) BM25 estimates lexical matching with collection statistics, embedding similarity is geometry of a learned representation, exact neighbor is the mathematically highest allowed score under that geometry, and judged relevance is assessor evidence for the information need; (2) exact execution cannot repair missing metadata input, authority or version distinctions in the representation; (3) compare BM25/dense on the same Chapter 13 workload, such as `code-segment` or `num-basic`, and keep no-evidence return separate from recall; (4) loss derivatives update the query adapter while passages stay frozen; document targets are disjoint but Helios families overlap, so no transfer claim follows; (5) retain lexical baselines, the rejected epoch-1 adapter result and all 34 exact materialization parity checks; (6) no lossy ANN/PQ stage is in the exact dense baseline, and safe WAND pruning changes work without changing the result.
+
+V3 adds capability beside V2, not a universally better score. Chapter 10 uses the Chapter 09 workload, Chapter 11 new embedding probes, Chapter 12 a train/dev/test adaptation workload, and Chapter 13 new stress probes. The Chapter 14 sparse/token fixtures each contain one authored query and three judged eligible items; they do not demonstrate a trained-model gain over the corpus. The workload registry makes valid comparisons explicit.
+
+Rubric (10 points): complete build/query/training paths (2), four score/relevance distinctions (2), correct same-workload failure evidence (2), V2/V3 baseline/negative-result/version continuity (2), and exactness/approximation distinction plus teach-back (2). Pass at 8/10 with eligibility and exactness correct. Accept alternate layouts, but no score-comparison progression across unrelated workloads. Record omitted links on day-3/day-7 recall rather than copying the answer.

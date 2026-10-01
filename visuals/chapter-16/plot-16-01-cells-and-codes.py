@@ -52,7 +52,9 @@ for i, (x, y) in enumerate(index.centroids):
     ax.scatter(x, y, marker="X", color=palette[i], s=150, edgecolor="black", linewidth=.6, zorder=5)
     ax.annotate(f"C{i}", (x, y), xytext=(-13, -18), textcoords="offset points", fontsize=9)
 ax.scatter(*q, marker="*", s=230, color="#111820", zorder=7)
-ax.annotate(f"q ({angle}°)", q, xytext=(8, -19), textcoords="offset points", fontsize=9)
+ax.annotate(f"q ({angle}°)", q, xytext=(-16, -26), textcoords="offset points", fontsize=9, ha="right",
+            bbox=dict(boxstyle="round,pad=.15", facecolor="white", alpha=.85, edgecolor="none"),
+            arrowprops=dict(arrowstyle="-", color="#111820", linewidth=.8))
 for item_id, _ in exact:
     x, y = next(r["vector"] for r in rows if r["item_id"] == item_id)
     ax.scatter(x, y, s=210, facecolors="none", edgecolors="#214d32", linewidths=2.1, zorder=6)

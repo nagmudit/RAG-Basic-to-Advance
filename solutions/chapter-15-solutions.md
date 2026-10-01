@@ -39,3 +39,15 @@ More tables recover more candidates but spend more search work. More bits shrink
 For `style-ticket`, exact top two include direct incident `D7:timeline:0`, but two-table/four-bit LSH has an empty candidate/context list. This is a genuine ANN candidate miss. For `acronym-sla`, exact dense itself ranks the old clause and Basic agreement rather than direct current amendment `D2:§2:0`; LSH cannot repair a missing exact-oracle target merely by matching neighbors. For `code-segment`, literal `D6:row-2:0` is a metadata identifier absent from title/body embeddings; an authorized exact-ID route is the narrow fix. For `none-private`, there is no eligible positive qrel; D10 is legal-only and never a candidate/context ID. An empty LSH bucket is not proven abstention. Each diagnostic case has `generation_status=null`, so answer correctness and citations are unmeasured.
 
 A larger experiment must freeze source/model/index revisions and an independent reviewed question set before tuning; stratify by source, scope, query type and language; evaluate complete qrels plus exact top-*k* oracle at fixed depths; repeat randomized-index seeds; measure build/refresh and bytes, warm/cold encoder/search/refine and end-to-end latency with p50/p95 sample counts; include empty-bucket and permission tests; and set explicit recall/latency acceptance gates. Chapter 13's fourteen questions are already inspected regressions. The counterexamples to the teammate are KD's V0 mean 8.36 scored vectors versus exact 12 but search p50 `3.27 ms` versus `.61 ms`, and LSH eight-table/four-bit judged macro Recall matching exact while exact-neighbor recall is only `.786` with slower search. Stage traces, candidate IDs, qrel denominators and scoped latency distributions are needed before a route change.
+
+## Independent bounded mechanism: reasoning and answer
+
+A seeded local RNG creates a reproducible projection family. Signatures select a candidate bucket; cosine orders that bucket. The boundary-miss fixture has an exact neighbor outside the only bucket: its measured Recall@1 is 0.5, not 1.
+
+The separate [worked implementation](code/chapter_15_mechanisms.py) uses standard-library code and imports no supplied project engine or learner scaffold. After comparing your reasoning, verify it on the new fixtures:
+
+```powershell
+python -X utf8 labs/chapter-15/check_implementation.py --implementation solutions/code/chapter_15_mechanisms.py
+```
+
+Rubric: correct intermediate mechanism (40%), deterministic and edge-case behavior (20%), independently written code (20%), and explanation of exact parity or measured approximation failure (20%). Passing output alone is insufficient. A loop-based implementation is appropriate; premature abstraction is unnecessary.

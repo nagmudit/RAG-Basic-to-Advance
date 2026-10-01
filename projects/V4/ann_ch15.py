@@ -193,4 +193,5 @@ class HyperplaneLSH:
                             "candidate_union": len(seen), "scored_vectors": len(seen),
                             "query_plane_dots": self.tables*self.bits,
                             "signatures": signatures,
-                            "no_bucket_match": not seen}
+                            "no_bucket_match": not seen,
+                            "candidate_stages": {"scored": ranked, "eligible_bucket_union": ranked}}

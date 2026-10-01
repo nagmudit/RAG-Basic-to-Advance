@@ -33,3 +33,15 @@ For the dated change, raw TF-IDF finds `D1 §3` but ranks it fifth; the first lo
 ## F. Continuity
 
 Index time prepares postings, scope-local DF and cosine document norms. Query time analyzes once, accumulates contributions from eligible postings, optionally normalizes, sorts and selects. An analyzed field length counts terms in one field; a vector norm is the square root of summed squared **weighted coordinates across the whole vocabulary**. An absent query term adds zero and does not impose an AND condition; a universal term can yield a zero score while still matching. Updating the source collection can change all IDFs, so an experiment pins the corpus and scorer version. Chapter 7 asks whether BM25's term saturation and length normalization serve these workload slices better, with Chapter 5 overlap and Chapter 6 variants retained as baselines.
+
+## Independent bounded mechanism: reasoning and answer
+
+Count eligible-document DF once per document, compute unsmoothed IDF, form raw-TF document weights and distinct-term query weights, then normalize full vectors. The denominator explains why adding a nonquery rare term can lower cosine.
+
+The separate [worked implementation](code/chapter_06_mechanisms.py) uses standard-library code and imports no supplied project engine or learner scaffold. After comparing your reasoning, verify it on the new fixtures:
+
+```powershell
+python -X utf8 labs/chapter-06/check_implementation.py --implementation solutions/code/chapter_06_mechanisms.py
+```
+
+Rubric: correct intermediate mechanism (40%), deterministic and edge-case behavior (20%), independently written code (20%), and explanation of exact parity or measured approximation failure (20%). Passing output alone is insufficient. A loop-based implementation is appropriate; premature abstraction is unnecessary.

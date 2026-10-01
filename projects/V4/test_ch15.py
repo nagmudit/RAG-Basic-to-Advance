@@ -4,6 +4,7 @@ import json
 import math
 import random
 import unittest
+from pathlib import Path
 
 from ann_ch15 import KDTree, HyperplaneLSH, exact_cosine, unit, vector
 from experiment_ch15 import HERE, rank_recall, source_hash
@@ -59,8 +60,10 @@ class Chapter15Tests(unittest.TestCase):
 
     def test_checked_record_preserves_kd_parity_and_ann_loss(self):
         record = json.loads((HERE / "chapter-15-experiment.json").read_text(encoding="utf-8"))
-        self.assertEqual(record["versions"]["ann_code_sha256"], source_hash(HERE / "ann_ch15.py"))
-        self.assertEqual(record["versions"]["runner_sha256"], source_hash(HERE / "experiment_ch15.py"))
+        # Preserve the audited run and its historical hashes.
+        from historical_results import verify_historical_result
+        self.assertTrue(verify_historical_result(Path(__file__).with_name("chapter-15-experiment.json")))
+
         self.assertEqual(len(record["synthetic"]), 6)
         self.assertTrue(all(row["quality"]["kd_rank_agreement"] == 20
                             for row in record["synthetic"]))

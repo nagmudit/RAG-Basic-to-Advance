@@ -14,6 +14,12 @@ Use this before declaring a chapter complete. Mark an item **N/A with one reason
 
 ## Evidence and operation
 
+- [ ] Does the current project version preserve the minimum correlated request/sample envelope (request/query/mode/trial IDs; corpus/query/qrel/index/model versions; redacted status/reason; stage timings; raw/intermediate/final candidates and context/evidence where run)?
+- [ ] Are intermediate lossy candidate stages retained when needed for debugging, including actual shortlist IDs/scores before refinement, rather than reconstructed from final winners?
+- [ ] Are qrels bound to the source/chunk/content, locator and eligibility version they judge under the declared normalization policy?
+- [ ] Are reported metrics labeled with a canonical workload ID from the [workload registry](evaluation/WORKLOAD_REGISTRY.md)?
+- [ ] Are metrics from different workloads prevented from being presented as longitudinal improvement; are cutoff, eligibility, model/input and measurement boundaries compatible?
+
 - [ ] Experiment states question, hypothesis, baseline, variable/controls, corpus, frozen questions/qrels, metrics, procedure, results, error analysis, conclusion and limitations where useful.
 - [ ] Evaluation distinguishes candidate retrieval, selected context, generation and end-to-end outcome; failure examples are inspected.
 - [ ] Logs, metrics, traces, events, versions, cost and failure localization are taught at the chapter's maturity level where applicable.
@@ -21,6 +27,11 @@ Use this before declaring a chapter complete. Mark an item **N/A with one reason
 - [ ] Authorization, source trust, privacy, retention and security implications are checked where relevant.
 
 ## Visual and practice
+
+- [ ] If the syllabus says "implement", does the learner independently implement a bounded mechanism on a fresh tiny fixture?
+- [ ] Does supplied reference code accidentally replace the learner construction task? Keep the first attempt before reference inspection and provide separate reasoned solutions.
+- [ ] Are all mathematical operations required by executable training taught before they are used, including shapes/transpose, stable probability/loss arithmetic, derivatives, gradient and parameter update?
+- [ ] At the end of a Part, is there a cumulative recall/architecture/project checkpoint, separate rubric, and delayed teach-back rather than only chapter-local recall?
 
 - [ ] Visual-teaching audit identifies concepts that need figures; chosen medium serves the learner question.
 - [ ] Each substantial figure has number, title, takeaway caption, alt text, chapter and editable source; plots have code/data/units; generated illustrations have prompt/specification.

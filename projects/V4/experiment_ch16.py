@@ -14,6 +14,8 @@ from pathlib import Path
 from time import perf_counter_ns
 
 HERE = Path(__file__).resolve().parent
+sys.path.insert(0, str(HERE.parent / "common"))
+from experiment_trace import TraceCollector, versions, eligible, context_ids as trace_context_ids
 sys.path.insert(0, str(HERE.parent / "V1"))
 sys.path.insert(0, str(HERE.parent / "V2"))
 sys.path.insert(0, str(HERE.parent / "V3"))
@@ -46,7 +48,11 @@ def modes(index, nprobes, *, rerank_depth=4):
 
 
 def measure(index, rows, queries, *, scope, nprobes, qrels=None,
-            context_source=None, rerank_depth=4):
+            context_source=None, rerank_depth=4, trace=None):
+    if trace is None:
+        trace = TraceCollector("ch16-custom-geometric-v1",
+            versions(index.source_version, "caller-query-roster", "geometric-exact-top2", index.source_version, None),
+            [r["item_id"] for r in rows if scope in r["allowed_scopes"]])
     configs = modes(index, nprobes, rerank_depth=rerank_depth)
     rng = random.Random(SEED + len(rows))
     cases, samples = [], {name: [] for name in ("exact", *configs)}
@@ -80,11 +86,14 @@ def measure(index, rows, queries, *, scope, nprobes, qrels=None,
                         for name, (p, m, d) in configs.items()})
         for fn in methods.values():
             fn()
-        for _ in range(2):
+        for trial in range(2):
             for name in rng.sample(list(methods), len(methods)):
-                tick = perf_counter_ns()
-                methods[name]()
-                samples[name].append((perf_counter_ns()-tick)/1e6)
+                def select_context(returned):
+                    context, _ = build_context(context_source(returned[0]), 120)
+                    return [r["segment_id"] for r in context]
+                _, rec = trace.execute(qid, name, trial, methods[name],
+                    context_selector=select_context if context_source else None)
+                samples[name].append(rec["stage_timings_ms"]["search"])
         cases.append(result)
     summaries = {}
     for name in configs:
@@ -108,7 +117,8 @@ def measure(index, rows, queries, *, scope, nprobes, qrels=None,
     for case in cases:
         if case["modes"][f"flat_p{full}"]["candidate_ids"] != case["exact_ids"]:
             raise AssertionError("IVF-Flat with all lists must match exact top-k")
-    return {"cases": cases, "summaries": summaries, "configuration": configs}
+    return {"cases": cases, "summaries": summaries, "configuration": configs,
+            "workload_id": trace.workload_id, "request_samples": trace.records}
 
 
 def synthetic_case(n, dimension, *, nlist, subspaces):
@@ -120,7 +130,10 @@ def synthetic_case(n, dimension, *, nlist, subspaces):
     index = IVFPQ(rows, nlist=nlist, subspaces=subspaces, bits=2,
                   training_ids=train_ids, seed=seed, source_version=f"synth-{seed}")
     build_ms = (perf_counter_ns()-tick)/1e6
-    tests = measure(index, rows, queries, scope="benchmark",
+    trace = TraceCollector(f"ch16-synthetic-n{n}-d{dimension}-v1",
+        versions(f"synth-{seed}", "planted-16-v1", "geometric-exact-top2", index.source_version, None),
+        [r["item_id"] for r in rows])
+    tests = measure(index, rows, queries, scope="benchmark", trace=trace,
                     nprobes=(1, 2, 4, nlist), rerank_depth=8)
     return {"n": n, "dimension": dimension, "query_count": len(queries),
             "distribution": "Gaussian unit vectors; query is stored vector plus σ=.08 Gaussian noise, then normalized",
@@ -153,7 +166,9 @@ def v0_case(*, allow_download=False):
         tick = perf_counter_ns()
         queries[qid] = embed(model, [item["question"]], batch_size=1)[0]
         encode_samples.append((perf_counter_ns()-tick)/1e6)
-    tests = measure(index, rows, queries, scope="support-team", nprobes=(1, 2, 3),
+    trace = TraceCollector("ch13-stress-probes-v1", versions(base.snapshot, qrel_data["version"], qrel_data["version"],
+        manifest["index_version"], model_info["model_revision"]), eligible(base))
+    tests = measure(index, rows, queries, scope="support-team", nprobes=(1, 2, 3), trace=trace,
                     qrels=questions, context_source=lambda ranking: source_rows(base, ranking),
                     rerank_depth=4)
     return {"corpus_snapshot": base.snapshot,

@@ -173,3 +173,22 @@ Close the chapter and answer these after one, three, seven and twenty-one days:
 - Liu et al., [*Lost in the Middle: How Language Models Use Long Contexts*](https://aclanthology.org/2024.tacl-1.9/), 2024: controlled evidence-position experiments; transfer to any chosen model remains an empirical question.
 - Greshake et al., [*Not what you've signed up for*](https://arxiv.org/abs/2302.12173), 2023: indirect instructions in retrieved material.
 - Lewis et al., [*Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks*](https://arxiv.org/abs/2005.11401), 2020: one learned retrieval–generation architecture, distinct from the simple application loop in V0.
+
+## Part I cumulative checkpoint: reconstruct the evidence path
+
+Close the chapter and project diagrams. On blank paper reconstruct:
+
+`information need -> eligible source -> candidate -> evidence -> context -> claim -> citation or abstention`
+
+Mark corpus/index preparation versus one request; draw permission gates before ranking and context. Add request/query IDs and source/index versions without copying source text into ordinary logs. Annotate one failure at **every** boundary: an unclear need, missing/ineligible source, ranking miss, insufficient evidence, packing loss, unsupported claim, and invalid citation or failure to abstain. Compare your architecture with the V0 contract from Chapter 02 only after drawing it.
+
+Answer from memory:
+
+1. How does a candidate become usable evidence for a dated Helios claim?
+2. Why can a fluent model-only answer naming four hours still fail the current-target question?
+3. What can retrieval change that fine-tuning citation style cannot guarantee?
+4. If both necessary sources are retrieved but one is absent from supplied context, which boundary failed?
+5. Why does a plausible citation string not prove grounding, and what should happen when the amendment is missing?
+6. Which V0 observations are measured mechanism behavior, and which real-model behaviors remain unmeasured?
+
+Complete the [lab checkpoint](../labs/chapter-04/LAB.md#part-i-cumulative-checkpoint) and explain the diagram to another learner. Redraw it after three and seven days, scoring the same boundary rubric. This cumulative task is part of the Part I mastery gate.

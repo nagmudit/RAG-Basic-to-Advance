@@ -6,6 +6,7 @@ import json
 import math
 import platform
 import random
+import sys
 from datetime import datetime, timezone
 from pathlib import Path
 from time import perf_counter_ns
@@ -13,6 +14,8 @@ from time import perf_counter_ns
 from sparse_late_ch14 import SparseIndex, SparseRow, maxsim, pooled_cosine, sparse_pool
 
 HERE = Path(__file__).resolve().parent
+sys.path.insert(0, str(HERE.parent / "common"))
+from experiment_trace import TraceCollector, versions, eligible, context_ids as trace_context_ids
 SEED = 14092026
 R = 2**-0.5
 Q = [(1.0, 0.0), (0.0, 1.0)]
@@ -46,13 +49,17 @@ def sparse_fixture():
     return q, lexical_q, SparseIndex(rows)
 
 
-def timed(call, samples=31):
+def timed(call, samples=31, *, trace=None, query_id=None, mode=None):
     call()  # warm Python path
     values = []
-    for _ in range(samples):
-        start = perf_counter_ns()
-        call()
-        values.append((perf_counter_ns() - start)/1000)
+    for trial in range(samples):
+        if trace is None:  # Preserve the original standalone timing helper API.
+            start = perf_counter_ns()
+            call()
+            values.append((perf_counter_ns()-start)/1000)
+        else:
+            _, rec = trace.execute(query_id, mode, trial, call)
+            values.append(rec["stage_timings_ms"]["search"]*1000)
     ordered = sorted(values)
     return {"unit": "microseconds", "samples": values,
             "p50_nearest_rank": ordered[math.ceil(.50*samples)-1],
@@ -82,13 +89,17 @@ def build_record():
     methods = {
         "surface_postings": lambda: index.search(lexical_q, "support-team", 3),
         "expanded_postings": lambda: index.search(q, "support-team", 3),
-        "exact_maxsim_three": lambda: [maxsim(Q, vectors)[0] for vectors in DOCUMENTS.values()],
-        "pooled_cosine_three": lambda: [pooled_cosine(Q, vectors) for vectors in DOCUMENTS.values()],
+        "exact_maxsim_three": lambda: sorted([(i, maxsim(Q, v)[0]) for i, v in DOCUMENTS.items()], key=lambda p: (-p[1], p[0])),
+        "pooled_cosine_three": lambda: sorted([(i, pooled_cosine(Q, v)) for i, v in DOCUMENTS.items()], key=lambda p: (-p[1], p[0])),
     }
     random.seed(SEED)
     order = list(methods)
     random.shuffle(order)
-    timings = {name: timed(methods[name]) for name in order}
+    traces = {family: TraceCollector(f"ch14-{family}-fixture-v1",
+        versions("ch14-toy-1", f"toy-{family}-1", "ch14-toy-1", "fixed-weights-or-vectors-1", None),
+        SPARSE_QRELS if family == "sparse" else TOKEN_QRELS) for family in ("sparse", "token")}
+    timings = {name: timed(methods[name], trace=traces["sparse" if "postings" in name else "token"],
+        query_id="toy-sparse-1" if "postings" in name else "toy-token-1", mode=name) for name in order}
     code = HERE / "sparse_late_ch14.py"
     runner = HERE / "experiment_ch14.py"
     recorded_at = datetime.now(timezone.utc).isoformat()
@@ -139,6 +150,8 @@ def build_record():
         "sparse": sparse, "token": token,
         "token_rankings": {"exact_maxsim": maxsim_order, "pooled_cosine": pooled_order},
         "request_trace_examples": request_trace_examples,
+        "workload_ids": [t.workload_id for t in traces.values()],
+        "request_samples": [r for t in traces.values() for r in t.records],
         "latency": {"environment": {"python": platform.python_version(), "platform": platform.platform()},
                     "boundary": "warm in-process scoring only; excludes neural encoding, building, I/O, context and generation",
                     "method_order": order, "methods": timings},

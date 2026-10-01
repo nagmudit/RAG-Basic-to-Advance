@@ -13,9 +13,18 @@
   "binary_relevant_at_or_above": 1,
   "zero_policy": "Every eligible_segment_id not named in grade_1 or grade_2 was individually reviewed and assigned grade 0; no eligible segment is unjudged in this miniature corpus.",
   "eligible_segment_ids": [
-    "D1:§3:0", "D1:§8:0", "D2:§2:0", "D3:FAQ-7:0",
-    "D4:step-4:0", "D4:step-4:1", "D4:step-4:2", "D5:§3:0",
-    "D6:row-2:0", "D7:timeline:0", "D8:§3:0", "D9:proposal-2:0"
+    "D1:§3:0",
+    "D1:§8:0",
+    "D2:§2:0",
+    "D3:FAQ-7:0",
+    "D4:step-4:0",
+    "D4:step-4:1",
+    "D4:step-4:2",
+    "D5:§3:0",
+    "D6:row-2:0",
+    "D7:timeline:0",
+    "D8:§3:0",
+    "D9:proposal-2:0"
   ],
   "queries": [
     {
@@ -23,7 +32,10 @@
       "question": "As of 20 May 2026, how did the Helios Pro Sev-1 response target change?",
       "slice": "dated_multi_evidence",
       "origin": "frozen_v0",
-      "grade_2": ["D1:§3:0", "D2:§2:0"],
+      "grade_2": [
+        "D1:§3:0",
+        "D2:§2:0"
+      ],
       "grade_1": [],
       "rationale": "The signed original and effective signed amendment jointly establish the before/after change; the older FAQ and unsigned proposal are not authoritative for this dated comparison."
     },
@@ -32,7 +44,9 @@
       "question": "Show the termination clause in the Helios Pro agreement.",
       "slice": "exact_clause",
       "origin": "frozen_v0",
-      "grade_2": ["D1:§8:0"],
+      "grade_2": [
+        "D1:§8:0"
+      ],
       "grade_1": [],
       "rationale": "The signed agreement section contains the notice clause."
     },
@@ -41,7 +55,9 @@
       "question": "What is the annual Helios Pro support fee before tax in credits?",
       "slice": "numeric_lookup",
       "origin": "chapter09_authored",
-      "grade_2": ["D6:row-2:0"],
+      "grade_2": [
+        "D6:row-2:0"
+      ],
       "grade_1": [],
       "rationale": "The price-sheet row gives the amount and units; support agreements do not."
     },
@@ -50,7 +66,9 @@
       "question": "What is the Sev-1 initial response target for Helios Basic?",
       "slice": "entity_disambiguation",
       "origin": "chapter09_authored",
-      "grade_2": ["D5:§3:0"],
+      "grade_2": [
+        "D5:§3:0"
+      ],
       "grade_1": [],
       "rationale": "The signed Basic agreement answers; Pro and Atlas clauses are wrong products."
     },
@@ -59,7 +77,9 @@
       "question": "What is the Sev-1 initial response target for Atlas Pro?",
       "slice": "entity_disambiguation",
       "origin": "chapter09_authored",
-      "grade_2": ["D8:§3:0"],
+      "grade_2": [
+        "D8:§3:0"
+      ],
       "grade_1": [],
       "rationale": "The Atlas agreement answers; similarly worded Helios clauses are wrong products."
     },
@@ -68,8 +88,12 @@
       "question": "What should the on-call engineer do when an urgent incident arrives?",
       "slice": "procedure_segment",
       "origin": "chapter09_authored",
-      "grade_2": ["D4:step-4:0"],
-      "grade_1": ["D4:step-4:1"],
+      "grade_2": [
+        "D4:step-4:0"
+      ],
+      "grade_1": [
+        "D4:step-4:1"
+      ],
       "rationale": "The first runbook window contains arrival, impact, page acknowledgment and bridge; the next window adds follow-on checks but cannot alone answer the arrival action."
     },
     {
@@ -77,7 +101,10 @@
       "question": "For a shared-dependency incident, whom should the team notify and how is the next action tracked?",
       "slice": "multi_segment_procedure",
       "origin": "chapter09_authored",
-      "grade_2": ["D4:step-4:1", "D4:step-4:2"],
+      "grade_2": [
+        "D4:step-4:1",
+        "D4:step-4:2"
+      ],
       "grade_1": [],
       "rationale": "The second runbook window names the incident commander; the third names action/effect/next owner in the timeline. Both are needed for the two-part request."
     },
@@ -86,8 +113,12 @@
       "question": "Which action and ownership details should the team record in the incident timeline?",
       "slice": "procedure_segment",
       "origin": "chapter09_authored",
-      "grade_2": ["D4:step-4:2"],
-      "grade_1": ["D4:step-4:0"],
+      "grade_2": [
+        "D4:step-4:2"
+      ],
+      "grade_1": [
+        "D4:step-4:0"
+      ],
       "rationale": "The third runbook window names each action, observed effect and next owner; the first records arrival time and impact but not the requested ownership detail."
     },
     {
@@ -95,7 +126,9 @@
       "question": "How long did the measured response to the recorded Sev-1 incident take?",
       "slice": "observation_vs_contract",
       "origin": "chapter09_authored",
-      "grade_2": ["D7:timeline:0"],
+      "grade_2": [
+        "D7:timeline:0"
+      ],
       "grade_1": [],
       "rationale": "The incident report gives an observed two-hour response; contractual targets and the draft proposal do not answer an observation question."
     },
@@ -104,7 +137,9 @@
       "question": "What Sev-1 response target did the unsigned Helios Pro proposal suggest?",
       "slice": "source_status",
       "origin": "chapter09_authored",
-      "grade_2": ["D9:proposal-2:0"],
+      "grade_2": [
+        "D9:proposal-2:0"
+      ],
       "grade_1": [],
       "rationale": "The draft proposal is directly relevant because the question asks what the draft suggested, not what is in force."
     },
@@ -113,8 +148,12 @@
       "question": "As of 20 May 2026, what signed Helios Pro Sev-1 response target is in force?",
       "slice": "dated_authority",
       "origin": "chapter09_authored",
-      "grade_2": ["D2:§2:0"],
-      "grade_1": ["D1:§3:0"],
+      "grade_2": [
+        "D2:§2:0"
+      ],
+      "grade_1": [
+        "D1:§3:0"
+      ],
       "rationale": "The signed effective amendment supplies the current target. The signed original is useful historical context but insufficient alone; the old FAQ and unsigned draft are grade 0 for current authority."
     },
     {
@@ -144,5 +183,303 @@
       "grade_1": [],
       "rationale": "The legal-only decoy is outside support-team eligibility. All twelve support-team segments are nonrelevant to this restricted request; no private source is a support-team qrel."
     }
-  ]
+  ],
+  "evidence_identity": {
+    "normalization_policy": "evidence-identity-v1-whitespace-collapse-case-and-punctuation-preserved",
+    "corpus_snapshot": "support-corpus-2026-05-20",
+    "scope_fixture": "support-team",
+    "retrieval_unit": "indexed_segment",
+    "items": [
+      {
+        "segment_id": "D1:§3:0",
+        "document": {
+          "document_id": "D1",
+          "source_version": "v1",
+          "allowed_scopes": [
+            "support-team"
+          ],
+          "status": "signed agreement",
+          "effective_on": "2025-01-01",
+          "source_content_sha256": "ba384991c481d60d8ff5aa19e3bcdf83be291c77cbb98cce46ff2537b7e896f9"
+        },
+        "locator": {
+          "source_span": "§3",
+          "section_order": 0,
+          "segment_number": 0,
+          "word_start": 0,
+          "word_end_exclusive": 10
+        },
+        "allowed_scopes": [
+          "support-team"
+        ],
+        "segment_content_sha256": "cd9f7740bbfe327fb1116d8402583f281cd3fbac17e9ee2aeb865132afc66484"
+      },
+      {
+        "segment_id": "D1:§8:0",
+        "document": {
+          "document_id": "D1",
+          "source_version": "v1",
+          "allowed_scopes": [
+            "support-team"
+          ],
+          "status": "signed agreement",
+          "effective_on": "2025-01-01",
+          "source_content_sha256": "ba384991c481d60d8ff5aa19e3bcdf83be291c77cbb98cce46ff2537b7e896f9"
+        },
+        "locator": {
+          "source_span": "§8",
+          "section_order": 1,
+          "segment_number": 0,
+          "word_start": 0,
+          "word_end_exclusive": 11
+        },
+        "allowed_scopes": [
+          "support-team"
+        ],
+        "segment_content_sha256": "fd2be33c5a1d82bdfe70e38567455fda0b3da002c5c38615cbb3063b9fc5fd8e"
+      },
+      {
+        "segment_id": "D2:§2:0",
+        "document": {
+          "document_id": "D2",
+          "source_version": "signed-2026-05-12",
+          "allowed_scopes": [
+            "support-team"
+          ],
+          "status": "signed amendment",
+          "effective_on": "2026-05-15",
+          "source_content_sha256": "db8fc47abedc9059e4aa43cd22a729750311e9c2e3c15e3f755ed85ff778fd2a"
+        },
+        "locator": {
+          "source_span": "§2",
+          "section_order": 0,
+          "segment_number": 0,
+          "word_start": 0,
+          "word_end_exclusive": 15
+        },
+        "allowed_scopes": [
+          "support-team"
+        ],
+        "segment_content_sha256": "fd0e192547284f1d5273436d8919b14f3ac2aa77e497393ad4761f2e4904443b"
+      },
+      {
+        "segment_id": "D3:FAQ-7:0",
+        "document": {
+          "document_id": "D3",
+          "source_version": "captured-2026-05-10",
+          "allowed_scopes": [
+            "support-team"
+          ],
+          "status": "informational summary",
+          "effective_on": "2026-05-10",
+          "source_content_sha256": "f00f679b46b7f7a3d5ade5c4aadfdd1a10d6bd0148b4fe88b54cdedb9a74f339"
+        },
+        "locator": {
+          "source_span": "FAQ-7",
+          "section_order": 0,
+          "segment_number": 0,
+          "word_start": 0,
+          "word_end_exclusive": 8
+        },
+        "allowed_scopes": [
+          "support-team"
+        ],
+        "segment_content_sha256": "9d24a6fab73a39802e280cdca1c4d7874db93c35b486ec7d6bc7065539071f53"
+      },
+      {
+        "segment_id": "D4:step-4:0",
+        "document": {
+          "document_id": "D4",
+          "source_version": "2026-04-18",
+          "allowed_scopes": [
+            "support-team"
+          ],
+          "status": "operations guide",
+          "effective_on": "2026-04-18",
+          "source_content_sha256": "f9b59de41443aa50a2ed6bae6832484b8fffbb46f75398df6cdbf07e5e9eedfa"
+        },
+        "locator": {
+          "source_span": "step-4",
+          "section_order": 0,
+          "segment_number": 0,
+          "word_start": 0,
+          "word_end_exclusive": 24
+        },
+        "allowed_scopes": [
+          "support-team"
+        ],
+        "segment_content_sha256": "b717c7631aeea16133b918a21934423f13af15d1405544704205f1ab73883f5e"
+      },
+      {
+        "segment_id": "D4:step-4:1",
+        "document": {
+          "document_id": "D4",
+          "source_version": "2026-04-18",
+          "allowed_scopes": [
+            "support-team"
+          ],
+          "status": "operations guide",
+          "effective_on": "2026-04-18",
+          "source_content_sha256": "f9b59de41443aa50a2ed6bae6832484b8fffbb46f75398df6cdbf07e5e9eedfa"
+        },
+        "locator": {
+          "source_span": "step-4",
+          "section_order": 0,
+          "segment_number": 1,
+          "word_start": 24,
+          "word_end_exclusive": 48
+        },
+        "allowed_scopes": [
+          "support-team"
+        ],
+        "segment_content_sha256": "26d7cc22e5748a3377ff34814c4116ac323bef35f539c60c87be8086eda0cd79"
+      },
+      {
+        "segment_id": "D4:step-4:2",
+        "document": {
+          "document_id": "D4",
+          "source_version": "2026-04-18",
+          "allowed_scopes": [
+            "support-team"
+          ],
+          "status": "operations guide",
+          "effective_on": "2026-04-18",
+          "source_content_sha256": "f9b59de41443aa50a2ed6bae6832484b8fffbb46f75398df6cdbf07e5e9eedfa"
+        },
+        "locator": {
+          "source_span": "step-4",
+          "section_order": 0,
+          "segment_number": 2,
+          "word_start": 48,
+          "word_end_exclusive": 62
+        },
+        "allowed_scopes": [
+          "support-team"
+        ],
+        "segment_content_sha256": "34dff0abe25c5029a3901212afb21e0d9444b25309842974c41eed2cfacc579b"
+      },
+      {
+        "segment_id": "D5:§3:0",
+        "document": {
+          "document_id": "D5",
+          "source_version": "v2",
+          "allowed_scopes": [
+            "support-team"
+          ],
+          "status": "signed agreement",
+          "effective_on": "2026-01-01",
+          "source_content_sha256": "05b0d81246d25c9c97e3d9a7dbf09e8facef408a75b76263efc10172116987b2"
+        },
+        "locator": {
+          "source_span": "§3",
+          "section_order": 0,
+          "segment_number": 0,
+          "word_start": 0,
+          "word_end_exclusive": 13
+        },
+        "allowed_scopes": [
+          "support-team"
+        ],
+        "segment_content_sha256": "532ca94ac02344a5787dac187ab136d10583c323f6c9ea5339e1876ba9775b14"
+      },
+      {
+        "segment_id": "D6:row-2:0",
+        "document": {
+          "document_id": "D6",
+          "source_version": "2026-Q2",
+          "allowed_scopes": [
+            "support-team"
+          ],
+          "status": "pricing reference",
+          "effective_on": "2026-04-01",
+          "source_content_sha256": "918ed2fc2d786ea94052ab4bcf7a4396eff78d84f5db45821a1a25e0f5446113"
+        },
+        "locator": {
+          "source_span": "row-2",
+          "section_order": 0,
+          "segment_number": 0,
+          "word_start": 0,
+          "word_end_exclusive": 11
+        },
+        "allowed_scopes": [
+          "support-team"
+        ],
+        "segment_content_sha256": "e07f50f3e66f7befe3ec85cdafedf57a3930827b108ba3e130920e176439eafc"
+      },
+      {
+        "segment_id": "D7:timeline:0",
+        "document": {
+          "document_id": "D7",
+          "source_version": "2026-05-18",
+          "allowed_scopes": [
+            "support-team"
+          ],
+          "status": "historical incident",
+          "effective_on": "2026-05-18",
+          "source_content_sha256": "81e3ab7406fa811d2e162356500f7bcd4514edc8b8928e22c6bc83041eea55fc"
+        },
+        "locator": {
+          "source_span": "timeline",
+          "section_order": 0,
+          "segment_number": 0,
+          "word_start": 0,
+          "word_end_exclusive": 18
+        },
+        "allowed_scopes": [
+          "support-team"
+        ],
+        "segment_content_sha256": "b3ba6e2526b9cf30a26661885e835935ff84d399f8794bb431cad3a88fcc288d"
+      },
+      {
+        "segment_id": "D8:§3:0",
+        "document": {
+          "document_id": "D8",
+          "source_version": "v1",
+          "allowed_scopes": [
+            "support-team"
+          ],
+          "status": "signed agreement",
+          "effective_on": "2025-09-01",
+          "source_content_sha256": "8d02b612321c37b957f6c4ebebe0c6ee67edaa8c0d3b622d29c39fcd9dffd165"
+        },
+        "locator": {
+          "source_span": "§3",
+          "section_order": 0,
+          "segment_number": 0,
+          "word_start": 0,
+          "word_end_exclusive": 13
+        },
+        "allowed_scopes": [
+          "support-team"
+        ],
+        "segment_content_sha256": "b3eb0fa0bf7e21adfdb8a9f3da16c7b850da53d921742918878f94388e726ddd"
+      },
+      {
+        "segment_id": "D9:proposal-2:0",
+        "document": {
+          "document_id": "D9",
+          "source_version": "draft-2026-05-11",
+          "allowed_scopes": [
+            "support-team"
+          ],
+          "status": "unsigned draft",
+          "effective_on": "2026-05-11",
+          "source_content_sha256": "bd60e164071164e2722f282cad82317161d1d64ea5cf3ca1b1b9f17a99b0da27"
+        },
+        "locator": {
+          "source_span": "proposal-2",
+          "section_order": 0,
+          "segment_number": 0,
+          "word_start": 0,
+          "word_end_exclusive": 16
+        },
+        "allowed_scopes": [
+          "support-team"
+        ],
+        "segment_content_sha256": "de0e40bb0fc0f2576717328c221e962d4d43b095a33c9092d087f7d9e235939c"
+      }
+    ],
+    "manifest_sha256": "6d78c210769d0992dd530ab66349792077f1b89564c368f63797301ebc66523c"
+  },
+  "binding_revision": "evidence-identity-v1"
 }

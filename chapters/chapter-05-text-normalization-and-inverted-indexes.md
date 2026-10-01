@@ -8,6 +8,10 @@ Chapters [2](chapter-02-build-the-first-rag-loop.md) and [3](chapter-03-data-alg
 
 Suppose the support corpus grew from 13 segments to a million. A request for a rare product code such as `HX-7A` should not need to tokenize a million bodies again. We could prepare a map from each searchable term to the segments that contain it. That map is an **inverted index**. It trades preparation and storage for fewer query-time visits. The trade is worthwhile only if its analyzer preserves the distinctions our users need and its returned IDs still pass eligibility before scoring or source-text fetch.
 
+**Workload identity:** `v0-frozen-tasks-v1`; see the [comparison registry](../evaluation/WORKLOAD_REGISTRY.md). Metrics across different workloads do not form an improvement sequence.
+
+**Independent construction gate:** Read the mechanism explanations first. Before inspecting supplied Python reference code, attempt [lab A0](../labs/chapter-05/LAB.md#a0-independent-bounded-mechanism) on your own tiny fixture. Open the separate worked answer afterward; existing calculation, debugging and project-comparison tasks still apply.
+
 ## 1. What exactly enters the index?
 
 A **corpus** is the chosen source snapshot. A **document** is a versioned source record; a **segment** is a searchable unit derived from one document and source span. Our V1 preview indexes the same 13 V0 segments, including the restricted `D10` segment in its internal store. Indexing a record does not make it eligible for every request. The source locator remains document ID, version, section and segment ID. Chapter 19 will make parsing and lineage much richer; Chapter 20 will revisit segmentation. Here we hold those choices fixed so the indexing mechanism is visible.

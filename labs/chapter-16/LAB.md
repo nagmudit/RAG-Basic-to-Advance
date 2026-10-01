@@ -2,6 +2,20 @@
 
 Read [Chapter 16](../../chapters/chapter-16-ivf-quantization-and-compressed-vectors.md) and [Chapter 15](../../chapters/chapter-15-exact-knn-to-trees-and-hashing.md) first. Keep one exact oracle and the same scope/metric while changing the candidate index. The [checked record](../../projects/V4/chapter-16-experiment.json) is one local run: IDs, work and quality should reproduce under the pinned inputs, but CPU timings need not.
 
+## A0. Independent bounded mechanism
+
+Implement `nearest_centroid(vector, centroids)`, `encode_subvectors(vector, codebooks)`, and `adc_distance(query, code, codebooks)` in [implement.py](implement.py). Work on equal-dimensional finite vectors with squared L2 distance. Centroid/codeword ties choose the lowest index. Equal-width codebooks partition the vector into consecutive subvectors; encode each against its own book. ADC splits the uncompressed query and sums distances to selected codewords. This fixed-codebook fixture does not train k-means or duplicate the IVF engine.
+
+Use two 2D coarse centroids and a 4D vector with two 2D codebooks. Show coarse assignment, residual `x-centroid`, every subvector/codeword distance, code, decoded residual and reconstruction `centroid+decoded residual`. For residual PQ, pass `q-centroid` to ADC. Verify ADC equals squared distance to the decoded vector, then measure error versus the original and compare a two-item approximate ranking with exact neighbors. The checker uses a fresh 4D fixture and a compression-induced top-1 miss. Approximation error is an outcome to measure, not a failed exactness promise. Keep the existing IVF/PQ error decomposition and negative results.
+
+After your first attempt, run from the repository root:
+
+```powershell
+python -X utf8 labs/chapter-16/check_implementation.py
+```
+
+The starter intentionally raises `NotImplementedError`. Tests are feedback fixtures, not a concealed grading service. Submit your implementation, hand predictions, checker output and one diagnosis of a failing case. Open the separate chapter solutions only after attempting this task. Existing calculation, experiment and debugging tasks below still apply.
+
 ## Run the fixed stage
 
 From the repository root:

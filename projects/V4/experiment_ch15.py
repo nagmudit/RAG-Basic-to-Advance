@@ -14,6 +14,8 @@ from pathlib import Path
 from time import perf_counter_ns
 
 HERE = Path(__file__).resolve().parent
+sys.path.insert(0, str(HERE.parent / "common"))
+from experiment_trace import TraceCollector, versions, eligible, context_ids as trace_context_ids
 sys.path.insert(0, str(HERE.parent / "V1"))
 sys.path.insert(0, str(HERE.parent / "V2"))
 sys.path.insert(0, str(HERE.parent / "V3"))
@@ -64,6 +66,9 @@ def synthetic_case(n, dimension, seed):
     tick = perf_counter_ns()
     lsh = HyperplaneLSH(rows, tables=4, bits=6, seed=seed, source_version=f"synthetic-{n}-{dimension}-{seed}")
     lsh_build_ms = (perf_counter_ns()-tick)/1e6
+    trace = TraceCollector(f"ch15-synthetic-n{n}-d{dimension}-v1",
+        versions(f"synthetic-{n}-{dimension}-{seed}", "planted-20-v1", "geometric-exact-top2", lsh.source_version, None),
+        [r["item_id"] for r in rows])
     cases, timings = [], {name: [] for name in ("exact", "kd", "lsh")}
     rng = random.Random(seed+1)
     for qid, q in enumerate(queries):
@@ -85,11 +90,10 @@ def synthetic_case(n, dimension, seed):
                    "lsh": lambda: lsh.search(q, scope="benchmark", k=K)}
         for name in methods:
             methods[name]()
-        for _ in range(3):
+        for trial in range(3):
             for name in rng.sample(list(methods), len(methods)):
-                tick = perf_counter_ns()
-                methods[name]()
-                timings[name].append((perf_counter_ns()-tick)/1e6)
+                _, rec = trace.execute(f"synth-{qid:02d}", name, trial, methods[name])
+                timings[name].append(rec["stage_timings_ms"]["search"])
     return {"n": n, "dimension": dimension, "query_count": len(queries), "k": K,
             "distribution": "independent Gaussian unit vectors; query is a randomly selected stored vector plus independent Gaussian noise σ=.08, renormalized",
             "seed": seed, "kd_leaf_size": 8, "lsh_tables": 4, "lsh_bits": 6,
@@ -103,7 +107,7 @@ def synthetic_case(n, dimension, seed):
                                     "kd": statistics.mean(c["kd_work"]["scored_vectors"] for c in cases),
                                     "lsh": statistics.mean(c["lsh_work"]["scored_vectors"] for c in cases)},
             "timings": {name: timing_summary(values) for name, values in timings.items()},
-            "cases": cases}
+            "cases": cases, "workload_id": trace.workload_id, "request_samples": trace.records}
 
 
 def v0_case(*, allow_download=False):
@@ -125,6 +129,8 @@ def v0_case(*, allow_download=False):
                                       seed=SEED, source_version=manifest["index_version"])
         build_ms[name] = (perf_counter_ns()-tick)/1e6
     model, model_info = load_encoder(allow_download=allow_download)
+    trace = TraceCollector("ch13-stress-probes-v1", versions(base.snapshot, data["version"], data["version"],
+        manifest["index_version"], model_info["model_revision"]), eligible(base))
     cases, encode_ms = [], []
     search_samples = {name: [] for name in ("exact", "kd", *indexes)}
     rng = random.Random(SEED)
@@ -165,11 +171,11 @@ def v0_case(*, allow_download=False):
                       for name, index in indexes.items()}}
         for name in methods:
             methods[name]()
-        for _ in range(3):
+        for trial in range(3):
             for name in rng.sample(list(methods), len(methods)):
-                tick = perf_counter_ns()
-                methods[name]()
-                search_samples[name].append((perf_counter_ns()-tick)/1e6)
+                _, rec = trace.execute(qid, name, trial, methods[name],
+                    context_selector=lambda result: trace_context_ids(base, result))
+                search_samples[name].append(rec["stage_timings_ms"]["search"])
         cases.append({"request_id": f"ch15-{qid}", "query_id": qid,
                       "index_version": manifest["index_version"],
                       "scope_fixture": "support-team", "query_encode_ms": round(encoded_elapsed_ms, 6),
@@ -195,7 +201,8 @@ def v0_case(*, allow_download=False):
                                     "seed": SEED} for t, b in LSH_CONFIGS],
             "index_build_ms": {"kd": kd_build_ms, **build_ms},
             "query_encode_timing": timing_summary(encode_ms),
-            "summaries": summaries, "cases": cases}
+            "summaries": summaries, "cases": cases,
+            "workload_id": trace.workload_id, "request_samples": trace.records}
 
 
 def run(*, allow_download=False):

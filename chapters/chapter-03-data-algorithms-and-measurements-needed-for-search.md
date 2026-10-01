@@ -8,6 +8,8 @@ In [Chapter 2](chapter-02-build-the-first-rag-loop.md), V0 prepared thirteen sou
 
 Before building an inverted index in Chapter 5, we need a small vocabulary for data structures, work, space and measurement. The goal here is not to make V0's answer path faster. We will compare two ways to solve **the same exact-ID lookup task**, then explain why that result cannot be pasted onto term retrieval. We will also acquire the algebra, statistics and vector notation needed to read later ranking chapters without treating a measured number as a universal law.
 
+**Workload identity:** `v0-frozen-tasks-v1`; see the [comparison registry](../evaluation/WORKLOAD_REGISTRY.md). Metrics across different workloads do not form an improvement sequence.
+
 ## 1. Follow the data before choosing a structure
 
 V0 holds prepared segments in a Python **list**. A list is an ordered sequence: `segments[0]` finds one position, and a `for` loop visits positions in order. Each segment is a **dictionary**, or map, from field names such as `segment_id` and `text` to values. `tokenize()` produces terms; a **set** removes duplicates and makes membership/intersection convenient. Finally, `search()` sorts positively scored candidates. These choices serve different operations.

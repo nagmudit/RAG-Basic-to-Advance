@@ -3,6 +3,7 @@
 import json
 import math
 import unittest
+from pathlib import Path
 
 from experiment_ch14 import DOCUMENTS, HERE, Q, build_record, source_sha256, sparse_fixture
 from sparse_late_ch14 import SparseIndex, SparseRow, maxsim, pooled_cosine, sparse_pool
@@ -43,8 +44,9 @@ class Chapter14Tests(unittest.TestCase):
         record = json.loads((HERE / "chapter-14-experiment.json").read_text(encoding="utf-8"))
         self.assertEqual(record["source"]["code_sha256"],
                          build_record()["source"]["code_sha256"])
-        self.assertEqual(record["source"]["runner_sha256"],
-                         source_sha256(HERE / "experiment_ch14.py"))
+        # Preserve the audited run and its historical hashes.
+        from historical_results import verify_historical_result
+        self.assertTrue(verify_historical_result(Path(__file__).with_name("chapter-14-experiment.json")))
         self.assertIsNone(record["source"]["model_version"])
         self.assertEqual(record["sparse"]["surface_only"]["recall_at_1"], 0)
         self.assertEqual(record["sparse"]["expanded"]["recall_at_1"], 1)

@@ -1,0 +1,42 @@
+{
+  "audited_commit": "6202e5ec067119991722c99c3a2a15c42266c902",
+  "policy": "Immutable pre-remediation results; source hashes identify historical code, not the current runner. New runs go to separate local result files.",
+  "records": {
+    "projects/V1/chapter-05-experiment.json": {
+      "sha256_lf": "3c64f22fb3d302df5d69d0f6264a4bc6e979690ec6c1141f2a2d8182d749dc87"
+    },
+    "projects/V1/chapter-06-experiment.json": {
+      "sha256_lf": "10230c37a52c98cdfd4683ee44e1eeff879d34ee9d005286790f163f11209c9d"
+    },
+    "projects/V2/chapter-07-experiment.json": {
+      "sha256_lf": "0d0ffadcd2063a7d57872f7fd91a7b2b051dcf7b1237951d7a7a0641348f2d86"
+    },
+    "projects/V2/chapter-08-experiment.json": {
+      "sha256_lf": "49db9b03d75e3f7d20140594b637c3a086ac3a1e353e8b5e3596d24ad66d94dd"
+    },
+    "projects/V2/chapter-09-experiment.json": {
+      "sha256_lf": "7bcd69e5b628810d6c31310a61838fd3cd1976a9bb14f9c4150cf38cb3c6832a"
+    },
+    "projects/V3/chapter-10-experiment.json": {
+      "sha256_lf": "0e1abc9127ebc310128ddcc9f9004ad9594a51fa5ed3b955f14c8d7e667faf51"
+    },
+    "projects/V3/chapter-11-experiment.json": {
+      "sha256_lf": "61aa9f98ba3d9a562a379e6d3d740c12e784bd5c92d5f383e3f3d0b5c2c7a5dd"
+    },
+    "projects/V3/chapter-12-experiment.json": {
+      "sha256_lf": "8338a19b535defedd92f94771ea5c43c11c3daca672e4b000e9c890bc5170b0b"
+    },
+    "projects/V3/chapter-13-experiment.json": {
+      "sha256_lf": "6e8ede0037af97efbd890064b9fb5ce4179e6952f4515740ee5261ea742df0b2"
+    },
+    "projects/V3/chapter-14-experiment.json": {
+      "sha256_lf": "29582e3181f9a1dfdb4f961ca787ad02bc637d6b5a31cf89fdb36e2144143e73"
+    },
+    "projects/V4/chapter-15-experiment.json": {
+      "sha256_lf": "4767f5c584925a912b33ab05605680c0e8cf70ba1e5a57c0d6381dbf9ab3a96d"
+    },
+    "projects/V4/chapter-16-experiment.json": {
+      "sha256_lf": "37be6b8893cb67e4c9880a08c1c7cb19d775b9c30968f4e953687a2bdafef41f"
+    }
+  }
+}

@@ -1,6 +1,7 @@
 """Chapter 13: materialized exact dense candidate retrieval and diagnostic slices."""
 
 import argparse
+from contextlib import nullcontext
 import json
 import platform
 import random
@@ -11,6 +12,8 @@ from pathlib import Path
 from time import perf_counter_ns
 
 HERE = Path(__file__).resolve().parent
+sys.path.insert(0, str(HERE.parent / "common"))
+from experiment_trace import TraceCollector, versions, eligible, context_ids as trace_context_ids
 sys.path.insert(0, str(HERE.parent / "V1"))
 sys.path.insert(0, str(HERE.parent / "V2"))
 from lexical_index import build_context, build_index, load_corpus  # noqa: E402
@@ -117,12 +120,12 @@ def batch_benchmark(model, texts, *, trials=3):
     return results
 
 
-def timed_queries(queries, base, bm25, dense, model, *, trials=5):
+def timed_queries(queries, base, bm25, dense, model, *, trials=5, trace=None):
     rng = random.Random(SEED)
     result = {name: {"samples_us": [], "by_slice": {}}
               for name in ("bm25", "dense_encode", "dense_scan", "dense_total")}
     items = list(queries.values())
-    for _ in range(trials):
+    for trial in range(trials):
         rng.shuffle(items)
         for item in items:
             q = item["question"]
@@ -130,22 +133,27 @@ def timed_queries(queries, base, bm25, dense, model, *, trials=5):
             bm25_search(bm25, q, scope="support-team", top_k=2)
             embed(model, [q], batch_size=1)
             for name in rng.sample(["bm25", "dense"], 2):
-                tick = perf_counter_ns()
-                if name == "bm25":
-                    bm25_search(bm25, q, scope="support-team", top_k=2)
-                    components = {"bm25": (perf_counter_ns() - tick) / 1000}
-                else:
-                    vector = embed(model, [q], batch_size=1)[0]
-                    encoded = perf_counter_ns()
-                    dense_candidates(dense, base, vector, 2)
-                    finished = perf_counter_ns()
-                    components = {"dense_encode": (encoded - tick) / 1000,
-                                  "dense_scan": (finished - encoded) / 1000,
-                                  "dense_total": (finished - tick) / 1000}
-                for stage, elapsed in components.items():
-                    value = round(elapsed, 3)
-                    result[stage]["samples_us"].append(value)
-                    result[stage]["by_slice"].setdefault(slice_name, []).append(value)
+                with trace.guard(item["query_id"], name, trial) if trace is not None else nullcontext():
+                    tick = perf_counter_ns()
+                    if name == "bm25":
+                        returned = bm25_search(bm25, q, scope="support-team", top_k=2)
+                        components = {"bm25": (perf_counter_ns() - tick) / 1000}
+                    else:
+                        vector = embed(model, [q], batch_size=1)[0]
+                        encoded = perf_counter_ns()
+                        returned = dense_candidates(dense, base, vector, 2)
+                        finished = perf_counter_ns()
+                        components = {"dense_encode": (encoded - tick) / 1000,
+                                      "dense_scan": (finished - encoded) / 1000,
+                                      "dense_total": (finished - tick) / 1000}
+                    if trace is not None:
+                        trace.record(item["query_id"], name, trial, returned,
+                            {stage: elapsed/1000 for stage, elapsed in components.items() if stage != "dense_total"},
+                            context=trace_context_ids(base, returned))
+                    for stage, elapsed in components.items():
+                        value = round(elapsed, 3)
+                        result[stage]["samples_us"].append(value)
+                        result[stage]["by_slice"].setdefault(slice_name, []).append(value)
     for stage in result:
         values = result[stage]["samples_us"]
         result[stage]["p50_us"] = nearest_rank(values, .5)
@@ -191,7 +199,9 @@ def run(*, index_dir=INDEX_DIR, allow_download=False, trials=5):
                            "rank_equal": old_ids == new_ids})
     bm25 = build_bm25_index(base)
     cases, summaries, _ = evaluate_queries(queries, base, bm25, dense, model)
-    timings = timed_queries(queries, base, bm25, dense, model, trials=trials)
+    trace = TraceCollector("ch13-stress-probes-v1", versions(base.snapshot, data["version"], data["version"],
+        {"bm25": bm25.version, "dense": manifest["index_version"]}, MODEL_REVISION), eligible(base))
+    timings = timed_queries(queries, base, bm25, dense, model, trials=trials, trace=trace)
     return {
         "experiment_id": "ch13-v3-materialized-dense-v1",
         "created_at_utc": datetime.now(timezone.utc).isoformat(),
@@ -215,7 +225,8 @@ def run(*, index_dir=INDEX_DIR, allow_download=False, trials=5):
                            "rank_agreements": sum(p["rank_equal"] for p in parity),
                            "largest_raw_score_delta": max(p["max_score_delta"] for p in parity)},
         "cases": cases, "summaries": summaries, "timings": timings,
-        "timing_policy": "Model load after imports is separate; batch timings are three warmed encode-only trials per batch size in fixed 1,4,16 order; five warmed randomized-method-order samples per stress query for BM25 search or dense query encoding plus exact scan. No context/generation time in request samples. Nearest-rank p50/p95 are local diagnostics, not production tails.",
+        "workload_id": trace.workload_id, "request_samples": trace.records,
+        "timing_policy": f"Model load after imports is separate; batch timings are three warmed encode-only trials per batch size in fixed 1,4,16 order; {trials} warmed randomized-method-order samples per stress query for BM25 search or dense query encoding plus exact scan. No context/generation time in request samples. Nearest-rank p50/p95 are local diagnostics, not production tails.",
         "candidate_context_answer_policy": "Candidate IDs/scores, selected context IDs/direct coverage, and absent generation labels are separate; no generator runs on Chapter 13 probes.",
         "failure_examples": ["acronym-sla: both routes omit the current signed amendment at top two", "code-segment: literal metadata ID absent from title/body; BM25 returns none and dense returns unrelated runbook windows", "num-basic: both routes rank other Sev-1 passages above the signed Basic eight-hour agreement", "none-orion and none-private: both routes return candidates without eligible positive evidence"],
         "conclusion": "Materialization preserves all 34 frozen exact rankings. Dense improves the two-query colloquial slice in this fixture but does not solve metadata IDs, current-version selection, the Basic numeric case or no-evidence returns.",

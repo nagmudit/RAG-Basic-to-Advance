@@ -2,6 +2,20 @@
 
 **Prerequisites:** Chapters 3, 5 and 6; V1's fixed positional index and ranking experiment. **Deliverables:** one hand-worked BM25 trace, a parameter-control table and plot explanation, an executable V2 comparison card, three failure diagnoses, and a short oral defense. The fixture is fictional. Its two required-evidence sets are not complete qrels; the answer stub is deterministic, not an LLM.
 
+## A0. Independent bounded mechanism
+
+Implement the entire `bm25_score(query_terms, documents, doc_id, k1=1.2, b=.75)` in [implement.py](implement.py) before reading the supplied scorer or solution. Documents are already eligible analyzed token lists in one field; this does not replace V2. Compute N, each query term's DF, document TF, document length, average length, `ln(1 + (N-DF+.5)/(DF+.5))`, length factor, saturated TF, then sum distinct query-term contributions. Missing terms contribute zero; repeated query terms count once, matching V2. Validate positive finite k1 and finite b in [0,1].
+
+For your own three documents, show the intermediate values for a two-term query at default parameters and b=0. Predict the ranking, then code it. The checker supplies different lengths and term counts and checks the **complete** score, not just TF saturation. Keep the existing term-factor calculation and debugging work.
+
+After your first attempt, run from the repository root:
+
+```powershell
+python -X utf8 labs/chapter-07/check_implementation.py
+```
+
+The starter intentionally raises `NotImplementedError`. Tests are feedback fixtures, not a concealed grading service. Submit your implementation, hand predictions, checker output and one diagnosis of a failing case. Open the separate chapter solutions only after attempting this task. Existing calculation, experiment and debugging tasks below still apply.
+
 ## A. Calculate before running the scorer
 
 Read [toy_length_corpus.json](../../projects/V2/toy_length_corpus.json). Under `support-team`, query `amber` with `k1=1.2`, `b=.75`, title boost 1. Treat one indexed **segment** as the corpus unit. Write down every eligible segment length, `N`, `df(amber)`, `avgdl`, `idf_B(amber)`, `tf` for S1 and S2, both `K_d` values, both term factors and both scores. State the rank and the candidate count. Keep at least six decimal places internally.

@@ -64,3 +64,11 @@ python -m unittest discover -s projects/V0 -p 'test_*.py' -v
 ```
 
 **Passing submission:** mechanism arithmetic and budget have correct units; position cases keep the same five source IDs; all fictional response cards are graded at claim level; `D10` stays out of `support-team` prompts; no source instruction is promoted to a trusted role; and any statement about a real model is backed by an actual versioned run. Save a one-page experiment card, the case manifest, a local prompt sketch, the grading table and a paragraph explaining one misleading “more context is enough” argument.
+
+## Part I cumulative checkpoint
+
+Close Chapters 01-04 and the V0 code. Draw the evidence architecture from memory and answer the six cumulative questions in Chapter 04. Annotate one failure at each boundary and explain which fields in a redacted request would localize it.
+
+Use the lab's existing fictional response cards to compare a model-only unsupported four-hour claim with a claim citing eligible original/amendment evidence, and with abstention when the amendment is absent. These are response-card reasoning tasks, not a new measured model experiment. Evaluate source authority/date, claim support and citation availability separately. Afterward compare your diagram with V0's actual contract: unweighted scan, eligibility, bounded context and deterministic stub; no general model is run. Name two capabilities still missing rather than awarding V0 complete RAG mastery.
+
+Submit the first drawing, quiz answers, boundary-failure table, V0 comparison and a 2-minute teach-back. Score yourself with the separate rubric; repeat the drawing at day 3 and day 7 and record which boundaries you initially forgot.

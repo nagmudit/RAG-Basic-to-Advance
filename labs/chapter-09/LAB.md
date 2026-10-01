@@ -74,3 +74,19 @@ Assessor limitations, uncertainty, conclusion and next action:
 End with a from-memory sketch: `frozen corpus + information needs + judgments → ranked candidate IDs → metrics`, with authorization as a gate and context/answer as separate downstream stages.
 
 As the **Part II checkpoint**, extend the sketch backward through V0 scan, V1 analyzer/postings/TF-IDF and V2 BM25/WAND. Answer the chapter's five cumulative questions and compare one measured gain and one retained failure across versions.
+
+## 6. Complete the BM25 parameter selection
+
+Use workload `ch09-bm25-devtest-v1`, not the already inspected fourteen-query Chapter 09 diagnostic set. The [new manifest](../../projects/V2/judgments_bm25_tuning.json) has six development and six test queries; each group has five positives and one no-eligible-evidence query over the same twelve eligible segments. Only new question wording/IDs are held out; the author already knows the sources. Read the development group first. Do not inspect test grades or the reference runner/solution until you have frozen your choice. The files are public, so this is a procedural learning gate, not a secret grading service.
+
+1. Write your own small grid driver using the existing BM25 scorer and your Chapter 09 metrics. Evaluate twenty parameter pairs: k1 in [.8,1.2,1.6,2] and b in [0,.25,.5,.75,1]. Keep analyzer, scope, title boost 1, top-k=2 and corpus fixed. Select by macro positive-query NDCG@2; report no-evidence behavior separately.
+2. Before evaluating test, save a JSON decision record with workload/corpus/query/qrel/evidence-manifest identities, analyzer, grid, development scores, selection metric, parameters and tie rule. Predeclare ties: default first, then closest L1 distance to (1.2,.75), then numeric order. A tie is a legitimate result.
+3. Freeze that file. Evaluate only its selected setting and the unchanged default on the test group. Report agreement, operations, price, other-product and no-evidence slices, raw candidate IDs/scores, scoring work, and a warmed paired local latency diagnostic. State what this six-query test cannot establish. Never return to development selection after seeing test.
+4. Compare with the [reference runner](../../projects/V2/tune_bm25_ch09.py) after your attempt. Explain how `select_parameters(base, development)` excludes test inputs; alter test labels in a scratch copy and confirm the selected parameters stay the same. Retain the original Chapter 09 overlap/BM25/WAND results as inspected diagnostics.
+
+```powershell
+python -X utf8 projects/V2/tune_bm25_ch09.py --output projects/V2/chapter-09-tuning-local.json
+python -X utf8 -m unittest discover -s projects/V2 -p 'test_bm25_tuning.py' -v
+```
+
+Submit your grid driver, frozen choice, held-out report and a short explanation of why changing the workload can change a score without improving the engine.

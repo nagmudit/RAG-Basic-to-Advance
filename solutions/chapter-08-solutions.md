@@ -35,3 +35,15 @@ A suitable experiment card names cached exhaustive as baseline, execution plan a
 If `U_rare=0.20` while a true contribution is about `1.094`, `U_rare≥w(rare,d)` is false. A prefix sum can now appear below `θ` even though a still unseen document could beat the heap. An exactness regression should compare ranked IDs and **unrounded** scores with exhaustive BM25 on a fixture whose hidden rare document must win; it should fail when the bound is corrupted. Include scoring, bounds and index versions plus cursor/seek counters in a protected trace. A shared cache that admits P7 violates eligibility and may leak a legal-only ID, statistics or source text even if P1 still wins. Test that P7 is absent from support-team candidate, impact and context paths and that scope-specific counts/bounds change only through authorized rebuilds. A permission update requires cache invalidation or a proven safe live-filter design. A segment merge or `k1`/`b`/field-policy change invalidates previously computed impacts or their mappings unless the new reader/version recomputes them.
 
 For 13 segments, exhaustive accumulation can be faster and simpler: cursor sorting, seeks, bound checks and a heap exceed saved arithmetic in the checked-in run. MaxScore selects essential lists using remaining score potential; WAND uses sorted cursor pivots; Block-Max WAND uses tighter local range bounds; each can be exact with valid bounds and tie handling. A fixed posting budget is approximate unless a separate proof covers omitted candidates. The source snapshot and analyzer produce postings at index time, while V2 also caches scope-specific impacts and bounds. Query time checks eligibility, moves posting cursors, scores selected candidates, ranks top *k*, packs context and invokes the unchanged answer stub. Only the execution plan changes in Chapter 8; Chapter 9 supplies judged ranking quality.
+
+## Independent bounded mechanism: reasoning and answer
+
+Sort conservative bounds, maintain exactly k ordered winners, and raise the threshold only as the winning set improves. Strict inequality preserves score ties. The callback log demonstrates saved exact work independently of the result.
+
+The separate [worked implementation](code/chapter_08_mechanisms.py) uses standard-library code and imports no supplied project engine or learner scaffold. After comparing your reasoning, verify it on the new fixtures:
+
+```powershell
+python -X utf8 labs/chapter-08/check_implementation.py --implementation solutions/code/chapter_08_mechanisms.py
+```
+
+Rubric: correct intermediate mechanism (40%), deterministic and edge-case behavior (20%), independently written code (20%), and explanation of exact parity or measured approximation failure (20%). Passing output alone is insufficient. A loop-based implementation is appropriate; premature abstraction is unnecessary.

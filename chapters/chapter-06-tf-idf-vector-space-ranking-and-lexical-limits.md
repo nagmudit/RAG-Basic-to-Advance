@@ -8,6 +8,10 @@
 
 There is an important warning at the outset. A more elaborate score is not automatically a better evidence selector. In the checked-in experiment, raw TF-IDF puts the required termination clause into the top two where unweighted overlap misses it, but it pushes the original governing contract clause out of the top two for the dated change. Both outcomes are real for this small fixture. Our task is to understand the formula, expose its trade-offs, and preserve that negative result for Chapter 9's judged retrieval baseline.
 
+**Workload identity:** `v0-frozen-tasks-v1`; see the [comparison registry](../evaluation/WORKLOAD_REGISTRY.md). Metrics across different workloads do not form an improvement sequence.
+
+**Independent construction gate:** Read the mechanism explanations first. Before inspecting supplied Python reference code, attempt [lab A0](../labs/chapter-06/LAB.md#a0-independent-bounded-mechanism) on your own tiny fixture. Open the separate worked answer afterward; existing calculation, debugging and project-comparison tasks still apply.
+
 ## 1. Count occurrences and documents, with a declared unit
 
 For a term `t` and indexed segment `d`, **term frequency** `tf(t,d)` is the number of occurrences in the indexed fields. Chapter 5's posting stores title and body positions, so the counts are available without rereading the source. V1 Chapter 6 defines a field-adjusted raw count

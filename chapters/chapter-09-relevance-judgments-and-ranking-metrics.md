@@ -4,6 +4,8 @@ Chapter 8 proved that two execution plans can return identical BM25 results whil
 
 This is the first judged retrieval chapter. We will build a small, inspectable set of **qrels** (query–item relevance judgments), implement rank measures, and compare the V1 overlap baseline with V2 BM25. A qrel is a statement about an information need and a source item under a declared snapshot. It is not an answer, an LLM opinion, a model score, or permission to read an item.
 
+**Workload identity:** `ch09-lexical-judged-v1`; see the [comparison registry](../evaluation/WORKLOAD_REGISTRY.md). Metrics across different workloads do not form an improvement sequence.
+
 ## 1. First fix the unit and the information need
 
 Our retrieval unit is the **indexed segment**, not the whole source document. The runbook's three windows are distinct candidates `D4:step-4:0`, `:1`, and `:2`; the two agreement clauses are separate candidates as well. A document-level judgment that calls all of D4 relevant because one window mentions the requested action would exaggerate segment recall. The unit in the qrels must match the unit returned by the retriever. A later system that changes chunking needs a new mapping or a new judgment set; it cannot silently compare old segment IDs to new ones.
@@ -116,6 +118,14 @@ The difference is small and the query set is tiny, single-author and partly draw
 At *k*=8, every positive query's known binary and direct evidence is in the candidate list for both scoring methods: macro Recall@8 and direct recall are 1. Macro Precision@8 is only about 0.1818 because the fixed eight positions include many nonrelevant items. The top-eight result is **not** an eight-item context or an answer-quality result. In this frozen 120-word context check, direct evidence stays selected for the measured cases, but another budget or longer chunks could drop it. The three zero-positive queries are excluded from positive-query macro means; two of three return one or more irrelevant candidates at top two in all modes. `q-no-result` returns none. The legal-only D10 never appears in the support-team candidate, qrel or context lists. An irrelevant public hit on `q-private-target` is an answerability failure risk, not a demonstrated private-data leak.
 
 WAND and exhaustive BM25 agree on ordered IDs, raw floating scores and selected context in every measured query/cutoff case. They have identical quality values by construction, though WAND fully scores fewer candidates at *k*=2 on average (6 versus about 10.71). On this tiny Python index it is slower. The table's p95 is a **local workload-sample percentile**, not a service SLO, a confidence interval or a production tail estimate. A single build recorded about 0.517 ms for postings, 0.122 ms for BM25 statistics and 0.324 ms for WAND impacts/bounds, outside the search timings. No paid model calls or token costs exist here. Repeating the script can move all microsecond values; preserve raw samples and the run environment rather than selecting a flattering run.
+
+### Complete the deferred BM25 selection
+
+The Chapter 7 controls need a selection procedure, not a nicer-looking inspected case. The separate workload `ch09-bm25-devtest-v1` has six development questions and six test questions over the unchanged twelve eligible segments (144 reviewed pairs). It holds out **question wording/IDs**, not source families or author knowledge. The original fourteen Chapter 09 queries remain diagnostics (`ch09-lexical-judged-v1`), including overlap's better aggregate and exact BM25/WAND parity.
+
+The [bounded tuning lab](../labs/chapter-09/LAB.md#6-complete-the-bm25-parameter-selection) evaluates `k1=[.8,1.2,1.6,2]` and `b=[0,.25,.5,.75,1]` by development macro positive-query NDCG@2, chooses a deterministic winner, freezes it, and only then evaluates test. The preregistered tie rule retains the default before choosing a nearby setting. All twenty settings tie on development in this authored fixture; the selected `(1.2,.75)` is therefore unchanged. [The separate result](../projects/V2/chapter-09-tuning-experiment.json) reports test Recall@2=1.000 and NDCG@2=0.926186 for both default and selected, with per-slice outcomes, no-evidence behavior, work and warmed local timings. This is a methodology exercise with no tuning gain. These scores cannot be compared as an improvement over the different original Chapter 09 workload.
+
+The [workload registry](../evaluation/WORKLOAD_REGISTRY.md) states which comparisons are valid. Selecting on development, freezing, then reporting test applies even when selection changes nothing. A more representative independently judged workload would be necessary for deployment.
 
 ## 6. Trace a bad ranking without mistaking a metric for a diagnosis
 

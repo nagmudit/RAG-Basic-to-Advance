@@ -6,6 +6,8 @@ This chapter explains the mechanism and evaluates **one frozen encoder**. It doe
 
 **Prerequisites.** Chapter 4 introduced token representations and attention inside a language model. Chapter 10 supplied norms, cosine, exact top-*k* and the zero-vector policy. Chapter 9 supplied qrels and ranking metrics; V2 BM25 is the judged baseline. Read the [Chapter 11 lab](../labs/chapter-11/LAB.md) after the mechanism and try it before the [solutions](../solutions/chapter-11-solutions.md).
 
+**Workload identity:** `ch11-embedding-probes-v1`; see the [comparison registry](../evaluation/WORKLOAD_REGISTRY.md). Metrics across different workloads do not form an improvement sequence.
+
 ## 1. What is actually encoded?
 
 An **encoder** maps an input sequence of model tokens to numerical representations. A noncontextual word lookup assigns a token a learned vector regardless of surrounding words. A contextual text encoder changes a token's representation using other visible tokens, so the same surface token can contribute differently in different sentences. A transformer encoder does this through layers of attention and feed-forward transformations; Chapter 4's query/key/value picture applies here, but the encoder's output is not a generated answer. It is a set of token vectors. A retrieval application needs a declared way to turn them into a passage vector.
@@ -49,6 +51,8 @@ A **cross-encoder** instead processes `(q,p)` together and can attend across the
 *Alt text:* Independently encoded query and passage vectors produce all four pair scores, with higher diagonal scores and an explicit warning that an off-diagonal pair could also be relevant. *Editable source:* [plot program](../visuals/chapter-11/plot-11-01-encoders-and-batch.py); [PNG](../visuals/chapter-11/figure-11-01-encoders-and-batch.png). Chapter 11; Python and matplotlib; coordinates are fixed arbitrary feature units, no sampling, seed or uncertainty. The matrix score is a dot-product unit; loss is in natural-log units (nats).
 
 ## 3. How a training signal shapes the space
+
+For the loss-to-parameter step, continue to [Chapter 12's worked update](chapter-12-retriever-training-and-domain-adaptation.md#from-a-vector-to-one-parameter-update). Its [stability bridge](chapter-12-retriever-training-and-domain-adaptation.md#stable-probabilities-compute-the-same-objective) connects the common-factor cancellation below to this module's subtract-max/log-sum-exp code.
 
 A useful retriever cannot infer relevance from geometry alone. It needs examples saying that query `qᵢ` should be close to positive passage `pᵢ⁺` and separated from alternatives. For a batch of `B` aligned query–positive pairs, form a `B×B` score matrix `Sᵢⱼ = s(E_q(qᵢ), E_p(pⱼ))`. The simplest **in-batch contrastive** rule treats column `i` as the one positive for row `i` and every other column as negative:
 

@@ -4,6 +4,10 @@ Chapter 13 left us with a useful disagreement. BM25 could follow literal terms, 
 
 The prerequisites are Chapters 6–13: weighted terms and inverted indexes; judged rankings; vector metrics; contrastive training; and the materialized exact dense baseline. We will keep three boundaries explicit. A model produces a *representation*; an index executes a *search plan* over that representation; qrels decide whether the resulting candidates are useful. A candidate still needs eligibility, context selection, and grounded generation. The [Chapter 14 lab](../labs/chapter-14/LAB.md), [solutions](../solutions/chapter-14-solutions.md), and [V3 mechanism code](../projects/V3/sparse_late_ch14.py) are meant to be used after the derivations below.
 
+**Workload identity:** `ch14-sparse-fixture-v1 / ch14-token-fixture-v1`; see the [comparison registry](../evaluation/WORKLOAD_REGISTRY.md). Metrics across different workloads do not form an improvement sequence.
+
+**Independent construction gate:** Read the mechanism explanations first. Before inspecting supplied Python reference code, attempt [lab A0](../labs/chapter-14/LAB.md#a0-independent-bounded-mechanism) on your own tiny fixture. Open the separate worked answer afterward; existing calculation, debugging and project-comparison tasks still apply.
+
 ## 1. The representation choice is the mechanism
 
 Consider a support query phrased as “ticket reply latency” and an incident passage saying “incident response took 120 minutes.” Surface matching may find neither *ticket* nor *reply*. Chapter 13's pooled embedding may find the incident, but a single point does not tell us which parts matched, whether *120* was preserved, or whether another passage about ticket sales is being mistaken for the incident. A richer representation can address part of this failure, at higher index or query cost.
@@ -26,7 +30,7 @@ In a SPLADE-style encoder, contextualized input positions produce logits for eve
 
 `wⱼ(text) = maxᵢ log(1 + ReLU(zᵢⱼ))`, and `score(q,d) = Σⱼ wⱼ(q) wⱼ(d)`.
 
-The maximum means repeated activations do not accumulate indefinitely. `ReLU` removes negative activations, and `log1p` saturates large positive ones. A positive weight for a nonliteral term is an expansion. A genuine model learns the logits from query–positive–negative training; it does not consult a hand-written synonym list at query time. Chapter 12's concerns about false negatives, hard negatives, held-out testing, and domain drift therefore apply here too. A high expansion weight is a model behavior, not proof that the expansion is correct.
+The maximum means repeated activations do not accumulate indefinitely. `ReLU` removes negative activations, and `log1p` compresses large positive ones: `log(1+x)` keeps growing without a finite ceiling, but increasingly slowly. This differs from Chapter 7's finite BM25 TF saturation, which approaches `k1+1` at fixed length. A positive weight for a nonliteral term is an expansion. A genuine model learns the logits from query–positive–negative training; it does not consult a hand-written synonym list at query time. Chapter 12's concerns about false negatives, hard negatives, held-out testing, and domain drift therefore apply here too. A high expansion weight is a model behavior, not proof that the expansion is correct.
 
 Sparsity is a **training and execution** requirement. An encoder that emits nonzero weights for almost every vocabulary term would make huge postings and expensive queries. One SPLADE formulation combines ranking loss with separate query and document regularizers. Its FLOPS-style penalty sums squared mean coordinate activation across a training batch, `Σⱼ(mean_batch wⱼ)²`; frequent heavy coordinates are expensive because their posting lists will be visited often. Query and document penalties can have different strengths. The penalty is a surrogate for retrieval work, not a latency guarantee: actual posting lengths, compression, caching, pruning, hardware, and workload determine latency. Raising regularization may reduce index size and work while also removing useful expansions. [SPLADE v2's paper](https://arxiv.org/html/2109.10086v1) treats that quality–efficiency trade-off explicitly.
 
@@ -138,3 +142,22 @@ The full [lab](../labs/chapter-14/LAB.md) makes you recompute both score mechani
 **You understand this chapter if you can** implement weighted sparse posting accumulation and exact MaxSim, derive the toy ranking reversal, estimate their index/query costs, keep candidate/evidence/answer outcomes separate, and design a fair judged comparison with BM25 and frozen dense without calling illustrative weights a trained model.
 
 **Further reading.** Read [SPLADE](https://arxiv.org/abs/2107.05720) and [SPLADE v2](https://arxiv.org/abs/2109.10086) for learned expansion, pooling, regularization and their first-stage measurements. Read [ColBERT](https://arxiv.org/abs/2004.12832) for independent token encoding, MaxSim and two search roles; [ColBERTv2](https://arxiv.org/abs/2112.01488) is optional for compression and supervision. Use [Track D of the paper path](../PAPER_READING_PATH.md) to record each paper's task, corpus, labels, metric and transfer limits. These studies do not establish quality on the fictional V0 corpus.
+
+## Part III cumulative checkpoint: reconstruct representation and retrieval
+
+Without the chapter diagrams, draw:
+
+`raw text -> representation -> embedding training or frozen model -> exact dense index -> candidate scoring -> judged evaluation`
+
+Separate index time from query time, and training/dev/test label paths from an indexed passage. Mark eligibility before scoring and carry model/source/index/workload/qrel versions into the redacted request envelope. Explain how V2's positional lexical index, BM25 and exact WAND remain baselines while V3 adds exact binary vectors, a pinned frozen encoder, a rejected query adapter, materialized float32 vectors, and two independent Chapter 14 scoring fixtures. Do not imply the toy sparse/MaxSim fixtures replaced the running dense engine.
+
+Answer cumulatively:
+
+1. Distinguish BM25 relevance score, embedding similarity, exact vector neighbor and judged relevance.
+2. Why does an exact nearest-neighbor oracle still miss a signed-current SLA or metadata ID?
+3. Compare one lexical and one dense failure slice on the **same** Chapter 13 stress workload; explain why scores from Chapter 09/11/12 cannot be read as a progress curve.
+4. Trace one training update, explain the frozen passage index, and state what Chapter 12's family-overlapping split actually tests.
+5. Explain V2 -> V3 evolution using a preserved baseline, one failed hypothesis and the 34 materialization parity checks.
+6. What approximation has not been introduced yet? Contrast exact top-k pruning with lossy neighbor candidate omission; separate toy neural weights from a trained encoder.
+
+Complete the [lab checkpoint](../labs/chapter-14/LAB.md#part-iii-cumulative-checkpoint). Teach the diagram aloud and redraw it after three and seven days. Use the separate rubric after your first attempt; this cumulative explanation is part of the Part III mastery gate.

@@ -78,6 +78,7 @@ class Index:
     build_ms: float
     term_document_pairs: int
     position_count: int
+    source_identities: dict
 
     def posting(self, term):
         return self.postings.get(term, ())
@@ -86,6 +87,9 @@ class Index:
 def build_index(corpus, analyzer=Analyzer()):
     """Prepare field positions and scope membership once, before requests."""
     started = perf_counter()
+    # Additive evidence identities do not change analyzer, rankings or index version.
+    sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "common"))
+    from qrel_identity import document_identity
     segments = tuple(segment_corpus(corpus))
     mutable = {}
     scopes = {}
@@ -127,6 +131,7 @@ def build_index(corpus, analyzer=Analyzer()):
         build_ms=(perf_counter() - started) * 1000,
         term_document_pairs=sum(len(rows) for rows in postings.values()),
         position_count=position_count,
+        source_identities={d["id"]: document_identity(d) for d in corpus["documents"]},
     )
 
 

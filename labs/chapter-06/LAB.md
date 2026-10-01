@@ -2,6 +2,20 @@
 
 **Prerequisites:** Chapters 3 and 5, the V0 frozen questions, and the Chapter 5 V1 index. **Deliverables:** a hand-worked sparse matrix and rank reversal, three scoring-function traces, one controlled V1 comparison card, a failure diagnosis, and the V0/V1 regression output. This lab uses fictional sources, no model API, and no general qrels.
 
+## A0. Independent bounded mechanism
+
+Implement `tfidf_score(query_terms, documents, doc_id)` in [implement.py](implement.py) before opening the V1 scorer or separate answer. Inputs are already analyzed, already eligible token lists. Use Chapter 6's **raw document TF**, `IDF = ln(N/DF)`, distinct query terms weighted by IDF, and full-vocabulary L2-normalized cosine. Do not substitute a library's smoothed convention. An out-of-vocabulary term has weight zero; a zero norm produces score zero in this fixture.
+
+Return a dictionary with `df`, `idf`, `query_tf`, `document_tf`, `query_weights`, `document_weights`, `query_norm`, `document_norm`, `score`. Count raw query TF for inspection, but use presence rather than query repetitions in its scoring weight. Show TF, DF, IDF, both weights, squared sums, norms and dot product for your own three documents. Explain why a corpus-wide common term vanishes under this convention and why norms include terms absent from the query. The checker uses a different tiny corpus.
+
+After your first attempt, run from the repository root:
+
+```powershell
+python -X utf8 labs/chapter-06/check_implementation.py
+```
+
+The starter intentionally raises `NotImplementedError`. Tests are feedback fixtures, not a concealed grading service. Submit your implementation, hand predictions, checker output and one diagnosis of a failing case. Open the separate chapter solutions only after attempting this task. Existing calculation, experiment and debugging tasks below still apply.
+
 ## A. Predict the ranking reversal before running code
 
 Read [toy_ranking_corpus.json](../../projects/V1/toy_ranking_corpus.json). First use only T1–T3. For query `amber blue`, build a two-row term–segment table of raw term frequencies. Compute `N`, `df(amber)`, `df(blue)`, both values of `ln(N/df)`, every nonzero `tf×idf` cell, each document's **sum over distinct query terms**, and the ranking. Then add only T4 and recompute. Explain why old document text can keep the same TF but receive a new score. Write your calculations with six decimal places internally and round displayed answers to three decimals.

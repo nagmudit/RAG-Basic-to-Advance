@@ -7,37 +7,574 @@
   "binary_relevant_at_or_above": 1,
   "review_method": "One author wrote and judged all questions against all twelve eligible V0 segments before running the Chapter 12 adapter. Source-document IDs, not just questions, are separated by split. Known Chapter 9 and 11 probes are excluded from selection and are only retrospective regressions. This is an authored fictional teaching set, not an independent external benchmark.",
   "zero_policy": "Every eligible segment not in grade_1 or grade_2 is grade zero after source review. Legal-only D10 is not eligible.",
-  "eligible_segment_ids": ["D1:§3:0", "D1:§8:0", "D2:§2:0", "D3:FAQ-7:0", "D4:step-4:0", "D4:step-4:1", "D4:step-4:2", "D5:§3:0", "D6:row-2:0", "D7:timeline:0", "D8:§3:0", "D9:proposal-2:0"],
-  "document_split": {"train": ["D1", "D2", "D4", "D6"], "validation": ["D3", "D7"], "test": ["D5", "D8", "D9"]},
+  "eligible_segment_ids": [
+    "D1:§3:0",
+    "D1:§8:0",
+    "D2:§2:0",
+    "D3:FAQ-7:0",
+    "D4:step-4:0",
+    "D4:step-4:1",
+    "D4:step-4:2",
+    "D5:§3:0",
+    "D6:row-2:0",
+    "D7:timeline:0",
+    "D8:§3:0",
+    "D9:proposal-2:0"
+  ],
+  "document_split": {
+    "train": [
+      "D1",
+      "D2",
+      "D4",
+      "D6"
+    ],
+    "validation": [
+      "D3",
+      "D7"
+    ],
+    "test": [
+      "D5",
+      "D8",
+      "D9"
+    ]
+  },
   "training_pairs": [
-    {"query_id": "tr-termination-a", "question": "Which signed agreement explains ending support with written notice?", "positive_id": "D1:§8:0", "unsafe_negative_ids": []},
-    {"query_id": "tr-termination-b", "question": "Where does the contract say either party can terminate after thirty days?", "positive_id": "D1:§8:0", "unsafe_negative_ids": []},
-    {"query_id": "tr-amendment-a", "question": "Which signed amendment replaces the severe-incident response target?", "positive_id": "D2:§2:0", "unsafe_negative_ids": ["D1:§3:0"]},
-    {"query_id": "tr-amendment-b", "question": "Find the effective May 2026 replacement for the original first-response clause.", "positive_id": "D2:§2:0", "unsafe_negative_ids": ["D1:§3:0"]},
-    {"query_id": "tr-change-a", "question": "Which runbook step checks the affected region and change log?", "positive_id": "D4:step-4:1", "unsafe_negative_ids": ["D4:step-4:0", "D4:step-4:2"]},
-    {"query_id": "tr-change-b", "question": "Where should responders look for a common dependency before a service change?", "positive_id": "D4:step-4:1", "unsafe_negative_ids": ["D4:step-4:0", "D4:step-4:2"]},
-    {"query_id": "tr-timeline-a", "question": "Which runbook span records each action, its effect, and the next owner?", "positive_id": "D4:step-4:2", "unsafe_negative_ids": ["D4:step-4:0", "D4:step-4:1"]},
-    {"query_id": "tr-timeline-b", "question": "Where does the incident team log interventions and handoff ownership?", "positive_id": "D4:step-4:2", "unsafe_negative_ids": ["D4:step-4:0", "D4:step-4:1"]},
-    {"query_id": "tr-fee-a", "question": "Which pricing row gives the annual Helios Pro fee before tax?", "positive_id": "D6:row-2:0", "unsafe_negative_ids": []},
-    {"query_id": "tr-fee-b", "question": "Find the yearly price in credits for Pro support.", "positive_id": "D6:row-2:0", "unsafe_negative_ids": []}
+    {
+      "query_id": "tr-termination-a",
+      "question": "Which signed agreement explains ending support with written notice?",
+      "positive_id": "D1:§8:0",
+      "unsafe_negative_ids": []
+    },
+    {
+      "query_id": "tr-termination-b",
+      "question": "Where does the contract say either party can terminate after thirty days?",
+      "positive_id": "D1:§8:0",
+      "unsafe_negative_ids": []
+    },
+    {
+      "query_id": "tr-amendment-a",
+      "question": "Which signed amendment replaces the severe-incident response target?",
+      "positive_id": "D2:§2:0",
+      "unsafe_negative_ids": [
+        "D1:§3:0"
+      ]
+    },
+    {
+      "query_id": "tr-amendment-b",
+      "question": "Find the effective May 2026 replacement for the original first-response clause.",
+      "positive_id": "D2:§2:0",
+      "unsafe_negative_ids": [
+        "D1:§3:0"
+      ]
+    },
+    {
+      "query_id": "tr-change-a",
+      "question": "Which runbook step checks the affected region and change log?",
+      "positive_id": "D4:step-4:1",
+      "unsafe_negative_ids": [
+        "D4:step-4:0",
+        "D4:step-4:2"
+      ]
+    },
+    {
+      "query_id": "tr-change-b",
+      "question": "Where should responders look for a common dependency before a service change?",
+      "positive_id": "D4:step-4:1",
+      "unsafe_negative_ids": [
+        "D4:step-4:0",
+        "D4:step-4:2"
+      ]
+    },
+    {
+      "query_id": "tr-timeline-a",
+      "question": "Which runbook span records each action, its effect, and the next owner?",
+      "positive_id": "D4:step-4:2",
+      "unsafe_negative_ids": [
+        "D4:step-4:0",
+        "D4:step-4:1"
+      ]
+    },
+    {
+      "query_id": "tr-timeline-b",
+      "question": "Where does the incident team log interventions and handoff ownership?",
+      "positive_id": "D4:step-4:2",
+      "unsafe_negative_ids": [
+        "D4:step-4:0",
+        "D4:step-4:1"
+      ]
+    },
+    {
+      "query_id": "tr-fee-a",
+      "question": "Which pricing row gives the annual Helios Pro fee before tax?",
+      "positive_id": "D6:row-2:0",
+      "unsafe_negative_ids": []
+    },
+    {
+      "query_id": "tr-fee-b",
+      "question": "Find the yearly price in credits for Pro support.",
+      "positive_id": "D6:row-2:0",
+      "unsafe_negative_ids": []
+    }
   ],
   "validation_queries": [
-    {"query_id": "va-faq-a", "question": "Which informational FAQ repeats the old four-hour severity-one target?", "slice": "source_type", "grade_2": ["D3:FAQ-7:0"], "grade_1": [], "rationale": "The FAQ states the old four-hour target; the signed v1 contract is a different source type."},
-    {"query_id": "va-faq-b", "question": "Find the support FAQ's outdated first response statement.", "slice": "source_type", "grade_2": ["D3:FAQ-7:0"], "grade_1": [], "rationale": "Only the FAQ is the requested summary; signed agreements are not FAQ entries."},
-    {"query_id": "va-incident-a", "question": "Which incident report measures an actual two-hour first response?", "slice": "observed", "grade_2": ["D7:timeline:0"], "grade_1": [], "rationale": "The incident timeline reports the observed duration, not a contractual target."},
-    {"query_id": "va-incident-b", "question": "Find the historical observation rather than a promised response time.", "slice": "observed", "grade_2": ["D7:timeline:0"], "grade_1": [], "rationale": "The report describes an actual elapsed response and distinguishes that from a contract."}
+    {
+      "query_id": "va-faq-a",
+      "question": "Which informational FAQ repeats the old four-hour severity-one target?",
+      "slice": "source_type",
+      "grade_2": [
+        "D3:FAQ-7:0"
+      ],
+      "grade_1": [],
+      "rationale": "The FAQ states the old four-hour target; the signed v1 contract is a different source type."
+    },
+    {
+      "query_id": "va-faq-b",
+      "question": "Find the support FAQ's outdated first response statement.",
+      "slice": "source_type",
+      "grade_2": [
+        "D3:FAQ-7:0"
+      ],
+      "grade_1": [],
+      "rationale": "Only the FAQ is the requested summary; signed agreements are not FAQ entries."
+    },
+    {
+      "query_id": "va-incident-a",
+      "question": "Which incident report measures an actual two-hour first response?",
+      "slice": "observed",
+      "grade_2": [
+        "D7:timeline:0"
+      ],
+      "grade_1": [],
+      "rationale": "The incident timeline reports the observed duration, not a contractual target."
+    },
+    {
+      "query_id": "va-incident-b",
+      "question": "Find the historical observation rather than a promised response time.",
+      "slice": "observed",
+      "grade_2": [
+        "D7:timeline:0"
+      ],
+      "grade_1": [],
+      "rationale": "The report describes an actual elapsed response and distinguishes that from a contract."
+    }
   ],
   "test_queries": [
-    {"query_id": "te-basic-a", "question": "Which signed Basic-tier agreement promises an eight-hour severe-incident response?", "slice": "basic", "grade_2": ["D5:§3:0"], "grade_1": [], "rationale": "D5 is the signed Helios Basic agreement with the eight-hour target."},
-    {"query_id": "te-basic-b", "question": "For Helios Basic, how long can the first Sev-1 response take?", "slice": "basic", "grade_2": ["D5:§3:0"], "grade_1": [], "rationale": "The Basic agreement explicitly says eight hours; Pro agreements concern another tier."},
-    {"query_id": "te-basic-c", "question": "Find the Basic plan's one-third-day initial response commitment.", "slice": "basic", "grade_2": ["D5:§3:0"], "grade_1": [], "rationale": "One third of 24 hours is eight hours; D5 is the Basic source."},
-    {"query_id": "te-atlas-a", "question": "What initial response target does the Atlas Pro agreement set?", "slice": "atlas", "grade_2": ["D8:§3:0"], "grade_1": [], "rationale": "D8 is the Atlas Pro signed agreement; Helios documents concern another product."},
-    {"query_id": "te-atlas-b", "question": "Which signed product contract sets a two-hour Sev-1 first response?", "slice": "atlas", "grade_2": ["D8:§3:0"], "grade_1": [], "rationale": "The Atlas signed contract sets two hours; the Helios proposal is unsigned and incident report is observed."},
-    {"query_id": "te-atlas-c", "question": "For Atlas Pro severity-one incidents, when must support initially respond?", "slice": "atlas", "grade_2": ["D8:§3:0"], "grade_1": [], "rationale": "D8 gives the Atlas Pro target of two hours."},
-    {"query_id": "te-draft-a", "question": "Which unsigned document proposes two hours for Helios Pro?", "slice": "draft", "grade_2": ["D9:proposal-2:0"], "grade_1": [], "rationale": "D9 is explicitly an unsigned Helios proposal, unlike the signed target and observed incident."},
-    {"query_id": "te-draft-b", "question": "Locate the proposal not yet signed for Helios Pro severe incidents.", "slice": "draft", "grade_2": ["D9:proposal-2:0"], "grade_1": [], "rationale": "The requested source is the draft proposal."},
-    {"query_id": "te-draft-c", "question": "What draft suggests a 120-minute target for Helios Pro?", "slice": "draft", "grade_2": ["D9:proposal-2:0"], "grade_1": [], "rationale": "120 minutes is two hours; D9 alone is the draft Helios Pro proposal."},
-    {"query_id": "te-none-a", "question": "Where is the Polaris Plus uptime guarantee?", "slice": "no_eligible_evidence", "grade_2": [], "grade_1": [], "rationale": "No eligible source concerns Polaris Plus or an uptime guarantee."},
-    {"query_id": "te-none-b", "question": "What is the private legal addendum's thirty-minute promise?", "slice": "no_eligible_evidence", "grade_2": [], "grade_1": [], "rationale": "Only legal-only D10 contains the private decoy; it is ineligible for support-team."}
-  ]
+    {
+      "query_id": "te-basic-a",
+      "question": "Which signed Basic-tier agreement promises an eight-hour severe-incident response?",
+      "slice": "basic",
+      "grade_2": [
+        "D5:§3:0"
+      ],
+      "grade_1": [],
+      "rationale": "D5 is the signed Helios Basic agreement with the eight-hour target."
+    },
+    {
+      "query_id": "te-basic-b",
+      "question": "For Helios Basic, how long can the first Sev-1 response take?",
+      "slice": "basic",
+      "grade_2": [
+        "D5:§3:0"
+      ],
+      "grade_1": [],
+      "rationale": "The Basic agreement explicitly says eight hours; Pro agreements concern another tier."
+    },
+    {
+      "query_id": "te-basic-c",
+      "question": "Find the Basic plan's one-third-day initial response commitment.",
+      "slice": "basic",
+      "grade_2": [
+        "D5:§3:0"
+      ],
+      "grade_1": [],
+      "rationale": "One third of 24 hours is eight hours; D5 is the Basic source."
+    },
+    {
+      "query_id": "te-atlas-a",
+      "question": "What initial response target does the Atlas Pro agreement set?",
+      "slice": "atlas",
+      "grade_2": [
+        "D8:§3:0"
+      ],
+      "grade_1": [],
+      "rationale": "D8 is the Atlas Pro signed agreement; Helios documents concern another product."
+    },
+    {
+      "query_id": "te-atlas-b",
+      "question": "Which signed product contract sets a two-hour Sev-1 first response?",
+      "slice": "atlas",
+      "grade_2": [
+        "D8:§3:0"
+      ],
+      "grade_1": [],
+      "rationale": "The Atlas signed contract sets two hours; the Helios proposal is unsigned and incident report is observed."
+    },
+    {
+      "query_id": "te-atlas-c",
+      "question": "For Atlas Pro severity-one incidents, when must support initially respond?",
+      "slice": "atlas",
+      "grade_2": [
+        "D8:§3:0"
+      ],
+      "grade_1": [],
+      "rationale": "D8 gives the Atlas Pro target of two hours."
+    },
+    {
+      "query_id": "te-draft-a",
+      "question": "Which unsigned document proposes two hours for Helios Pro?",
+      "slice": "draft",
+      "grade_2": [
+        "D9:proposal-2:0"
+      ],
+      "grade_1": [],
+      "rationale": "D9 is explicitly an unsigned Helios proposal, unlike the signed target and observed incident."
+    },
+    {
+      "query_id": "te-draft-b",
+      "question": "Locate the proposal not yet signed for Helios Pro severe incidents.",
+      "slice": "draft",
+      "grade_2": [
+        "D9:proposal-2:0"
+      ],
+      "grade_1": [],
+      "rationale": "The requested source is the draft proposal."
+    },
+    {
+      "query_id": "te-draft-c",
+      "question": "What draft suggests a 120-minute target for Helios Pro?",
+      "slice": "draft",
+      "grade_2": [
+        "D9:proposal-2:0"
+      ],
+      "grade_1": [],
+      "rationale": "120 minutes is two hours; D9 alone is the draft Helios Pro proposal."
+    },
+    {
+      "query_id": "te-none-a",
+      "question": "Where is the Polaris Plus uptime guarantee?",
+      "slice": "no_eligible_evidence",
+      "grade_2": [],
+      "grade_1": [],
+      "rationale": "No eligible source concerns Polaris Plus or an uptime guarantee."
+    },
+    {
+      "query_id": "te-none-b",
+      "question": "What is the private legal addendum's thirty-minute promise?",
+      "slice": "no_eligible_evidence",
+      "grade_2": [],
+      "grade_1": [],
+      "rationale": "Only legal-only D10 contains the private decoy; it is ineligible for support-team."
+    }
+  ],
+  "evidence_identity": {
+    "normalization_policy": "evidence-identity-v1-whitespace-collapse-case-and-punctuation-preserved",
+    "corpus_snapshot": "support-corpus-2026-05-20",
+    "scope_fixture": "support-team",
+    "retrieval_unit": "indexed_segment",
+    "items": [
+      {
+        "segment_id": "D1:§3:0",
+        "document": {
+          "document_id": "D1",
+          "source_version": "v1",
+          "allowed_scopes": [
+            "support-team"
+          ],
+          "status": "signed agreement",
+          "effective_on": "2025-01-01",
+          "source_content_sha256": "ba384991c481d60d8ff5aa19e3bcdf83be291c77cbb98cce46ff2537b7e896f9"
+        },
+        "locator": {
+          "source_span": "§3",
+          "section_order": 0,
+          "segment_number": 0,
+          "word_start": 0,
+          "word_end_exclusive": 10
+        },
+        "allowed_scopes": [
+          "support-team"
+        ],
+        "segment_content_sha256": "cd9f7740bbfe327fb1116d8402583f281cd3fbac17e9ee2aeb865132afc66484"
+      },
+      {
+        "segment_id": "D1:§8:0",
+        "document": {
+          "document_id": "D1",
+          "source_version": "v1",
+          "allowed_scopes": [
+            "support-team"
+          ],
+          "status": "signed agreement",
+          "effective_on": "2025-01-01",
+          "source_content_sha256": "ba384991c481d60d8ff5aa19e3bcdf83be291c77cbb98cce46ff2537b7e896f9"
+        },
+        "locator": {
+          "source_span": "§8",
+          "section_order": 1,
+          "segment_number": 0,
+          "word_start": 0,
+          "word_end_exclusive": 11
+        },
+        "allowed_scopes": [
+          "support-team"
+        ],
+        "segment_content_sha256": "fd2be33c5a1d82bdfe70e38567455fda0b3da002c5c38615cbb3063b9fc5fd8e"
+      },
+      {
+        "segment_id": "D2:§2:0",
+        "document": {
+          "document_id": "D2",
+          "source_version": "signed-2026-05-12",
+          "allowed_scopes": [
+            "support-team"
+          ],
+          "status": "signed amendment",
+          "effective_on": "2026-05-15",
+          "source_content_sha256": "db8fc47abedc9059e4aa43cd22a729750311e9c2e3c15e3f755ed85ff778fd2a"
+        },
+        "locator": {
+          "source_span": "§2",
+          "section_order": 0,
+          "segment_number": 0,
+          "word_start": 0,
+          "word_end_exclusive": 15
+        },
+        "allowed_scopes": [
+          "support-team"
+        ],
+        "segment_content_sha256": "fd0e192547284f1d5273436d8919b14f3ac2aa77e497393ad4761f2e4904443b"
+      },
+      {
+        "segment_id": "D3:FAQ-7:0",
+        "document": {
+          "document_id": "D3",
+          "source_version": "captured-2026-05-10",
+          "allowed_scopes": [
+            "support-team"
+          ],
+          "status": "informational summary",
+          "effective_on": "2026-05-10",
+          "source_content_sha256": "f00f679b46b7f7a3d5ade5c4aadfdd1a10d6bd0148b4fe88b54cdedb9a74f339"
+        },
+        "locator": {
+          "source_span": "FAQ-7",
+          "section_order": 0,
+          "segment_number": 0,
+          "word_start": 0,
+          "word_end_exclusive": 8
+        },
+        "allowed_scopes": [
+          "support-team"
+        ],
+        "segment_content_sha256": "9d24a6fab73a39802e280cdca1c4d7874db93c35b486ec7d6bc7065539071f53"
+      },
+      {
+        "segment_id": "D4:step-4:0",
+        "document": {
+          "document_id": "D4",
+          "source_version": "2026-04-18",
+          "allowed_scopes": [
+            "support-team"
+          ],
+          "status": "operations guide",
+          "effective_on": "2026-04-18",
+          "source_content_sha256": "f9b59de41443aa50a2ed6bae6832484b8fffbb46f75398df6cdbf07e5e9eedfa"
+        },
+        "locator": {
+          "source_span": "step-4",
+          "section_order": 0,
+          "segment_number": 0,
+          "word_start": 0,
+          "word_end_exclusive": 24
+        },
+        "allowed_scopes": [
+          "support-team"
+        ],
+        "segment_content_sha256": "b717c7631aeea16133b918a21934423f13af15d1405544704205f1ab73883f5e"
+      },
+      {
+        "segment_id": "D4:step-4:1",
+        "document": {
+          "document_id": "D4",
+          "source_version": "2026-04-18",
+          "allowed_scopes": [
+            "support-team"
+          ],
+          "status": "operations guide",
+          "effective_on": "2026-04-18",
+          "source_content_sha256": "f9b59de41443aa50a2ed6bae6832484b8fffbb46f75398df6cdbf07e5e9eedfa"
+        },
+        "locator": {
+          "source_span": "step-4",
+          "section_order": 0,
+          "segment_number": 1,
+          "word_start": 24,
+          "word_end_exclusive": 48
+        },
+        "allowed_scopes": [
+          "support-team"
+        ],
+        "segment_content_sha256": "26d7cc22e5748a3377ff34814c4116ac323bef35f539c60c87be8086eda0cd79"
+      },
+      {
+        "segment_id": "D4:step-4:2",
+        "document": {
+          "document_id": "D4",
+          "source_version": "2026-04-18",
+          "allowed_scopes": [
+            "support-team"
+          ],
+          "status": "operations guide",
+          "effective_on": "2026-04-18",
+          "source_content_sha256": "f9b59de41443aa50a2ed6bae6832484b8fffbb46f75398df6cdbf07e5e9eedfa"
+        },
+        "locator": {
+          "source_span": "step-4",
+          "section_order": 0,
+          "segment_number": 2,
+          "word_start": 48,
+          "word_end_exclusive": 62
+        },
+        "allowed_scopes": [
+          "support-team"
+        ],
+        "segment_content_sha256": "34dff0abe25c5029a3901212afb21e0d9444b25309842974c41eed2cfacc579b"
+      },
+      {
+        "segment_id": "D5:§3:0",
+        "document": {
+          "document_id": "D5",
+          "source_version": "v2",
+          "allowed_scopes": [
+            "support-team"
+          ],
+          "status": "signed agreement",
+          "effective_on": "2026-01-01",
+          "source_content_sha256": "05b0d81246d25c9c97e3d9a7dbf09e8facef408a75b76263efc10172116987b2"
+        },
+        "locator": {
+          "source_span": "§3",
+          "section_order": 0,
+          "segment_number": 0,
+          "word_start": 0,
+          "word_end_exclusive": 13
+        },
+        "allowed_scopes": [
+          "support-team"
+        ],
+        "segment_content_sha256": "532ca94ac02344a5787dac187ab136d10583c323f6c9ea5339e1876ba9775b14"
+      },
+      {
+        "segment_id": "D6:row-2:0",
+        "document": {
+          "document_id": "D6",
+          "source_version": "2026-Q2",
+          "allowed_scopes": [
+            "support-team"
+          ],
+          "status": "pricing reference",
+          "effective_on": "2026-04-01",
+          "source_content_sha256": "918ed2fc2d786ea94052ab4bcf7a4396eff78d84f5db45821a1a25e0f5446113"
+        },
+        "locator": {
+          "source_span": "row-2",
+          "section_order": 0,
+          "segment_number": 0,
+          "word_start": 0,
+          "word_end_exclusive": 11
+        },
+        "allowed_scopes": [
+          "support-team"
+        ],
+        "segment_content_sha256": "e07f50f3e66f7befe3ec85cdafedf57a3930827b108ba3e130920e176439eafc"
+      },
+      {
+        "segment_id": "D7:timeline:0",
+        "document": {
+          "document_id": "D7",
+          "source_version": "2026-05-18",
+          "allowed_scopes": [
+            "support-team"
+          ],
+          "status": "historical incident",
+          "effective_on": "2026-05-18",
+          "source_content_sha256": "81e3ab7406fa811d2e162356500f7bcd4514edc8b8928e22c6bc83041eea55fc"
+        },
+        "locator": {
+          "source_span": "timeline",
+          "section_order": 0,
+          "segment_number": 0,
+          "word_start": 0,
+          "word_end_exclusive": 18
+        },
+        "allowed_scopes": [
+          "support-team"
+        ],
+        "segment_content_sha256": "b3ba6e2526b9cf30a26661885e835935ff84d399f8794bb431cad3a88fcc288d"
+      },
+      {
+        "segment_id": "D8:§3:0",
+        "document": {
+          "document_id": "D8",
+          "source_version": "v1",
+          "allowed_scopes": [
+            "support-team"
+          ],
+          "status": "signed agreement",
+          "effective_on": "2025-09-01",
+          "source_content_sha256": "8d02b612321c37b957f6c4ebebe0c6ee67edaa8c0d3b622d29c39fcd9dffd165"
+        },
+        "locator": {
+          "source_span": "§3",
+          "section_order": 0,
+          "segment_number": 0,
+          "word_start": 0,
+          "word_end_exclusive": 13
+        },
+        "allowed_scopes": [
+          "support-team"
+        ],
+        "segment_content_sha256": "b3eb0fa0bf7e21adfdb8a9f3da16c7b850da53d921742918878f94388e726ddd"
+      },
+      {
+        "segment_id": "D9:proposal-2:0",
+        "document": {
+          "document_id": "D9",
+          "source_version": "draft-2026-05-11",
+          "allowed_scopes": [
+            "support-team"
+          ],
+          "status": "unsigned draft",
+          "effective_on": "2026-05-11",
+          "source_content_sha256": "bd60e164071164e2722f282cad82317161d1d64ea5cf3ca1b1b9f17a99b0da27"
+        },
+        "locator": {
+          "source_span": "proposal-2",
+          "section_order": 0,
+          "segment_number": 0,
+          "word_start": 0,
+          "word_end_exclusive": 16
+        },
+        "allowed_scopes": [
+          "support-team"
+        ],
+        "segment_content_sha256": "de0e40bb0fc0f2576717328c221e962d4d43b095a33c9092d087f7d9e235939c"
+      }
+    ],
+    "manifest_sha256": "6d78c210769d0992dd530ab66349792077f1b89564c368f63797301ebc66523c"
+  },
+  "binding_revision": "evidence-identity-v1",
+  "generalization_unit": "new-query-document-holdout-with-family-overlap",
+  "source_family": {
+    "D1": "helios-support",
+    "D2": "helios-support",
+    "D3": "helios-support",
+    "D4": "helios-support",
+    "D5": "helios-support",
+    "D6": "helios-support",
+    "D7": "helios-support",
+    "D8": "atlas-support",
+    "D9": "helios-support"
+  },
+  "generalization_limit": "Document targets and queries are disjoint; semantic/source families are not fully held out. Aggregate metrics test this narrow adaptation workload, not unseen-family or domain transfer. Atlas is an incidental test-only family, not a separately powered transfer study."
 }

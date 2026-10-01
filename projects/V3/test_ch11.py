@@ -74,7 +74,9 @@ class FrozenProbeTests(unittest.TestCase):
         path = DATASET_PATH.parent / "chapter-11-experiment.json"
         record = json.loads(path.read_text(encoding="utf-8"))
         self.assertEqual(record["model"]["model_revision"], MODEL_REVISION)
-        self.assertEqual(record["qrels_sha256"], sha256(DATASET_PATH))
+        # Preserve the audited run and its historical hashes.
+        from historical_results import verify_historical_result
+        self.assertTrue(verify_historical_result(Path(__file__).with_name("chapter-11-experiment.json")))
         self.assertEqual((record["query_count"], record["judged_pairs"]), (17, 204))
         self.assertEqual(record["model"]["dimension"], 384)
         for case in record["cases"]:

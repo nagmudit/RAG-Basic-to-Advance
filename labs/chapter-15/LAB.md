@@ -2,6 +2,20 @@
 
 Read [Chapter 15](../../chapters/chapter-15-exact-knn-to-trees-and-hashing.md) before starting. The goal is to keep **safe exact pruning** separate from **approximate candidate loss**. The [checked record](../../projects/V4/chapter-15-experiment.json) is one local run; replay timings can differ. The V0 qrels were inspected in Chapter 13 and serve as regressions, not a new held-out model-selection set.
 
+## A0. Independent bounded mechanism
+
+Implement one-table random-hyperplane LSH in [implement.py](implement.py): `signature(vector, planes)`, `build_lsh(documents, seed=15, bits=3, planes=None)`, and `lsh_search(index, documents, query, k=2)`. Documents are an already eligible ID-to-vector dictionary. Sample each plane's coordinates with a local seeded `random.Random(seed).gauss(0,1)`; a nonnegative dot product is bit 1. Store planes and signature-to-sorted-ID buckets. Optional supplied planes allow hand checking. Query only its exact-signature bucket, score those candidates by cosine, then rank descending score/ascending ID. Return actual `candidate_ids` and `ranking`; an empty bucket returns both empty. Reject a zero or dimension-mismatched query.
+
+Show planes, document signatures, bucket contents and the query signature on your own 2D fixture. Compare top-1 with an exhaustive cosine oracle for at least two queries, including a boundary miss; report geometric recall and scored candidates. The unseen-in-the-prose fixture deliberately has Recall@1=0.5. Explain why changing bits may trade work for recall. Do not claim exact parity, relevance recall, or multi-table production LSH from this one-table exercise.
+
+After your first attempt, run from the repository root:
+
+```powershell
+python -X utf8 labs/chapter-15/check_implementation.py
+```
+
+The starter intentionally raises `NotImplementedError`. Tests are feedback fixtures, not a concealed grading service. Submit your implementation, hand predictions, checker output and one diagnosis of a failing case. Open the separate chapter solutions only after attempting this task. Existing calculation, experiment and debugging tasks below still apply.
+
 ## Run the fixed stage
 
 From the repository root:

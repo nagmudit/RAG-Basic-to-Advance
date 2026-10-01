@@ -30,3 +30,15 @@ Every probed global top-two member remains in the probed subset's top two under 
 10. `add` assigns a new versionless ID with existing centroids/codebooks; `delete` immediately excludes that ID from search but leaves it in its list and `rows` map. Durable replacement needs versioned source and index updates, physical compaction, raw-vector/candidate cache deletion, retraining when distribution drifts, and atomic visibility/migration. Build an eligible roster under a trusted policy, issue a different-scope query, and assert the restricted ID is absent from both candidate and context IDs. A free-form string supplied by a caller is merely a teaching fixture.
 
 **Interview answer.** All-list IVF-Flat is exact under the frozen contract; all-list ADC is only `.500` geometric Recall@2 on V0. A two-byte PQ code is one component of storage: numeric IDs, centroids, codebooks and retained originals for refinement count too. On the 1,024-by-32 example, the compressed-only lower bound is 12.5 KiB, while retaining raw vectors raises it to 140.5 KiB. `spanish-fee` loses judged evidence under all-list ADC. A replacement requires independent qrels, stable policy and source versions, measured resident storage/build/update cost, stage and end-to-end latency, per-slice exact-neighbor and judged recall, and a predeclared acceptance/rollback gate.
+
+## Independent bounded mechanism: reasoning and answer
+
+Coarse assignment and codeword assignment both minimize squared distance, but in different spaces. Encoding partitions the residual; ADC compares uncompressed query residuals with decoded codes. The answer checks decoded-distance equality while retaining the ranking miss and nonzero original-distance error.
+
+The separate [worked implementation](code/chapter_16_mechanisms.py) uses standard-library code and imports no supplied project engine or learner scaffold. After comparing your reasoning, verify it on the new fixtures:
+
+```powershell
+python -X utf8 labs/chapter-16/check_implementation.py --implementation solutions/code/chapter_16_mechanisms.py
+```
+
+Rubric: correct intermediate mechanism (40%), deterministic and edge-case behavior (20%), independently written code (20%), and explanation of exact parity or measured approximation failure (20%). Passing output alone is insufficient. A loop-based implementation is appropriate; premature abstraction is unnecessary.

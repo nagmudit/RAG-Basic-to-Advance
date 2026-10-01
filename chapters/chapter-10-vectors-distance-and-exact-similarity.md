@@ -1,10 +1,14 @@
 # Chapter 10 — Vectors, distance, and exact similarity [INTERMEDIATE]
 
+The [Chapter 12 update bridge](chapter-12-retriever-training-and-domain-adaptation.md#from-a-vector-to-one-parameter-update) later extends these dot products to shaped matrix multiplication, transpose and a checked parameter update; this chapter's exact search requires no training calculus.
+
 Chapter 9 made the V2 lexical system measurable. Its BM25 search finds the termination clause at rank two, yet loses one governing clause for the dated contract question at that same cutoff. A lexical scorer sees the words its analyzer produced; it cannot, by itself, establish that a differently worded passage means the same thing. Before trying a learned representation, we need to know precisely what a vector searcher does with *any* representation. Otherwise a change in coordinates, distance, normalization, or search algorithm can be mistaken for a gain in understanding.
 
 This chapter builds an **exact** vector oracle. It scores every eligible vector and returns the mathematically best *k* under a declared metric and tie rule. The vectors here are supplied numbers or a dense encoding of known lexical features. **They are not learned semantic embeddings.** Chapter 11 will ask how a model learns coordinates useful for retrieval. Later ANN chapters may skip some comparisons and must be checked against the exact oracle built here.
 
 **Prerequisites.** Chapter 3 introduced arrays, norms, operations and complexity; Chapter 6 introduced sparse term vectors and cosine; Chapters 7–9 supply the judged BM25 comparison. Keep Chapter 2's candidate → selected context → answer boundary and Chapter 5's eligibility gate. A close neighbor is still only a candidate.
+
+**Workload identity:** `ch09-lexical-judged-v1`; see the [comparison registry](../evaluation/WORKLOAD_REGISTRY.md). Metrics across different workloads do not form an improvement sequence.
 
 ## 1. The coordinates come before the distance
 

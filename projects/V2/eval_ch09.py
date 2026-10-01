@@ -13,6 +13,8 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "V1"))
 from lexical_index import FROZEN_QUESTIONS, build_index, load_corpus
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "common"))
+from qrel_identity import validate_judgments
 
 
 HERE = Path(__file__).resolve().parent
@@ -22,6 +24,7 @@ JUDGMENTS_PATH = HERE / "judgments_ch09.json"
 def load_judgments(index=None, path=JUDGMENTS_PATH):
     index = index or build_index(load_corpus())
     data = json.loads(Path(path).read_text(encoding="utf-8"))
+    validate_judgments(data, index)
     if data["corpus_snapshot"] != index.snapshot:
         raise ValueError("Qrels and corpus snapshots differ")
     if data["scope_fixture"] != "support-team" or data["retrieval_unit"] != "indexed_segment":

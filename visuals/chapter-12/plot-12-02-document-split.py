@@ -27,7 +27,9 @@ for x in (1.65, 5.0, 8.35):
                                  mutation_scale=17, color="#334155", linewidth=1.5))
 ax.text(5, .05, "Shared eligible search index: D1–D9; legal-only D10 excluded before scoring",
         ha="center", va="center", fontsize=10, color="#17324d")
-ax.set_title("Source documents are disjoint across label splits", fontsize=13)
+ax.set_title("Document-disjoint labels; source families overlap", fontsize=13)
+ax.text(5, 3.95, "Helios family appears in train, validation and test: no family-transfer claim",
+        ha="center", va="center", fontsize=10, color="#17324d")
 for ext in ("svg", "png"):
     fig.savefig(HERE / f"figure-12-02-document-split.{ext}", dpi=180)
 svg = HERE / "figure-12-02-document-split.svg"

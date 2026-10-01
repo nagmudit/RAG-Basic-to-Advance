@@ -4,6 +4,10 @@ The Chapter 13 index scores every eligible vector. That is a trustworthy geometr
 
 The running [V4 project](../projects/V4/README.md) uses Chapter 13's checked 384-coordinate snapshot and the same 14 fully judged diagnostic questions. It also uses controlled synthetic vectors to expose scale and dimensional effects. The [lab](../labs/chapter-15/LAB.md), [solutions](../solutions/chapter-15-solutions.md), [from-scratch code](../projects/V4/ann_ch15.py), and [experiment record](../projects/V4/chapter-15-experiment.json) let you reproduce each distinction. No ANN index is approved as a replacement in this chapter.
 
+**Workload identity:** `ch13-stress-probes-v1`; see the [comparison registry](../evaluation/WORKLOAD_REGISTRY.md). Synthetic cases have separate `ch15-synthetic-nN-dD-v1` IDs (the actual N and d appear in the registry/result). Metrics across different workloads do not form an improvement sequence.
+
+**Independent construction gate:** Read the mechanism explanations first. Before inspecting supplied Python reference code, attempt [lab A0](../labs/chapter-15/LAB.md#a0-independent-bounded-mechanism) on your own tiny fixture. Open the separate worked answer afterward; existing calculation, debugging and project-comparison tasks still apply.
+
 ## 1. Define the oracle and the cost boundary
 
 For a question vector `q`, eligible passage vectors `d₁…d_N`, a fixed metric and a tie rule, **exact top-*k*** is the ordered set that results from scoring every eligible vector. It is exact only relative to those vectors, that metric, that source snapshot and that eligibility scope. It does not mean that the passages are relevant, current, sufficient or safe to answer from. On the Chapter 13 normalized vectors, cosine equals the dot product of unit vectors. Our experiment keeps this representation and the `support-team` roster frozen; D10 is legal-only and never enters an eligible score or context.

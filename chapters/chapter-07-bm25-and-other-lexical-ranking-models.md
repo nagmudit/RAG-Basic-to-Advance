@@ -8,6 +8,10 @@
 
 We keep the V1 positional index, V0 corpus snapshot, analyzer, static eligibility scope, candidate-depth choices, context builder and deterministic answer stub. The new [V2 scorer](../projects/V2/bm25.py) changes the score assigned to *eligible posting matches*. This is the first part of V2; Chapter 8 will make exact top-*k* execution cheaper, and Chapter 9 will add qrels and judged ranking metrics. The two V0 tasks still provide narrow required-evidence checks rather than a general quality claim.
 
+**Workload identity:** `v0-frozen-tasks-v1`; see the [comparison registry](../evaluation/WORKLOAD_REGISTRY.md). Metrics across different workloads do not form an improvement sequence.
+
+**Independent construction gate:** Read the mechanism explanations first. Before inspecting supplied Python reference code, attempt [lab A0](../labs/chapter-07/LAB.md#a0-independent-bounded-mechanism) on your own tiny fixture. Open the separate worked answer afterward; existing calculation, debugging and project-comparison tasks still apply.
+
 ## 1. From uncertain relevance to a term weight
 
 A query is an imperfect expression of an information need. The probabilistic relevance tradition asks whether a term is more likely in relevant than in nonrelevant documents. If `p_t=P(t present | relevant)` and `u_t=P(t present | nonrelevant)`, a binary independence model assigns an occurrence a log-odds contribution of
@@ -111,7 +115,7 @@ For `q-contract-change` at top two, this checked-in seven-sample run had median 
 
 Use a ranking trace to ask, in order: Is the current licensed source in the snapshot? Did the analyzer retain the exact identifier or clause terms? Did scope eligibility exclude it? Are its postings present? Did its `tf`, `df`, `L_d` and scope `avgdl` match the intended version? Which per-term contributions made it rank where it did? Did top-*k* and context packing retain it? Was the answer supported by the selected source version? An unauthorized source in a trace is a security failure even if the final answer omits its text. A stale clause cannot become authoritative through a higher BM25 score.
 
-When Chapter 9 supplies qrels, tune `k1`, `b`, title/field policy and candidate depth on a development split, then report held-out exact-ID, short/long, repeated-boilerplate, paraphrase, permission and freshness slices. Never tune on the test questions used to declare a gain. Compare rank and evidence coverage at fixed eligibility and budget, plus p50/p95 search time and build/update cost. If a score threshold or a cross-index fusion later uses BM25 values, calibrate for its query and scope distribution; raw BM25 values are not answer confidence. Source additions, deletes, scope changes and chunking revisions can change `N`, `df` and `avgdl`, so pin those versions with each result.
+The [Chapter 9 dev-select-freeze-test exercise](../labs/chapter-09/LAB.md#6-complete-the-bm25-parameter-selection) now closes this tuning step using a separate authored workload. When Chapter 9 supplies qrels, tune `k1`, `b`, title/field policy and candidate depth on a development split, then report held-out exact-ID, short/long, repeated-boilerplate, paraphrase, permission and freshness slices. Never tune on the test questions used to declare a gain. Compare rank and evidence coverage at fixed eligibility and budget, plus p50/p95 search time and build/update cost. If a score threshold or a cross-index fusion later uses BM25 values, calibrate for its query and scope distribution; raw BM25 values are not answer confidence. Source additions, deletes, scope changes and chunking revisions can change `N`, `df` and `avgdl`, so pin those versions with each result.
 
 ### Practice and active recall
 

@@ -4,6 +4,8 @@ Chapter 11 showed that a frozen sentence encoder can close a paraphrase gap on o
 
 The working prerequisite is Chapters [9](chapter-09-relevance-judgments-and-ranking-metrics.md) through [11](chapter-11-how-embedding-models-learn-retrieval-spaces.md): a complete eligible qrel roster, top-*k* metrics, exact vector search, and a frozen encoder baseline. V2 BM25 remains the lexical reference. The [lab](../labs/chapter-12/LAB.md) and [separate solutions](../solutions/chapter-12-solutions.md) use a new document split. Chapter 11's inspected questions are regression probes only; using them as a fresh test would leak model-selection knowledge.
 
+**Workload identity:** `ch12-adaptation-split-v1`; see the [comparison registry](../evaluation/WORKLOAD_REGISTRY.md). Metrics across different workloads do not form an improvement sequence.
+
 ## 1. The unit of learning is a judged query–passage relationship
 
 Let a query encoder produce `u = E_q(q)` and a passage encoder produce `v = E_p(p)`. A dual encoder scores `s(q,p) = u·v` after a declared normalization policy. A **positive** is a passage judged useful for a particular query; it is not intrinsically positive for every query. A **negative** is a passage judged unsuitable for that query. This distinction matters when two passages repeat the same fact, or one contains only part of the needed evidence. Chapter 9's grade-1 passage can be useful context even if grade 2 is needed for a complete answer. Casting every unjudged passage as grade 0 silently invents labels.
@@ -34,6 +36,59 @@ With `B` distinct positive passages in a batch, the `B×B` similarity matrix can
 
 A **triplet loss** instead enforces `s(q,p⁺) ≥ s(q,p⁻)+m` with margin `m>0`, penalizing violations by `max(0,m−s⁺+s⁻)`. If scores are `0.8` and `0.6` and `m=0.3`, the violation is `0.1`. A pairwise ranking loss similarly compares two candidates. A listwise objective consumes a slate and may match a target ranking distribution or optimize a surrogate for list quality. These objectives express different assumptions about labels and relative order. Do not select one by its training loss alone: score distributions, `Recall@k`, `NDCG@k`, wrong-entity slices, and latency matter on held-out queries. Scores from different models or training temperatures are not directly comparable; any acceptance threshold requires new calibration on a representative validation set.
 
+### From a vector to one parameter update
+
+Chapter 10 supplied dot products; Chapter 11 supplied row-softmax loss. Now connect them to the parameters that actually move. A **matrix** is a rectangular array. Multiplying an `m×d` matrix by a `d×1` column vector gives an `m×1` column: each output is one row's dot product. A **transpose**, written `Wᵀ` or `W.T`, swaps rows and columns. Thus `Wᵀ` is `d×m`. Transpose does not invert the matrix.
+
+Use the column query `u=(1,2)ᵀ`, a `2×2` identity matrix `W`, positive passage `p+=(1,0)ᵀ` and reviewed negative `p-=(0,1)ᵀ`. This hand example uses **unnormalized dot scores**, temperature one, and plain gradient descent so every calculation fits on paper. It is not the cosine/Adam training run below.
+
+```text
+W = [[1,0], [0,1]]     (2×2)
+u = [[1], [2]]        (2×1)
+z = Wu = [[1], [2]]   (2×1)
+s+ = p+ᵀz = 1        (1×2 times 2×1)
+s- = p-ᵀz = 2
+P+ = exp(1)/(exp(1)+exp(2)) = 0.268941
+P- = 0.731059
+L = -ln(P+) = 1.313262 nats
+```
+
+A **derivative** is the local rate at which loss changes when one scalar changes. Numerically, probe a small positive/negative change and divide the loss difference by the parameter difference. A **gradient** collects these derivatives, one for each parameter. The chain rule multiplies rates along the path parameter → representation → score → loss.
+
+Here `L=ln(exp(s+)+exp(s-))-s+`. Since the derivative of `exp(s)` is `exp(s)`, and that of `ln(a)` is `1/a`, the score derivatives are `∂L/∂s+=P+-1=-0.731059` and `∂L/∂s-=P-=0.731059`. For general temperature, divide these rates by `τ`. A negative positive-score derivative means increasing that score lowers this row's loss.
+
+The passage vectors select the two coordinates of `z`, so `g=∂L/∂z=(-0.731059,0.731059)ᵀ`. Because `z_i=Σ_j W_ij u_j`, changing `W_ij` changes `z_i` at rate `u_j`. Therefore `∂L/∂W_ij=g_i u_j`: the **outer product** `g uᵀ`, with shape `(2×1)(1×2)=2×2`.
+
+```text
+gradient(W) = [[-0.731059, -1.462117],
+               [ 0.731059,  1.462117]]
+learning rate η = 0.1
+W_new = W - η gradient(W)
+      = [[ 1.073106, 0.146212],
+         [-0.073106, 0.853788]]
+z_new = W_new u = (1.365529, 1.634471)ᵀ
+P+_new = 0.433167
+L_new = 0.836632 nats
+```
+
+The desired passage's score rises, the negative's score falls, and loss falls. The positive is **still second** after one step: lower loss need not immediately change top-k, and even a training rank gain would not prove held-out quality.
+
+### Stable probabilities compute the same objective
+
+Subtracting one constant `c` from **every** logit preserves probabilities: `exp(z_j-c)=exp(z_j)/exp(c)`, and the common denominator factor cancels in numerator and denominator. Choose `c=max(z)` so no exponent exceeds zero.
+
+For the earlier logits `[4,3,1]`, use `[0,-1,-3]`. The weights are `[1,0.367879,0.049787]`, their sum is `1.417666`, and probabilities are `[0.705385,0.259496,0.035119]`. Logits `[1004,1003,1001]` give the same probabilities; computing `exp(1004)` directly overflows ordinary Python floats. Stable log-sum-exp is `c+ln(Σ_j exp(z_j-c))`; row loss subtracts the positive logit from it. The max shift is a numerical device, not a change to the training labels or objective.
+
+The [standalone calculation](../projects/V3/training_bridge.py) checks each analytic derivative against central differences `(L(W+εE_ij)-L(W-εE_ij))/(2ε)`, where `E_ij` changes only one entry. With `ε=10^-6`, maximum discrepancy in this example is below `10^-8`. [Tests](../projects/V3/test_training_bridge.py) also check a second matrix, nonunit temperature, normalized vectors and constant-shift equivalence.
+
+### Connect the hand calculation to the actual adapter
+
+The real adapter is `h=Au` (`16×1`), `w=u+Bh` (`384×1`), then `y=w/||w||` (`384×1`). It uses cosine, temperature `0.12`, reviewed masks and a penalty. Normalization changes the derivative: if `r=||w||`, then `∂y_i/∂w_j=(δ_ij-y_i y_j)/r`, where `δ_ij` is one for equal coordinates and zero otherwise. This follows by differentiating `w_i/r` and `r=sqrt(Σ_j w_j²)`. For incoming gradient `g_y`, `g_w=(g_y-y(yᵀg_y))/r`; a zero norm needs explicit rejection.
+
+The remaining chain gives `∂L/∂B=g_w hᵀ` (`384×16`) and `∂L/∂A=(Bᵀg_w)uᵀ` (`16×384`). The code stores a batch as **rows**: `U` is `10×384`, `U @ A.T` is `10×16`, and `U @ A.T @ B.T` is `10×384`. Multiplying normalized query rows by `passage.T` (`384×7`) gives ten rows of seven logits. Row and column conventions express the same operation.
+
+`loss.backward()` uses **automatic differentiation**: it records the operations and propagates local derivatives backward through scores, normalization and matrix products, accumulating A/B gradients. It does not judge source relevance. `optimizer.zero_grad()` clears prior accumulated gradients. `optimizer.step()` uses those gradients to change parameters. Our hand step is plain descent; the actual Adam optimizer additionally rescales updates using running first/second moments, so it will not produce the same numbers. Initial `B=0` gives the frozen output and initially zero A-gradient; random A permits a nonzero B-gradient, after which A can move. Passage/transformer weights stay frozen, and the penalty contributes its own derivative. Run the [lab](../labs/chapter-12/LAB.md) bridge before tracing these calls.
+
 ## 3. Mining and distillation without manufacturing truth
 
 Random negatives quickly become easy: the model already ranks them far below the positive. Hard-negative mining begins with a retriever, inspects high-ranked nonpositives, and adds verified mistakes to training. A useful cycle is:
@@ -48,25 +103,34 @@ BM25 hard negatives expose lexical decoys; dense hard negatives expose semantic 
 
 A **cross-encoder teacher** reads query and passage together and can produce pairwise scores. A cheaper bi-encoder student can learn from those scores. **Score distillation** fits a teacher's relative or softened score distribution; **ranking distillation** teaches order or pair preferences. The teacher is neither a ground-truth qrel nor a permission authority. Check its false positives, candidate coverage, calibration, and domain bias before propagating labels. If the teacher sees only a retriever's top 20, it cannot teach the student about a relevant passage omitted from that pool. Generated questions plus a teacher's pseudo-labels are one adaptation pattern, described in [GPL](https://arxiv.org/abs/2112.07577); its reported domain results do not transfer automatically to this corpus. [DPR](https://arxiv.org/abs/2004.04906) and [ANCE](https://arxiv.org/abs/2007.00808) are useful primary readings for dual-encoder learning and evolving negatives.
 
-## 4. Domain adaptation requires a split that tests transfer
+## 4. Domain adaptation requires a split that matches the claim
 
 **Zero-shot retrieval** uses the pretrained model unchanged on a new corpus. **Fine-tuning** updates some or all model parameters with domain pairs. An **adapter** updates a smaller attached parameter set while keeping the base encoder frozen. Full two-tower fine-tuning can change passage embeddings; then every passage must be re-encoded and the vector index rebuilt under the new model version. A query-side adapter with a frozen passage tower avoids that particular rebuild, but it has less capacity and can still distort query scores.
 
 Split by the unit that could leak. If a source agreement appears in training under one query and test under another, a query split alone does not test retrieval of a new agreement. The Chapter 12 fixture separates **source documents**: D1, D2, D4 and D6 train; D3 and D7 validate; D5, D8 and D9 test. All 12 support-team segments remain in the actual search index, as they would in a deployed system; only training positives, candidate negatives and checkpoint selection exclude validation/test documents. The legal-only D10 stays outside eligibility. Figure 12.02 shows this difference between *indexed* and *used to update weights*.
 
-**Figure 12.02 — Source-disjoint labels, shared search corpus.** The indexed corpus includes all eligible documents. Only training documents supply gradient pairs; validation chooses the checkpoint; test labels are read only for the final report. This controls one leakage path, not related wording across documents or author knowledge.
+### Generalization unit of the fixed adaptation experiment
+
+The workload is **new queries with document-disjoint target labels and source-family overlap**. `source_family` in the judgment manifest groups D1-D7 and D9 as `helios-support`, and D8 as `atlas-support`. Train targets D1/D2/D4/D6, validation targets D3/D7, and test targets D5/D8/D9 are disjoint document IDs. The Helios family occurs in all three groups: the original agreement, amendment and FAQ are related sources. Family identity is an authored grouping, not a proof of semantic independence.
+
+This tests narrower adaptation behavior on this already indexed support corpus. It does **not establish unseen-family/domain transfer**. Atlas happens to occur only in test, but three Atlas questions do not turn the aggregate result into a validated transfer study. The shared passage index is required for retrieval; test labels still never enter gradients or checkpoint selection. For a future unseen-family claim, group related revisions/translations first and require disjoint families across train/dev/test. That different protocol requires fresh selection and evaluation.
+
+Figure 12.02 depicts label ownership by document, with the family overlap made explicit. `validate_generalization()` reports the actual overlap and rejects these same labels if their policy is relabeled `source-family-holdout`. The fixed queries, labels, training pairs, chosen epoch and negative result are retained; this clarification adds no improvement claim.
+
+
+**Figure 12.02 — Document-disjoint labels, shared search corpus.** The indexed corpus includes all eligible documents. Only training documents supply gradient pairs; validation chooses the checkpoint; test labels are read only for the final report. Document IDs are disjoint, while the Helios source family overlaps; this is new-query/document-target evaluation, not unseen-family transfer.
 
 ![Three nonoverlapping groups of source documents feed training, validation, and test labels. All eligible groups also feed a shared search index; the legal-only document remains outside support-team eligibility.](../visuals/chapter-12/figure-12-02-document-split.svg)
 
 *Alt text:* Train documents D1/D2/D4/D6, validation D3/D7 and test D5/D8/D9 have separate label paths, while all enter the eligible retrieval index; D10 is excluded. *Editable source:* [plot script](../visuals/chapter-12/plot-12-02-document-split.py); [PNG](../visuals/chapter-12/figure-12-02-document-split.png). Chapter 12; fixed V0 IDs, no sampling or uncertainty.
 
-The split must be frozen before model selection. Near duplicates, revisions, translated copies, generated queries paraphrasing test questions, and a teacher trained on test labels can still leak information. For a real deployment, use temporal holdouts and corpus-family grouping, sample frequent and rare intents, check permissions, and retain a later untouched audit set. A small authored split has no reliable confidence interval for broad production behavior. Chapter 41 will address experiment design.
+The split must be frozen before model selection. Near duplicates, revisions, translated copies, generated queries paraphrasing test questions, and a teacher trained on test labels can still leak information. For a real deployment, use temporal holdouts and corpus-family grouping, sample frequent and rare intents, check permissions, and retain a later untouched audit set. A small authored split has no reliable confidence interval for broad production behavior. Chapter 48 will address experiment design.
 
 ## 5. The V3 adaptation experiment
 
 The [judgment manifest](../projects/V3/judgments_ch12.json) contains 10 authored training pairs, four validation queries, and 11 test queries (nine positive, two with no eligible evidence). For every validation and test question, all 12 eligible segments were reviewed: 180 query–segment judgments. The 10 training pairs target five distinct training segments and mask potentially useful adjacent runbook windows or the old signed clause as negatives. No test passage is used as a training negative. The test slices are Basic, Atlas, unsigned draft and no-evidence. The corpus, query text, qrels, and split are versioned and hashed in the [checked-in record](../projects/V3/chapter-12-experiment.json).
 
-The pinned Chapter 11 encoder maps each title plus segment body and each question to a normalized 384-vector. The experiment trains a rank-16 residual **query projection**, `u' = normalize(u + B A u)`, with `A∈R^(16×384)` and `B∈R^(384×16)`. It initializes `B=0`, so the initial output is the frozen query vector, then optimizes masked row-softmax over seven train-document passages using temperature `0.12` and a small squared-projection penalty. The transformer and passage vectors are frozen. This is an actual gradient-trained dual-encoder *query tower adaptation*, not full retriever retraining. Its 12,288 trainable scalar parameters add about 49 KiB as float32 before optimizer state. At training time, a ten-query by seven-passage score matrix costs `O(10×7×384)` dot-product work per update plus the low-rank projection; production exact search still costs `O(Nd)` after query encoding. Adam optimizer state, model memory, source storage and service overhead are additional costs.
+The pinned Chapter 11 encoder maps each title plus segment body and each question to a normalized 384-vector. The experiment trains a rank-16 residual **query projection**, `u' = normalize(u + B A u)`, with `A∈R^(16×384)` and `B∈R^(384×16)`. It initializes `B=0`, so the initial output is the frozen query vector, then optimizes masked row-softmax over seven train-document passages using temperature `0.12` and a small squared-projection penalty. The transformer and passage vectors are frozen. This is an actual gradient-trained dual-encoder *query tower adaptation*, not full retriever retraining. Its 12,288 trainable scalar parameters add 48 KiB as float32 (`12,288 x 4 = 49,152 bytes = 48 KiB`) before optimizer state. At training time, a ten-query by seven-passage score matrix costs `O(10×7×384)` dot-product work per update plus the low-rank projection; production exact search still costs `O(Nd)` after query encoding. Adam optimizer state, model memory, source storage and service overhead are additional costs.
 
 The [runner](../projects/V3/experiment_ch12.py) uses a fixed seed, 60 steps, recorded learning rate, and checkpoints at epochs 1, 5, 10, 20, 40 and 60. The checkpoint with highest validation `NDCG@2`, then `Recall@2`, wins; an earlier epoch wins ties. Only after selection does the runner score the test labels. BM25 is a separate lexical reference. The same support-team gate, exact cosine, ID tie rule, top two, source text and 120-word context builder are applied to both dense methods. Raw candidate IDs/scores and selected context IDs are recorded; there is **no new answer generator run**, so answer correctness and faithfulness are not inferred.
 

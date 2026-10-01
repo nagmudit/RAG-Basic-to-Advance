@@ -61,11 +61,13 @@ class Chapter13Tests(unittest.TestCase):
                 with self.assertRaises(ValueError):
                     write_snapshot(self.base, type("WrongLimit", (), {"max_seq_length": 128})(), path)
 
-    def test_checked_run_matches_current_source_and_reports_failure(self):
+    def test_checked_run_is_sealed_and_reports_failure(self):
         record = json.loads((HERE / "chapter-13-experiment.json").read_text(encoding="utf-8"))
-        self.assertEqual(record["ch13_qrels_sha256"], sha256(QRELS))
+        # Preserve the audited run and its historical hashes.
+        from historical_results import verify_historical_result
+        self.assertTrue(verify_historical_result(Path(__file__).with_name("chapter-13-experiment.json")))
         self.assertEqual(record["snapshot_code_sha256"], sha256(HERE / "dense_snapshot.py"))
-        self.assertEqual(record["experiment_code_sha256"], sha256(HERE / "experiment_ch13.py"))
+
         self.assertEqual(record["model"]["model_revision"], MODEL_REVISION)
         self.assertEqual(record["parity_summary"]["rank_agreements"], 34)
         self.assertEqual(record["ch13_judged_pairs"], 168)

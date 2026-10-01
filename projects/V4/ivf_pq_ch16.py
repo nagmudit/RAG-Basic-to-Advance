@@ -147,16 +147,23 @@ class IVFPQ:
                         math.fsum(lookup[m][row["code"][m]] for m in range(self.subspaces)))
                 scores.append((dist, item_id))
         ordered = heapq.nsmallest(rerank_depth or k, scores)
+        # Retain the actual lossy boundary before exact refinement changes it.
+        stages = {"scored": [(i, -d) for d, i in scores],
+                  "approximate_top_r" if mode == "adc" else "flat_top_k":
+                      [(i, -d) for d, i in ordered]}
         reranked_count = len(ordered) if rerank_depth else 0
         if rerank_depth:
-            ordered = sorted((squared_l2(q, self.rows[item_id]["vector"]), item_id)
-                             for _, item_id in ordered)[:k]
+            refined = sorted((squared_l2(q, self.rows[item_id]["vector"]), item_id)
+                             for _, item_id in ordered)
+            stages["exact_refinement_candidates"] = [(i, -d) for d, i in refined]
+            ordered = refined[:k]
         result = [(item_id, -dist) for dist, item_id in ordered[:k]]
         return result, {"probed_lists": probes,
                         "list_lengths": [len(self.lists[j]) for j in probes],
                         "eligible_scored": eligible,
                         "distance_mode": mode,
                         "original_reranked": reranked_count,
+                        "candidate_stages": stages,
                         "empty_eligible_probe": eligible == 0}
 
     def storage_lower_bounds(self):

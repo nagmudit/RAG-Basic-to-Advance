@@ -2,6 +2,22 @@
 
 **Prerequisites:** Chapters 5–7 and the V2 BM25 stage. **Time:** about 90–120 minutes. Use Python 3 and the repository root as your working directory. Read [Chapter 8](../../chapters/chapter-08-production-lexical-query-execution.md) first. Keep your written answers separate from the [worked solutions](../../solutions/chapter-08-solutions.md) until you have attempted each task.
 
+## A0. Independent bounded mechanism
+
+Implement `safe_top_k(items, k, score)` in [implement.py](implement.py), a bounded safe-pruning routine rather than a production WAND engine. `items` contains unique `(ID, safe_nonnegative_score_bound)` pairs. `score(ID)` is a callback that does the exact expensive calculation. Inputs are already eligible; bounds are supplied by an independent conservative calculation. Return `ranking`, `scored_ids`, `skipped_ids`, and `thresholds` (ID/threshold before each visit).
+
+Visit descending bound, then ID. Until k winners exist the threshold is negative infinity; afterward it is the lowest winning score. Skip only when bound is **strictly below** the threshold. Score ties still need the ID tie rule: sort descending exact score, then ascending ID. Check finite nonnegative bounds and reject a scored value exceeding its bound. This check cannot prove a bound on an item already skipped: derive safe bounds first. Explain how an underestimated bound could silently lose the true winner.
+
+Make a fixture where one item can be skipped and another ties the threshold. Verify exact ordered parity against exhaustive sort, count callback invocations, and explain every threshold change. The checker uses 73 fresh parity/tie cases. Retain the existing full WAND cursor prediction and parity exercises.
+
+After your first attempt, run from the repository root:
+
+```powershell
+python -X utf8 labs/chapter-08/check_implementation.py
+```
+
+The starter intentionally raises `NotImplementedError`. Tests are feedback fixtures, not a concealed grading service. Submit your implementation, hand predictions, checker output and one diagnosis of a failing case. Open the separate chapter solutions only after attempting this task. Existing calculation, experiment and debugging tasks below still apply.
+
 ## Goal and evidence
 
 Implement and explain a safe top-*k* pruning decision while keeping Chapter 7's score and eligibility rules fixed. Submit: your hand calculations; one annotated cursor trace; test output; an experiment card with exactness, work and latency; one failure diagnosis; and a short architecture sketch showing index-time bounds and query-time cursors. The [checked-in V2 searcher](../../projects/V2/wand.py) is a reference implementation, not a substitute for the reasoning.

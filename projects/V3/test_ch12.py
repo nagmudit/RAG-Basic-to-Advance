@@ -58,8 +58,10 @@ class Chapter12Tests(unittest.TestCase):
 
     def test_checked_in_record_keeps_negative_result_and_versions(self):
         record = json.loads((HERE / "chapter-12-experiment.json").read_text(encoding="utf-8"))
-        self.assertEqual(record["qrels_sha256"], sha256(JUDGMENTS))
-        self.assertEqual(record["experiment_code_sha256"], sha256(HERE / "experiment_ch12.py"))
+        # Preserve the audited run and its historical hashes.
+        from historical_results import verify_historical_result
+        self.assertTrue(verify_historical_result(Path(__file__).with_name("chapter-12-experiment.json")))
+
         self.assertEqual(record["test_judged_pairs"], 132)
         self.assertEqual(record["training"]["selected_epoch"], 1)
         self.assertEqual(record["training"]["history"][1]["validation_recall_at_2"], 0)

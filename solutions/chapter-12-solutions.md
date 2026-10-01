@@ -8,13 +8,15 @@ Train source documents are D1, D2, D4, D6; validation D3, D7; test D5, D8, D9. T
 
 The runbook windows overlap in subject and sometimes in source text: `D4:step-4:0` ends near the configuration instruction and `D4:step-4:2` continues the incident procedure. They require review before being repelled from `tr-change-a`. The older signed D1 response clause can explain what the D2 amendment replaces; it is potentially useful history, even if D2 is the direct answer. D6's price row is a safe irrelevant example for a runbook or amendment query; D1's termination clause is an irrelevant example for a price query. A BM25 hit could be the exact current clause, a useful historical clause, or a wrong product. Rank alone cannot label it.
 
-Keep all revisions of one agreement and translated copies of the same source family on one side of a split. Chapter 11's questions and failures were already inspected, so they are regression probes, not a clean test for selecting Chapter 12 settings.
+For an **unseen-family transfer** claim, keep revisions and translations of a source family on one side. The current experiment deliberately uses the narrower new-query/document-target holdout: D1/D2/D3 are different documents in the overlapping `helios-support` family; Helios appears in train, validation and test. It therefore does not implement family holdout or establish domain transfer. Atlas is an incidental test-only family, not a separately validated transfer result. Chapter 11's questions and failures were already inspected, so they are regression probes, not a clean test for selecting Chapter 12 settings.
 
 ## B. Objective arithmetic
 
 The logits are `0.8/0.2=4`, `0.6/0.2=3`, `0.2/0.2=1`. The positive probability is `e^4/(e^4+e^3+e^1)≈0.705`, and `−ln(0.705)≈0.349` nats. The triplet violation is `max(0,0.3−0.8+0.6)=0.1`. If `0.6` belongs to a relevant passage, masking it or using a multi-positive objective avoids training against a valid result.
 
 ## C. Reproduction and selection
+
+The bridge starts with logits `[1,2]`, positive probability `.268941` and loss `1.313262`. Its gradient rows are `[-.731059,-1.462117]` and `[.731059,1.462117]`: multiply each representation derivative by input coordinates `[1,2]`. Subtracting one tenth of this gradient gives scores `[1.365529,1.634471]`, probability `.433167`, loss `.836632`. The positive remains second. The [companion](../projects/V3/training_bridge.py) independently computes each entry and central difference; it does not import the actual trainer. Subtracting the same logit constant cancels its exponential factor. Adam and normalized cosine in the actual run add operations absent from this hand descent, so matching its exact W numbers is not expected.
 
 The runner first validates source IDs, the qrel roster and split ownership. It embeds all eligible passages because the retrieval index must contain test sources to retrieve them. It trains on query labels and seven passage vectors from train documents only. Validation labels choose epoch 1; only then does it encode test questions and read their labels for final metrics. The checked-in manifest and experiment hashes make changes detectable.
 

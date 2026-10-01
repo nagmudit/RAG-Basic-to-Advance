@@ -17,6 +17,9 @@ from pathlib import Path
 from time import perf_counter_ns
 
 HERE = Path(__file__).resolve().parent
+sys.path.insert(0, str(HERE.parent / "common"))
+from experiment_trace import TraceCollector, versions, eligible, context_ids as trace_context_ids
+from qrel_identity import validate_judgments
 sys.path.insert(0, str(HERE.parent / "V1"))
 sys.path.insert(0, str(HERE.parent / "V2"))
 from lexical_index import build_context, build_index, load_corpus  # noqa: E402
@@ -38,6 +41,7 @@ def sha256(path):
 
 def load_judgments(base, path=DATASET_PATH):
     data = json.loads(Path(path).read_text(encoding="utf-8"))
+    validate_judgments(data, base)
     if (data["corpus_snapshot"] != base.snapshot or
             data["scope_fixture"] != "support-team" or
             data["retrieval_unit"] != "indexed_segment" or
@@ -145,6 +149,7 @@ def run(*, trials=7, allow_download=False):
     model, model_info = load_encoder(allow_download=allow_download)
     dense, dense_build_ms = build_dense_index(base, model)
     rng = random.Random(SEED)
+    trace = TraceCollector("ch11-embedding-probes-v1", versions(base.snapshot, dataset["version"], dataset["version"], {"bm25": bm25.version, "frozen_encoder": dense.version}, MODEL_REVISION), eligible(base))
     cases = []
     for qid, item in queries.items():
         question = item["question"]
@@ -178,24 +183,30 @@ def run(*, trials=7, allow_download=False):
             dense_search(dense, base, embed(model, [question], batch_size=1)[0], k)
             samples = {"bm25_search_us": [], "dense_encode_us": [],
                        "dense_scan_us": [], "dense_total_us": []}
-            for _ in range(trials):
+            for trial in range(trials):
                 order = list(MODES)
                 rng.shuffle(order)
                 for mode in order:
-                    if mode == "bm25":
-                        start = perf_counter_ns()
-                        bm25_search(bm25, question, scope="support-team", top_k=k)
-                        samples["bm25_search_us"].append(
-                            round((perf_counter_ns() - start) / 1000, 3))
-                    else:
-                        start = perf_counter_ns()
-                        vector = embed(model, [question], batch_size=1)[0]
-                        encoded = perf_counter_ns()
-                        dense_search(dense, base, vector, k)
-                        finished = perf_counter_ns()
-                        samples["dense_encode_us"].append(round((encoded - start) / 1000, 3))
-                        samples["dense_scan_us"].append(round((finished - encoded) / 1000, 3))
-                        samples["dense_total_us"].append(round((finished - start) / 1000, 3))
+                    with trace.guard(qid, mode, f"k{k}-trial{trial}"):
+                        if mode == "bm25":
+                            start = perf_counter_ns()
+                            returned = bm25_search(bm25, question, scope="support-team", top_k=k)
+                            elapsed = (perf_counter_ns() - start) / 1e6
+                            trace.record(qid, mode, f"k{k}-trial{trial}", returned, {"search": elapsed},
+                                         context=trace_context_ids(base, returned))
+                            samples["bm25_search_us"].append(round(elapsed * 1000, 3))
+                        else:
+                            start = perf_counter_ns()
+                            vector = embed(model, [question], batch_size=1)[0]
+                            encoded = perf_counter_ns()
+                            returned = dense_search(dense, base, vector, k)
+                            finished = perf_counter_ns()
+                            trace.record(qid, mode, f"k{k}-trial{trial}", returned,
+                                {"query_encode": (encoded-start)/1e6, "exact_scan": (finished-encoded)/1e6},
+                                context=trace_context_ids(base, returned))
+                            samples["dense_encode_us"].append(round((encoded - start) / 1000, 3))
+                            samples["dense_scan_us"].append(round((finished - encoded) / 1000, 3))
+                            samples["dense_total_us"].append(round((finished - start) / 1000, 3))
             modes["bm25"]["search_latency_us"] = samples["bm25_search_us"]
             modes["frozen_encoder"]["query_encode_latency_us"] = samples["dense_encode_us"]
             modes["frozen_encoder"]["exact_scan_latency_us"] = samples["dense_scan_us"]
@@ -235,6 +246,7 @@ def run(*, trials=7, allow_download=False):
             }
     return {
         "experiment_id": "ch11-v3-frozen-encoder-v1",
+        "workload_id": trace.workload_id, "request_samples": trace.records,
         "created_at_utc": datetime.now(timezone.utc).isoformat(),
         "measurement_window_utc": {"start": began,
                                    "end": datetime.now(timezone.utc).isoformat()},

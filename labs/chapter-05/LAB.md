@@ -2,6 +2,20 @@
 
 **Prerequisites:** Chapters 2–4; Python standard library; the V0 corpus. **Deliverables:** one hand-built postings sheet, a Boolean/phrase trace, two analyzer failure notes, a reproducible experiment card, and a V1/V0 regression report. This lab uses fictional source records and makes no model call.
 
+## A0. Independent bounded mechanism
+
+Implement `build_postings(documents)` and `phrase_match(postings, phrase)` in [implement.py](implement.py) before opening project or solution code. Input is an already eligible dictionary of document IDs to analyzed body-token lists; do not invent a new analyzer or engine. Positions start at zero. Return a sorted term dictionary mapping terms to sorted document-ID dictionaries of position lists; phrase matching returns sorted IDs. An empty phrase returns no matches. A phrase must occupy consecutive positions inside one document; repeated terms count as separate positions.
+
+First use your own three-document fixture: one phrase match, a reversed order, and a repeated-term case. Write the build loop and the phrase-start test in words; predict every result before running. Then run the unseen-in-the-prose fixture below. Explain why set intersection alone cannot establish a phrase, and why separate fields and eligibility still matter when this tiny mechanism is used inside V1.
+
+After your first attempt, run from the repository root:
+
+```powershell
+python -X utf8 labs/chapter-05/check_implementation.py
+```
+
+The starter intentionally raises `NotImplementedError`. Tests are feedback fixtures, not a concealed grading service. Submit your implementation, hand predictions, checker output and one diagnosis of a failing case. Open the separate chapter solutions only after attempting this task. Existing calculation, experiment and debugging tasks below still apply.
+
 ## A. Predict before running
 
 Read the five records in [toy_corpus.json](../../projects/V1/toy_corpus.json). Under the `v0` analyzer, write the body term positions for `S1` and `S3`. Make a term-to-postings table for `hx-7a`, `guide`, `reset`, and `legacy`. For each posting record segment ID, body positions and term frequency. Keep title positions separate. Predict the body phrase matches for `reset guide`, `guide reset`, `hx-7a reset`, and `manual helios` at `support-team` scope. Explain why `S5` can be in an internal posting but not in a support result.

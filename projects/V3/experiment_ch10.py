@@ -16,6 +16,8 @@ from pathlib import Path
 from time import perf_counter_ns
 
 HERE = Path(__file__).resolve().parent
+sys.path.insert(0, str(HERE.parent / "common"))
+from experiment_trace import TraceCollector, versions, eligible, context_ids as trace_context_ids
 sys.path.insert(0, str(HERE.parent / "V1"))
 sys.path.insert(0, str(HERE.parent / "V2"))
 from lexical_index import FROZEN_QUESTIONS, build_context, build_index, load_corpus, stub_answer  # noqa: E402
@@ -83,6 +85,7 @@ def run(trials=11):
                 if mode == "bm25" else
                 vector_search(vectors, base, vocab, question, k))
 
+    trace = TraceCollector("ch09-lexical-judged-v1", versions(base.snapshot, dataset["version"], dataset["version"], {"bm25": bm25.version, "binary_cosine": vectors.version}, None), eligible(base))
     cases = []
     for qid, query in queries.items():
         for k in DEPTHS:
@@ -114,13 +117,14 @@ def run(trials=11):
             for mode in MODES:
                 call(mode, query["question"], k)  # warm call, outside timing
             samples = {mode: [] for mode in MODES}
-            for _ in range(trials):
+            for trial in range(trials):
                 order = list(MODES)
                 rng.shuffle(order)
                 for mode in order:
-                    start = perf_counter_ns()
-                    call(mode, query["question"], k)
-                    samples[mode].append(round((perf_counter_ns() - start) / 1000, 3))
+                    _, record = trace.execute(qid, mode, f"k{k}-trial{trial}",
+                        lambda: call(mode, query["question"], k),
+                        context_selector=lambda result: trace_context_ids(base, result))
+                    samples[mode].append(round(record["stage_timings_ms"]["search"] * 1000, 3))
             for mode in MODES:
                 modes[mode]["search_latency_us"] = {
                     "raw": samples[mode],
@@ -178,6 +182,7 @@ def run(trials=11):
         "environment": {"python": platform.python_version(),
                         "platform": platform.platform(),
                         "processor": platform.processor()},
+        "workload_id": trace.workload_id, "request_samples": trace.records,
         "cases": cases, "summaries": summaries,
         "limitations": ["Single-author tiny qrel set, partly known V0 failures; not held out.",
                         "Binary lexical coordinates do not encode semantic paraphrase.",

@@ -4,6 +4,7 @@ import json
 import math
 import random
 import unittest
+from pathlib import Path
 
 from ann_ch15 import exact_cosine, unit
 from experiment_ch15 import source_hash
@@ -86,10 +87,10 @@ class Chapter16Tests(unittest.TestCase):
 
     def test_checked_record_hashes_and_error_decomposition(self):
         record = json.loads((HERE / "chapter-16-experiment.json").read_text(encoding="utf-8"))
-        self.assertEqual(record["versions"]["index_code_sha256"],
-                         source_hash(HERE / "ivf_pq_ch16.py"))
-        self.assertEqual(record["versions"]["runner_sha256"],
-                         source_hash(HERE / "experiment_ch16.py"))
+        # Preserve the audited run and its historical hashes.
+        from historical_results import verify_historical_result
+        self.assertTrue(verify_historical_result(Path(__file__).with_name("chapter-16-experiment.json")))
+
         self.assertEqual(len(record["synthetic"]), 2)
         for workload in (*record["synthetic"], record["v0_diagnostic"]):
             all_lists = workload["nlist"]

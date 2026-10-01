@@ -44,3 +44,15 @@ If `D2` is absent, inspect source snapshot and `D2` segment ID; analyze the quer
 ## F. Boundaries
 
 Figure 5.01 separates inverted, forward and scope stores at index time. Figure 5.02 filters term hits by scope before intersection output and source fetch. Position `3` means the fourth **analyzed term in one field**; it lacks original punctuation, byte offset, casing and version unless joined to the forward record. An analyzer change invalidates term keys and positions, so build a new version. A permission revocation must be enforced in the serving eligibility policy immediately, with index/cache invalidation or a live policy check; waiting for an offline rebuild risks exposure. V0 and V1 share a deterministic two-task stub, not a general LLM or claim verifier.
+
+## Independent bounded mechanism: reasoning and answer
+
+Enumerate analyzed positions at build time; intersect posting document IDs, then test aligned offsets at query time. Repeated terms need distinct consecutive offsets. A Boolean overlap is only a candidate filter.
+
+The separate [worked implementation](code/chapter_05_mechanisms.py) uses standard-library code and imports no supplied project engine or learner scaffold. After comparing your reasoning, verify it on the new fixtures:
+
+```powershell
+python -X utf8 labs/chapter-05/check_implementation.py --implementation solutions/code/chapter_05_mechanisms.py
+```
+
+Rubric: correct intermediate mechanism (40%), deterministic and edge-case behavior (20%), independently written code (20%), and explanation of exact parity or measured approximation failure (20%). Passing output alone is insufficient. A loop-based implementation is appropriate; premature abstraction is unnecessary.

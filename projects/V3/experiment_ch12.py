@@ -17,6 +17,10 @@ from pathlib import Path
 from time import perf_counter_ns
 
 HERE = Path(__file__).resolve().parent
+sys.path.insert(0, str(HERE.parent / "common"))
+from experiment_trace import TraceCollector, versions, eligible, context_ids as trace_context_ids
+from qrel_identity import validate_judgments
+from split_semantics import validate_generalization
 sys.path.insert(0, str(HERE.parent / "V1"))
 sys.path.insert(0, str(HERE.parent / "V2"))
 from lexical_index import build_context, build_index, load_corpus  # noqa: E402
@@ -35,6 +39,7 @@ RANK = 16
 
 def load_split(base, path=JUDGMENTS):
     data = json.loads(Path(path).read_text(encoding="utf-8"))
+    validate_judgments(data, base)
     roster = [base.segments[i]["segment_id"] for i in sorted(base.scope_ordinals["support-team"])]
     if (data["corpus_snapshot"] != base.snapshot or data["scope_fixture"] != "support-team"
             or data["retrieval_unit"] != "indexed_segment"
@@ -42,6 +47,7 @@ def load_split(base, path=JUDGMENTS):
             or data["binary_relevant_at_or_above"] != 1):
         raise ValueError("Chapter 12 qrel roster or policy mismatch")
     split = data["document_split"]
+    validate_generalization(data)
     doc_ids = [doc for name in ("train", "validation", "test") for doc in split[name]]
     if len(doc_ids) != len(set(doc_ids)) or set(doc_ids) != {s.split(":")[0] for s in roster}:
         raise ValueError("Document splits must be disjoint and cover eligible documents")
@@ -215,31 +221,41 @@ def run(*, allow_download=False, trials=5):
                               bm25=bm25 if name == "bm25" else None, base=base)
             for name, weights in {"bm25": (None, None), "frozen": (None, None),
                                   "adapted": (a, b)}.items()}
+    trace = TraceCollector("ch12-adaptation-split-v1", versions(base.snapshot, data["version"], data["version"], base.version,
+        {"base": model_info["model_revision"], "adapter_sha256": adapter_hash}), eligible(base))
     timings = {}
     rng = random.Random(SEED)
     for name in ("bm25", "frozen", "adapted"):
         samples = []
         slice_samples = {}
         items = list(data["test_queries"])
-        for _ in range(trials):
+        for trial in range(trials):
             rng.shuffle(items)
             for item in items:
-                # Inference boundary: model query encoding plus scoring for dense;
-                # model load, passage build and context are excluded.
-                if name == "bm25":
-                    bm25_search(bm25, item["question"], scope="support-team", top_k=TOP_K)
-                    tick = perf_counter_ns()
-                    bm25_search(bm25, item["question"], scope="support-team", top_k=TOP_K)
-                else:
-                    embed(model, [item["question"]], batch_size=1)
-                    tick = perf_counter_ns()
-                    q = torch.tensor(embed(model, [item["question"]], batch_size=1)[0])
-                    rank_dense(q, embeddings["passage_matrix"], roster,
-                               a if name == "adapted" else None,
-                               b if name == "adapted" else None)
-                elapsed = round((perf_counter_ns() - tick) / 1000, 3)
-                samples.append(elapsed)
-                slice_samples.setdefault(item["slice"], []).append(elapsed)
+                with trace.guard(item["query_id"], name, trial):
+                    # Inference boundary: model query encoding plus scoring for dense;
+                    # model load, passage build and context are excluded.
+                    if name == "bm25":
+                        bm25_search(bm25, item["question"], scope="support-team", top_k=TOP_K)
+                        tick = perf_counter_ns()
+                        returned = bm25_search(bm25, item["question"], scope="support-team", top_k=TOP_K)
+                        encoded = tick
+                    else:
+                        embed(model, [item["question"]], batch_size=1)
+                        tick = perf_counter_ns()
+                        q = torch.tensor(embed(model, [item["question"]], batch_size=1)[0])
+                        encoded = perf_counter_ns()
+                        all_ranked = rank_dense(q, embeddings["passage_matrix"], roster,
+                                   a if name == "adapted" else None,
+                                   b if name == "adapted" else None)
+                        returned = (all_ranked[:TOP_K], {"candidate_stages": {"scored": all_ranked}})
+                    finished = perf_counter_ns()
+                    elapsed = round((finished - tick) / 1000, 3)
+                    trace.record(item["query_id"], name, trial, returned,
+                        {"query_encode": (encoded-tick)/1e6, "score": (finished-encoded)/1e6},
+                        context=trace_context_ids(base, returned))
+                    samples.append(elapsed)
+                    slice_samples.setdefault(item["slice"], []).append(elapsed)
         timings[name] = {"samples_us": samples, "p50_us": nearest_rank(samples, .5),
                          "p95_us": nearest_rank(samples, .95),
                          "by_slice": {slice_name: {"samples": len(values),
@@ -254,12 +270,13 @@ def run(*, allow_download=False, trials=5):
         "acceptance_gate": "Keep the adapter only if held-out positive-query Recall@2 exceeds frozen without a validation or no-evidence regression; this small set is diagnostic, not a production release gate.",
         "baseline": "Chapter 11 pinned frozen sentence encoder with exact cosine; V2 BM25 is a lexical reference",
         "primary_variable": "A trained rank-16 residual projection on query vectors; document encoder and exact scorer remain frozen",
-        "controls": ["unchanged V0 corpus and support-team eligibility", "same 384d base encoder, title/body passage format, normalization, exact cosine and tie order", "source-disjoint train/validation/test query targets", "same complete 12-segment qrel roster, top-2, context word budget"],
+        "controls": ["unchanged V0 corpus and support-team eligibility", "same 384d base encoder, title/body passage format, normalization, exact cosine and tie order", "document-disjoint train/validation/test query targets; source families overlap", "same complete 12-segment qrel roster, top-2, context word budget"],
         "judgment_policy": data["review_method"], "qrel_policy": data["zero_policy"],
         "procedure": "Validate frozen split/roster; encode eligible passages and train/validation queries; train only on train-document pairs with unsafe negatives masked; choose epoch by validation NDCG@2 then Recall@2; encode and score test queries once; compare BM25, frozen and adapted with fixed top-2/context policy; warm and time local queries.",
         "model": model_info, "corpus_snapshot": corpus["snapshot"], "qrel_version": data["version"],
         "index_version": base.version,
         "document_split": data["document_split"], "training_pairs": len(data["training_pairs"]),
+        "generalization": validate_generalization(data),
         "validation_queries": len(data["validation_queries"]), "test_queries": len(data["test_queries"]),
         "test_judged_pairs": len(data["test_queries"]) * len(roster),
         "training": {"seed": SEED, "epochs": EPOCHS, "selected_epoch": selected_epoch,
@@ -271,7 +288,8 @@ def run(*, allow_download=False, trials=5):
                      "train_ms": round(train_ms, 3)},
         "passage_build_ms": round(passage_build_ms, 3),
         "validation": validation, "test": test, "test_timing": timings,
-        "timing_policy": "5 warmed CPU samples per test query/method, method-specific query encode plus exact score or BM25 search; excludes model load, passage build, training and context. Local microbenchmarks are not production tails.",
+        "workload_id": trace.workload_id, "request_samples": trace.records,
+        "timing_policy": f"{trials} warmed CPU samples per test query/method, method-specific query encode plus exact score or BM25 search; excludes model load, passage build, training and context. Local microbenchmarks are not production tails.",
         "candidate_context_answer_policy": "Candidate IDs/scores, selected context IDs and absent generation labels are separate. No answer generator was run on the new split.",
         "failure_examples": ["te-atlas-b: all three routes omit the signed Atlas contract from top two; dense routes choose observed incident and unsigned draft", "te-none-a and te-none-b: every route returns candidates despite no eligible evidence", "later adapter checkpoints fit train pairs while validation Recall@2 falls to zero"],
         "conclusion": "The selected adapter ties the frozen encoder on held-out Recall@2 and NDCG@2; the hypothesized gain is not observed.",
@@ -281,7 +299,7 @@ def run(*, allow_download=False, trials=5):
         "qrels_sha256": sha256(JUDGMENTS), "experiment_code_sha256": sha256(HERE / "experiment_ch12.py"),
         "environment": {"python": platform.python_version(), "platform": platform.platform(),
                         "torch": torch.__version__},
-        "limitations": ["One author created and graded all fictional questions while knowing the source facts and prior failures; no independent assessment.", "Ten authored training queries and nine positive held-out test queries span only three test documents; no statistical generalization claim.", "Source-disjoint targets prevent document-identity leakage but test documents are still embedded into the retrieval index as production would require; related Helios wording crosses documents.", "Only a query-side low-rank adapter is trained; the transformer and passage encoder are frozen, so this is not full dual-encoder fine-tuning.", "The English-only fixture cannot measure multilingual or cross-lingual transfer.", "No answer generator runs; answer quality, calibration, live authorization, ANN scale and production latency remain untested."]
+        "limitations": ["One author created and graded all fictional questions while knowing the source facts and prior failures; no independent assessment.", "Ten authored training queries and nine positive held-out test queries span only three test documents; no statistical generalization claim.", "Document-disjoint targets prevent document-identity leakage but test documents are still embedded into the retrieval index as production would require; related Helios wording crosses documents.", "Only a query-side low-rank adapter is trained; the transformer and passage encoder are frozen, so this is not full dual-encoder fine-tuning.", "The English-only fixture cannot measure multilingual or cross-lingual transfer.", "No answer generator runs; answer quality, calibration, live authorization, ANN scale and production latency remain untested."]
     }
 
 

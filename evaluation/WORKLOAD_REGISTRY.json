@@ -1,0 +1,344 @@
+{
+  "schema_version": "workload-registry-1",
+  "comparison_rule": "Metrics are comparable only when dataset/query/judgment definitions permit comparison. Match cutoff, eligibility, representation/model and timing boundary as appropriate.",
+  "workloads": [
+    {
+      "workload_id": "v0-frozen-tasks-v1",
+      "chapters_using_it": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "corpus_version": "support-corpus-2026-05-20",
+      "query_set_version": "v0-two-frozen-information-needs",
+      "qrels_version": "v0-required-evidence-contract",
+      "number_of_queries": 2,
+      "judgment_count": 0,
+      "query_slices": [
+        "dated-contract-change",
+        "termination"
+      ],
+      "purpose": "Narrow required-evidence/context/stub regressions; no complete graded ranking universe.",
+      "valid_comparisons": "Compare preserved V0-V2 routes on the same two needs, eligibility and context policy; execution/timing boundary must match.",
+      "invalid_cross_workload_inferences": "Do not equate two-task evidence success with later macro NDCG or general answer quality.",
+      "source": "projects/V0/engine.py"
+    },
+    {
+      "workload_id": "ch09-lexical-judged-v1",
+      "chapters_using_it": [
+        9,
+        10
+      ],
+      "corpus_version": "support-corpus-2026-05-20",
+      "query_set_version": "ch09-segment-qrels-v1",
+      "qrels_version": "ch09-segment-qrels-v1",
+      "number_of_queries": 14,
+      "judgment_count": 168,
+      "query_slices": {
+        "dated_authority": 1,
+        "dated_multi_evidence": 1,
+        "entity_disambiguation": 2,
+        "exact_clause": 1,
+        "multi_segment_procedure": 1,
+        "no_result_exact": 1,
+        "numeric_lookup": 1,
+        "observation_vs_contract": 1,
+        "permission_no_eligible_evidence": 1,
+        "procedure_segment": 2,
+        "source_status": 1,
+        "unanswerable_lexical_overlap": 1
+      },
+      "purpose": "Compare overlap/BM25/WAND and Chapter 10 exact binary cosine on an inspected lexical workload.",
+      "valid_comparisons": "Within this workload compare routes at matched cutoff/eligibility/model/input and declared context; geometric exact-oracle comparisons also require the same vectors.",
+      "invalid_cross_workload_inferences": "No improvement sequence across Chapter 09, 11, 12 or stress workloads; no model gain from geometry alone.",
+      "source": "projects/V2/judgments_ch09.json",
+      "evidence_manifest_sha256": "6d78c210769d0992dd530ab66349792077f1b89564c368f63797301ebc66523c"
+    },
+    {
+      "workload_id": "ch11-embedding-probes-v1",
+      "chapters_using_it": [
+        11,
+        13
+      ],
+      "corpus_version": "support-corpus-2026-05-20",
+      "query_set_version": "ch11-frozen-encoder-probe-v1",
+      "qrels_version": "ch11-frozen-encoder-probe-v1",
+      "number_of_queries": 17,
+      "judgment_count": 204,
+      "query_slices": {
+        "exact_identifier": 6,
+        "no_eligible_evidence": 3,
+        "paraphrase": 8
+      },
+      "purpose": "Frozen encoder versus BM25 on new authored embedding probes; Chapter 13 uses it for materialization parity.",
+      "valid_comparisons": "Within this workload compare routes at matched cutoff/eligibility/model/input and declared context; geometric exact-oracle comparisons also require the same vectors.",
+      "invalid_cross_workload_inferences": "No improvement sequence across Chapter 09, 11, 12 or stress workloads; no model gain from geometry alone.",
+      "source": "projects/V3/judgments_ch11.json",
+      "evidence_manifest_sha256": "6d78c210769d0992dd530ab66349792077f1b89564c368f63797301ebc66523c"
+    },
+    {
+      "workload_id": "ch13-stress-probes-v1",
+      "chapters_using_it": [
+        13,
+        15,
+        16
+      ],
+      "corpus_version": "support-corpus-2026-05-20",
+      "query_set_version": "ch13-dense-operations-probes-v1",
+      "qrels_version": "ch13-dense-operations-probes-v1",
+      "number_of_queries": 14,
+      "judgment_count": 168,
+      "query_slices": {
+        "acronym": 2,
+        "exact_code": 2,
+        "exploratory_cross_lingual": 2,
+        "negation": 2,
+        "no_eligible_evidence": 2,
+        "numeric_constraint": 2,
+        "out_of_domain_style": 2
+      },
+      "purpose": "Same-model exact oracle versus lexical and ANN variants on inspected stress slices; geometric and judged recall stay separate.",
+      "valid_comparisons": "Within this workload compare routes at matched cutoff/eligibility/model/input and declared context; geometric exact-oracle comparisons also require the same vectors.",
+      "invalid_cross_workload_inferences": "No improvement sequence across Chapter 09, 11, 12 or stress workloads; no model gain from geometry alone.",
+      "source": "projects/V3/judgments_ch13.json",
+      "evidence_manifest_sha256": "6d78c210769d0992dd530ab66349792077f1b89564c368f63797301ebc66523c"
+    },
+    {
+      "workload_id": "ch12-adaptation-split-v1",
+      "chapters_using_it": [
+        12
+      ],
+      "corpus_version": "support-corpus-2026-05-20",
+      "query_set_version": "ch12-domain-split-v1",
+      "qrels_version": "ch12-domain-split-v1",
+      "number_of_queries": 25,
+      "judgment_count": 180,
+      "query_slices": {
+        "training_pairs": 10,
+        "validation": 4,
+        "test": 11
+      },
+      "purpose": "Query-adapter training and dev selection followed by document-target/new-query holdout; source families overlap.",
+      "valid_comparisons": "Frozen/adapted/BM25 on the same 11 test queries after checkpoint freeze; compare validation separately.",
+      "invalid_cross_workload_inferences": "Do not compare 25 queries as a single fully judged set, reuse test for selection, or infer unseen-family/domain transfer.",
+      "source": "projects/V3/judgments_ch12.json",
+      "training_positive_pairs": 10,
+      "fully_judged_validation_test_queries": 15,
+      "evidence_manifest_sha256": "6d78c210769d0992dd530ab66349792077f1b89564c368f63797301ebc66523c"
+    },
+    {
+      "workload_id": "ch09-bm25-devtest-v1",
+      "chapters_using_it": [
+        7,
+        9
+      ],
+      "corpus_version": "support-corpus-2026-05-20",
+      "query_set_version": "ch09-bm25-devtest-qrels-v1",
+      "qrels_version": "ch09-bm25-devtest-qrels-v1",
+      "number_of_queries": 12,
+      "judgment_count": 144,
+      "query_slices": {
+        "development": 6,
+        "test": 6
+      },
+      "purpose": "Teach dev-select-freeze-test parameter methodology with separate authored questions.",
+      "valid_comparisons": "Compare the twenty settings only on dev for selection, and frozen selected/default only on the six test queries.",
+      "invalid_cross_workload_inferences": "Do not treat original inspected Chapter 09 cases as this held-out test; do not compare this score with original Chapter 09 as an engine improvement.",
+      "source": "projects/V2/judgments_bm25_tuning.json",
+      "evidence_manifest_sha256": "6d78c210769d0992dd530ab66349792077f1b89564c368f63797301ebc66523c"
+    },
+    {
+      "workload_id": "ch14-sparse-fixture-v1",
+      "chapters_using_it": [
+        14
+      ],
+      "corpus_version": "ch14-toy-1",
+      "query_set_version": "toy-sparse-1",
+      "qrels_version": "ch14-toy-1",
+      "number_of_queries": 1,
+      "judgment_count": 3,
+      "query_slices": [
+        "sparse-mechanism"
+      ],
+      "purpose": "Hand-authored scoring mechanism fixture, not a neural model benchmark.",
+      "valid_comparisons": "Sparse surface/expanded on identical sparse fixture; pooled/MaxSim on identical token fixture.",
+      "invalid_cross_workload_inferences": "No score comparison with Chapter 13 or across the sparse/token fixtures; no trained SPLADE/ColBERT performance claim.",
+      "source": "projects/V3/experiment_ch14.py"
+    },
+    {
+      "workload_id": "ch14-token-fixture-v1",
+      "chapters_using_it": [
+        14
+      ],
+      "corpus_version": "ch14-toy-1",
+      "query_set_version": "toy-token-1",
+      "qrels_version": "ch14-toy-1",
+      "number_of_queries": 1,
+      "judgment_count": 3,
+      "query_slices": [
+        "token-mechanism"
+      ],
+      "purpose": "Hand-authored scoring mechanism fixture, not a neural model benchmark.",
+      "valid_comparisons": "Sparse surface/expanded on identical sparse fixture; pooled/MaxSim on identical token fixture.",
+      "invalid_cross_workload_inferences": "No score comparison with Chapter 13 or across the sparse/token fixtures; no trained SPLADE/ColBERT performance claim.",
+      "source": "projects/V3/experiment_ch14.py"
+    },
+    {
+      "workload_id": "ch15-synthetic-n128-d2-v1",
+      "chapters_using_it": [
+        15
+      ],
+      "corpus_version": "synthetic-128-2-15102156",
+      "query_set_version": "planted-20-v1",
+      "qrels_version": "geometric-exact-top2",
+      "number_of_queries": 20,
+      "judgment_count": 0,
+      "query_slices": [
+        "gaussian-planted-noisy-vector"
+      ],
+      "purpose": "Geometric exact/KD/one fixed LSH comparison and dimension/work stress.",
+      "valid_comparisons": "Within same N/d/seed query vectors compare exact KD parity, LSH neighbor recall and scored work; scaling has a changed corpus.",
+      "invalid_cross_workload_inferences": "No judged-relevance/answer gain claim; cross-size/dimension times are scaling observations, not identical-workload quality comparisons.",
+      "source": "projects/V4/experiment_ch15.py",
+      "oracle_neighbor_memberships": 40
+    },
+    {
+      "workload_id": "ch15-synthetic-n512-d2-v1",
+      "chapters_using_it": [
+        15
+      ],
+      "corpus_version": "synthetic-512-2-15102540",
+      "query_set_version": "planted-20-v1",
+      "qrels_version": "geometric-exact-top2",
+      "number_of_queries": 20,
+      "judgment_count": 0,
+      "query_slices": [
+        "gaussian-planted-noisy-vector"
+      ],
+      "purpose": "Geometric exact/KD/one fixed LSH comparison and dimension/work stress.",
+      "valid_comparisons": "Within same N/d/seed query vectors compare exact KD parity, LSH neighbor recall and scored work; scaling has a changed corpus.",
+      "invalid_cross_workload_inferences": "No judged-relevance/answer gain claim; cross-size/dimension times are scaling observations, not identical-workload quality comparisons.",
+      "source": "projects/V4/experiment_ch15.py",
+      "oracle_neighbor_memberships": 40
+    },
+    {
+      "workload_id": "ch15-synthetic-n2048-d2-v1",
+      "chapters_using_it": [
+        15
+      ],
+      "corpus_version": "synthetic-2048-2-15104076",
+      "query_set_version": "planted-20-v1",
+      "qrels_version": "geometric-exact-top2",
+      "number_of_queries": 20,
+      "judgment_count": 0,
+      "query_slices": [
+        "gaussian-planted-noisy-vector"
+      ],
+      "purpose": "Geometric exact/KD/one fixed LSH comparison and dimension/work stress.",
+      "valid_comparisons": "Within same N/d/seed query vectors compare exact KD parity, LSH neighbor recall and scored work; scaling has a changed corpus.",
+      "invalid_cross_workload_inferences": "No judged-relevance/answer gain claim; cross-size/dimension times are scaling observations, not identical-workload quality comparisons.",
+      "source": "projects/V4/experiment_ch15.py",
+      "oracle_neighbor_memberships": 40
+    },
+    {
+      "workload_id": "ch15-synthetic-n128-d32-v1",
+      "chapters_using_it": [
+        15
+      ],
+      "corpus_version": "synthetic-128-32-15102186",
+      "query_set_version": "planted-20-v1",
+      "qrels_version": "geometric-exact-top2",
+      "number_of_queries": 20,
+      "judgment_count": 0,
+      "query_slices": [
+        "gaussian-planted-noisy-vector"
+      ],
+      "purpose": "Geometric exact/KD/one fixed LSH comparison and dimension/work stress.",
+      "valid_comparisons": "Within same N/d/seed query vectors compare exact KD parity, LSH neighbor recall and scored work; scaling has a changed corpus.",
+      "invalid_cross_workload_inferences": "No judged-relevance/answer gain claim; cross-size/dimension times are scaling observations, not identical-workload quality comparisons.",
+      "source": "projects/V4/experiment_ch15.py",
+      "oracle_neighbor_memberships": 40
+    },
+    {
+      "workload_id": "ch15-synthetic-n512-d32-v1",
+      "chapters_using_it": [
+        15
+      ],
+      "corpus_version": "synthetic-512-32-15102570",
+      "query_set_version": "planted-20-v1",
+      "qrels_version": "geometric-exact-top2",
+      "number_of_queries": 20,
+      "judgment_count": 0,
+      "query_slices": [
+        "gaussian-planted-noisy-vector"
+      ],
+      "purpose": "Geometric exact/KD/one fixed LSH comparison and dimension/work stress.",
+      "valid_comparisons": "Within same N/d/seed query vectors compare exact KD parity, LSH neighbor recall and scored work; scaling has a changed corpus.",
+      "invalid_cross_workload_inferences": "No judged-relevance/answer gain claim; cross-size/dimension times are scaling observations, not identical-workload quality comparisons.",
+      "source": "projects/V4/experiment_ch15.py",
+      "oracle_neighbor_memberships": 40
+    },
+    {
+      "workload_id": "ch15-synthetic-n2048-d32-v1",
+      "chapters_using_it": [
+        15
+      ],
+      "corpus_version": "synthetic-2048-32-15104106",
+      "query_set_version": "planted-20-v1",
+      "qrels_version": "geometric-exact-top2",
+      "number_of_queries": 20,
+      "judgment_count": 0,
+      "query_slices": [
+        "gaussian-planted-noisy-vector"
+      ],
+      "purpose": "Geometric exact/KD/one fixed LSH comparison and dimension/work stress.",
+      "valid_comparisons": "Within same N/d/seed query vectors compare exact KD parity, LSH neighbor recall and scored work; scaling has a changed corpus.",
+      "invalid_cross_workload_inferences": "No judged-relevance/answer gain claim; cross-size/dimension times are scaling observations, not identical-workload quality comparisons.",
+      "source": "projects/V4/experiment_ch15.py",
+      "oracle_neighbor_memberships": 40
+    },
+    {
+      "workload_id": "ch16-synthetic-n256-d8-v1",
+      "chapters_using_it": [
+        16
+      ],
+      "corpus_version": "synth-16012290",
+      "query_set_version": "planted-16-v1",
+      "qrels_version": "geometric-exact-top2",
+      "number_of_queries": 16,
+      "judgment_count": 0,
+      "query_slices": [
+        "gaussian-planted-noisy-vector"
+      ],
+      "purpose": "Decompose coarse-list omissions, PQ distortion and bounded refinement on fixed vectors.",
+      "valid_comparisons": "Within same trained index/query roster compare probe/mode/refinement at k=2; full-probe Flat oracle parity.",
+      "invalid_cross_workload_inferences": "No relevance labels; do not compare Chapter 15 synthetic Recall as longitudinal improvement: N/d/seed/queries differ.",
+      "source": "projects/V4/experiment_ch16.py",
+      "oracle_neighbor_memberships": 32
+    },
+    {
+      "workload_id": "ch16-synthetic-n1024-d32-v1",
+      "chapters_using_it": [
+        16
+      ],
+      "corpus_version": "synth-16013082",
+      "query_set_version": "planted-16-v1",
+      "qrels_version": "geometric-exact-top2",
+      "number_of_queries": 16,
+      "judgment_count": 0,
+      "query_slices": [
+        "gaussian-planted-noisy-vector"
+      ],
+      "purpose": "Decompose coarse-list omissions, PQ distortion and bounded refinement on fixed vectors.",
+      "valid_comparisons": "Within same trained index/query roster compare probe/mode/refinement at k=2; full-probe Flat oracle parity.",
+      "invalid_cross_workload_inferences": "No relevance labels; do not compare Chapter 15 synthetic Recall as longitudinal improvement: N/d/seed/queries differ.",
+      "source": "projects/V4/experiment_ch16.py",
+      "oracle_neighbor_memberships": 32
+    }
+  ]
+}
