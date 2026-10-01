@@ -60,6 +60,8 @@ Chapter 12 makes the retriever-learning branch executable in [V3](projects/V3/RE
 
 Chapter 14 branches from the existing lexical, vector and training foundations: **contextual vocabulary logits → sparse nonzero weights → weighted postings → eligible candidate scores**; and **independent query/document token vectors → token score grid → per-query-token maxima → exact MaxSim → candidates**. A fixed [V3 mechanism fixture](projects/V3/README.md) makes both computations inspectable without implying that its hand-authored representations are trained SPLADE or ColBERT. Chapter 13's judged BM25/frozen-dense comparison remains the V0 baseline for any future model selection.
 
+Chapter 15 makes the ANN branch executable in [V4](projects/V4/README.md): **checked exact cosine oracle → KD box bound/backtracking (exact) versus seeded hyperplane signatures/bucket union (approximate) → candidate IDs → exact-neighbor overlap and judged evidence recall**. The low-dimensional synthetic KD gain, high-dimensional synthetic loss and V0 LSH misses demonstrate why vector comparisons, latency and relevance have different denominators. The static support-team eligibility fixture remains a gate before approximate scoring, never a similarity penalty.
+
 ```mermaid
 flowchart LR
   Req[Request] --> Trace[Correlated trace]

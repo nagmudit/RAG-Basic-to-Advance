@@ -169,9 +169,19 @@ The glossary will grow with chapter writing. Each future entry will include: **p
 | Domain adaptation / over-specialization | Updating representations for a target distribution / fitting sampled pairs while losing held-out behavior | 12 | Guaranteed improvement from lower training loss |
 | Source-disjoint split | Training, validation and test labels assigned to different source-document identities | 12 | Complete independence when revisions, translations or authors' prior knowledge overlap |
 | Multilingual / cross-lingual retrieval | Query and corpus within each of several languages / query and evidence in different languages | 12 | One benchmark or translated query proving all language directions |
-| Vector index | Data structure for vector similarity lookup | 15 | Vector database/service |
+| Vector index | Data structure for vector similarity lookup, exact or approximate under a versioned representation/metric contract | 13; ANN depth 15 | Vector database/service or judged evidence |
 | Exact KNN | Top-k closest items under a chosen metric, found without approximation | 10 | ANN |
-| ANN | Search that trades exact-neighbor recall for speed, memory, or I/O | 15 | Relevance ranking quality |
+| ANN | Search that permits missing exact geometric neighbors to reduce candidate work, latency, memory or I/O under a declared workload | 15 | Guaranteed speedup or judged relevance quality |
+| Exact-neighbor Recall@K | Fraction of exact-oracle top-K IDs recovered in an approximate top-K result under identical vectors, metric, scope, snapshot and tie rule | 15 | Qrel evidence Recall@K, answer correctness or a semantic model gain |
+| KD tree | Axis-partitioned vector tree whose bounding boxes support exact branch-and-bound KNN with backtracking | 15 | Approximation merely because it prunes or guaranteed logarithmic high-dimensional search |
+| Bounding-box lower bound | Minimum Euclidean distance from a query to any point within a node's axis-aligned box | 15 | Actual nearest-point distance or safe pruning under a different metric |
+| Backtracking / branch and bound | Revisiting another tree branch unless a proven lower bound exceeds the current top-K radius | 15 | Greedy single-branch search |
+| Ball tree | Nested metric balls whose center/radius triangle-inequality bounds can support exact neighbor search | 15 | KD axis boxes or automatic high-dimensional speedup |
+| Intrinsic dimension | Effective degrees of freedom or lower-dimensional structure in observed vectors, distinct from their coordinate count | 15 | A guarantee that a particular tree/index will prune well |
+| Random-hyperplane LSH | Angular locality-sensitive hashing that maps a vector to signs of random dot products and probes matching signature buckets | 15 | A relevance judge or always-exact cosine search |
+| LSH table / hash bits / bucket union | Independent signature map / signs concatenated per table / unique candidates from matching query buckets across tables | 15 | Production vector database or guaranteed candidate coverage |
+| LSH collision probability | For one random hyperplane, `1−θ/π` for angle `θ`; multiple independent bits/tables transform pairwise collision chance | 15 | Top-K recall or probability a passage answers the question |
+| Empty ANN bucket | Query signatures retrieve no eligible candidate from the probed buckets under one index configuration | 15 | Proof the corpus lacks an answer or permission to search another scope |
 | Hybrid retrieval | Combining more than one retrieval signal, often lexical and dense | 25 | A specific fusion formula |
 | RRF | Reciprocal rank fusion, combining ranks rather than raw scores | 25 | Weighted score sum |
 | Learning to rank | Estimating ranking order from labeled query-candidate examples and features | 27 | Hand-tuned heuristic or candidate retrieval |

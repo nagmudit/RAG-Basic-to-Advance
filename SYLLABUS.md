@@ -196,6 +196,7 @@ The core question evolves throughout: **Which evidence enters the LLM's context,
 
 #### Chapter 15 — Exact KNN to trees and hashing
 
+- **Authored materials:** [Chapter](chapters/chapter-15-exact-knn-to-trees-and-hashing.md) · [Lab](labs/chapter-15/LAB.md) · [Solutions](solutions/chapter-15-solutions.md) · [V4 exact/KD/LSH stage](projects/V4/README.md).
 - **Objective:** Explain when exact search becomes expensive and how early ANN families prune work.
 - **Prerequisites:** Chapters 10–13.
 - **Section 1 — Baseline and scale.** Topic: exhaustive search; micro-concepts: `N × d` comparisons, cache behavior, memory bandwidth, top-k selection, recall relative to exact results, high-dimensional distance concentration.

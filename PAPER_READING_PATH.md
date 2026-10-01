@@ -49,6 +49,9 @@ ColBERTv2 also introduces the **LoTTE** evaluation setting. Read its dataset con
 
 | Tier | Paper | Mechanism and reading question |
 |---|---|---|
+| IMPORTANT | [Multidimensional Binary Search Trees Used for Associative Searching](https://cs.wmich.edu/gupta/teaching/cs6310/lectureNotes_cs6310/kdtree-bentley.pdf), Bentley, 1975 (after Chapter 15) | Trace axis splits and distinguish empirical low-dimensional speed from exactness guaranteed by backtracking/bounds. |
+| IMPORTANT | [Five Balltree Construction Algorithms](https://steveomohundro.com/wp-content/uploads/2009/03/omohundro89_five_balltree_construction_algorithms.pdf), Omohundro, 1989 (after Chapter 15) | Derive the center/radius lower bound and identify how construction changes node overlap and search cost. |
+| CORE | [Similarity Estimation Techniques from Rounding Algorithms](https://www.cs.princeton.edu/courses/archive/spr04/cos598B/bib/CharikarEstim.pdf), Charikar, 2002 (after Chapter 15) | Derive random-hyperplane angular collision and explain why table/bit probabilities do not determine judged retrieval recall. |
 | CORE | [Product Quantization for Nearest Neighbor Search](https://doi.org/10.1109/TPAMI.2010.57), Jégou, Douze & Schmid, 2011 | Subvector codebooks and approximate distance tables; separate compression error from coarse pruning. |
 | CORE | [HNSW](https://arxiv.org/abs/1603.09320), Malkov & Yashunin, 2016 preprint | Layered navigable graphs; trace insertion, `M`, `efConstruction`, `efSearch`, recall and memory. |
 | IMPORTANT | [DiskANN](https://proceedings.neurips.cc/paper/2019/hash/09853c7fb1d3f8ee67a61b6bf4a7f8e6-Abstract.html), Subramanya et al., 2019 | SSD-resident graph and memory/disk co-design; test hardware and filtered-query assumptions before copying results. |
