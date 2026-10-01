@@ -208,6 +208,7 @@ The core question evolves throughout: **Which evidence enters the LLM's context,
 
 #### Chapter 16 — IVF, quantization, and compressed vectors
 
+- **Authored materials:** [Chapter](chapters/chapter-16-ivf-quantization-and-compressed-vectors.md) · [Lab](labs/chapter-16/LAB.md) · [Solutions](solutions/chapter-16-solutions.md) · [V4 IVF/PQ stage](projects/V4/README.md).
 - **Objective:** Trace coarse assignment, candidate probing, and approximate distance reconstruction.
 - **Prerequisites:** Chapters 10 and 15; clustering intuition is introduced here.
 - **Section 1 — Coarse partitions.** Topic: IVF; micro-concepts: centroids, training sample, assign vectors to lists, residuals, `nlist`, `nprobe`, IVF-Flat, unbalanced lists, update costs.

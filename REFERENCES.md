@@ -147,3 +147,12 @@ This register records primary sources used in written chapters. Concept explanat
 | Charikar, [Similarity Estimation Techniques from Rounding Algorithms](https://www.cs.princeton.edu/courses/archive/spr04/cos598B/bib/CharikarEstim.pdf), 2002 | Random Gaussian hyperplane sign hash and `1−θ/π` pairwise collision probability | Independence-based table/bit formulas do not predict full-corpus top-K or qrel recall; V4 measures those separately. |
 | Beyer et al., [When Is “Nearest Neighbor” Meaningful?](https://research.cs.wisc.edu/techreports/1998/TR1377.pdf), 1999 | Conditional high-dimensional distance-concentration warning | Synthetic Gaussian behavior does not imply all trained embeddings or intrinsic structures have the same difficulty. |
 | scikit-learn maintainers, [Nearest Neighbors guide](https://scikit-learn.org/stable/modules/neighbors.html), accessed 2026-10-01 | Current maintained comparison of brute force, KD and ball-tree strategies and dimension/leaf-size caveats | V4 uses independent standard-library teaching code; no library performance numbers are copied into its results. |
+
+## Chapter 16 — verified 2026-10-01
+
+| Source | Used for | Scope and caution |
+|---|---|---|
+| Jégou, Douze & Schmid, [Product Quantization for Nearest Neighbor Search](https://doi.org/10.1109/TPAMI.2010.57), 2011 | Subvector codebooks, compact indices, approximate distance computation and IVF/PQ lineage | V4 uses tiny two-bit residual codebooks and no optimized kernels; paper benchmark performance does not transfer. |
+| Faiss maintainers, [Faiss indexes](https://github.com/facebookresearch/faiss/wiki/Faiss-indexes), accessed 2026-10-01 | Maintained IVF-Flat and IVF-PQ definitions, `nlist/nprobe`, residual codes and code/ID byte formulas | V4 implements its own pure-Python version; Faiss byte formulas are payload intuition, not measured Python RSS or V4 speed. |
+| Faiss maintainers, [FAQ](https://github.com/facebookresearch/faiss/wiki/FAQ), accessed 2026-10-01 | All-list probe as a coarse-error diagnostic, training-sample cautions and underfilled-result behavior | All-list exactness applies to IVF-Flat with original vectors and compatible filtering/metric, not to PQ ADC. |
+| Johnson, Douze & Jégou, [Billion-scale similarity search with GPUs](https://arxiv.org/abs/1702.08734), 2017 | Hardware-aware compressed-domain search and top-k selection context | GPU results and scale are not extrapolated from the V4 local CPU/Python fixture. |

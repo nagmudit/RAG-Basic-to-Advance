@@ -62,6 +62,8 @@ Chapter 14 branches from the existing lexical, vector and training foundations: 
 
 Chapter 15 makes the ANN branch executable in [V4](projects/V4/README.md): **checked exact cosine oracle → KD box bound/backtracking (exact) versus seeded hyperplane signatures/bucket union (approximate) → candidate IDs → exact-neighbor overlap and judged evidence recall**. The low-dimensional synthetic KD gain, high-dimensional synthetic loss and V0 LSH misses demonstrate why vector comparisons, latency and relevance have different denominators. The static support-team eligibility fixture remains a gate before approximate scoring, never a similarity penalty.
 
+Chapter 16 extends the branch: **representative training vectors → coarse centroids → one-list assignment → query `nprobe` and list coverage → full-vector IVF-Flat**; independently **assigned residual → subspace codebooks → short codes → per-list ADC lookup → optional exact top-`R` refinement**. All-list Flat is an implementation parity check against the Chapter 13 oracle. All-list ADC measures compressed-score error; refinement cannot recover an unprobed or unshortlisted vector. The same inspected V0 qrels distinguish geometry from evidence, and packed-code bytes exclude the originals needed for exact reranking.
+
 ```mermaid
 flowchart LR
   Req[Request] --> Trace[Correlated trace]

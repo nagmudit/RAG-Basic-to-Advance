@@ -182,6 +182,18 @@ The glossary will grow with chapter writing. Each future entry will include: **p
 | LSH table / hash bits / bucket union | Independent signature map / signs concatenated per table / unique candidates from matching query buckets across tables | 15 | Production vector database or guaranteed candidate coverage |
 | LSH collision probability | For one random hyperplane, `1−θ/π` for angle `θ`; multiple independent bits/tables transform pairwise collision chance | 15 | Top-K recall or probability a passage answers the question |
 | Empty ANN bucket | Query signatures retrieve no eligible candidate from the probed buckets under one index configuration | 15 | Proof the corpus lacks an answer or permission to search another scope |
+| Coarse centroid / vector cell | Trained representative vector / set of indexed vectors assigned to that nearest representative under a declared metric | 16 | Relevance label or guarantee that nearest points share a cell |
+| IVF / inverted file for vectors | Mapping from a coarse vector-cell ID to the stored IDs/codes/vectors assigned to it | 16 | A lexical term posting or exact search at limited probes |
+| `nlist` / `nprobe` | Number of coarse IVF lists / nearest lists opened for one query | 16 | Exact number or fraction of vectors scored when lists have unequal occupancy |
+| IVF-Flat | IVF whose probed lists store and score full original vectors exactly; its candidate-set coverage may still be approximate | 16 | Full-corpus exact search unless every eligible list is probed |
+| Residual vector | Difference `x−c` between an indexed vector and its assigned coarse centroid, encoded after coarse assignment | 16 | Relevance residual or a query-answer error |
+| Scalar quantization | Rounding each coordinate to a finite level under a declared range and bit depth | 16 | Product quantization or error-free storage compression |
+| Product quantization (PQ) | Splitting a vector or residual into subspaces and replacing each subvector with an index into a learned codebook | 16 | Exact original vector or guaranteed preservation of neighbor order |
+| PQ codebook / `M` / `b` | Learned subvector representatives / number of subspaces / bits per stored subspace index | 16 | Full index byte count or qrel labels |
+| ADC / asymmetric distance computation | Full-precision query-to-quantized indexed-vector distance estimated by per-subspace lookup tables | 16 | Exact cosine or calibrated relevance score |
+| Reconstruction error | Difference between an original vector and its quantized reconstruction under a declared metric | 16 | Directly the same as exact-neighbor or judged evidence recall |
+| Oracle-list coverage | Fraction of exact top-K IDs whose assigned IVF lists are among the query's probed lists | 16 | Judged recall or a guarantee that PQ ranks those IDs in its output |
+| Exact top-R refinement | Re-scoring a bounded approximate shortlist using retained original vectors before top-K output | 16 | Recovery of unprobed or unshortlisted IDs, or free compressed-only storage |
 | Hybrid retrieval | Combining more than one retrieval signal, often lexical and dense | 25 | A specific fusion formula |
 | RRF | Reciprocal rank fusion, combining ranks rather than raw scores | 25 | Weighted score sum |
 | Learning to rank | Estimating ranking order from labeled query-candidate examples and features | 27 | Hand-tuned heuristic or candidate retrieval |
