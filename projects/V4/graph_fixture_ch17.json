@@ -1,0 +1,14 @@
+{
+  "workload_id": "ch17-frontier-fixture-v1",
+  "corpus_version": "ch17-four-vertices-v1",
+  "query_set_version": "ch17-origin-query-v1",
+  "qrels_version": "geometric-exact-top1",
+  "query_id": "origin",
+  "query": [0.0, 0.0],
+  "vectors": {"A": [2.0, 0.0], "B": [1.0, 0.0], "C": [1.1, 0.0], "D": [0.1, 0.0]},
+  "adjacency": {"A": ["B"], "B": ["A", "C"], "C": ["B", "D"], "D": ["C"]},
+  "entry_ids": ["A"],
+  "ef_grid": [1, 2],
+  "k": 1,
+  "purpose": "Hand trace of a local minimum, bounded frontier and a hidden exact neighbor; no relevance judgments."
+}

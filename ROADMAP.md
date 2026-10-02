@@ -10,6 +10,8 @@
 
 Stages are gates, not fixed durations. Complete a gate when its artifact and explanation pass review. At every gate, keep a failure log: query, expected evidence, actual candidates, scores, filters, context, answer, and root cause.
 
+**Current graph-search gate:** [Chapter 17](chapters/chapter-17-proximity-graphs-nsw-and-hnsw.md) requires independent bounded frontier/diversity construction, a hand insertion/hierarchy trace, registered exact-oracle comparisons and a trace-backed index decision. V4 remains experimental: its graph reaches parity on the tiny judged workload without improving judged recall. Part IV's cumulative assessment belongs at its later end, after Chapter 18.
+
 ## Milestone projects
 
 1. **Local search laboratory:** hand-built Boolean, TF-IDF, BM25, safe top-k pruning and relevance judgments over 20–100 documents.

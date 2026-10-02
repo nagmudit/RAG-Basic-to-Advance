@@ -194,6 +194,21 @@ The glossary will grow with chapter writing. Each future entry will include: **p
 | Reconstruction error | Difference between an original vector and its quantized reconstruction under a declared metric | 16 | Directly the same as exact-neighbor or judged evidence recall |
 | Oracle-list coverage | Fraction of exact top-K IDs whose assigned IVF lists are among the query's probed lists | 16 | Judged recall or a guarantee that PQ ranks those IDs in its output |
 | Exact top-R refinement | Re-scoring a bounded approximate shortlist using retained original vectors before top-K output | 16 | Recovery of unprobed or unshortlisted IDs, or free compressed-only storage |
+| Proximity graph | Item vertices with similarity-oriented links used to choose subsequent distance comparisons | 17 | Knowledge graph, evidence-support relation or permission grant |
+| Vertex / adjacency / outgoing degree | Indexed item / its outgoing neighbor list / number of entries in that list | 17 | An embedding coordinate, all nearby items, or guaranteed reciprocal links |
+| Outgoing reachability | Existence of a directed path from an entry to an item | 17 | Connectivity after ignoring directions or guaranteed discovery by bounded search |
+| Greedy local minimum | Vertex with no immediately improving neighbor although a better item exists elsewhere | 17 | Certified global nearest neighbor |
+| Frontier / retained pool / visited set | Pending expansion candidates / best discovered neighbors kept under ef / vertices already considered in a layer | 17 | Three names for final returned top-k |
+| NSW | Single-layer navigable small world proximity graph with local and useful longer navigation links | 17 | Universal short paths or HNSW hierarchy itself |
+| HNSW | Incrementally built nested proximity graphs with random maximum levels, upper entry descent and bounded base search | 17 | Learned retriever, relevance judge, knowledge graph or vector database service |
+| HNSW level / entry point | Maximum layer containing a vertex / starting vertex at a highest occupied layer | 17 | Authority rank, separate centroid, or guaranteed nearest item |
+| HNSW M | New-neighbor selection limit; also controls degree capacity and here geometric level sampling | 17 | PQ subspace count or exact degree of every vertex |
+| efConstruction | Retained search width when forming a new vertex's possible connection pool | 17 | Supervised training or a guarantee of every useful edge |
+| efSearch | Retained width in query-time base-layer search, at least requested k | 17 | Limit on visited/scored vertices, final result count or answer confidence |
+| Diverse neighbor selection | Distance-ordered acceptance of c when no selected s is closer to c than the new center is | 17 | Nearest-only selection or relevance diversification of evidence |
+| Frontier-bound stop | Pending best pair is worse than the worst full retained pool, so graph expansion stops | 17 | Valid lower bound on every undiscovered vector |
+| Graph tombstone | Logical exclusion from this graph's scoring/traversal while stored vector/links remain | 17; lifecycle 22 | Physical erasure or guaranteed preserved connectivity |
+| Frontier delta trace | Initial queue state plus actual expansions, admissions, distances and evictions sufficient to replay search pools | 17 | Trace inferred from final winners or safe public metadata |
 | Hybrid retrieval | Combining more than one retrieval signal, often lexical and dense | 25 | A specific fusion formula |
 | RRF | Reciprocal rank fusion, combining ranks rather than raw scores | 25 | Weighted score sum |
 | Learning to rank | Estimating ranking order from labeled query-candidate examples and features | 27 | Hand-tuned heuristic or candidate retrieval |

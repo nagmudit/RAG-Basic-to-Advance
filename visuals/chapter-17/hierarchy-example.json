@@ -1,0 +1,427 @@
+{
+  "points": {
+    "A": [
+      0.0,
+      0.0
+    ],
+    "B": [
+      1.0,
+      0.0
+    ],
+    "C": [
+      2.0,
+      0.0
+    ],
+    "D": [
+      3.0,
+      0.0
+    ],
+    "E": [
+      4.0,
+      1.0
+    ],
+    "F": [
+      5.0,
+      0.0
+    ],
+    "G": [
+      6.0,
+      0.0
+    ],
+    "H": [
+      7.0,
+      0.0
+    ]
+  },
+  "levels": {
+    "A": 2,
+    "B": 0,
+    "C": 1,
+    "D": 0,
+    "E": 0,
+    "F": 1,
+    "G": 0,
+    "H": 0
+  },
+  "layers": [
+    {
+      "A": [
+        "B"
+      ],
+      "B": [
+        "A",
+        "C"
+      ],
+      "C": [
+        "B",
+        "D"
+      ],
+      "D": [
+        "C",
+        "E"
+      ],
+      "E": [
+        "D",
+        "F"
+      ],
+      "F": [
+        "E",
+        "G"
+      ],
+      "G": [
+        "F",
+        "H"
+      ],
+      "H": [
+        "G"
+      ]
+    },
+    {
+      "A": [
+        "C"
+      ],
+      "C": [
+        "A",
+        "F"
+      ],
+      "F": [
+        "C"
+      ]
+    },
+    {
+      "A": []
+    }
+  ],
+  "query": [
+    6.7,
+    0.2
+  ],
+  "result": [
+    [
+      "H",
+      -0.1299999999999999
+    ],
+    [
+      "G",
+      -0.5300000000000002
+    ]
+  ],
+  "trace": [
+    {
+      "layer": 2,
+      "entry_id": "A",
+      "events": [
+        {
+          "action": "initialize",
+          "current_id": null,
+          "decisions": [],
+          "frontier": [
+            [
+              "A",
+              44.93
+            ]
+          ],
+          "retained": [
+            [
+              "A",
+              44.93
+            ]
+          ]
+        },
+        {
+          "action": "expand",
+          "current_id": "A",
+          "decisions": [],
+          "frontier": [],
+          "retained": [
+            [
+              "A",
+              44.93
+            ]
+          ]
+        }
+      ],
+      "scored_ids": [
+        "A"
+      ],
+      "visited_ids": [
+        "A"
+      ],
+      "stop_reason": "frontier_exhausted"
+    },
+    {
+      "layer": 1,
+      "entry_id": "A",
+      "events": [
+        {
+          "action": "initialize",
+          "current_id": null,
+          "decisions": [],
+          "frontier": [
+            [
+              "A",
+              44.93
+            ]
+          ],
+          "retained": [
+            [
+              "A",
+              44.93
+            ]
+          ]
+        },
+        {
+          "action": "expand",
+          "current_id": "A",
+          "decisions": [
+            {
+              "item_id": "C",
+              "squared_distance": 22.130000000000003,
+              "admitted": true,
+              "evicted_id": "A"
+            }
+          ],
+          "frontier": [
+            [
+              "C",
+              22.130000000000003
+            ]
+          ],
+          "retained": [
+            [
+              "C",
+              22.130000000000003
+            ]
+          ]
+        },
+        {
+          "action": "expand",
+          "current_id": "C",
+          "decisions": [
+            {
+              "item_id": "F",
+              "squared_distance": 2.9300000000000006,
+              "admitted": true,
+              "evicted_id": "C"
+            }
+          ],
+          "frontier": [
+            [
+              "F",
+              2.9300000000000006
+            ]
+          ],
+          "retained": [
+            [
+              "F",
+              2.9300000000000006
+            ]
+          ]
+        },
+        {
+          "action": "expand",
+          "current_id": "F",
+          "decisions": [],
+          "frontier": [],
+          "retained": [
+            [
+              "F",
+              2.9300000000000006
+            ]
+          ]
+        }
+      ],
+      "scored_ids": [
+        "A",
+        "C",
+        "F"
+      ],
+      "visited_ids": [
+        "A",
+        "C",
+        "F"
+      ],
+      "stop_reason": "frontier_exhausted"
+    },
+    {
+      "layer": 0,
+      "entry_id": "F",
+      "events": [
+        {
+          "action": "initialize",
+          "current_id": null,
+          "decisions": [],
+          "frontier": [
+            [
+              "F",
+              2.9300000000000006
+            ]
+          ],
+          "retained": [
+            [
+              "F",
+              2.9300000000000006
+            ]
+          ]
+        },
+        {
+          "action": "expand",
+          "current_id": "F",
+          "decisions": [
+            {
+              "item_id": "E",
+              "squared_distance": 7.9300000000000015,
+              "admitted": true,
+              "evicted_id": null
+            },
+            {
+              "item_id": "G",
+              "squared_distance": 0.5300000000000002,
+              "admitted": true,
+              "evicted_id": null
+            }
+          ],
+          "frontier": [
+            [
+              "G",
+              0.5300000000000002
+            ],
+            [
+              "E",
+              7.9300000000000015
+            ]
+          ],
+          "retained": [
+            [
+              "G",
+              0.5300000000000002
+            ],
+            [
+              "F",
+              2.9300000000000006
+            ],
+            [
+              "E",
+              7.9300000000000015
+            ]
+          ]
+        },
+        {
+          "action": "expand",
+          "current_id": "G",
+          "decisions": [
+            {
+              "item_id": "H",
+              "squared_distance": 0.1299999999999999,
+              "admitted": true,
+              "evicted_id": null
+            }
+          ],
+          "frontier": [
+            [
+              "H",
+              0.1299999999999999
+            ],
+            [
+              "E",
+              7.9300000000000015
+            ]
+          ],
+          "retained": [
+            [
+              "H",
+              0.1299999999999999
+            ],
+            [
+              "G",
+              0.5300000000000002
+            ],
+            [
+              "F",
+              2.9300000000000006
+            ],
+            [
+              "E",
+              7.9300000000000015
+            ]
+          ]
+        },
+        {
+          "action": "expand",
+          "current_id": "H",
+          "decisions": [],
+          "frontier": [
+            [
+              "E",
+              7.9300000000000015
+            ]
+          ],
+          "retained": [
+            [
+              "H",
+              0.1299999999999999
+            ],
+            [
+              "G",
+              0.5300000000000002
+            ],
+            [
+              "F",
+              2.9300000000000006
+            ],
+            [
+              "E",
+              7.9300000000000015
+            ]
+          ]
+        },
+        {
+          "action": "expand",
+          "current_id": "E",
+          "decisions": [
+            {
+              "item_id": "D",
+              "squared_distance": 13.73,
+              "admitted": false,
+              "evicted_id": null
+            }
+          ],
+          "frontier": [],
+          "retained": [
+            [
+              "H",
+              0.1299999999999999
+            ],
+            [
+              "G",
+              0.5300000000000002
+            ],
+            [
+              "F",
+              2.9300000000000006
+            ],
+            [
+              "E",
+              7.9300000000000015
+            ]
+          ]
+        }
+      ],
+      "scored_ids": [
+        "F",
+        "E",
+        "G",
+        "H",
+        "D"
+      ],
+      "visited_ids": [
+        "D",
+        "E",
+        "F",
+        "G",
+        "H"
+      ],
+      "stop_reason": "frontier_exhausted"
+    }
+  ]
+}

@@ -14,3 +14,7 @@ python -X utf8 -m unittest discover -s projects/V4 -p 'test_trace_shortlists.py'
 ```
 
 Invalid/failed operations emit generic reason codes before re-raising. Preflight failure before a query is identified remains an experiment setup error. Never copy protected D10 source content into ordinary diagnostics; tests exercise both exception redaction and candidate-ID isolation.
+
+## Chapter 17 graph extension
+
+The [graph runner](../projects/V4/experiment_ch17.py) continues every common field. `raw_candidate_ids/scores` are all actually distance-scored eligible vertices, including rejected neighbors. Intermediate stages retain each layer pool and the base pool before final top-k. `graph_trace` records actual entries, initial frontier/retained pairs, expansions, neighbor distances/admissions/evictions and stop actions; `graph_stop_reason` is separate from operation success. Initialization plus mutations reconstructs the queues, checked by [frontier replay tests](../projects/V4/test_ch17.py). Full snapshots appear in the tiny hand trace; deltas bound log growth in the experiments. Scores are negative squared L2, while trace distances are positive squared L2; neither is relevance confidence. Query encoding also has a correlated record before candidate search. Graph levels/adjacency and digest identify construction; no protected vertex enters this static eligible graph. Generation/evidence/abstention remain unrun, rather than silently successful.

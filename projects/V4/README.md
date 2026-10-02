@@ -1,6 +1,6 @@
-# Build Your Own RAG Engine — V4, Chapters 15–16 approximate search and compression
+# Build Your Own RAG Engine — V4, Chapters 15–17 approximate search, compression and graphs
 
-V4 spans Chapters 15–18 in the [project roadmap](../../PROJECT_ROADMAP.md). Chapters **15 and 16** are implemented here. They start from V3's [checked materialized exact dense index](../V3/README.md), pinned 384-coordinate model and Chapter 13 diagnostic qrels. [Chapter 15](../../chapters/chapter-15-exact-knn-to-trees-and-hashing.md) tests exact tree bounds and random-hyperplane buckets. [Chapter 16](../../chapters/chapter-16-ivf-quantization-and-compressed-vectors.md) separates IVF coarse-list misses from PQ compressed-distance rank errors. V0–V3 remain baselines; no approximate index replaces the exact candidate route.
+V4 spans Chapters 15–18 in the [project roadmap](../../PROJECT_ROADMAP.md). Chapters **15, 16 and 17** are implemented here. They start from V3's [checked materialized exact dense index](../V3/README.md), pinned 384-coordinate model and Chapter 13 diagnostic qrels. [Chapter 15](../../chapters/chapter-15-exact-knn-to-trees-and-hashing.md) tests exact tree bounds and random-hyperplane buckets. [Chapter 16](../../chapters/chapter-16-ivf-quantization-and-compressed-vectors.md) separates IVF coarse-list misses from PQ compressed-distance rank errors. V0–V3 remain baselines; no approximate index replaces the exact candidate route.
 
 ## Artifacts and execution contracts
 
@@ -38,7 +38,7 @@ On the inspected V0 diagnostic questions, exact/KD macro relevant-evidence Recal
 
 Chapter 16 compares IVF-Flat, residual PQ ADC and bounded exact refinement with `nprobe` varied under fixed trained centroids. Full-probe IVF-Flat agrees with exact ordered top two on both synthetic sets and all 14 V0 questions. At `N=1024,d=32`, one-probe Flat reaches only `.313` mean exact-neighbor Recall@2; full-probe Flat reaches `1`, but full-probe two-bit PQ ADC reaches `.125` and top-eight refinement `.375`. The theoretical packed payload lower bounds are 138.0 KiB for Flat, 12.5 KiB for PQ without originals and 140.5 KiB for PQ retaining originals for refinement; these are not measured Python resident bytes. On the tiny V0 corpus, one-probe Flat lowers macro judged Recall@2 from `.792` exact to `.708`. Full-probe PQ ADC matches `.792` aggregate judged recall despite only `.500` exact-neighbor recall, illustrating why one number cannot validate the index. Its local search p50 is slower than the `.405 ms` exact scan. The inspected V0 questions and twelve training vectors do not establish a gain.
 
-**Current decision:** retain Chapter 13's exact dense route as the V4 oracle and BM25 as its judged lexical comparator. Do not deploy the toy LSH or IVF-PQ index. A later selection needs fresh independent qrels, representative corpus scale and training samples, filtered and multilingual slices, measured resident bytes including originals/replicas, build/update cost, and stage/end-to-end latency under a declared quality gate. Chapter 17 may compare a proximity graph against this same oracle. It has not been started here.
+**Current decision:** retain Chapter 13's exact dense route as the V4 oracle and BM25 as its judged lexical comparator. Do not deploy the toy LSH or IVF-PQ index. A later selection needs fresh independent qrels, representative corpus scale and training samples, filtered and multilingual slices, measured resident bytes including originals/replicas, build/update cost, and stage/end-to-end latency under a declared quality gate. Chapter 17 compares a proximity graph against this same oracle; its current record and decision follow below.
 
 ## Remediation contracts and historical evidence
 
@@ -49,3 +49,25 @@ All Chapter 09/11/12/13 judgment loaders check [content/locator/scope evidence i
 ```powershell
 python -X utf8 -m unittest discover -s projects/common -p 'test_*.py' -v
 ```
+
+## Chapter 17 — current graph stage
+
+Read [the chapter](../../chapters/chapter-17-proximity-graphs-nsw-and-hnsw.md) and independently implement [bounded frontier search and diversity selection](../../labs/chapter-17/LAB.md) before opening the supplied engine or separate solutions. [The complete reference](hnsw_ch17.py) provides seeded nested levels, entry/descent, two-heap layer search, diverse insertion, reciprocal links with outgoing-list pruning, M/2M capacities, logical deletion and checksummed query-only reload. It searches full original vectors by negative squared L2 and stores no compressed PQ codes. The static graph excludes legal-only D10 before construction/scoring; the scope string is not authentication.
+
+[The runner](experiment_ch17.py), [checked observation](chapter-17-experiment.json) and [behavioral/record tests](test_ch17.py) reuse `ch16-synthetic-n256-d8-v1`, `ch16-synthetic-n1024-d32-v1` and `ch13-stress-probes-v1`, and add the registered `ch17-frontier-fixture-v1`. The historical generator chooses a stored row independently for each query coordinate, adds Gaussian noise and normalizes; the legacy `planted-16-v1` label does not describe a single planted neighbor. Existing source/vectors/results remain unchanged. Current geometric oracle IDs are checked against history. Fresh exact and IVF-Flat controls share current timing boundaries; the fresh IVF centroids use this chapter's seed and are not the historical Chapter 16 index.
+
+The graph sweep uses M=2/4/8, efConstruction=32 and efSearch=2/8/24, plus a fixed-M construction-width-8 ablation at query width 24. Every quality/timed call has request/query/mode/trial/workload/version identity, redacted status, stage timings, actual raw scored and layer/base/final candidate IDs/scores, context IDs when packed, and frontier initialization/admission/eviction/stop deltas. Tests replay those actual deltas against retained pools. Graph levels/adjacency, insertion/vector/query digests, build time, payload lower bounds and null generation outcomes are saved. Compact JSON retains every sample; use Python to select relevant fields rather than treating the file as a prose report.
+
+On **`ch16-synthetic-n1024-d32-v1`**, M=8,c=32,e=24 has mean geometric Recall@2 `.96875` (31/32 memberships) and scores 256 vectors/query versus 1,024 exact. `synth-07` retains a miss: `s00352` is undiscovered. M=4,c=8/e=24 versus c=32/e=24 reaches `.625/.78125` with identical levels and different connection pools. Vector/edge/level payload bounds are reported separately from Python RSS. On **`ch13-stress-probes-v1`**, M=2 plateaus at `.750` geometric and `.708` judged macro recall despite a wider query pool; outgoing connectivity is part of the failure. M=4,e=24 reaches geometric parity but judged recall remains exact's `.791667`, with added local search overhead. Both no-evidence questions return eligible candidates. Query encoding is separate and much larger than twelve-vector search. **Decision: retain exact dense and BM25.** No held-out, multilingual, answer-quality or production-service gain is established.
+
+[Figures 17.01–17.03](../../visuals/chapter-17/plot-17-01-03-graph-mechanics.py) are computed frontier/hierarchy/diversity diagrams; [Figure 17.04](../../visuals/chapter-17/plot-17-04-quality-cost.py) plots checked recall/work/p95/payload. Each has SVG/PNG and chapter caption/alt text. [Reasoned solutions](../../solutions/chapter-17-solutions.md) and [technical/pedagogical review with completion checklist](../../authoring/reviews/chapter-17.md) complete this stage. The Part IV cumulative checkpoint is due after Chapter 18, which is not authored here.
+
+```powershell
+python -X utf8 labs/chapter-17/check_implementation.py
+python -X utf8 -m unittest discover -s projects/V4 -p test_ch17.py -v
+python -X utf8 projects/V4/experiment_ch17.py --output projects/V4/chapter-17-experiment-local.json
+python -X utf8 visuals/chapter-17/plot-17-01-03-graph-mechanics.py
+python -X utf8 visuals/chapter-17/plot-17-04-quality-cost.py
+```
+
+The starter command intentionally fails until you construct it. Tests/reference index require only the standard library; judged replay additionally needs the cached pinned encoder as in V3, and plots need matplotlib. Two dependent warmed timing samples/query and one graph seed/order give descriptive p50/p95, not confidence intervals or production SLOs. Queue/trace construction is inside search; context/envelope serialization, encoding, model load, build and networking are outside. Preserve local replays and all sealed historical records.

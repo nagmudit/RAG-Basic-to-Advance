@@ -86,7 +86,8 @@
       "chapters_using_it": [
         13,
         15,
-        16
+        16,
+        17
       ],
       "corpus_version": "support-corpus-2026-05-20",
       "query_set_version": "ch13-dense-operations-probes-v1",
@@ -305,7 +306,8 @@
     {
       "workload_id": "ch16-synthetic-n256-d8-v1",
       "chapters_using_it": [
-        16
+        16,
+        17
       ],
       "corpus_version": "synth-16012290",
       "query_set_version": "planted-16-v1",
@@ -313,18 +315,20 @@
       "number_of_queries": 16,
       "judgment_count": 0,
       "query_slices": [
-        "gaussian-planted-noisy-vector"
+        "gaussian-coordinate-resampled-noisy-query"
       ],
-      "purpose": "Decompose coarse-list omissions, PQ distortion and bounded refinement on fixed vectors.",
-      "valid_comparisons": "Within same trained index/query roster compare probe/mode/refinement at k=2; full-probe Flat oracle parity.",
+      "purpose": "Decompose coarse-list omissions, PQ distortion and bounded refinement on fixed vectors. Chapter 17 reuses identical rows/queries for graph ANN and fresh exact/IVF-Flat controls.",
+      "valid_comparisons": "Within same trained index/query roster compare probe/mode/refinement at k=2; full-probe Flat oracle parity. Chapter 17 geometric oracles match historical IDs; compare fresh matched timings only, with traced search boundaries and index identities explicit.",
       "invalid_cross_workload_inferences": "No relevance labels; do not compare Chapter 15 synthetic Recall as longitudinal improvement: N/d/seed/queries differ.",
       "source": "projects/V4/experiment_ch16.py",
-      "oracle_neighbor_memberships": 32
+      "oracle_neighbor_memberships": 32,
+      "distribution_clarification": "The existing generator selects a stored row independently for each query coordinate, adds Gaussian noise sigma=.08 and normalizes. Legacy planted-16-v1 is an opaque identity label; no single planted neighbor is asserted. Historical bytes/results remain unchanged."
     },
     {
       "workload_id": "ch16-synthetic-n1024-d32-v1",
       "chapters_using_it": [
-        16
+        16,
+        17
       ],
       "corpus_version": "synth-16013082",
       "query_set_version": "planted-16-v1",
@@ -332,13 +336,33 @@
       "number_of_queries": 16,
       "judgment_count": 0,
       "query_slices": [
-        "gaussian-planted-noisy-vector"
+        "gaussian-coordinate-resampled-noisy-query"
       ],
-      "purpose": "Decompose coarse-list omissions, PQ distortion and bounded refinement on fixed vectors.",
-      "valid_comparisons": "Within same trained index/query roster compare probe/mode/refinement at k=2; full-probe Flat oracle parity.",
+      "purpose": "Decompose coarse-list omissions, PQ distortion and bounded refinement on fixed vectors. Chapter 17 reuses identical rows/queries for graph ANN and fresh exact/IVF-Flat controls.",
+      "valid_comparisons": "Within same trained index/query roster compare probe/mode/refinement at k=2; full-probe Flat oracle parity. Chapter 17 geometric oracles match historical IDs; compare fresh matched timings only, with traced search boundaries and index identities explicit.",
       "invalid_cross_workload_inferences": "No relevance labels; do not compare Chapter 15 synthetic Recall as longitudinal improvement: N/d/seed/queries differ.",
       "source": "projects/V4/experiment_ch16.py",
-      "oracle_neighbor_memberships": 32
+      "oracle_neighbor_memberships": 32,
+      "distribution_clarification": "The existing generator selects a stored row independently for each query coordinate, adds Gaussian noise sigma=.08 and normalizes. Legacy planted-16-v1 is an opaque identity label; no single planted neighbor is asserted. Historical bytes/results remain unchanged."
+    },
+    {
+      "workload_id": "ch17-frontier-fixture-v1",
+      "chapters_using_it": [
+        17
+      ],
+      "corpus_version": "ch17-four-vertices-v1",
+      "query_set_version": "ch17-origin-query-v1",
+      "qrels_version": "geometric-exact-top1",
+      "number_of_queries": 1,
+      "judgment_count": 0,
+      "oracle_neighbor_memberships": 1,
+      "query_slices": [
+        "greedy-local-minimum"
+      ],
+      "purpose": "Hand-search failure and recovery by widening a bounded retained pool; actual frontier snapshots.",
+      "valid_comparisons": "Compare ef1 and ef2 at k1 on the same four-vertex graph, exact squared L2 and ID ties.",
+      "invalid_cross_workload_inferences": "No relevance labels, HNSW benchmark, generalization, latency claim or cross-fixture score improvement.",
+      "source": "projects/V4/graph_fixture_ch17.json"
     }
   ]
 }

@@ -222,11 +222,12 @@ The core question evolves throughout: **Which evidence enters the LLM's context,
 
 #### Chapter 17 — Proximity graphs, NSW, and HNSW
 
+- **Authored materials:** [Chapter](chapters/chapter-17-proximity-graphs-nsw-and-hnsw.md) · [Independent lab](labs/chapter-17/LAB.md) · [Solutions](solutions/chapter-17-solutions.md) · [V4 graph stage](projects/V4/README.md).
 - **Objective:** Explain and trace HNSW insertion and search with its main tuning knobs.
 - **Prerequisites:** Chapters 10, 15–16; graph vocabulary is introduced locally before traversal.
 - **Section 1 — Navigable graphs.** Topic: NSW; micro-concepts: vertices as vectors, proximity edges, greedy descent, local minima, long-range links, candidate queues, visited sets. Topic: HNSW hierarchy; micro-concepts: random level assignment, upper-layer entry point, layer descent, base layer.
 - **Section 2 — Construction and query.** Topic: insertion; micro-concepts: neighbor search, diversity heuristic, reciprocal links, degree limit `M`, `efConstruction`, deletions and tombstones. Topic: query; micro-concepts: `efSearch`, bounded candidate expansion, recall/latency curve, memory per edge, serialization and concurrency.
-- **Lab:** Step through a tiny layered graph on paper, then sweep `M` and `efSearch` in an implementation.
+- **Lab:** Independently implement bounded one-layer frontier search and diverse neighbor selection before reference inspection; step through a tiny layered graph and insertion on paper; sweep `M` and `efSearch`, ablate `efConstruction`, and replay an actual correlated miss against the exact oracle.
 - **Visual:** Layered graph with entry point, traversed path, and candidate frontier.
 - **Trade-off / misconception:** HNSW performance and complexity are empirical and workload-sensitive; it is not a universal logarithmic guarantee.
 - **Unlocks:** Graph ANN benchmarking and vector-store architecture.
