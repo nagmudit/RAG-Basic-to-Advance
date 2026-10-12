@@ -115,3 +115,5 @@ The source branches are **alternatives or complements**, not a sequence every qu
 3. **Advanced → production:** Can reason about authorization, versions, latency, cost, and recovery across services.
 4. **Production → expert:** Can criticize an architecture using controlled experiments and failure slices.
 5. **Expert → researcher:** Can turn a proposed retrieval method into a falsifiable comparison with credible baselines.
+
+Chapter19 makes the ingestion branch executable in [V5](projects/V5/README.md): policy-before-read -> pinned source bytes -> typed extraction/anchors -> normalization with retained inputs -> validation/quarantine -> canonical digest/map -> exact duplicate aliases -> source-bound preservation evaluation. A source hit and a preserved evidence span remain distinct; parser blocks are upstream units for Chapter20, not an already selected chunk strategy.

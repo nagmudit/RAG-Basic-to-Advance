@@ -1,0 +1,177 @@
+[
+  {
+    "source_id": "S-md",
+    "source_version": "1",
+    "source_sha256": "e1fa5508851d2738eaafb3a220446fb86679b0cf250a339f70fb70a43cadaae5",
+    "allowed_scopes": [
+      "support-team"
+    ],
+    "license": "book-authored-fixture",
+    "indexing_allowed": true,
+    "retention_policy": "fixture-until-project-removal",
+    "parser_version": "ch19-bounded-adapters-1",
+    "normalization_version": "flat-space-1",
+    "mode": "flat",
+    "body": "# Restart runbook ## Release TK-042 Do not restart before approval. The café team owns the restart. ```python if approved: restart() ```",
+    "body_sha256": "9f73e3fe7d54a0911b00c5bab06e4123973dde31330245d6380043692b8cf517",
+    "blocks": [
+      {
+        "block_id": "S-md:b0",
+        "text": "# Restart runbook ## Release TK-042 Do not restart before approval. The café team owns the restart. ```python if approved: restart() ```",
+        "kind": "prose",
+        "start": 0,
+        "end": 137,
+        "locator": {
+          "format": "markdown",
+          "file_only": true
+        },
+        "raw_extracted_text": "# Restart runbook\n\n## Release TK-042\n\nDo not restart before approval.\n\nThe café team owns the restart.\n\n```python\nif approved:\n    restart()\n```\n",
+        "raw_extracted_sha256": "e1fa5508851d2738eaafb3a220446fb86679b0cf250a339f70fb70a43cadaae5"
+      }
+    ],
+    "dropped_regions": [],
+    "status": "accepted",
+    "reason": null,
+    "record_digest": "20a30b2ab1b43380cccbc3857b7bc27e84d11a9b8fa7c06e79d84e2816b580e0"
+  },
+  {
+    "source_id": "S-html",
+    "source_version": "1",
+    "source_sha256": "d5951c71da8f258b77748c85afc3c75acc4dc11f56e55c73be56b7c895e1f95e",
+    "allowed_scopes": [
+      "support-team"
+    ],
+    "license": "book-authored-fixture",
+    "indexing_allowed": true,
+    "retention_policy": "fixture-until-project-removal",
+    "parser_version": "ch19-bounded-adapters-1",
+    "normalization_version": "flat-space-1",
+    "mode": "flat",
+    "body": "Retry policy Home Support Retry Retry Retry Retry policy Limits depend on region. Region Retry limit East 2 West 4 No retry on HTTP 403. Copyright book fixture retry=999",
+    "body_sha256": "8f7408325fdd2e7378a60232687cf89bf416dfbab649052916cdf1fa1df1d6e3",
+    "blocks": [
+      {
+        "block_id": "S-html:b0",
+        "text": "Retry policy Home Support Retry Retry Retry Retry policy Limits depend on region. Region Retry limit East 2 West 4 No retry on HTTP 403. Copyright book fixture retry=999",
+        "kind": "prose",
+        "start": 0,
+        "end": 169,
+        "locator": {
+          "format": "html",
+          "file_only": true
+        },
+        "raw_extracted_text": "Retry policy \n Home Support Retry Retry Retry \n Retry policy Limits depend on region. \n Region Retry limit \n East 2 West 4 \n No retry on HTTP 403. \n Copyright book fixture retry=999",
+        "raw_extracted_sha256": "1daa1dc63aed423d443fae7f68e11bef9ee0ab73fdc57a1660c0842764e2e96e"
+      }
+    ],
+    "dropped_regions": [],
+    "status": "accepted",
+    "reason": null,
+    "record_digest": "128a386d2b9b710c9247171ac721168c1584e65163ffceaa5ff93126d410a4ca"
+  },
+  {
+    "source_id": "S-pdf",
+    "source_version": "1",
+    "source_sha256": "484dbe173935b42ba2456f7d3179d05db2a6257b931ce5996edac217be57b595",
+    "allowed_scopes": [
+      "support-team"
+    ],
+    "license": "book-authored-fixture",
+    "indexing_allowed": true,
+    "retention_policy": "fixture-until-project-removal",
+    "parser_version": "ch19-bounded-adapters-1",
+    "normalization_version": "flat-space-1",
+    "mode": "flat",
+    "body": "ACME SUPPORT - CONTROLLED FIXTURE Signed response policy First response is four hours. Page 1 ACME SUPPORT - CONTROLLED FIXTURE Verification note Clock starts after verification. Page 2",
+    "body_sha256": "a2b0e6c64a4881bb4a072831c24249678c6d4843280cd2e60b752be4346da03e",
+    "blocks": [
+      {
+        "block_id": "S-pdf:b0",
+        "text": "ACME SUPPORT - CONTROLLED FIXTURE Signed response policy First response is four hours. Page 1 ACME SUPPORT - CONTROLLED FIXTURE Verification note Clock starts after verification. Page 2",
+        "kind": "prose",
+        "start": 0,
+        "end": 185,
+        "locator": {
+          "format": "pdf",
+          "file_only": true
+        },
+        "raw_extracted_text": "ACME SUPPORT - CONTROLLED FIXTURE\n Signed response policy\n First response is four hours.\n Page 1\n ACME SUPPORT - CONTROLLED FIXTURE\n Verification note\n Clock starts after verification.\n Page 2\n",
+        "raw_extracted_sha256": "22501255d2425a77346b4c7f137f31711c8c8b2158f6ad5e8ba093bfff7fbd54"
+      }
+    ],
+    "dropped_regions": [],
+    "status": "accepted",
+    "reason": null,
+    "record_digest": "9191b359fd269c9f8883a3313bda17aa8c13f0a022c7487bd23799cddefb13d5"
+  },
+  {
+    "source_id": "S-copy",
+    "source_version": "1",
+    "source_sha256": "e1fa5508851d2738eaafb3a220446fb86679b0cf250a339f70fb70a43cadaae5",
+    "allowed_scopes": [
+      "support-team"
+    ],
+    "license": "book-authored-fixture",
+    "indexing_allowed": true,
+    "retention_policy": "fixture-until-project-removal",
+    "parser_version": "ch19-bounded-adapters-1",
+    "normalization_version": "flat-space-1",
+    "mode": "flat",
+    "body": "# Restart runbook ## Release TK-042 Do not restart before approval. The café team owns the restart. ```python if approved: restart() ```",
+    "body_sha256": "9f73e3fe7d54a0911b00c5bab06e4123973dde31330245d6380043692b8cf517",
+    "blocks": [
+      {
+        "block_id": "S-copy:b0",
+        "text": "# Restart runbook ## Release TK-042 Do not restart before approval. The café team owns the restart. ```python if approved: restart() ```",
+        "kind": "prose",
+        "start": 0,
+        "end": 137,
+        "locator": {
+          "format": "markdown",
+          "file_only": true
+        },
+        "raw_extracted_text": "# Restart runbook\n\n## Release TK-042\n\nDo not restart before approval.\n\nThe café team owns the restart.\n\n```python\nif approved:\n    restart()\n```\n",
+        "raw_extracted_sha256": "e1fa5508851d2738eaafb3a220446fb86679b0cf250a339f70fb70a43cadaae5"
+      }
+    ],
+    "dropped_regions": [],
+    "status": "accepted",
+    "reason": null,
+    "record_digest": "3cd79abb3a1ac9a8c8d2ab4bebc72fa7907cd86ba98fc4752b91434a96e4bfb4"
+  },
+  {
+    "source_id": "S-merged",
+    "source_version": "1",
+    "source_sha256": "bbfb9baa9ae4f7c911ce899fef62649ac6ee2815018ac24eafa40736169e15d1",
+    "allowed_scopes": [
+      "support-team"
+    ],
+    "license": "book-authored-fixture",
+    "indexing_allowed": true,
+    "retention_policy": "fixture-until-project-removal",
+    "parser_version": "ch19-bounded-adapters-1",
+    "normalization_version": "flat-space-1",
+    "mode": "flat",
+    "body": "Region Limit East 2 4",
+    "body_sha256": "2e521c023f69d441690ecf6363656075707991c203e5060ddbbf488b3ed04c5c",
+    "blocks": [
+      {
+        "block_id": "S-merged:b0",
+        "text": "Region Limit East 2 4",
+        "kind": "prose",
+        "start": 0,
+        "end": 21,
+        "locator": {
+          "format": "html",
+          "file_only": true
+        },
+        "raw_extracted_text": "Region Limit \n East 2 4",
+        "raw_extracted_sha256": "952044a4784509b28f71c986c9067f51ea2d9cc80845eb8101a918592c832dad"
+      }
+    ],
+    "dropped_regions": [],
+    "status": "accepted",
+    "reason": null,
+    "record_digest": "d953567687500b9af1355d0550775b66d175b3ab600e44a6f4813528abdd394e"
+  }
+]

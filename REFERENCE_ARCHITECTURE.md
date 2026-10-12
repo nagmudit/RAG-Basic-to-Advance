@@ -122,3 +122,7 @@ The index service needs idempotent upserts, tombstones, snapshots, backups, sour
 | Figure, chart, or table layout | Multimodal/layout-aware path | Text extraction may discard spatial meaning. |
 
 These are candidate routes. The benchmark and permission model decide the deployed path.
+
+## Chapter 19 implemented source boundary
+
+[V5](projects/V5/README.md) now supplies a local index-time canonical corpus stage: scope/approved-use gate before reading -> captured byte hash -> bounded Markdown/HTML/native-PDF parsing -> versioned normalization with raw inputs -> quality validation/quarantine -> ordered typed block/source maps and policy-partitioned duplicate groups. Canonical publication is not index visibility. The separate eight-requirement extraction plane binds actual source content/version/path/policy; lexical source diagnostic traces keep all scored/positive/final pools without inventing context or generation. Source Hit@1 can remain unchanged while evidence/traceability changes. Chapter20 will choose retrieval boundaries using these lineage-preserving inputs; V4's original vectors/oracles remain intact.

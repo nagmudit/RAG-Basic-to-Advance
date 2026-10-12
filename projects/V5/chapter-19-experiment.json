@@ -1,0 +1,4713 @@
+{
+  "experiment_id": "ch19-ingestion-quality-1",
+  "date": "2026-10-13",
+  "timestamp_utc": "2026-10-12T18:38:16.398156+00:00",
+  "workload_id": "ch19-source-quality-v1",
+  "question": "Does preserving format structure retain source-bound evidence and actionable provenance?",
+  "hypothesis": "Structured adapters preserve table relations and NFC spans, with some deliberate quarantines; no complete recall claim.",
+  "baseline": "flat extracted text, whitespace collapse, file-only anchors; same scope/rights gate",
+  "independent_variable": "adapter/normalization bundle (not an isolated parser-only ablation)",
+  "controls": [
+    "same nine source descriptors and bytes",
+    "same eight authored inspected probes",
+    "same scope/rights rules",
+    "same lexical diagnostic",
+    "no OCR/encoder/ANN/generation"
+  ],
+  "versions": {
+    "corpus_version": "ch19-authored-three-format-v1",
+    "query_set_version": "ch19-eight-source-span-probes-v1",
+    "qrels_version": "ch19-source-span-requirements-v1",
+    "index_version": null,
+    "model_version": null
+  },
+  "source_manifest_sha256": "0b1cc4866abf3e7c96f17f63913e2f2c861d967bc4c2cefd66b47130cf7427d5",
+  "span_requirements_sha256": "241c235443505b4617f5fa0c56e3cf3c80d4bdd23409925cc7e6a98013fb2dd7",
+  "code_sha256": {
+    "ingestion_ch19.py": "377419eaa954f469be012ab5504e545c2cbb2312e80dfb2f08d4c31bbe67194c",
+    "experiment_ch19.py": "179b84ac463010a727b553f654c976936e68b2ab55b1d5c184d45262e596095f"
+  },
+  "environment": {
+    "python": "3.14.2",
+    "pymupdf": "1.27.2",
+    "unicode_database": "16.0.0"
+  },
+  "procedure": "quality on frozen authored probes; three randomized adapter trials per descriptor, seed19013026; one diagnostic search/query/mode; no tuning/test split",
+  "acceptance_gate": "Trace every retained required span to a source-bound region; no unauthorized/unapproved read; quarantine detected ambiguity. Gate does not demand 100% extraction coverage.",
+  "summaries": {
+    "flat": {
+      "workload_id": "ch19-source-quality-v1",
+      "cases": [
+        {
+          "query_id": "release",
+          "slice": "literal-id",
+          "preserved": true,
+          "traceable": false,
+          "matches": [
+            {
+              "source_id": "S-md",
+              "record_digest": "20a30b2ab1b43380cccbc3857b7bc27e84d11a9b8fa7c06e79d84e2816b580e0",
+              "canonical_span": [
+                21,
+                35
+              ],
+              "anchors": [
+                {
+                  "block_id": "S-md:b0",
+                  "canonical_overlap": [
+                    21,
+                    35
+                  ],
+                  "locator": {
+                    "format": "markdown",
+                    "file_only": true
+                  }
+                }
+              ],
+              "traceable": false
+            },
+            {
+              "source_id": "S-copy",
+              "record_digest": "3cd79abb3a1ac9a8c8d2ab4bebc72fa7907cd86ba98fc4752b91434a96e4bfb4",
+              "canonical_span": [
+                21,
+                35
+              ],
+              "anchors": [
+                {
+                  "block_id": "S-copy:b0",
+                  "canonical_overlap": [
+                    21,
+                    35
+                  ],
+                  "locator": {
+                    "format": "markdown",
+                    "file_only": true
+                  }
+                }
+              ],
+              "traceable": false
+            }
+          ],
+          "source_hit_at_1": true,
+          "final_candidate_ids": [
+            "S-copy"
+          ],
+          "context_ids": null,
+          "answer_correctness": null,
+          "faithfulness": null,
+          "citation_support": null,
+          "abstention": null
+        },
+        {
+          "query_id": "negation",
+          "slice": "negation",
+          "preserved": true,
+          "traceable": false,
+          "matches": [
+            {
+              "source_id": "S-md",
+              "record_digest": "20a30b2ab1b43380cccbc3857b7bc27e84d11a9b8fa7c06e79d84e2816b580e0",
+              "canonical_span": [
+                36,
+                67
+              ],
+              "anchors": [
+                {
+                  "block_id": "S-md:b0",
+                  "canonical_overlap": [
+                    36,
+                    67
+                  ],
+                  "locator": {
+                    "format": "markdown",
+                    "file_only": true
+                  }
+                }
+              ],
+              "traceable": false
+            },
+            {
+              "source_id": "S-copy",
+              "record_digest": "3cd79abb3a1ac9a8c8d2ab4bebc72fa7907cd86ba98fc4752b91434a96e4bfb4",
+              "canonical_span": [
+                36,
+                67
+              ],
+              "anchors": [
+                {
+                  "block_id": "S-copy:b0",
+                  "canonical_overlap": [
+                    36,
+                    67
+                  ],
+                  "locator": {
+                    "format": "markdown",
+                    "file_only": true
+                  }
+                }
+              ],
+              "traceable": false
+            }
+          ],
+          "source_hit_at_1": true,
+          "final_candidate_ids": [
+            "S-copy"
+          ],
+          "context_ids": null,
+          "answer_correctness": null,
+          "faithfulness": null,
+          "citation_support": null,
+          "abstention": null
+        },
+        {
+          "query_id": "unicode",
+          "slice": "unicode",
+          "preserved": false,
+          "traceable": false,
+          "matches": [],
+          "source_hit_at_1": true,
+          "final_candidate_ids": [
+            "S-copy"
+          ],
+          "context_ids": null,
+          "answer_correctness": null,
+          "faithfulness": null,
+          "citation_support": null,
+          "abstention": null
+        },
+        {
+          "query_id": "table",
+          "slice": "table-relation",
+          "preserved": false,
+          "traceable": false,
+          "matches": [],
+          "source_hit_at_1": true,
+          "final_candidate_ids": [
+            "S-html"
+          ],
+          "context_ids": null,
+          "answer_correctness": null,
+          "faithfulness": null,
+          "citation_support": null,
+          "abstention": null
+        },
+        {
+          "query_id": "exception",
+          "slice": "exception",
+          "preserved": true,
+          "traceable": false,
+          "matches": [
+            {
+              "source_id": "S-html",
+              "record_digest": "128a386d2b9b710c9247171ac721168c1584e65163ffceaa5ff93126d410a4ca",
+              "canonical_span": [
+                115,
+                136
+              ],
+              "anchors": [
+                {
+                  "block_id": "S-html:b0",
+                  "canonical_overlap": [
+                    115,
+                    136
+                  ],
+                  "locator": {
+                    "format": "html",
+                    "file_only": true
+                  }
+                }
+              ],
+              "traceable": false
+            }
+          ],
+          "source_hit_at_1": true,
+          "final_candidate_ids": [
+            "S-html"
+          ],
+          "context_ids": null,
+          "answer_correctness": null,
+          "faithfulness": null,
+          "citation_support": null,
+          "abstention": null
+        },
+        {
+          "query_id": "response",
+          "slice": "pdf-body",
+          "preserved": true,
+          "traceable": false,
+          "matches": [
+            {
+              "source_id": "S-pdf",
+              "record_digest": "9191b359fd269c9f8883a3313bda17aa8c13f0a022c7487bd23799cddefb13d5",
+              "canonical_span": [
+                57,
+                86
+              ],
+              "anchors": [
+                {
+                  "block_id": "S-pdf:b0",
+                  "canonical_overlap": [
+                    57,
+                    86
+                  ],
+                  "locator": {
+                    "format": "pdf",
+                    "file_only": true
+                  }
+                }
+              ],
+              "traceable": false
+            }
+          ],
+          "source_hit_at_1": true,
+          "final_candidate_ids": [
+            "S-pdf"
+          ],
+          "context_ids": null,
+          "answer_correctness": null,
+          "faithfulness": null,
+          "citation_support": null,
+          "abstention": null
+        },
+        {
+          "query_id": "clock",
+          "slice": "pdf-note",
+          "preserved": true,
+          "traceable": false,
+          "matches": [
+            {
+              "source_id": "S-pdf",
+              "record_digest": "9191b359fd269c9f8883a3313bda17aa8c13f0a022c7487bd23799cddefb13d5",
+              "canonical_span": [
+                146,
+                178
+              ],
+              "anchors": [
+                {
+                  "block_id": "S-pdf:b0",
+                  "canonical_overlap": [
+                    146,
+                    178
+                  ],
+                  "locator": {
+                    "format": "pdf",
+                    "file_only": true
+                  }
+                }
+              ],
+              "traceable": false
+            }
+          ],
+          "source_hit_at_1": false,
+          "final_candidate_ids": [
+            "S-copy"
+          ],
+          "context_ids": null,
+          "answer_correctness": null,
+          "faithfulness": null,
+          "citation_support": null,
+          "abstention": null
+        },
+        {
+          "query_id": "retention",
+          "slice": "scanned-page",
+          "preserved": false,
+          "traceable": false,
+          "matches": [],
+          "source_hit_at_1": false,
+          "final_candidate_ids": [
+            "S-pdf"
+          ],
+          "context_ids": null,
+          "answer_correctness": null,
+          "faithfulness": null,
+          "citation_support": null,
+          "abstention": null
+        }
+      ],
+      "probe_count": 8,
+      "preservation_rate": 0.625,
+      "traceable_preservation_rate": 0.0,
+      "source_hit_at_1": 0.75,
+      "source_dispositions": {
+        "accepted": 5,
+        "quarantined": 2,
+        "blocked": 2
+      },
+      "duplicate_groups": [
+        [
+          "S-copy",
+          "S-md"
+        ]
+      ],
+      "ingest_samples": 27,
+      "ingest_adapter_p50_ms": 5.772,
+      "ingest_adapter_p95_ms": 8.5449,
+      "diagnostic_search_samples": 8,
+      "diagnostic_search_p95_ms": 0.2475
+    },
+    "structured": {
+      "workload_id": "ch19-source-quality-v1",
+      "cases": [
+        {
+          "query_id": "release",
+          "slice": "literal-id",
+          "preserved": true,
+          "traceable": true,
+          "matches": [
+            {
+              "source_id": "S-md",
+              "record_digest": "19ed6cf63de381557af6a2710dd847ae28d2b8c7bf057a2a2e9980b63277cb62",
+              "canonical_span": [
+                17,
+                31
+              ],
+              "anchors": [
+                {
+                  "block_id": "S-md:b1",
+                  "canonical_overlap": [
+                    17,
+                    31
+                  ],
+                  "locator": {
+                    "format": "markdown",
+                    "line_start": 3,
+                    "line_end": 3
+                  }
+                }
+              ],
+              "traceable": true
+            },
+            {
+              "source_id": "S-copy",
+              "record_digest": "0726de38ae74c8e448af52742e417d375a156fea6fe19bd0eca34de12e0180bf",
+              "canonical_span": [
+                17,
+                31
+              ],
+              "anchors": [
+                {
+                  "block_id": "S-copy:b1",
+                  "canonical_overlap": [
+                    17,
+                    31
+                  ],
+                  "locator": {
+                    "format": "markdown",
+                    "line_start": 3,
+                    "line_end": 3
+                  }
+                }
+              ],
+              "traceable": true
+            }
+          ],
+          "source_hit_at_1": true,
+          "final_candidate_ids": [
+            "S-copy"
+          ],
+          "context_ids": null,
+          "answer_correctness": null,
+          "faithfulness": null,
+          "citation_support": null,
+          "abstention": null
+        },
+        {
+          "query_id": "negation",
+          "slice": "negation",
+          "preserved": true,
+          "traceable": true,
+          "matches": [
+            {
+              "source_id": "S-md",
+              "record_digest": "19ed6cf63de381557af6a2710dd847ae28d2b8c7bf057a2a2e9980b63277cb62",
+              "canonical_span": [
+                33,
+                64
+              ],
+              "anchors": [
+                {
+                  "block_id": "S-md:b2",
+                  "canonical_overlap": [
+                    33,
+                    64
+                  ],
+                  "locator": {
+                    "format": "markdown",
+                    "line_start": 5,
+                    "line_end": 5
+                  }
+                }
+              ],
+              "traceable": true
+            },
+            {
+              "source_id": "S-copy",
+              "record_digest": "0726de38ae74c8e448af52742e417d375a156fea6fe19bd0eca34de12e0180bf",
+              "canonical_span": [
+                33,
+                64
+              ],
+              "anchors": [
+                {
+                  "block_id": "S-copy:b2",
+                  "canonical_overlap": [
+                    33,
+                    64
+                  ],
+                  "locator": {
+                    "format": "markdown",
+                    "line_start": 5,
+                    "line_end": 5
+                  }
+                }
+              ],
+              "traceable": true
+            }
+          ],
+          "source_hit_at_1": true,
+          "final_candidate_ids": [
+            "S-copy"
+          ],
+          "context_ids": null,
+          "answer_correctness": null,
+          "faithfulness": null,
+          "citation_support": null,
+          "abstention": null
+        },
+        {
+          "query_id": "unicode",
+          "slice": "unicode",
+          "preserved": true,
+          "traceable": true,
+          "matches": [
+            {
+              "source_id": "S-md",
+              "record_digest": "19ed6cf63de381557af6a2710dd847ae28d2b8c7bf057a2a2e9980b63277cb62",
+              "canonical_span": [
+                66,
+                97
+              ],
+              "anchors": [
+                {
+                  "block_id": "S-md:b3",
+                  "canonical_overlap": [
+                    66,
+                    97
+                  ],
+                  "locator": {
+                    "format": "markdown",
+                    "line_start": 7,
+                    "line_end": 7
+                  }
+                }
+              ],
+              "traceable": true
+            },
+            {
+              "source_id": "S-copy",
+              "record_digest": "0726de38ae74c8e448af52742e417d375a156fea6fe19bd0eca34de12e0180bf",
+              "canonical_span": [
+                66,
+                97
+              ],
+              "anchors": [
+                {
+                  "block_id": "S-copy:b3",
+                  "canonical_overlap": [
+                    66,
+                    97
+                  ],
+                  "locator": {
+                    "format": "markdown",
+                    "line_start": 7,
+                    "line_end": 7
+                  }
+                }
+              ],
+              "traceable": true
+            }
+          ],
+          "source_hit_at_1": true,
+          "final_candidate_ids": [
+            "S-copy"
+          ],
+          "context_ids": null,
+          "answer_correctness": null,
+          "faithfulness": null,
+          "citation_support": null,
+          "abstention": null
+        },
+        {
+          "query_id": "table",
+          "slice": "table-relation",
+          "preserved": true,
+          "traceable": true,
+          "matches": [
+            {
+              "source_id": "S-html",
+              "record_digest": "56a06a18806f97bf89a7e8b167013a725455f23ed06617e1e3fdb3967bf28ac8",
+              "canonical_span": [
+                62,
+                88
+              ],
+              "anchors": [
+                {
+                  "block_id": "S-html:b3",
+                  "canonical_overlap": [
+                    62,
+                    88
+                  ],
+                  "locator": {
+                    "format": "html",
+                    "tag": "tr",
+                    "id": null,
+                    "line": 5,
+                    "headers": [
+                      "Region",
+                      "Retry limit"
+                    ]
+                  }
+                }
+              ],
+              "traceable": true
+            }
+          ],
+          "source_hit_at_1": true,
+          "final_candidate_ids": [
+            "S-html"
+          ],
+          "context_ids": null,
+          "answer_correctness": null,
+          "faithfulness": null,
+          "citation_support": null,
+          "abstention": null
+        },
+        {
+          "query_id": "exception",
+          "slice": "exception",
+          "preserved": true,
+          "traceable": true,
+          "matches": [
+            {
+              "source_id": "S-html",
+              "record_digest": "56a06a18806f97bf89a7e8b167013a725455f23ed06617e1e3fdb3967bf28ac8",
+              "canonical_span": [
+                118,
+                139
+              ],
+              "anchors": [
+                {
+                  "block_id": "S-html:b5",
+                  "canonical_overlap": [
+                    118,
+                    139
+                  ],
+                  "locator": {
+                    "format": "html",
+                    "tag": "p",
+                    "id": "exception",
+                    "line": 6
+                  }
+                }
+              ],
+              "traceable": true
+            }
+          ],
+          "source_hit_at_1": true,
+          "final_candidate_ids": [
+            "S-html"
+          ],
+          "context_ids": null,
+          "answer_correctness": null,
+          "faithfulness": null,
+          "citation_support": null,
+          "abstention": null
+        },
+        {
+          "query_id": "response",
+          "slice": "pdf-body",
+          "preserved": true,
+          "traceable": true,
+          "matches": [
+            {
+              "source_id": "S-pdf",
+              "record_digest": "f24fa65e6c067b3af79ab2b4f4f8de395b12ed906bb25254b1a04551520ba36b",
+              "canonical_span": [
+                24,
+                53
+              ],
+              "anchors": [
+                {
+                  "block_id": "S-pdf:b1",
+                  "canonical_overlap": [
+                    24,
+                    53
+                  ],
+                  "locator": {
+                    "format": "pdf",
+                    "page": 1,
+                    "bbox": [
+                      54.0,
+                      129.10000610351562,
+                      202.71597290039062,
+                      145.58799743652344
+                    ],
+                    "coordinate_system": "unrotated-pymupdf-top-left-points",
+                    "block_number": 2
+                  }
+                }
+              ],
+              "traceable": true
+            }
+          ],
+          "source_hit_at_1": true,
+          "final_candidate_ids": [
+            "S-pdf"
+          ],
+          "context_ids": null,
+          "answer_correctness": null,
+          "faithfulness": null,
+          "citation_support": null,
+          "abstention": null
+        },
+        {
+          "query_id": "clock",
+          "slice": "pdf-note",
+          "preserved": true,
+          "traceable": true,
+          "matches": [
+            {
+              "source_id": "S-pdf",
+              "record_digest": "f24fa65e6c067b3af79ab2b4f4f8de395b12ed906bb25254b1a04551520ba36b",
+              "canonical_span": [
+                74,
+                106
+              ],
+              "anchors": [
+                {
+                  "block_id": "S-pdf:b3",
+                  "canonical_overlap": [
+                    74,
+                    106
+                  ],
+                  "locator": {
+                    "format": "pdf",
+                    "page": 2,
+                    "bbox": [
+                      54.0,
+                      129.10000610351562,
+                      208.04397583007812,
+                      145.58799743652344
+                    ],
+                    "coordinate_system": "unrotated-pymupdf-top-left-points",
+                    "block_number": 2
+                  }
+                }
+              ],
+              "traceable": true
+            }
+          ],
+          "source_hit_at_1": false,
+          "final_candidate_ids": [
+            "S-copy"
+          ],
+          "context_ids": null,
+          "answer_correctness": null,
+          "faithfulness": null,
+          "citation_support": null,
+          "abstention": null
+        },
+        {
+          "query_id": "retention",
+          "slice": "scanned-page",
+          "preserved": false,
+          "traceable": false,
+          "matches": [],
+          "source_hit_at_1": false,
+          "final_candidate_ids": [
+            "S-pdf"
+          ],
+          "context_ids": null,
+          "answer_correctness": null,
+          "faithfulness": null,
+          "citation_support": null,
+          "abstention": null
+        }
+      ],
+      "probe_count": 8,
+      "preservation_rate": 0.875,
+      "traceable_preservation_rate": 0.875,
+      "source_hit_at_1": 0.75,
+      "source_dispositions": {
+        "accepted": 4,
+        "quarantined": 3,
+        "blocked": 2
+      },
+      "duplicate_groups": [
+        [
+          "S-copy",
+          "S-md"
+        ]
+      ],
+      "ingest_samples": 27,
+      "ingest_adapter_p50_ms": 5.5131,
+      "ingest_adapter_p95_ms": 9.0036,
+      "diagnostic_search_samples": 8,
+      "diagnostic_search_p95_ms": 0.0639
+    }
+  },
+  "request_samples": [
+    {
+      "schema_version": "rag-sample-1",
+      "request_id": "6af25bd4-a2ed-447d-99c5-75b0a5641215",
+      "query_id": "ingest-slot-4",
+      "mode": "structured",
+      "trial_id": 1,
+      "workload_id": "ch19-source-quality-v1",
+      "corpus_version": "ch19-authored-three-format-v1",
+      "query_set_version": "ch19-eight-source-span-probes-v1",
+      "qrels_version": "ch19-source-span-requirements-v1",
+      "index_version": null,
+      "model_version": null,
+      "timestamp_utc": "2026-10-12T18:38:16.127738+00:00",
+      "status": "quarantined",
+      "reason": "native_text_absent_requires_ocr_review",
+      "stage_timings_ms": {
+        "ingest_adapter": 7.3924
+      },
+      "raw_candidate_ids": [],
+      "raw_candidate_scores": [],
+      "intermediate_candidate_ids": {},
+      "intermediate_candidate_scores": {},
+      "final_candidate_ids": [],
+      "final_candidate_scores": [],
+      "context_ids": null,
+      "evidence_ids": null,
+      "ivf_probed_lists": null,
+      "timing_boundary": "file read, parsing and canonicalization; trace/output serialization excluded",
+      "operation": "ingestion",
+      "source_id": "S-scan",
+      "source_version": "1",
+      "source_sha256": "66faa0ca8ff189d8fb47cc7fb747275aed1dd047373883f4bf53cea2732a4f15",
+      "parser_version": "ch19-bounded-adapters-1",
+      "normalization_version": null,
+      "normalized_block_ids": [],
+      "normalization_inputs_retained_in": null,
+      "published_block_ids": [],
+      "dropped_regions": [],
+      "record_digest": null,
+      "not_run": [
+        "queue",
+        "OCR",
+        "chunk_design",
+        "embedding",
+        "index_write",
+        "visibility"
+      ]
+    },
+    {
+      "schema_version": "rag-sample-1",
+      "request_id": "2abae40d-0e43-44d2-94f3-3a3e497785ca",
+      "query_id": "ingest-slot-3",
+      "mode": "flat",
+      "trial_id": 2,
+      "workload_id": "ch19-source-quality-v1",
+      "corpus_version": "ch19-authored-three-format-v1",
+      "query_set_version": "ch19-eight-source-span-probes-v1",
+      "qrels_version": "ch19-source-span-requirements-v1",
+      "index_version": null,
+      "model_version": null,
+      "timestamp_utc": "2026-10-12T18:38:16.133607+00:00",
+      "status": "accepted",
+      "reason": null,
+      "stage_timings_ms": {
+        "ingest_adapter": 5.772
+      },
+      "raw_candidate_ids": [],
+      "raw_candidate_scores": [],
+      "intermediate_candidate_ids": {},
+      "intermediate_candidate_scores": {},
+      "final_candidate_ids": [],
+      "final_candidate_scores": [],
+      "context_ids": null,
+      "evidence_ids": null,
+      "ivf_probed_lists": null,
+      "timing_boundary": "file read, parsing and canonicalization; trace/output serialization excluded",
+      "operation": "ingestion",
+      "source_id": "S-copy",
+      "source_version": "1",
+      "source_sha256": "e1fa5508851d2738eaafb3a220446fb86679b0cf250a339f70fb70a43cadaae5",
+      "parser_version": "ch19-bounded-adapters-1",
+      "normalization_version": "flat-space-1",
+      "normalized_block_ids": [
+        "S-copy:b0"
+      ],
+      "normalization_inputs_retained_in": "access-controlled canonical artifact",
+      "published_block_ids": [
+        "S-copy:b0"
+      ],
+      "dropped_regions": [],
+      "record_digest": "3cd79abb3a1ac9a8c8d2ab4bebc72fa7907cd86ba98fc4752b91434a96e4bfb4",
+      "not_run": [
+        "queue",
+        "OCR",
+        "chunk_design",
+        "embedding",
+        "index_write",
+        "visibility"
+      ]
+    },
+    {
+      "schema_version": "rag-sample-1",
+      "request_id": "6027376f-699f-4e96-8cdf-b2ae2666ff61",
+      "query_id": "ingest-slot-8",
+      "mode": "structured",
+      "trial_id": 2,
+      "workload_id": "ch19-source-quality-v1",
+      "corpus_version": "ch19-authored-three-format-v1",
+      "query_set_version": "ch19-eight-source-span-probes-v1",
+      "qrels_version": "ch19-source-span-requirements-v1",
+      "index_version": null,
+      "model_version": null,
+      "timestamp_utc": "2026-10-12T18:38:16.133677+00:00",
+      "status": "blocked",
+      "reason": "ineligible",
+      "stage_timings_ms": {
+        "ingest_adapter": 0.0103
+      },
+      "raw_candidate_ids": [],
+      "raw_candidate_scores": [],
+      "intermediate_candidate_ids": {},
+      "intermediate_candidate_scores": {},
+      "final_candidate_ids": [],
+      "final_candidate_scores": [],
+      "context_ids": null,
+      "evidence_ids": null,
+      "ivf_probed_lists": null,
+      "timing_boundary": "file read, parsing and canonicalization; trace/output serialization excluded",
+      "operation": "ingestion",
+      "source_id": null,
+      "source_version": null,
+      "source_sha256": null,
+      "parser_version": "ch19-bounded-adapters-1",
+      "normalization_version": null,
+      "normalized_block_ids": [],
+      "normalization_inputs_retained_in": null,
+      "published_block_ids": [],
+      "dropped_regions": [],
+      "record_digest": null,
+      "not_run": [
+        "queue",
+        "OCR",
+        "chunk_design",
+        "embedding",
+        "index_write",
+        "visibility"
+      ]
+    },
+    {
+      "schema_version": "rag-sample-1",
+      "request_id": "9c98fe62-514b-4c78-9203-408521733e2b",
+      "query_id": "ingest-slot-0",
+      "mode": "flat",
+      "trial_id": 2,
+      "workload_id": "ch19-source-quality-v1",
+      "corpus_version": "ch19-authored-three-format-v1",
+      "query_set_version": "ch19-eight-source-span-probes-v1",
+      "qrels_version": "ch19-source-span-requirements-v1",
+      "index_version": null,
+      "model_version": null,
+      "timestamp_utc": "2026-10-12T18:38:16.138527+00:00",
+      "status": "accepted",
+      "reason": null,
+      "stage_timings_ms": {
+        "ingest_adapter": 4.7963
+      },
+      "raw_candidate_ids": [],
+      "raw_candidate_scores": [],
+      "intermediate_candidate_ids": {},
+      "intermediate_candidate_scores": {},
+      "final_candidate_ids": [],
+      "final_candidate_scores": [],
+      "context_ids": null,
+      "evidence_ids": null,
+      "ivf_probed_lists": null,
+      "timing_boundary": "file read, parsing and canonicalization; trace/output serialization excluded",
+      "operation": "ingestion",
+      "source_id": "S-md",
+      "source_version": "1",
+      "source_sha256": "e1fa5508851d2738eaafb3a220446fb86679b0cf250a339f70fb70a43cadaae5",
+      "parser_version": "ch19-bounded-adapters-1",
+      "normalization_version": "flat-space-1",
+      "normalized_block_ids": [
+        "S-md:b0"
+      ],
+      "normalization_inputs_retained_in": "access-controlled canonical artifact",
+      "published_block_ids": [
+        "S-md:b0"
+      ],
+      "dropped_regions": [],
+      "record_digest": "20a30b2ab1b43380cccbc3857b7bc27e84d11a9b8fa7c06e79d84e2816b580e0",
+      "not_run": [
+        "queue",
+        "OCR",
+        "chunk_design",
+        "embedding",
+        "index_write",
+        "visibility"
+      ]
+    },
+    {
+      "schema_version": "rag-sample-1",
+      "request_id": "fe2fda1a-88b1-4ce8-9098-532e24219b07",
+      "query_id": "ingest-slot-2",
+      "mode": "structured",
+      "trial_id": 1,
+      "workload_id": "ch19-source-quality-v1",
+      "corpus_version": "ch19-authored-three-format-v1",
+      "query_set_version": "ch19-eight-source-span-probes-v1",
+      "qrels_version": "ch19-source-span-requirements-v1",
+      "index_version": null,
+      "model_version": null,
+      "timestamp_utc": "2026-10-12T18:38:16.149969+00:00",
+      "status": "accepted",
+      "reason": null,
+      "stage_timings_ms": {
+        "ingest_adapter": 11.361
+      },
+      "raw_candidate_ids": [],
+      "raw_candidate_scores": [],
+      "intermediate_candidate_ids": {},
+      "intermediate_candidate_scores": {},
+      "final_candidate_ids": [],
+      "final_candidate_scores": [],
+      "context_ids": null,
+      "evidence_ids": null,
+      "ivf_probed_lists": null,
+      "timing_boundary": "file read, parsing and canonicalization; trace/output serialization excluded",
+      "operation": "ingestion",
+      "source_id": "S-pdf",
+      "source_version": "1",
+      "source_sha256": "484dbe173935b42ba2456f7d3179d05db2a6257b931ce5996edac217be57b595",
+      "parser_version": "ch19-bounded-adapters-1",
+      "normalization_version": "nfc-prose-space-code-preserve-1",
+      "normalized_block_ids": [
+        "S-pdf:b0",
+        "S-pdf:b1",
+        "S-pdf:b2",
+        "S-pdf:b3"
+      ],
+      "normalization_inputs_retained_in": "access-controlled canonical artifact",
+      "published_block_ids": [
+        "S-pdf:b0",
+        "S-pdf:b1",
+        "S-pdf:b2",
+        "S-pdf:b3"
+      ],
+      "dropped_regions": [
+        {
+          "reason": "reviewed_fixture_margin",
+          "locator": {
+            "format": "pdf",
+            "page": 1,
+            "bbox": [
+              54.0,
+              26.174999237060547,
+              277.0799560546875,
+              41.28900146484375
+            ],
+            "coordinate_system": "unrotated-pymupdf-top-left-points",
+            "block_number": 0
+          }
+        },
+        {
+          "reason": "reviewed_fixture_margin",
+          "locator": {
+            "format": "pdf",
+            "page": 1,
+            "bbox": [
+              54.0,
+              750.3250122070312,
+              82.52098846435547,
+              762.6909790039062
+            ],
+            "coordinate_system": "unrotated-pymupdf-top-left-points",
+            "block_number": 3
+          }
+        },
+        {
+          "reason": "reviewed_fixture_margin",
+          "locator": {
+            "format": "pdf",
+            "page": 2,
+            "bbox": [
+              54.0,
+              26.174999237060547,
+              277.0799560546875,
+              41.28900146484375
+            ],
+            "coordinate_system": "unrotated-pymupdf-top-left-points",
+            "block_number": 0
+          }
+        },
+        {
+          "reason": "reviewed_fixture_margin",
+          "locator": {
+            "format": "pdf",
+            "page": 2,
+            "bbox": [
+              54.0,
+              750.3250122070312,
+              82.52098846435547,
+              762.6909790039062
+            ],
+            "coordinate_system": "unrotated-pymupdf-top-left-points",
+            "block_number": 3
+          }
+        }
+      ],
+      "record_digest": "f24fa65e6c067b3af79ab2b4f4f8de395b12ed906bb25254b1a04551520ba36b",
+      "not_run": [
+        "queue",
+        "OCR",
+        "chunk_design",
+        "embedding",
+        "index_write",
+        "visibility"
+      ]
+    },
+    {
+      "schema_version": "rag-sample-1",
+      "request_id": "85f42601-4290-4838-92bb-13ee5f036656",
+      "query_id": "ingest-slot-1",
+      "mode": "structured",
+      "trial_id": 0,
+      "workload_id": "ch19-source-quality-v1",
+      "corpus_version": "ch19-authored-three-format-v1",
+      "query_set_version": "ch19-eight-source-span-probes-v1",
+      "qrels_version": "ch19-source-span-requirements-v1",
+      "index_version": null,
+      "model_version": null,
+      "timestamp_utc": "2026-10-12T18:38:16.156750+00:00",
+      "status": "accepted",
+      "reason": null,
+      "stage_timings_ms": {
+        "ingest_adapter": 6.7068
+      },
+      "raw_candidate_ids": [],
+      "raw_candidate_scores": [],
+      "intermediate_candidate_ids": {},
+      "intermediate_candidate_scores": {},
+      "final_candidate_ids": [],
+      "final_candidate_scores": [],
+      "context_ids": null,
+      "evidence_ids": null,
+      "ivf_probed_lists": null,
+      "timing_boundary": "file read, parsing and canonicalization; trace/output serialization excluded",
+      "operation": "ingestion",
+      "source_id": "S-html",
+      "source_version": "1",
+      "source_sha256": "d5951c71da8f258b77748c85afc3c75acc4dc11f56e55c73be56b7c895e1f95e",
+      "parser_version": "ch19-bounded-adapters-1",
+      "normalization_version": "nfc-prose-space-code-preserve-1",
+      "normalized_block_ids": [
+        "S-html:b0",
+        "S-html:b1",
+        "S-html:b2",
+        "S-html:b3",
+        "S-html:b4",
+        "S-html:b5"
+      ],
+      "normalization_inputs_retained_in": "access-controlled canonical artifact",
+      "published_block_ids": [
+        "S-html:b0",
+        "S-html:b1",
+        "S-html:b2",
+        "S-html:b3",
+        "S-html:b4",
+        "S-html:b5"
+      ],
+      "dropped_regions": [
+        {
+          "reason": "excluded_html_region",
+          "locator": {
+            "tag": "head",
+            "line": 1
+          }
+        },
+        {
+          "reason": "excluded_html_region",
+          "locator": {
+            "tag": "nav",
+            "line": 2
+          }
+        },
+        {
+          "reason": "excluded_html_region",
+          "locator": {
+            "tag": "footer",
+            "line": 7
+          }
+        },
+        {
+          "reason": "excluded_html_region",
+          "locator": {
+            "tag": "script",
+            "line": 7
+          }
+        }
+      ],
+      "record_digest": "56a06a18806f97bf89a7e8b167013a725455f23ed06617e1e3fdb3967bf28ac8",
+      "not_run": [
+        "queue",
+        "OCR",
+        "chunk_design",
+        "embedding",
+        "index_write",
+        "visibility"
+      ]
+    },
+    {
+      "schema_version": "rag-sample-1",
+      "request_id": "84ae16ee-bff2-4f34-b7b5-3df4a345d84f",
+      "query_id": "ingest-slot-1",
+      "mode": "structured",
+      "trial_id": 2,
+      "workload_id": "ch19-source-quality-v1",
+      "corpus_version": "ch19-authored-three-format-v1",
+      "query_set_version": "ch19-eight-source-span-probes-v1",
+      "qrels_version": "ch19-source-span-requirements-v1",
+      "index_version": null,
+      "model_version": null,
+      "timestamp_utc": "2026-10-12T18:38:16.162508+00:00",
+      "status": "accepted",
+      "reason": null,
+      "stage_timings_ms": {
+        "ingest_adapter": 5.6864
+      },
+      "raw_candidate_ids": [],
+      "raw_candidate_scores": [],
+      "intermediate_candidate_ids": {},
+      "intermediate_candidate_scores": {},
+      "final_candidate_ids": [],
+      "final_candidate_scores": [],
+      "context_ids": null,
+      "evidence_ids": null,
+      "ivf_probed_lists": null,
+      "timing_boundary": "file read, parsing and canonicalization; trace/output serialization excluded",
+      "operation": "ingestion",
+      "source_id": "S-html",
+      "source_version": "1",
+      "source_sha256": "d5951c71da8f258b77748c85afc3c75acc4dc11f56e55c73be56b7c895e1f95e",
+      "parser_version": "ch19-bounded-adapters-1",
+      "normalization_version": "nfc-prose-space-code-preserve-1",
+      "normalized_block_ids": [
+        "S-html:b0",
+        "S-html:b1",
+        "S-html:b2",
+        "S-html:b3",
+        "S-html:b4",
+        "S-html:b5"
+      ],
+      "normalization_inputs_retained_in": "access-controlled canonical artifact",
+      "published_block_ids": [
+        "S-html:b0",
+        "S-html:b1",
+        "S-html:b2",
+        "S-html:b3",
+        "S-html:b4",
+        "S-html:b5"
+      ],
+      "dropped_regions": [
+        {
+          "reason": "excluded_html_region",
+          "locator": {
+            "tag": "head",
+            "line": 1
+          }
+        },
+        {
+          "reason": "excluded_html_region",
+          "locator": {
+            "tag": "nav",
+            "line": 2
+          }
+        },
+        {
+          "reason": "excluded_html_region",
+          "locator": {
+            "tag": "footer",
+            "line": 7
+          }
+        },
+        {
+          "reason": "excluded_html_region",
+          "locator": {
+            "tag": "script",
+            "line": 7
+          }
+        }
+      ],
+      "record_digest": "56a06a18806f97bf89a7e8b167013a725455f23ed06617e1e3fdb3967bf28ac8",
+      "not_run": [
+        "queue",
+        "OCR",
+        "chunk_design",
+        "embedding",
+        "index_write",
+        "visibility"
+      ]
+    },
+    {
+      "schema_version": "rag-sample-1",
+      "request_id": "233d06c5-4b33-4413-8443-3686729e33c0",
+      "query_id": "ingest-slot-4",
+      "mode": "flat",
+      "trial_id": 1,
+      "workload_id": "ch19-source-quality-v1",
+      "corpus_version": "ch19-authored-three-format-v1",
+      "query_set_version": "ch19-eight-source-span-probes-v1",
+      "qrels_version": "ch19-source-span-requirements-v1",
+      "index_version": null,
+      "model_version": null,
+      "timestamp_utc": "2026-10-12T18:38:16.169454+00:00",
+      "status": "quarantined",
+      "reason": "native_text_absent_requires_ocr_review",
+      "stage_timings_ms": {
+        "ingest_adapter": 6.8675
+      },
+      "raw_candidate_ids": [],
+      "raw_candidate_scores": [],
+      "intermediate_candidate_ids": {},
+      "intermediate_candidate_scores": {},
+      "final_candidate_ids": [],
+      "final_candidate_scores": [],
+      "context_ids": null,
+      "evidence_ids": null,
+      "ivf_probed_lists": null,
+      "timing_boundary": "file read, parsing and canonicalization; trace/output serialization excluded",
+      "operation": "ingestion",
+      "source_id": "S-scan",
+      "source_version": "1",
+      "source_sha256": "66faa0ca8ff189d8fb47cc7fb747275aed1dd047373883f4bf53cea2732a4f15",
+      "parser_version": "ch19-bounded-adapters-1",
+      "normalization_version": null,
+      "normalized_block_ids": [],
+      "normalization_inputs_retained_in": null,
+      "published_block_ids": [],
+      "dropped_regions": [],
+      "record_digest": null,
+      "not_run": [
+        "queue",
+        "OCR",
+        "chunk_design",
+        "embedding",
+        "index_write",
+        "visibility"
+      ]
+    },
+    {
+      "schema_version": "rag-sample-1",
+      "request_id": "5ca242c5-5727-4e93-836f-f055e0632460",
+      "query_id": "ingest-slot-0",
+      "mode": "structured",
+      "trial_id": 2,
+      "workload_id": "ch19-source-quality-v1",
+      "corpus_version": "ch19-authored-three-format-v1",
+      "query_set_version": "ch19-eight-source-span-probes-v1",
+      "qrels_version": "ch19-source-span-requirements-v1",
+      "index_version": null,
+      "model_version": null,
+      "timestamp_utc": "2026-10-12T18:38:16.174831+00:00",
+      "status": "accepted",
+      "reason": null,
+      "stage_timings_ms": {
+        "ingest_adapter": 5.3088
+      },
+      "raw_candidate_ids": [],
+      "raw_candidate_scores": [],
+      "intermediate_candidate_ids": {},
+      "intermediate_candidate_scores": {},
+      "final_candidate_ids": [],
+      "final_candidate_scores": [],
+      "context_ids": null,
+      "evidence_ids": null,
+      "ivf_probed_lists": null,
+      "timing_boundary": "file read, parsing and canonicalization; trace/output serialization excluded",
+      "operation": "ingestion",
+      "source_id": "S-md",
+      "source_version": "1",
+      "source_sha256": "e1fa5508851d2738eaafb3a220446fb86679b0cf250a339f70fb70a43cadaae5",
+      "parser_version": "ch19-bounded-adapters-1",
+      "normalization_version": "nfc-prose-space-code-preserve-1",
+      "normalized_block_ids": [
+        "S-md:b0",
+        "S-md:b1",
+        "S-md:b2",
+        "S-md:b3",
+        "S-md:b4"
+      ],
+      "normalization_inputs_retained_in": "access-controlled canonical artifact",
+      "published_block_ids": [
+        "S-md:b0",
+        "S-md:b1",
+        "S-md:b2",
+        "S-md:b3",
+        "S-md:b4"
+      ],
+      "dropped_regions": [],
+      "record_digest": "19ed6cf63de381557af6a2710dd847ae28d2b8c7bf057a2a2e9980b63277cb62",
+      "not_run": [
+        "queue",
+        "OCR",
+        "chunk_design",
+        "embedding",
+        "index_write",
+        "visibility"
+      ]
+    },
+    {
+      "schema_version": "rag-sample-1",
+      "request_id": "8b49abdf-fde3-44cf-9c6c-6a8361bb35ce",
+      "query_id": "ingest-slot-8",
+      "mode": "structured",
+      "trial_id": 1,
+      "workload_id": "ch19-source-quality-v1",
+      "corpus_version": "ch19-authored-three-format-v1",
+      "query_set_version": "ch19-eight-source-span-probes-v1",
+      "qrels_version": "ch19-source-span-requirements-v1",
+      "index_version": null,
+      "model_version": null,
+      "timestamp_utc": "2026-10-12T18:38:16.174892+00:00",
+      "status": "blocked",
+      "reason": "ineligible",
+      "stage_timings_ms": {
+        "ingest_adapter": 0.0098
+      },
+      "raw_candidate_ids": [],
+      "raw_candidate_scores": [],
+      "intermediate_candidate_ids": {},
+      "intermediate_candidate_scores": {},
+      "final_candidate_ids": [],
+      "final_candidate_scores": [],
+      "context_ids": null,
+      "evidence_ids": null,
+      "ivf_probed_lists": null,
+      "timing_boundary": "file read, parsing and canonicalization; trace/output serialization excluded",
+      "operation": "ingestion",
+      "source_id": null,
+      "source_version": null,
+      "source_sha256": null,
+      "parser_version": "ch19-bounded-adapters-1",
+      "normalization_version": null,
+      "normalized_block_ids": [],
+      "normalization_inputs_retained_in": null,
+      "published_block_ids": [],
+      "dropped_regions": [],
+      "record_digest": null,
+      "not_run": [
+        "queue",
+        "OCR",
+        "chunk_design",
+        "embedding",
+        "index_write",
+        "visibility"
+      ]
+    },
+    {
+      "schema_version": "rag-sample-1",
+      "request_id": "78a23e7a-8514-486b-9015-a6685ecdd821",
+      "query_id": "ingest-slot-2",
+      "mode": "flat",
+      "trial_id": 0,
+      "workload_id": "ch19-source-quality-v1",
+      "corpus_version": "ch19-authored-three-format-v1",
+      "query_set_version": "ch19-eight-source-span-probes-v1",
+      "qrels_version": "ch19-source-span-requirements-v1",
+      "index_version": null,
+      "model_version": null,
+      "timestamp_utc": "2026-10-12T18:38:16.183546+00:00",
+      "status": "accepted",
+      "reason": null,
+      "stage_timings_ms": {
+        "ingest_adapter": 8.5449
+      },
+      "raw_candidate_ids": [],
+      "raw_candidate_scores": [],
+      "intermediate_candidate_ids": {},
+      "intermediate_candidate_scores": {},
+      "final_candidate_ids": [],
+      "final_candidate_scores": [],
+      "context_ids": null,
+      "evidence_ids": null,
+      "ivf_probed_lists": null,
+      "timing_boundary": "file read, parsing and canonicalization; trace/output serialization excluded",
+      "operation": "ingestion",
+      "source_id": "S-pdf",
+      "source_version": "1",
+      "source_sha256": "484dbe173935b42ba2456f7d3179d05db2a6257b931ce5996edac217be57b595",
+      "parser_version": "ch19-bounded-adapters-1",
+      "normalization_version": "flat-space-1",
+      "normalized_block_ids": [
+        "S-pdf:b0"
+      ],
+      "normalization_inputs_retained_in": "access-controlled canonical artifact",
+      "published_block_ids": [
+        "S-pdf:b0"
+      ],
+      "dropped_regions": [],
+      "record_digest": "9191b359fd269c9f8883a3313bda17aa8c13f0a022c7487bd23799cddefb13d5",
+      "not_run": [
+        "queue",
+        "OCR",
+        "chunk_design",
+        "embedding",
+        "index_write",
+        "visibility"
+      ]
+    },
+    {
+      "schema_version": "rag-sample-1",
+      "request_id": "88d17d22-5ed1-4ede-830b-a2c366decd05",
+      "query_id": "ingest-slot-2",
+      "mode": "flat",
+      "trial_id": 2,
+      "workload_id": "ch19-source-quality-v1",
+      "corpus_version": "ch19-authored-three-format-v1",
+      "query_set_version": "ch19-eight-source-span-probes-v1",
+      "qrels_version": "ch19-source-span-requirements-v1",
+      "index_version": null,
+      "model_version": null,
+      "timestamp_utc": "2026-10-12T18:38:16.191928+00:00",
+      "status": "accepted",
+      "reason": null,
+      "stage_timings_ms": {
+        "ingest_adapter": 8.2941
+      },
+      "raw_candidate_ids": [],
+      "raw_candidate_scores": [],
+      "intermediate_candidate_ids": {},
+      "intermediate_candidate_scores": {},
+      "final_candidate_ids": [],
+      "final_candidate_scores": [],
+      "context_ids": null,
+      "evidence_ids": null,
+      "ivf_probed_lists": null,
+      "timing_boundary": "file read, parsing and canonicalization; trace/output serialization excluded",
+      "operation": "ingestion",
+      "source_id": "S-pdf",
+      "source_version": "1",
+      "source_sha256": "484dbe173935b42ba2456f7d3179d05db2a6257b931ce5996edac217be57b595",
+      "parser_version": "ch19-bounded-adapters-1",
+      "normalization_version": "flat-space-1",
+      "normalized_block_ids": [
+        "S-pdf:b0"
+      ],
+      "normalization_inputs_retained_in": "access-controlled canonical artifact",
+      "published_block_ids": [
+        "S-pdf:b0"
+      ],
+      "dropped_regions": [],
+      "record_digest": "9191b359fd269c9f8883a3313bda17aa8c13f0a022c7487bd23799cddefb13d5",
+      "not_run": [
+        "queue",
+        "OCR",
+        "chunk_design",
+        "embedding",
+        "index_write",
+        "visibility"
+      ]
+    },
+    {
+      "schema_version": "rag-sample-1",
+      "request_id": "ffb92636-0a34-4680-a3dd-fd929e3bc025",
+      "query_id": "ingest-slot-7",
+      "mode": "structured",
+      "trial_id": 0,
+      "workload_id": "ch19-source-quality-v1",
+      "corpus_version": "ch19-authored-three-format-v1",
+      "query_set_version": "ch19-eight-source-span-probes-v1",
+      "qrels_version": "ch19-source-span-requirements-v1",
+      "index_version": null,
+      "model_version": null,
+      "timestamp_utc": "2026-10-12T18:38:16.191993+00:00",
+      "status": "blocked",
+      "reason": "indexing_use_unapproved",
+      "stage_timings_ms": {
+        "ingest_adapter": 0.0107
+      },
+      "raw_candidate_ids": [],
+      "raw_candidate_scores": [],
+      "intermediate_candidate_ids": {},
+      "intermediate_candidate_scores": {},
+      "final_candidate_ids": [],
+      "final_candidate_scores": [],
+      "context_ids": null,
+      "evidence_ids": null,
+      "ivf_probed_lists": null,
+      "timing_boundary": "file read, parsing and canonicalization; trace/output serialization excluded",
+      "operation": "ingestion",
+      "source_id": null,
+      "source_version": null,
+      "source_sha256": null,
+      "parser_version": "ch19-bounded-adapters-1",
+      "normalization_version": null,
+      "normalized_block_ids": [],
+      "normalization_inputs_retained_in": null,
+      "published_block_ids": [],
+      "dropped_regions": [],
+      "record_digest": null,
+      "not_run": [
+        "queue",
+        "OCR",
+        "chunk_design",
+        "embedding",
+        "index_write",
+        "visibility"
+      ]
+    },
+    {
+      "schema_version": "rag-sample-1",
+      "request_id": "1451796b-46a7-470a-85d0-538c5c58853e",
+      "query_id": "ingest-slot-6",
+      "mode": "structured",
+      "trial_id": 0,
+      "workload_id": "ch19-source-quality-v1",
+      "corpus_version": "ch19-authored-three-format-v1",
+      "query_set_version": "ch19-eight-source-span-probes-v1",
+      "qrels_version": "ch19-source-span-requirements-v1",
+      "index_version": null,
+      "model_version": null,
+      "timestamp_utc": "2026-10-12T18:38:16.198097+00:00",
+      "status": "quarantined",
+      "reason": "ambiguous_table_geometry",
+      "stage_timings_ms": {
+        "ingest_adapter": 6.0527
+      },
+      "raw_candidate_ids": [],
+      "raw_candidate_scores": [],
+      "intermediate_candidate_ids": {},
+      "intermediate_candidate_scores": {},
+      "final_candidate_ids": [],
+      "final_candidate_scores": [],
+      "context_ids": null,
+      "evidence_ids": null,
+      "ivf_probed_lists": null,
+      "timing_boundary": "file read, parsing and canonicalization; trace/output serialization excluded",
+      "operation": "ingestion",
+      "source_id": "S-merged",
+      "source_version": "1",
+      "source_sha256": "bbfb9baa9ae4f7c911ce899fef62649ac6ee2815018ac24eafa40736169e15d1",
+      "parser_version": "ch19-bounded-adapters-1",
+      "normalization_version": null,
+      "normalized_block_ids": [],
+      "normalization_inputs_retained_in": null,
+      "published_block_ids": [],
+      "dropped_regions": [],
+      "record_digest": null,
+      "not_run": [
+        "queue",
+        "OCR",
+        "chunk_design",
+        "embedding",
+        "index_write",
+        "visibility"
+      ]
+    },
+    {
+      "schema_version": "rag-sample-1",
+      "request_id": "3196e9c3-51e2-45ca-a0aa-69408ae5e313",
+      "query_id": "ingest-slot-0",
+      "mode": "structured",
+      "trial_id": 1,
+      "workload_id": "ch19-source-quality-v1",
+      "corpus_version": "ch19-authored-three-format-v1",
+      "query_set_version": "ch19-eight-source-span-probes-v1",
+      "qrels_version": "ch19-source-span-requirements-v1",
+      "index_version": null,
+      "model_version": null,
+      "timestamp_utc": "2026-10-12T18:38:16.203401+00:00",
+      "status": "accepted",
+      "reason": null,
+      "stage_timings_ms": {
+        "ingest_adapter": 5.2279
+      },
+      "raw_candidate_ids": [],
+      "raw_candidate_scores": [],
+      "intermediate_candidate_ids": {},
+      "intermediate_candidate_scores": {},
+      "final_candidate_ids": [],
+      "final_candidate_scores": [],
+      "context_ids": null,
+      "evidence_ids": null,
+      "ivf_probed_lists": null,
+      "timing_boundary": "file read, parsing and canonicalization; trace/output serialization excluded",
+      "operation": "ingestion",
+      "source_id": "S-md",
+      "source_version": "1",
+      "source_sha256": "e1fa5508851d2738eaafb3a220446fb86679b0cf250a339f70fb70a43cadaae5",
+      "parser_version": "ch19-bounded-adapters-1",
+      "normalization_version": "nfc-prose-space-code-preserve-1",
+      "normalized_block_ids": [
+        "S-md:b0",
+        "S-md:b1",
+        "S-md:b2",
+        "S-md:b3",
+        "S-md:b4"
+      ],
+      "normalization_inputs_retained_in": "access-controlled canonical artifact",
+      "published_block_ids": [
+        "S-md:b0",
+        "S-md:b1",
+        "S-md:b2",
+        "S-md:b3",
+        "S-md:b4"
+      ],
+      "dropped_regions": [],
+      "record_digest": "19ed6cf63de381557af6a2710dd847ae28d2b8c7bf057a2a2e9980b63277cb62",
+      "not_run": [
+        "queue",
+        "OCR",
+        "chunk_design",
+        "embedding",
+        "index_write",
+        "visibility"
+      ]
+    },
+    {
+      "schema_version": "rag-sample-1",
+      "request_id": "52728b2c-6625-4f82-97b6-63939cbd9122",
+      "query_id": "ingest-slot-1",
+      "mode": "flat",
+      "trial_id": 2,
+      "workload_id": "ch19-source-quality-v1",
+      "corpus_version": "ch19-authored-three-format-v1",
+      "query_set_version": "ch19-eight-source-span-probes-v1",
+      "qrels_version": "ch19-source-span-requirements-v1",
+      "index_version": null,
+      "model_version": null,
+      "timestamp_utc": "2026-10-12T18:38:16.210965+00:00",
+      "status": "accepted",
+      "reason": null,
+      "stage_timings_ms": {
+        "ingest_adapter": 7.4813
+      },
+      "raw_candidate_ids": [],
+      "raw_candidate_scores": [],
+      "intermediate_candidate_ids": {},
+      "intermediate_candidate_scores": {},
+      "final_candidate_ids": [],
+      "final_candidate_scores": [],
+      "context_ids": null,
+      "evidence_ids": null,
+      "ivf_probed_lists": null,
+      "timing_boundary": "file read, parsing and canonicalization; trace/output serialization excluded",
+      "operation": "ingestion",
+      "source_id": "S-html",
+      "source_version": "1",
+      "source_sha256": "d5951c71da8f258b77748c85afc3c75acc4dc11f56e55c73be56b7c895e1f95e",
+      "parser_version": "ch19-bounded-adapters-1",
+      "normalization_version": "flat-space-1",
+      "normalized_block_ids": [
+        "S-html:b0"
+      ],
+      "normalization_inputs_retained_in": "access-controlled canonical artifact",
+      "published_block_ids": [
+        "S-html:b0"
+      ],
+      "dropped_regions": [],
+      "record_digest": "128a386d2b9b710c9247171ac721168c1584e65163ffceaa5ff93126d410a4ca",
+      "not_run": [
+        "queue",
+        "OCR",
+        "chunk_design",
+        "embedding",
+        "index_write",
+        "visibility"
+      ]
+    },
+    {
+      "schema_version": "rag-sample-1",
+      "request_id": "e0c30685-1dc4-49f2-8e31-d3bb8dc28994",
+      "query_id": "ingest-slot-7",
+      "mode": "structured",
+      "trial_id": 1,
+      "workload_id": "ch19-source-quality-v1",
+      "corpus_version": "ch19-authored-three-format-v1",
+      "query_set_version": "ch19-eight-source-span-probes-v1",
+      "qrels_version": "ch19-source-span-requirements-v1",
+      "index_version": null,
+      "model_version": null,
+      "timestamp_utc": "2026-10-12T18:38:16.211035+00:00",
+      "status": "blocked",
+      "reason": "indexing_use_unapproved",
+      "stage_timings_ms": {
+        "ingest_adapter": 0.0116
+      },
+      "raw_candidate_ids": [],
+      "raw_candidate_scores": [],
+      "intermediate_candidate_ids": {},
+      "intermediate_candidate_scores": {},
+      "final_candidate_ids": [],
+      "final_candidate_scores": [],
+      "context_ids": null,
+      "evidence_ids": null,
+      "ivf_probed_lists": null,
+      "timing_boundary": "file read, parsing and canonicalization; trace/output serialization excluded",
+      "operation": "ingestion",
+      "source_id": null,
+      "source_version": null,
+      "source_sha256": null,
+      "parser_version": "ch19-bounded-adapters-1",
+      "normalization_version": null,
+      "normalized_block_ids": [],
+      "normalization_inputs_retained_in": null,
+      "published_block_ids": [],
+      "dropped_regions": [],
+      "record_digest": null,
+      "not_run": [
+        "queue",
+        "OCR",
+        "chunk_design",
+        "embedding",
+        "index_write",
+        "visibility"
+      ]
+    },
+    {
+      "schema_version": "rag-sample-1",
+      "request_id": "c2dc07f6-a44e-49fb-bb4d-53c6179fbf9e",
+      "query_id": "ingest-slot-0",
+      "mode": "flat",
+      "trial_id": 0,
+      "workload_id": "ch19-source-quality-v1",
+      "corpus_version": "ch19-authored-three-format-v1",
+      "query_set_version": "ch19-eight-source-span-probes-v1",
+      "qrels_version": "ch19-source-span-requirements-v1",
+      "index_version": null,
+      "model_version": null,
+      "timestamp_utc": "2026-10-12T18:38:16.217874+00:00",
+      "status": "accepted",
+      "reason": null,
+      "stage_timings_ms": {
+        "ingest_adapter": 6.7772
+      },
+      "raw_candidate_ids": [],
+      "raw_candidate_scores": [],
+      "intermediate_candidate_ids": {},
+      "intermediate_candidate_scores": {},
+      "final_candidate_ids": [],
+      "final_candidate_scores": [],
+      "context_ids": null,
+      "evidence_ids": null,
+      "ivf_probed_lists": null,
+      "timing_boundary": "file read, parsing and canonicalization; trace/output serialization excluded",
+      "operation": "ingestion",
+      "source_id": "S-md",
+      "source_version": "1",
+      "source_sha256": "e1fa5508851d2738eaafb3a220446fb86679b0cf250a339f70fb70a43cadaae5",
+      "parser_version": "ch19-bounded-adapters-1",
+      "normalization_version": "flat-space-1",
+      "normalized_block_ids": [
+        "S-md:b0"
+      ],
+      "normalization_inputs_retained_in": "access-controlled canonical artifact",
+      "published_block_ids": [
+        "S-md:b0"
+      ],
+      "dropped_regions": [],
+      "record_digest": "20a30b2ab1b43380cccbc3857b7bc27e84d11a9b8fa7c06e79d84e2816b580e0",
+      "not_run": [
+        "queue",
+        "OCR",
+        "chunk_design",
+        "embedding",
+        "index_write",
+        "visibility"
+      ]
+    },
+    {
+      "schema_version": "rag-sample-1",
+      "request_id": "c374846e-e981-4cd7-8ee9-b221ab418d22",
+      "query_id": "ingest-slot-2",
+      "mode": "flat",
+      "trial_id": 1,
+      "workload_id": "ch19-source-quality-v1",
+      "corpus_version": "ch19-authored-three-format-v1",
+      "query_set_version": "ch19-eight-source-span-probes-v1",
+      "qrels_version": "ch19-source-span-requirements-v1",
+      "index_version": null,
+      "model_version": null,
+      "timestamp_utc": "2026-10-12T18:38:16.227609+00:00",
+      "status": "accepted",
+      "reason": null,
+      "stage_timings_ms": {
+        "ingest_adapter": 9.648
+      },
+      "raw_candidate_ids": [],
+      "raw_candidate_scores": [],
+      "intermediate_candidate_ids": {},
+      "intermediate_candidate_scores": {},
+      "final_candidate_ids": [],
+      "final_candidate_scores": [],
+      "context_ids": null,
+      "evidence_ids": null,
+      "ivf_probed_lists": null,
+      "timing_boundary": "file read, parsing and canonicalization; trace/output serialization excluded",
+      "operation": "ingestion",
+      "source_id": "S-pdf",
+      "source_version": "1",
+      "source_sha256": "484dbe173935b42ba2456f7d3179d05db2a6257b931ce5996edac217be57b595",
+      "parser_version": "ch19-bounded-adapters-1",
+      "normalization_version": "flat-space-1",
+      "normalized_block_ids": [
+        "S-pdf:b0"
+      ],
+      "normalization_inputs_retained_in": "access-controlled canonical artifact",
+      "published_block_ids": [
+        "S-pdf:b0"
+      ],
+      "dropped_regions": [],
+      "record_digest": "9191b359fd269c9f8883a3313bda17aa8c13f0a022c7487bd23799cddefb13d5",
+      "not_run": [
+        "queue",
+        "OCR",
+        "chunk_design",
+        "embedding",
+        "index_write",
+        "visibility"
+      ]
+    },
+    {
+      "schema_version": "rag-sample-1",
+      "request_id": "1264a377-04aa-42b6-bb81-ea334f0a93b0",
+      "query_id": "ingest-slot-1",
+      "mode": "structured",
+      "trial_id": 1,
+      "workload_id": "ch19-source-quality-v1",
+      "corpus_version": "ch19-authored-three-format-v1",
+      "query_set_version": "ch19-eight-source-span-probes-v1",
+      "qrels_version": "ch19-source-span-requirements-v1",
+      "index_version": null,
+      "model_version": null,
+      "timestamp_utc": "2026-10-12T18:38:16.234654+00:00",
+      "status": "accepted",
+      "reason": null,
+      "stage_timings_ms": {
+        "ingest_adapter": 6.9681
+      },
+      "raw_candidate_ids": [],
+      "raw_candidate_scores": [],
+      "intermediate_candidate_ids": {},
+      "intermediate_candidate_scores": {},
+      "final_candidate_ids": [],
+      "final_candidate_scores": [],
+      "context_ids": null,
+      "evidence_ids": null,
+      "ivf_probed_lists": null,
+      "timing_boundary": "file read, parsing and canonicalization; trace/output serialization excluded",
+      "operation": "ingestion",
+      "source_id": "S-html",
+      "source_version": "1",
+      "source_sha256": "d5951c71da8f258b77748c85afc3c75acc4dc11f56e55c73be56b7c895e1f95e",
+      "parser_version": "ch19-bounded-adapters-1",
+      "normalization_version": "nfc-prose-space-code-preserve-1",
+      "normalized_block_ids": [
+        "S-html:b0",
+        "S-html:b1",
+        "S-html:b2",
+        "S-html:b3",
+        "S-html:b4",
+        "S-html:b5"
+      ],
+      "normalization_inputs_retained_in": "access-controlled canonical artifact",
+      "published_block_ids": [
+        "S-html:b0",
+        "S-html:b1",
+        "S-html:b2",
+        "S-html:b3",
+        "S-html:b4",
+        "S-html:b5"
+      ],
+      "dropped_regions": [
+        {
+          "reason": "excluded_html_region",
+          "locator": {
+            "tag": "head",
+            "line": 1
+          }
+        },
+        {
+          "reason": "excluded_html_region",
+          "locator": {
+            "tag": "nav",
+            "line": 2
+          }
+        },
+        {
+          "reason": "excluded_html_region",
+          "locator": {
+            "tag": "footer",
+            "line": 7
+          }
+        },
+        {
+          "reason": "excluded_html_region",
+          "locator": {
+            "tag": "script",
+            "line": 7
+          }
+        }
+      ],
+      "record_digest": "56a06a18806f97bf89a7e8b167013a725455f23ed06617e1e3fdb3967bf28ac8",
+      "not_run": [
+        "queue",
+        "OCR",
+        "chunk_design",
+        "embedding",
+        "index_write",
+        "visibility"
+      ]
+    },
+    {
+      "schema_version": "rag-sample-1",
+      "request_id": "b4b647b4-eef0-48ce-906e-3fadfe835db8",
+      "query_id": "ingest-slot-8",
+      "mode": "flat",
+      "trial_id": 1,
+      "workload_id": "ch19-source-quality-v1",
+      "corpus_version": "ch19-authored-three-format-v1",
+      "query_set_version": "ch19-eight-source-span-probes-v1",
+      "qrels_version": "ch19-source-span-requirements-v1",
+      "index_version": null,
+      "model_version": null,
+      "timestamp_utc": "2026-10-12T18:38:16.234728+00:00",
+      "status": "blocked",
+      "reason": "ineligible",
+      "stage_timings_ms": {
+        "ingest_adapter": 0.011
+      },
+      "raw_candidate_ids": [],
+      "raw_candidate_scores": [],
+      "intermediate_candidate_ids": {},
+      "intermediate_candidate_scores": {},
+      "final_candidate_ids": [],
+      "final_candidate_scores": [],
+      "context_ids": null,
+      "evidence_ids": null,
+      "ivf_probed_lists": null,
+      "timing_boundary": "file read, parsing and canonicalization; trace/output serialization excluded",
+      "operation": "ingestion",
+      "source_id": null,
+      "source_version": null,
+      "source_sha256": null,
+      "parser_version": "ch19-bounded-adapters-1",
+      "normalization_version": null,
+      "normalized_block_ids": [],
+      "normalization_inputs_retained_in": null,
+      "published_block_ids": [],
+      "dropped_regions": [],
+      "record_digest": null,
+      "not_run": [
+        "queue",
+        "OCR",
+        "chunk_design",
+        "embedding",
+        "index_write",
+        "visibility"
+      ]
+    },
+    {
+      "schema_version": "rag-sample-1",
+      "request_id": "27269cac-ecd6-4413-a269-ed1ce26d573b",
+      "query_id": "ingest-slot-7",
+      "mode": "flat",
+      "trial_id": 2,
+      "workload_id": "ch19-source-quality-v1",
+      "corpus_version": "ch19-authored-three-format-v1",
+      "query_set_version": "ch19-eight-source-span-probes-v1",
+      "qrels_version": "ch19-source-span-requirements-v1",
+      "index_version": null,
+      "model_version": null,
+      "timestamp_utc": "2026-10-12T18:38:16.234765+00:00",
+      "status": "blocked",
+      "reason": "indexing_use_unapproved",
+      "stage_timings_ms": {
+        "ingest_adapter": 0.0057
+      },
+      "raw_candidate_ids": [],
+      "raw_candidate_scores": [],
+      "intermediate_candidate_ids": {},
+      "intermediate_candidate_scores": {},
+      "final_candidate_ids": [],
+      "final_candidate_scores": [],
+      "context_ids": null,
+      "evidence_ids": null,
+      "ivf_probed_lists": null,
+      "timing_boundary": "file read, parsing and canonicalization; trace/output serialization excluded",
+      "operation": "ingestion",
+      "source_id": null,
+      "source_version": null,
+      "source_sha256": null,
+      "parser_version": "ch19-bounded-adapters-1",
+      "normalization_version": null,
+      "normalized_block_ids": [],
+      "normalization_inputs_retained_in": null,
+      "published_block_ids": [],
+      "dropped_regions": [],
+      "record_digest": null,
+      "not_run": [
+        "queue",
+        "OCR",
+        "chunk_design",
+        "embedding",
+        "index_write",
+        "visibility"
+      ]
+    },
+    {
+      "schema_version": "rag-sample-1",
+      "request_id": "500a53d4-2fe8-4976-8d40-281e35f9921a",
+      "query_id": "ingest-slot-6",
+      "mode": "flat",
+      "trial_id": 2,
+      "workload_id": "ch19-source-quality-v1",
+      "corpus_version": "ch19-authored-three-format-v1",
+      "query_set_version": "ch19-eight-source-span-probes-v1",
+      "qrels_version": "ch19-source-span-requirements-v1",
+      "index_version": null,
+      "model_version": null,
+      "timestamp_utc": "2026-10-12T18:38:16.241032+00:00",
+      "status": "accepted",
+      "reason": null,
+      "stage_timings_ms": {
+        "ingest_adapter": 6.2214
+      },
+      "raw_candidate_ids": [],
+      "raw_candidate_scores": [],
+      "intermediate_candidate_ids": {},
+      "intermediate_candidate_scores": {},
+      "final_candidate_ids": [],
+      "final_candidate_scores": [],
+      "context_ids": null,
+      "evidence_ids": null,
+      "ivf_probed_lists": null,
+      "timing_boundary": "file read, parsing and canonicalization; trace/output serialization excluded",
+      "operation": "ingestion",
+      "source_id": "S-merged",
+      "source_version": "1",
+      "source_sha256": "bbfb9baa9ae4f7c911ce899fef62649ac6ee2815018ac24eafa40736169e15d1",
+      "parser_version": "ch19-bounded-adapters-1",
+      "normalization_version": "flat-space-1",
+      "normalized_block_ids": [
+        "S-merged:b0"
+      ],
+      "normalization_inputs_retained_in": "access-controlled canonical artifact",
+      "published_block_ids": [
+        "S-merged:b0"
+      ],
+      "dropped_regions": [],
+      "record_digest": "d953567687500b9af1355d0550775b66d175b3ab600e44a6f4813528abdd394e",
+      "not_run": [
+        "queue",
+        "OCR",
+        "chunk_design",
+        "embedding",
+        "index_write",
+        "visibility"
+      ]
+    },
+    {
+      "schema_version": "rag-sample-1",
+      "request_id": "b0e07ee9-6b0f-4c80-b0c2-16d2019c342f",
+      "query_id": "ingest-slot-3",
+      "mode": "flat",
+      "trial_id": 1,
+      "workload_id": "ch19-source-quality-v1",
+      "corpus_version": "ch19-authored-three-format-v1",
+      "query_set_version": "ch19-eight-source-span-probes-v1",
+      "qrels_version": "ch19-source-span-requirements-v1",
+      "index_version": null,
+      "model_version": null,
+      "timestamp_utc": "2026-10-12T18:38:16.247040+00:00",
+      "status": "accepted",
+      "reason": null,
+      "stage_timings_ms": {
+        "ingest_adapter": 5.9338
+      },
+      "raw_candidate_ids": [],
+      "raw_candidate_scores": [],
+      "intermediate_candidate_ids": {},
+      "intermediate_candidate_scores": {},
+      "final_candidate_ids": [],
+      "final_candidate_scores": [],
+      "context_ids": null,
+      "evidence_ids": null,
+      "ivf_probed_lists": null,
+      "timing_boundary": "file read, parsing and canonicalization; trace/output serialization excluded",
+      "operation": "ingestion",
+      "source_id": "S-copy",
+      "source_version": "1",
+      "source_sha256": "e1fa5508851d2738eaafb3a220446fb86679b0cf250a339f70fb70a43cadaae5",
+      "parser_version": "ch19-bounded-adapters-1",
+      "normalization_version": "flat-space-1",
+      "normalized_block_ids": [
+        "S-copy:b0"
+      ],
+      "normalization_inputs_retained_in": "access-controlled canonical artifact",
+      "published_block_ids": [
+        "S-copy:b0"
+      ],
+      "dropped_regions": [],
+      "record_digest": "3cd79abb3a1ac9a8c8d2ab4bebc72fa7907cd86ba98fc4752b91434a96e4bfb4",
+      "not_run": [
+        "queue",
+        "OCR",
+        "chunk_design",
+        "embedding",
+        "index_write",
+        "visibility"
+      ]
+    },
+    {
+      "schema_version": "rag-sample-1",
+      "request_id": "6894e3df-4349-4855-9aba-c84c462a92de",
+      "query_id": "ingest-slot-7",
+      "mode": "flat",
+      "trial_id": 0,
+      "workload_id": "ch19-source-quality-v1",
+      "corpus_version": "ch19-authored-three-format-v1",
+      "query_set_version": "ch19-eight-source-span-probes-v1",
+      "qrels_version": "ch19-source-span-requirements-v1",
+      "index_version": null,
+      "model_version": null,
+      "timestamp_utc": "2026-10-12T18:38:16.247140+00:00",
+      "status": "blocked",
+      "reason": "indexing_use_unapproved",
+      "stage_timings_ms": {
+        "ingest_adapter": 0.0121
+      },
+      "raw_candidate_ids": [],
+      "raw_candidate_scores": [],
+      "intermediate_candidate_ids": {},
+      "intermediate_candidate_scores": {},
+      "final_candidate_ids": [],
+      "final_candidate_scores": [],
+      "context_ids": null,
+      "evidence_ids": null,
+      "ivf_probed_lists": null,
+      "timing_boundary": "file read, parsing and canonicalization; trace/output serialization excluded",
+      "operation": "ingestion",
+      "source_id": null,
+      "source_version": null,
+      "source_sha256": null,
+      "parser_version": "ch19-bounded-adapters-1",
+      "normalization_version": null,
+      "normalized_block_ids": [],
+      "normalization_inputs_retained_in": null,
+      "published_block_ids": [],
+      "dropped_regions": [],
+      "record_digest": null,
+      "not_run": [
+        "queue",
+        "OCR",
+        "chunk_design",
+        "embedding",
+        "index_write",
+        "visibility"
+      ]
+    },
+    {
+      "schema_version": "rag-sample-1",
+      "request_id": "b579f257-fd82-43cc-854c-06c2e492dcf0",
+      "query_id": "ingest-slot-8",
+      "mode": "flat",
+      "trial_id": 2,
+      "workload_id": "ch19-source-quality-v1",
+      "corpus_version": "ch19-authored-three-format-v1",
+      "query_set_version": "ch19-eight-source-span-probes-v1",
+      "qrels_version": "ch19-source-span-requirements-v1",
+      "index_version": null,
+      "model_version": null,
+      "timestamp_utc": "2026-10-12T18:38:16.247178+00:00",
+      "status": "blocked",
+      "reason": "ineligible",
+      "stage_timings_ms": {
+        "ingest_adapter": 0.0059
+      },
+      "raw_candidate_ids": [],
+      "raw_candidate_scores": [],
+      "intermediate_candidate_ids": {},
+      "intermediate_candidate_scores": {},
+      "final_candidate_ids": [],
+      "final_candidate_scores": [],
+      "context_ids": null,
+      "evidence_ids": null,
+      "ivf_probed_lists": null,
+      "timing_boundary": "file read, parsing and canonicalization; trace/output serialization excluded",
+      "operation": "ingestion",
+      "source_id": null,
+      "source_version": null,
+      "source_sha256": null,
+      "parser_version": "ch19-bounded-adapters-1",
+      "normalization_version": null,
+      "normalized_block_ids": [],
+      "normalization_inputs_retained_in": null,
+      "published_block_ids": [],
+      "dropped_regions": [],
+      "record_digest": null,
+      "not_run": [
+        "queue",
+        "OCR",
+        "chunk_design",
+        "embedding",
+        "index_write",
+        "visibility"
+      ]
+    },
+    {
+      "schema_version": "rag-sample-1",
+      "request_id": "3f0b2cbc-7296-4f85-a252-7ef2c2a50bf8",
+      "query_id": "ingest-slot-6",
+      "mode": "flat",
+      "trial_id": 1,
+      "workload_id": "ch19-source-quality-v1",
+      "corpus_version": "ch19-authored-three-format-v1",
+      "query_set_version": "ch19-eight-source-span-probes-v1",
+      "qrels_version": "ch19-source-span-requirements-v1",
+      "index_version": null,
+      "model_version": null,
+      "timestamp_utc": "2026-10-12T18:38:16.253110+00:00",
+      "status": "accepted",
+      "reason": null,
+      "stage_timings_ms": {
+        "ingest_adapter": 5.8857
+      },
+      "raw_candidate_ids": [],
+      "raw_candidate_scores": [],
+      "intermediate_candidate_ids": {},
+      "intermediate_candidate_scores": {},
+      "final_candidate_ids": [],
+      "final_candidate_scores": [],
+      "context_ids": null,
+      "evidence_ids": null,
+      "ivf_probed_lists": null,
+      "timing_boundary": "file read, parsing and canonicalization; trace/output serialization excluded",
+      "operation": "ingestion",
+      "source_id": "S-merged",
+      "source_version": "1",
+      "source_sha256": "bbfb9baa9ae4f7c911ce899fef62649ac6ee2815018ac24eafa40736169e15d1",
+      "parser_version": "ch19-bounded-adapters-1",
+      "normalization_version": "flat-space-1",
+      "normalized_block_ids": [
+        "S-merged:b0"
+      ],
+      "normalization_inputs_retained_in": "access-controlled canonical artifact",
+      "published_block_ids": [
+        "S-merged:b0"
+      ],
+      "dropped_regions": [],
+      "record_digest": "d953567687500b9af1355d0550775b66d175b3ab600e44a6f4813528abdd394e",
+      "not_run": [
+        "queue",
+        "OCR",
+        "chunk_design",
+        "embedding",
+        "index_write",
+        "visibility"
+      ]
+    },
+    {
+      "schema_version": "rag-sample-1",
+      "request_id": "126f848d-8bdf-4bee-9dbb-76158c47ce10",
+      "query_id": "ingest-slot-7",
+      "mode": "flat",
+      "trial_id": 1,
+      "workload_id": "ch19-source-quality-v1",
+      "corpus_version": "ch19-authored-three-format-v1",
+      "query_set_version": "ch19-eight-source-span-probes-v1",
+      "qrels_version": "ch19-source-span-requirements-v1",
+      "index_version": null,
+      "model_version": null,
+      "timestamp_utc": "2026-10-12T18:38:16.253175+00:00",
+      "status": "blocked",
+      "reason": "indexing_use_unapproved",
+      "stage_timings_ms": {
+        "ingest_adapter": 0.0106
+      },
+      "raw_candidate_ids": [],
+      "raw_candidate_scores": [],
+      "intermediate_candidate_ids": {},
+      "intermediate_candidate_scores": {},
+      "final_candidate_ids": [],
+      "final_candidate_scores": [],
+      "context_ids": null,
+      "evidence_ids": null,
+      "ivf_probed_lists": null,
+      "timing_boundary": "file read, parsing and canonicalization; trace/output serialization excluded",
+      "operation": "ingestion",
+      "source_id": null,
+      "source_version": null,
+      "source_sha256": null,
+      "parser_version": "ch19-bounded-adapters-1",
+      "normalization_version": null,
+      "normalized_block_ids": [],
+      "normalization_inputs_retained_in": null,
+      "published_block_ids": [],
+      "dropped_regions": [],
+      "record_digest": null,
+      "not_run": [
+        "queue",
+        "OCR",
+        "chunk_design",
+        "embedding",
+        "index_write",
+        "visibility"
+      ]
+    },
+    {
+      "schema_version": "rag-sample-1",
+      "request_id": "9707c44a-e9e2-4777-a8f7-705300522962",
+      "query_id": "ingest-slot-6",
+      "mode": "flat",
+      "trial_id": 0,
+      "workload_id": "ch19-source-quality-v1",
+      "corpus_version": "ch19-authored-three-format-v1",
+      "query_set_version": "ch19-eight-source-span-probes-v1",
+      "qrels_version": "ch19-source-span-requirements-v1",
+      "index_version": null,
+      "model_version": null,
+      "timestamp_utc": "2026-10-12T18:38:16.259017+00:00",
+      "status": "accepted",
+      "reason": null,
+      "stage_timings_ms": {
+        "ingest_adapter": 5.7954
+      },
+      "raw_candidate_ids": [],
+      "raw_candidate_scores": [],
+      "intermediate_candidate_ids": {},
+      "intermediate_candidate_scores": {},
+      "final_candidate_ids": [],
+      "final_candidate_scores": [],
+      "context_ids": null,
+      "evidence_ids": null,
+      "ivf_probed_lists": null,
+      "timing_boundary": "file read, parsing and canonicalization; trace/output serialization excluded",
+      "operation": "ingestion",
+      "source_id": "S-merged",
+      "source_version": "1",
+      "source_sha256": "bbfb9baa9ae4f7c911ce899fef62649ac6ee2815018ac24eafa40736169e15d1",
+      "parser_version": "ch19-bounded-adapters-1",
+      "normalization_version": "flat-space-1",
+      "normalized_block_ids": [
+        "S-merged:b0"
+      ],
+      "normalization_inputs_retained_in": "access-controlled canonical artifact",
+      "published_block_ids": [
+        "S-merged:b0"
+      ],
+      "dropped_regions": [],
+      "record_digest": "d953567687500b9af1355d0550775b66d175b3ab600e44a6f4813528abdd394e",
+      "not_run": [
+        "queue",
+        "OCR",
+        "chunk_design",
+        "embedding",
+        "index_write",
+        "visibility"
+      ]
+    },
+    {
+      "schema_version": "rag-sample-1",
+      "request_id": "81445f76-b56e-43cc-8aee-7d8b68883f29",
+      "query_id": "ingest-slot-5",
+      "mode": "structured",
+      "trial_id": 0,
+      "workload_id": "ch19-source-quality-v1",
+      "corpus_version": "ch19-authored-three-format-v1",
+      "query_set_version": "ch19-eight-source-span-probes-v1",
+      "qrels_version": "ch19-source-span-requirements-v1",
+      "index_version": null,
+      "model_version": null,
+      "timestamp_utc": "2026-10-12T18:38:16.264112+00:00",
+      "status": "quarantined",
+      "reason": "invalid_utf8",
+      "stage_timings_ms": {
+        "ingest_adapter": 5.0275
+      },
+      "raw_candidate_ids": [],
+      "raw_candidate_scores": [],
+      "intermediate_candidate_ids": {},
+      "intermediate_candidate_scores": {},
+      "final_candidate_ids": [],
+      "final_candidate_scores": [],
+      "context_ids": null,
+      "evidence_ids": null,
+      "ivf_probed_lists": null,
+      "timing_boundary": "file read, parsing and canonicalization; trace/output serialization excluded",
+      "operation": "ingestion",
+      "source_id": "S-bad",
+      "source_version": "1",
+      "source_sha256": "8f269e1da3f3de786a9a3f7ef3886b62f41bcc48705d9562a51eff978373eb9e",
+      "parser_version": "ch19-bounded-adapters-1",
+      "normalization_version": null,
+      "normalized_block_ids": [],
+      "normalization_inputs_retained_in": null,
+      "published_block_ids": [],
+      "dropped_regions": [],
+      "record_digest": null,
+      "not_run": [
+        "queue",
+        "OCR",
+        "chunk_design",
+        "embedding",
+        "index_write",
+        "visibility"
+      ]
+    },
+    {
+      "schema_version": "rag-sample-1",
+      "request_id": "5de7e31a-8411-4984-9e28-fa93ad403387",
+      "query_id": "ingest-slot-4",
+      "mode": "structured",
+      "trial_id": 2,
+      "workload_id": "ch19-source-quality-v1",
+      "corpus_version": "ch19-authored-three-format-v1",
+      "query_set_version": "ch19-eight-source-span-probes-v1",
+      "qrels_version": "ch19-source-span-requirements-v1",
+      "index_version": null,
+      "model_version": null,
+      "timestamp_utc": "2026-10-12T18:38:16.270536+00:00",
+      "status": "quarantined",
+      "reason": "native_text_absent_requires_ocr_review",
+      "stage_timings_ms": {
+        "ingest_adapter": 6.3563
+      },
+      "raw_candidate_ids": [],
+      "raw_candidate_scores": [],
+      "intermediate_candidate_ids": {},
+      "intermediate_candidate_scores": {},
+      "final_candidate_ids": [],
+      "final_candidate_scores": [],
+      "context_ids": null,
+      "evidence_ids": null,
+      "ivf_probed_lists": null,
+      "timing_boundary": "file read, parsing and canonicalization; trace/output serialization excluded",
+      "operation": "ingestion",
+      "source_id": "S-scan",
+      "source_version": "1",
+      "source_sha256": "66faa0ca8ff189d8fb47cc7fb747275aed1dd047373883f4bf53cea2732a4f15",
+      "parser_version": "ch19-bounded-adapters-1",
+      "normalization_version": null,
+      "normalized_block_ids": [],
+      "normalization_inputs_retained_in": null,
+      "published_block_ids": [],
+      "dropped_regions": [],
+      "record_digest": null,
+      "not_run": [
+        "queue",
+        "OCR",
+        "chunk_design",
+        "embedding",
+        "index_write",
+        "visibility"
+      ]
+    },
+    {
+      "schema_version": "rag-sample-1",
+      "request_id": "91538c8f-1f36-4497-a756-3bca5011c92d",
+      "query_id": "ingest-slot-4",
+      "mode": "flat",
+      "trial_id": 2,
+      "workload_id": "ch19-source-quality-v1",
+      "corpus_version": "ch19-authored-three-format-v1",
+      "query_set_version": "ch19-eight-source-span-probes-v1",
+      "qrels_version": "ch19-source-span-requirements-v1",
+      "index_version": null,
+      "model_version": null,
+      "timestamp_utc": "2026-10-12T18:38:16.276399+00:00",
+      "status": "quarantined",
+      "reason": "native_text_absent_requires_ocr_review",
+      "stage_timings_ms": {
+        "ingest_adapter": 5.7978
+      },
+      "raw_candidate_ids": [],
+      "raw_candidate_scores": [],
+      "intermediate_candidate_ids": {},
+      "intermediate_candidate_scores": {},
+      "final_candidate_ids": [],
+      "final_candidate_scores": [],
+      "context_ids": null,
+      "evidence_ids": null,
+      "ivf_probed_lists": null,
+      "timing_boundary": "file read, parsing and canonicalization; trace/output serialization excluded",
+      "operation": "ingestion",
+      "source_id": "S-scan",
+      "source_version": "1",
+      "source_sha256": "66faa0ca8ff189d8fb47cc7fb747275aed1dd047373883f4bf53cea2732a4f15",
+      "parser_version": "ch19-bounded-adapters-1",
+      "normalization_version": null,
+      "normalized_block_ids": [],
+      "normalization_inputs_retained_in": null,
+      "published_block_ids": [],
+      "dropped_regions": [],
+      "record_digest": null,
+      "not_run": [
+        "queue",
+        "OCR",
+        "chunk_design",
+        "embedding",
+        "index_write",
+        "visibility"
+      ]
+    },
+    {
+      "schema_version": "rag-sample-1",
+      "request_id": "730da0ce-cc83-40d7-ac79-2c82c5b56566",
+      "query_id": "ingest-slot-5",
+      "mode": "structured",
+      "trial_id": 2,
+      "workload_id": "ch19-source-quality-v1",
+      "corpus_version": "ch19-authored-three-format-v1",
+      "query_set_version": "ch19-eight-source-span-probes-v1",
+      "qrels_version": "ch19-source-span-requirements-v1",
+      "index_version": null,
+      "model_version": null,
+      "timestamp_utc": "2026-10-12T18:38:16.281580+00:00",
+      "status": "quarantined",
+      "reason": "invalid_utf8",
+      "stage_timings_ms": {
+        "ingest_adapter": 5.1164
+      },
+      "raw_candidate_ids": [],
+      "raw_candidate_scores": [],
+      "intermediate_candidate_ids": {},
+      "intermediate_candidate_scores": {},
+      "final_candidate_ids": [],
+      "final_candidate_scores": [],
+      "context_ids": null,
+      "evidence_ids": null,
+      "ivf_probed_lists": null,
+      "timing_boundary": "file read, parsing and canonicalization; trace/output serialization excluded",
+      "operation": "ingestion",
+      "source_id": "S-bad",
+      "source_version": "1",
+      "source_sha256": "8f269e1da3f3de786a9a3f7ef3886b62f41bcc48705d9562a51eff978373eb9e",
+      "parser_version": "ch19-bounded-adapters-1",
+      "normalization_version": null,
+      "normalized_block_ids": [],
+      "normalization_inputs_retained_in": null,
+      "published_block_ids": [],
+      "dropped_regions": [],
+      "record_digest": null,
+      "not_run": [
+        "queue",
+        "OCR",
+        "chunk_design",
+        "embedding",
+        "index_write",
+        "visibility"
+      ]
+    },
+    {
+      "schema_version": "rag-sample-1",
+      "request_id": "e2d56bb7-5d6d-48d2-9f1f-2807ee382b39",
+      "query_id": "ingest-slot-0",
+      "mode": "structured",
+      "trial_id": 0,
+      "workload_id": "ch19-source-quality-v1",
+      "corpus_version": "ch19-authored-three-format-v1",
+      "query_set_version": "ch19-eight-source-span-probes-v1",
+      "qrels_version": "ch19-source-span-requirements-v1",
+      "index_version": null,
+      "model_version": null,
+      "timestamp_utc": "2026-10-12T18:38:16.286977+00:00",
+      "status": "accepted",
+      "reason": null,
+      "stage_timings_ms": {
+        "ingest_adapter": 5.3326
+      },
+      "raw_candidate_ids": [],
+      "raw_candidate_scores": [],
+      "intermediate_candidate_ids": {},
+      "intermediate_candidate_scores": {},
+      "final_candidate_ids": [],
+      "final_candidate_scores": [],
+      "context_ids": null,
+      "evidence_ids": null,
+      "ivf_probed_lists": null,
+      "timing_boundary": "file read, parsing and canonicalization; trace/output serialization excluded",
+      "operation": "ingestion",
+      "source_id": "S-md",
+      "source_version": "1",
+      "source_sha256": "e1fa5508851d2738eaafb3a220446fb86679b0cf250a339f70fb70a43cadaae5",
+      "parser_version": "ch19-bounded-adapters-1",
+      "normalization_version": "nfc-prose-space-code-preserve-1",
+      "normalized_block_ids": [
+        "S-md:b0",
+        "S-md:b1",
+        "S-md:b2",
+        "S-md:b3",
+        "S-md:b4"
+      ],
+      "normalization_inputs_retained_in": "access-controlled canonical artifact",
+      "published_block_ids": [
+        "S-md:b0",
+        "S-md:b1",
+        "S-md:b2",
+        "S-md:b3",
+        "S-md:b4"
+      ],
+      "dropped_regions": [],
+      "record_digest": "19ed6cf63de381557af6a2710dd847ae28d2b8c7bf057a2a2e9980b63277cb62",
+      "not_run": [
+        "queue",
+        "OCR",
+        "chunk_design",
+        "embedding",
+        "index_write",
+        "visibility"
+      ]
+    },
+    {
+      "schema_version": "rag-sample-1",
+      "request_id": "fe89d46f-7280-455f-bf56-79fa18321982",
+      "query_id": "ingest-slot-6",
+      "mode": "structured",
+      "trial_id": 1,
+      "workload_id": "ch19-source-quality-v1",
+      "corpus_version": "ch19-authored-three-format-v1",
+      "query_set_version": "ch19-eight-source-span-probes-v1",
+      "qrels_version": "ch19-source-span-requirements-v1",
+      "index_version": null,
+      "model_version": null,
+      "timestamp_utc": "2026-10-12T18:38:16.291800+00:00",
+      "status": "quarantined",
+      "reason": "ambiguous_table_geometry",
+      "stage_timings_ms": {
+        "ingest_adapter": 4.7556
+      },
+      "raw_candidate_ids": [],
+      "raw_candidate_scores": [],
+      "intermediate_candidate_ids": {},
+      "intermediate_candidate_scores": {},
+      "final_candidate_ids": [],
+      "final_candidate_scores": [],
+      "context_ids": null,
+      "evidence_ids": null,
+      "ivf_probed_lists": null,
+      "timing_boundary": "file read, parsing and canonicalization; trace/output serialization excluded",
+      "operation": "ingestion",
+      "source_id": "S-merged",
+      "source_version": "1",
+      "source_sha256": "bbfb9baa9ae4f7c911ce899fef62649ac6ee2815018ac24eafa40736169e15d1",
+      "parser_version": "ch19-bounded-adapters-1",
+      "normalization_version": null,
+      "normalized_block_ids": [],
+      "normalization_inputs_retained_in": null,
+      "published_block_ids": [],
+      "dropped_regions": [],
+      "record_digest": null,
+      "not_run": [
+        "queue",
+        "OCR",
+        "chunk_design",
+        "embedding",
+        "index_write",
+        "visibility"
+      ]
+    },
+    {
+      "schema_version": "rag-sample-1",
+      "request_id": "721061e6-0f5e-45f8-b817-839e956210fc",
+      "query_id": "ingest-slot-6",
+      "mode": "structured",
+      "trial_id": 2,
+      "workload_id": "ch19-source-quality-v1",
+      "corpus_version": "ch19-authored-three-format-v1",
+      "query_set_version": "ch19-eight-source-span-probes-v1",
+      "qrels_version": "ch19-source-span-requirements-v1",
+      "index_version": null,
+      "model_version": null,
+      "timestamp_utc": "2026-10-12T18:38:16.297377+00:00",
+      "status": "quarantined",
+      "reason": "ambiguous_table_geometry",
+      "stage_timings_ms": {
+        "ingest_adapter": 5.5131
+      },
+      "raw_candidate_ids": [],
+      "raw_candidate_scores": [],
+      "intermediate_candidate_ids": {},
+      "intermediate_candidate_scores": {},
+      "final_candidate_ids": [],
+      "final_candidate_scores": [],
+      "context_ids": null,
+      "evidence_ids": null,
+      "ivf_probed_lists": null,
+      "timing_boundary": "file read, parsing and canonicalization; trace/output serialization excluded",
+      "operation": "ingestion",
+      "source_id": "S-merged",
+      "source_version": "1",
+      "source_sha256": "bbfb9baa9ae4f7c911ce899fef62649ac6ee2815018ac24eafa40736169e15d1",
+      "parser_version": "ch19-bounded-adapters-1",
+      "normalization_version": null,
+      "normalized_block_ids": [],
+      "normalization_inputs_retained_in": null,
+      "published_block_ids": [],
+      "dropped_regions": [],
+      "record_digest": null,
+      "not_run": [
+        "queue",
+        "OCR",
+        "chunk_design",
+        "embedding",
+        "index_write",
+        "visibility"
+      ]
+    },
+    {
+      "schema_version": "rag-sample-1",
+      "request_id": "2de97742-7ba5-4ba1-b9e0-2a09c46265ca",
+      "query_id": "ingest-slot-4",
+      "mode": "structured",
+      "trial_id": 0,
+      "workload_id": "ch19-source-quality-v1",
+      "corpus_version": "ch19-authored-three-format-v1",
+      "query_set_version": "ch19-eight-source-span-probes-v1",
+      "qrels_version": "ch19-source-span-requirements-v1",
+      "index_version": null,
+      "model_version": null,
+      "timestamp_utc": "2026-10-12T18:38:16.304319+00:00",
+      "status": "quarantined",
+      "reason": "native_text_absent_requires_ocr_review",
+      "stage_timings_ms": {
+        "ingest_adapter": 6.8692
+      },
+      "raw_candidate_ids": [],
+      "raw_candidate_scores": [],
+      "intermediate_candidate_ids": {},
+      "intermediate_candidate_scores": {},
+      "final_candidate_ids": [],
+      "final_candidate_scores": [],
+      "context_ids": null,
+      "evidence_ids": null,
+      "ivf_probed_lists": null,
+      "timing_boundary": "file read, parsing and canonicalization; trace/output serialization excluded",
+      "operation": "ingestion",
+      "source_id": "S-scan",
+      "source_version": "1",
+      "source_sha256": "66faa0ca8ff189d8fb47cc7fb747275aed1dd047373883f4bf53cea2732a4f15",
+      "parser_version": "ch19-bounded-adapters-1",
+      "normalization_version": null,
+      "normalized_block_ids": [],
+      "normalization_inputs_retained_in": null,
+      "published_block_ids": [],
+      "dropped_regions": [],
+      "record_digest": null,
+      "not_run": [
+        "queue",
+        "OCR",
+        "chunk_design",
+        "embedding",
+        "index_write",
+        "visibility"
+      ]
+    },
+    {
+      "schema_version": "rag-sample-1",
+      "request_id": "733df650-b16c-4947-87f5-14c39d5af90c",
+      "query_id": "ingest-slot-0",
+      "mode": "flat",
+      "trial_id": 1,
+      "workload_id": "ch19-source-quality-v1",
+      "corpus_version": "ch19-authored-three-format-v1",
+      "query_set_version": "ch19-eight-source-span-probes-v1",
+      "qrels_version": "ch19-source-span-requirements-v1",
+      "index_version": null,
+      "model_version": null,
+      "timestamp_utc": "2026-10-12T18:38:16.309643+00:00",
+      "status": "accepted",
+      "reason": null,
+      "stage_timings_ms": {
+        "ingest_adapter": 5.2547
+      },
+      "raw_candidate_ids": [],
+      "raw_candidate_scores": [],
+      "intermediate_candidate_ids": {},
+      "intermediate_candidate_scores": {},
+      "final_candidate_ids": [],
+      "final_candidate_scores": [],
+      "context_ids": null,
+      "evidence_ids": null,
+      "ivf_probed_lists": null,
+      "timing_boundary": "file read, parsing and canonicalization; trace/output serialization excluded",
+      "operation": "ingestion",
+      "source_id": "S-md",
+      "source_version": "1",
+      "source_sha256": "e1fa5508851d2738eaafb3a220446fb86679b0cf250a339f70fb70a43cadaae5",
+      "parser_version": "ch19-bounded-adapters-1",
+      "normalization_version": "flat-space-1",
+      "normalized_block_ids": [
+        "S-md:b0"
+      ],
+      "normalization_inputs_retained_in": "access-controlled canonical artifact",
+      "published_block_ids": [
+        "S-md:b0"
+      ],
+      "dropped_regions": [],
+      "record_digest": "20a30b2ab1b43380cccbc3857b7bc27e84d11a9b8fa7c06e79d84e2816b580e0",
+      "not_run": [
+        "queue",
+        "OCR",
+        "chunk_design",
+        "embedding",
+        "index_write",
+        "visibility"
+      ]
+    },
+    {
+      "schema_version": "rag-sample-1",
+      "request_id": "98d5bab2-f98e-46c4-9156-11350030b865",
+      "query_id": "ingest-slot-7",
+      "mode": "structured",
+      "trial_id": 2,
+      "workload_id": "ch19-source-quality-v1",
+      "corpus_version": "ch19-authored-three-format-v1",
+      "query_set_version": "ch19-eight-source-span-probes-v1",
+      "qrels_version": "ch19-source-span-requirements-v1",
+      "index_version": null,
+      "model_version": null,
+      "timestamp_utc": "2026-10-12T18:38:16.309705+00:00",
+      "status": "blocked",
+      "reason": "indexing_use_unapproved",
+      "stage_timings_ms": {
+        "ingest_adapter": 0.0102
+      },
+      "raw_candidate_ids": [],
+      "raw_candidate_scores": [],
+      "intermediate_candidate_ids": {},
+      "intermediate_candidate_scores": {},
+      "final_candidate_ids": [],
+      "final_candidate_scores": [],
+      "context_ids": null,
+      "evidence_ids": null,
+      "ivf_probed_lists": null,
+      "timing_boundary": "file read, parsing and canonicalization; trace/output serialization excluded",
+      "operation": "ingestion",
+      "source_id": null,
+      "source_version": null,
+      "source_sha256": null,
+      "parser_version": "ch19-bounded-adapters-1",
+      "normalization_version": null,
+      "normalized_block_ids": [],
+      "normalization_inputs_retained_in": null,
+      "published_block_ids": [],
+      "dropped_regions": [],
+      "record_digest": null,
+      "not_run": [
+        "queue",
+        "OCR",
+        "chunk_design",
+        "embedding",
+        "index_write",
+        "visibility"
+      ]
+    },
+    {
+      "schema_version": "rag-sample-1",
+      "request_id": "e016ca96-3432-400e-8af4-f88036b817b9",
+      "query_id": "ingest-slot-1",
+      "mode": "flat",
+      "trial_id": 0,
+      "workload_id": "ch19-source-quality-v1",
+      "corpus_version": "ch19-authored-three-format-v1",
+      "query_set_version": "ch19-eight-source-span-probes-v1",
+      "qrels_version": "ch19-source-span-requirements-v1",
+      "index_version": null,
+      "model_version": null,
+      "timestamp_utc": "2026-10-12T18:38:16.315133+00:00",
+      "status": "accepted",
+      "reason": null,
+      "stage_timings_ms": {
+        "ingest_adapter": 5.3609
+      },
+      "raw_candidate_ids": [],
+      "raw_candidate_scores": [],
+      "intermediate_candidate_ids": {},
+      "intermediate_candidate_scores": {},
+      "final_candidate_ids": [],
+      "final_candidate_scores": [],
+      "context_ids": null,
+      "evidence_ids": null,
+      "ivf_probed_lists": null,
+      "timing_boundary": "file read, parsing and canonicalization; trace/output serialization excluded",
+      "operation": "ingestion",
+      "source_id": "S-html",
+      "source_version": "1",
+      "source_sha256": "d5951c71da8f258b77748c85afc3c75acc4dc11f56e55c73be56b7c895e1f95e",
+      "parser_version": "ch19-bounded-adapters-1",
+      "normalization_version": "flat-space-1",
+      "normalized_block_ids": [
+        "S-html:b0"
+      ],
+      "normalization_inputs_retained_in": "access-controlled canonical artifact",
+      "published_block_ids": [
+        "S-html:b0"
+      ],
+      "dropped_regions": [],
+      "record_digest": "128a386d2b9b710c9247171ac721168c1584e65163ffceaa5ff93126d410a4ca",
+      "not_run": [
+        "queue",
+        "OCR",
+        "chunk_design",
+        "embedding",
+        "index_write",
+        "visibility"
+      ]
+    },
+    {
+      "schema_version": "rag-sample-1",
+      "request_id": "2ddf1215-68b7-4957-9da9-5dc0bb81a688",
+      "query_id": "ingest-slot-3",
+      "mode": "structured",
+      "trial_id": 0,
+      "workload_id": "ch19-source-quality-v1",
+      "corpus_version": "ch19-authored-three-format-v1",
+      "query_set_version": "ch19-eight-source-span-probes-v1",
+      "qrels_version": "ch19-source-span-requirements-v1",
+      "index_version": null,
+      "model_version": null,
+      "timestamp_utc": "2026-10-12T18:38:16.321050+00:00",
+      "status": "accepted",
+      "reason": null,
+      "stage_timings_ms": {
+        "ingest_adapter": 5.8256
+      },
+      "raw_candidate_ids": [],
+      "raw_candidate_scores": [],
+      "intermediate_candidate_ids": {},
+      "intermediate_candidate_scores": {},
+      "final_candidate_ids": [],
+      "final_candidate_scores": [],
+      "context_ids": null,
+      "evidence_ids": null,
+      "ivf_probed_lists": null,
+      "timing_boundary": "file read, parsing and canonicalization; trace/output serialization excluded",
+      "operation": "ingestion",
+      "source_id": "S-copy",
+      "source_version": "1",
+      "source_sha256": "e1fa5508851d2738eaafb3a220446fb86679b0cf250a339f70fb70a43cadaae5",
+      "parser_version": "ch19-bounded-adapters-1",
+      "normalization_version": "nfc-prose-space-code-preserve-1",
+      "normalized_block_ids": [
+        "S-copy:b0",
+        "S-copy:b1",
+        "S-copy:b2",
+        "S-copy:b3",
+        "S-copy:b4"
+      ],
+      "normalization_inputs_retained_in": "access-controlled canonical artifact",
+      "published_block_ids": [
+        "S-copy:b0",
+        "S-copy:b1",
+        "S-copy:b2",
+        "S-copy:b3",
+        "S-copy:b4"
+      ],
+      "dropped_regions": [],
+      "record_digest": "0726de38ae74c8e448af52742e417d375a156fea6fe19bd0eca34de12e0180bf",
+      "not_run": [
+        "queue",
+        "OCR",
+        "chunk_design",
+        "embedding",
+        "index_write",
+        "visibility"
+      ]
+    },
+    {
+      "schema_version": "rag-sample-1",
+      "request_id": "395d456a-04fa-4dd0-b1be-38a14e863059",
+      "query_id": "ingest-slot-8",
+      "mode": "structured",
+      "trial_id": 0,
+      "workload_id": "ch19-source-quality-v1",
+      "corpus_version": "ch19-authored-three-format-v1",
+      "query_set_version": "ch19-eight-source-span-probes-v1",
+      "qrels_version": "ch19-source-span-requirements-v1",
+      "index_version": null,
+      "model_version": null,
+      "timestamp_utc": "2026-10-12T18:38:16.321106+00:00",
+      "status": "blocked",
+      "reason": "ineligible",
+      "stage_timings_ms": {
+        "ingest_adapter": 0.009
+      },
+      "raw_candidate_ids": [],
+      "raw_candidate_scores": [],
+      "intermediate_candidate_ids": {},
+      "intermediate_candidate_scores": {},
+      "final_candidate_ids": [],
+      "final_candidate_scores": [],
+      "context_ids": null,
+      "evidence_ids": null,
+      "ivf_probed_lists": null,
+      "timing_boundary": "file read, parsing and canonicalization; trace/output serialization excluded",
+      "operation": "ingestion",
+      "source_id": null,
+      "source_version": null,
+      "source_sha256": null,
+      "parser_version": "ch19-bounded-adapters-1",
+      "normalization_version": null,
+      "normalized_block_ids": [],
+      "normalization_inputs_retained_in": null,
+      "published_block_ids": [],
+      "dropped_regions": [],
+      "record_digest": null,
+      "not_run": [
+        "queue",
+        "OCR",
+        "chunk_design",
+        "embedding",
+        "index_write",
+        "visibility"
+      ]
+    },
+    {
+      "schema_version": "rag-sample-1",
+      "request_id": "13f8db86-f8a8-4213-9dc2-2de86b2895c1",
+      "query_id": "ingest-slot-3",
+      "mode": "structured",
+      "trial_id": 1,
+      "workload_id": "ch19-source-quality-v1",
+      "corpus_version": "ch19-authored-three-format-v1",
+      "query_set_version": "ch19-eight-source-span-probes-v1",
+      "qrels_version": "ch19-source-span-requirements-v1",
+      "index_version": null,
+      "model_version": null,
+      "timestamp_utc": "2026-10-12T18:38:16.326454+00:00",
+      "status": "accepted",
+      "reason": null,
+      "stage_timings_ms": {
+        "ingest_adapter": 5.3068
+      },
+      "raw_candidate_ids": [],
+      "raw_candidate_scores": [],
+      "intermediate_candidate_ids": {},
+      "intermediate_candidate_scores": {},
+      "final_candidate_ids": [],
+      "final_candidate_scores": [],
+      "context_ids": null,
+      "evidence_ids": null,
+      "ivf_probed_lists": null,
+      "timing_boundary": "file read, parsing and canonicalization; trace/output serialization excluded",
+      "operation": "ingestion",
+      "source_id": "S-copy",
+      "source_version": "1",
+      "source_sha256": "e1fa5508851d2738eaafb3a220446fb86679b0cf250a339f70fb70a43cadaae5",
+      "parser_version": "ch19-bounded-adapters-1",
+      "normalization_version": "nfc-prose-space-code-preserve-1",
+      "normalized_block_ids": [
+        "S-copy:b0",
+        "S-copy:b1",
+        "S-copy:b2",
+        "S-copy:b3",
+        "S-copy:b4"
+      ],
+      "normalization_inputs_retained_in": "access-controlled canonical artifact",
+      "published_block_ids": [
+        "S-copy:b0",
+        "S-copy:b1",
+        "S-copy:b2",
+        "S-copy:b3",
+        "S-copy:b4"
+      ],
+      "dropped_regions": [],
+      "record_digest": "0726de38ae74c8e448af52742e417d375a156fea6fe19bd0eca34de12e0180bf",
+      "not_run": [
+        "queue",
+        "OCR",
+        "chunk_design",
+        "embedding",
+        "index_write",
+        "visibility"
+      ]
+    },
+    {
+      "schema_version": "rag-sample-1",
+      "request_id": "8bd315df-d9cc-424e-9a65-1682b6c642ec",
+      "query_id": "ingest-slot-1",
+      "mode": "flat",
+      "trial_id": 1,
+      "workload_id": "ch19-source-quality-v1",
+      "corpus_version": "ch19-authored-three-format-v1",
+      "query_set_version": "ch19-eight-source-span-probes-v1",
+      "qrels_version": "ch19-source-span-requirements-v1",
+      "index_version": null,
+      "model_version": null,
+      "timestamp_utc": "2026-10-12T18:38:16.332698+00:00",
+      "status": "accepted",
+      "reason": null,
+      "stage_timings_ms": {
+        "ingest_adapter": 6.176
+      },
+      "raw_candidate_ids": [],
+      "raw_candidate_scores": [],
+      "intermediate_candidate_ids": {},
+      "intermediate_candidate_scores": {},
+      "final_candidate_ids": [],
+      "final_candidate_scores": [],
+      "context_ids": null,
+      "evidence_ids": null,
+      "ivf_probed_lists": null,
+      "timing_boundary": "file read, parsing and canonicalization; trace/output serialization excluded",
+      "operation": "ingestion",
+      "source_id": "S-html",
+      "source_version": "1",
+      "source_sha256": "d5951c71da8f258b77748c85afc3c75acc4dc11f56e55c73be56b7c895e1f95e",
+      "parser_version": "ch19-bounded-adapters-1",
+      "normalization_version": "flat-space-1",
+      "normalized_block_ids": [
+        "S-html:b0"
+      ],
+      "normalization_inputs_retained_in": "access-controlled canonical artifact",
+      "published_block_ids": [
+        "S-html:b0"
+      ],
+      "dropped_regions": [],
+      "record_digest": "128a386d2b9b710c9247171ac721168c1584e65163ffceaa5ff93126d410a4ca",
+      "not_run": [
+        "queue",
+        "OCR",
+        "chunk_design",
+        "embedding",
+        "index_write",
+        "visibility"
+      ]
+    },
+    {
+      "schema_version": "rag-sample-1",
+      "request_id": "f441b471-fda0-47b6-a38f-3ef39a07f64f",
+      "query_id": "ingest-slot-5",
+      "mode": "flat",
+      "trial_id": 1,
+      "workload_id": "ch19-source-quality-v1",
+      "corpus_version": "ch19-authored-three-format-v1",
+      "query_set_version": "ch19-eight-source-span-probes-v1",
+      "qrels_version": "ch19-source-span-requirements-v1",
+      "index_version": null,
+      "model_version": null,
+      "timestamp_utc": "2026-10-12T18:38:16.338061+00:00",
+      "status": "quarantined",
+      "reason": "invalid_utf8",
+      "stage_timings_ms": {
+        "ingest_adapter": 5.2684
+      },
+      "raw_candidate_ids": [],
+      "raw_candidate_scores": [],
+      "intermediate_candidate_ids": {},
+      "intermediate_candidate_scores": {},
+      "final_candidate_ids": [],
+      "final_candidate_scores": [],
+      "context_ids": null,
+      "evidence_ids": null,
+      "ivf_probed_lists": null,
+      "timing_boundary": "file read, parsing and canonicalization; trace/output serialization excluded",
+      "operation": "ingestion",
+      "source_id": "S-bad",
+      "source_version": "1",
+      "source_sha256": "8f269e1da3f3de786a9a3f7ef3886b62f41bcc48705d9562a51eff978373eb9e",
+      "parser_version": "ch19-bounded-adapters-1",
+      "normalization_version": null,
+      "normalized_block_ids": [],
+      "normalization_inputs_retained_in": null,
+      "published_block_ids": [],
+      "dropped_regions": [],
+      "record_digest": null,
+      "not_run": [
+        "queue",
+        "OCR",
+        "chunk_design",
+        "embedding",
+        "index_write",
+        "visibility"
+      ]
+    },
+    {
+      "schema_version": "rag-sample-1",
+      "request_id": "aa748af3-02b8-4bc8-9f7f-be33709279df",
+      "query_id": "ingest-slot-3",
+      "mode": "structured",
+      "trial_id": 2,
+      "workload_id": "ch19-source-quality-v1",
+      "corpus_version": "ch19-authored-three-format-v1",
+      "query_set_version": "ch19-eight-source-span-probes-v1",
+      "qrels_version": "ch19-source-span-requirements-v1",
+      "index_version": null,
+      "model_version": null,
+      "timestamp_utc": "2026-10-12T18:38:16.344436+00:00",
+      "status": "accepted",
+      "reason": null,
+      "stage_timings_ms": {
+        "ingest_adapter": 6.2907
+      },
+      "raw_candidate_ids": [],
+      "raw_candidate_scores": [],
+      "intermediate_candidate_ids": {},
+      "intermediate_candidate_scores": {},
+      "final_candidate_ids": [],
+      "final_candidate_scores": [],
+      "context_ids": null,
+      "evidence_ids": null,
+      "ivf_probed_lists": null,
+      "timing_boundary": "file read, parsing and canonicalization; trace/output serialization excluded",
+      "operation": "ingestion",
+      "source_id": "S-copy",
+      "source_version": "1",
+      "source_sha256": "e1fa5508851d2738eaafb3a220446fb86679b0cf250a339f70fb70a43cadaae5",
+      "parser_version": "ch19-bounded-adapters-1",
+      "normalization_version": "nfc-prose-space-code-preserve-1",
+      "normalized_block_ids": [
+        "S-copy:b0",
+        "S-copy:b1",
+        "S-copy:b2",
+        "S-copy:b3",
+        "S-copy:b4"
+      ],
+      "normalization_inputs_retained_in": "access-controlled canonical artifact",
+      "published_block_ids": [
+        "S-copy:b0",
+        "S-copy:b1",
+        "S-copy:b2",
+        "S-copy:b3",
+        "S-copy:b4"
+      ],
+      "dropped_regions": [],
+      "record_digest": "0726de38ae74c8e448af52742e417d375a156fea6fe19bd0eca34de12e0180bf",
+      "not_run": [
+        "queue",
+        "OCR",
+        "chunk_design",
+        "embedding",
+        "index_write",
+        "visibility"
+      ]
+    },
+    {
+      "schema_version": "rag-sample-1",
+      "request_id": "f4186b12-e019-4526-a5cf-dcfdeed9e556",
+      "query_id": "ingest-slot-5",
+      "mode": "structured",
+      "trial_id": 1,
+      "workload_id": "ch19-source-quality-v1",
+      "corpus_version": "ch19-authored-three-format-v1",
+      "query_set_version": "ch19-eight-source-span-probes-v1",
+      "qrels_version": "ch19-source-span-requirements-v1",
+      "index_version": null,
+      "model_version": null,
+      "timestamp_utc": "2026-10-12T18:38:16.351970+00:00",
+      "status": "quarantined",
+      "reason": "invalid_utf8",
+      "stage_timings_ms": {
+        "ingest_adapter": 7.4481
+      },
+      "raw_candidate_ids": [],
+      "raw_candidate_scores": [],
+      "intermediate_candidate_ids": {},
+      "intermediate_candidate_scores": {},
+      "final_candidate_ids": [],
+      "final_candidate_scores": [],
+      "context_ids": null,
+      "evidence_ids": null,
+      "ivf_probed_lists": null,
+      "timing_boundary": "file read, parsing and canonicalization; trace/output serialization excluded",
+      "operation": "ingestion",
+      "source_id": "S-bad",
+      "source_version": "1",
+      "source_sha256": "8f269e1da3f3de786a9a3f7ef3886b62f41bcc48705d9562a51eff978373eb9e",
+      "parser_version": "ch19-bounded-adapters-1",
+      "normalization_version": null,
+      "normalized_block_ids": [],
+      "normalization_inputs_retained_in": null,
+      "published_block_ids": [],
+      "dropped_regions": [],
+      "record_digest": null,
+      "not_run": [
+        "queue",
+        "OCR",
+        "chunk_design",
+        "embedding",
+        "index_write",
+        "visibility"
+      ]
+    },
+    {
+      "schema_version": "rag-sample-1",
+      "request_id": "e6b714b0-f0d4-4bb8-af48-0797f94a6f11",
+      "query_id": "ingest-slot-2",
+      "mode": "structured",
+      "trial_id": 0,
+      "workload_id": "ch19-source-quality-v1",
+      "corpus_version": "ch19-authored-three-format-v1",
+      "query_set_version": "ch19-eight-source-span-probes-v1",
+      "qrels_version": "ch19-source-span-requirements-v1",
+      "index_version": null,
+      "model_version": null,
+      "timestamp_utc": "2026-10-12T18:38:16.360087+00:00",
+      "status": "accepted",
+      "reason": null,
+      "stage_timings_ms": {
+        "ingest_adapter": 8.0361
+      },
+      "raw_candidate_ids": [],
+      "raw_candidate_scores": [],
+      "intermediate_candidate_ids": {},
+      "intermediate_candidate_scores": {},
+      "final_candidate_ids": [],
+      "final_candidate_scores": [],
+      "context_ids": null,
+      "evidence_ids": null,
+      "ivf_probed_lists": null,
+      "timing_boundary": "file read, parsing and canonicalization; trace/output serialization excluded",
+      "operation": "ingestion",
+      "source_id": "S-pdf",
+      "source_version": "1",
+      "source_sha256": "484dbe173935b42ba2456f7d3179d05db2a6257b931ce5996edac217be57b595",
+      "parser_version": "ch19-bounded-adapters-1",
+      "normalization_version": "nfc-prose-space-code-preserve-1",
+      "normalized_block_ids": [
+        "S-pdf:b0",
+        "S-pdf:b1",
+        "S-pdf:b2",
+        "S-pdf:b3"
+      ],
+      "normalization_inputs_retained_in": "access-controlled canonical artifact",
+      "published_block_ids": [
+        "S-pdf:b0",
+        "S-pdf:b1",
+        "S-pdf:b2",
+        "S-pdf:b3"
+      ],
+      "dropped_regions": [
+        {
+          "reason": "reviewed_fixture_margin",
+          "locator": {
+            "format": "pdf",
+            "page": 1,
+            "bbox": [
+              54.0,
+              26.174999237060547,
+              277.0799560546875,
+              41.28900146484375
+            ],
+            "coordinate_system": "unrotated-pymupdf-top-left-points",
+            "block_number": 0
+          }
+        },
+        {
+          "reason": "reviewed_fixture_margin",
+          "locator": {
+            "format": "pdf",
+            "page": 1,
+            "bbox": [
+              54.0,
+              750.3250122070312,
+              82.52098846435547,
+              762.6909790039062
+            ],
+            "coordinate_system": "unrotated-pymupdf-top-left-points",
+            "block_number": 3
+          }
+        },
+        {
+          "reason": "reviewed_fixture_margin",
+          "locator": {
+            "format": "pdf",
+            "page": 2,
+            "bbox": [
+              54.0,
+              26.174999237060547,
+              277.0799560546875,
+              41.28900146484375
+            ],
+            "coordinate_system": "unrotated-pymupdf-top-left-points",
+            "block_number": 0
+          }
+        },
+        {
+          "reason": "reviewed_fixture_margin",
+          "locator": {
+            "format": "pdf",
+            "page": 2,
+            "bbox": [
+              54.0,
+              750.3250122070312,
+              82.52098846435547,
+              762.6909790039062
+            ],
+            "coordinate_system": "unrotated-pymupdf-top-left-points",
+            "block_number": 3
+          }
+        }
+      ],
+      "record_digest": "f24fa65e6c067b3af79ab2b4f4f8de395b12ed906bb25254b1a04551520ba36b",
+      "not_run": [
+        "queue",
+        "OCR",
+        "chunk_design",
+        "embedding",
+        "index_write",
+        "visibility"
+      ]
+    },
+    {
+      "schema_version": "rag-sample-1",
+      "request_id": "9999abe0-3c4b-45c2-a2fc-0c8cb485af41",
+      "query_id": "ingest-slot-5",
+      "mode": "flat",
+      "trial_id": 0,
+      "workload_id": "ch19-source-quality-v1",
+      "corpus_version": "ch19-authored-three-format-v1",
+      "query_set_version": "ch19-eight-source-span-probes-v1",
+      "qrels_version": "ch19-source-span-requirements-v1",
+      "index_version": null,
+      "model_version": null,
+      "timestamp_utc": "2026-10-12T18:38:16.365740+00:00",
+      "status": "quarantined",
+      "reason": "invalid_utf8",
+      "stage_timings_ms": {
+        "ingest_adapter": 5.5772
+      },
+      "raw_candidate_ids": [],
+      "raw_candidate_scores": [],
+      "intermediate_candidate_ids": {},
+      "intermediate_candidate_scores": {},
+      "final_candidate_ids": [],
+      "final_candidate_scores": [],
+      "context_ids": null,
+      "evidence_ids": null,
+      "ivf_probed_lists": null,
+      "timing_boundary": "file read, parsing and canonicalization; trace/output serialization excluded",
+      "operation": "ingestion",
+      "source_id": "S-bad",
+      "source_version": "1",
+      "source_sha256": "8f269e1da3f3de786a9a3f7ef3886b62f41bcc48705d9562a51eff978373eb9e",
+      "parser_version": "ch19-bounded-adapters-1",
+      "normalization_version": null,
+      "normalized_block_ids": [],
+      "normalization_inputs_retained_in": null,
+      "published_block_ids": [],
+      "dropped_regions": [],
+      "record_digest": null,
+      "not_run": [
+        "queue",
+        "OCR",
+        "chunk_design",
+        "embedding",
+        "index_write",
+        "visibility"
+      ]
+    },
+    {
+      "schema_version": "rag-sample-1",
+      "request_id": "0ea9e4a8-14e6-42f8-94bf-40b622c4c741",
+      "query_id": "ingest-slot-3",
+      "mode": "flat",
+      "trial_id": 0,
+      "workload_id": "ch19-source-quality-v1",
+      "corpus_version": "ch19-authored-three-format-v1",
+      "query_set_version": "ch19-eight-source-span-probes-v1",
+      "qrels_version": "ch19-source-span-requirements-v1",
+      "index_version": null,
+      "model_version": null,
+      "timestamp_utc": "2026-10-12T18:38:16.371193+00:00",
+      "status": "accepted",
+      "reason": null,
+      "stage_timings_ms": {
+        "ingest_adapter": 5.3835
+      },
+      "raw_candidate_ids": [],
+      "raw_candidate_scores": [],
+      "intermediate_candidate_ids": {},
+      "intermediate_candidate_scores": {},
+      "final_candidate_ids": [],
+      "final_candidate_scores": [],
+      "context_ids": null,
+      "evidence_ids": null,
+      "ivf_probed_lists": null,
+      "timing_boundary": "file read, parsing and canonicalization; trace/output serialization excluded",
+      "operation": "ingestion",
+      "source_id": "S-copy",
+      "source_version": "1",
+      "source_sha256": "e1fa5508851d2738eaafb3a220446fb86679b0cf250a339f70fb70a43cadaae5",
+      "parser_version": "ch19-bounded-adapters-1",
+      "normalization_version": "flat-space-1",
+      "normalized_block_ids": [
+        "S-copy:b0"
+      ],
+      "normalization_inputs_retained_in": "access-controlled canonical artifact",
+      "published_block_ids": [
+        "S-copy:b0"
+      ],
+      "dropped_regions": [],
+      "record_digest": "3cd79abb3a1ac9a8c8d2ab4bebc72fa7907cd86ba98fc4752b91434a96e4bfb4",
+      "not_run": [
+        "queue",
+        "OCR",
+        "chunk_design",
+        "embedding",
+        "index_write",
+        "visibility"
+      ]
+    },
+    {
+      "schema_version": "rag-sample-1",
+      "request_id": "2dc05fab-a146-41ea-8aa6-ecf7bf129a02",
+      "query_id": "ingest-slot-5",
+      "mode": "flat",
+      "trial_id": 2,
+      "workload_id": "ch19-source-quality-v1",
+      "corpus_version": "ch19-authored-three-format-v1",
+      "query_set_version": "ch19-eight-source-span-probes-v1",
+      "qrels_version": "ch19-source-span-requirements-v1",
+      "index_version": null,
+      "model_version": null,
+      "timestamp_utc": "2026-10-12T18:38:16.375707+00:00",
+      "status": "quarantined",
+      "reason": "invalid_utf8",
+      "stage_timings_ms": {
+        "ingest_adapter": 4.4421
+      },
+      "raw_candidate_ids": [],
+      "raw_candidate_scores": [],
+      "intermediate_candidate_ids": {},
+      "intermediate_candidate_scores": {},
+      "final_candidate_ids": [],
+      "final_candidate_scores": [],
+      "context_ids": null,
+      "evidence_ids": null,
+      "ivf_probed_lists": null,
+      "timing_boundary": "file read, parsing and canonicalization; trace/output serialization excluded",
+      "operation": "ingestion",
+      "source_id": "S-bad",
+      "source_version": "1",
+      "source_sha256": "8f269e1da3f3de786a9a3f7ef3886b62f41bcc48705d9562a51eff978373eb9e",
+      "parser_version": "ch19-bounded-adapters-1",
+      "normalization_version": null,
+      "normalized_block_ids": [],
+      "normalization_inputs_retained_in": null,
+      "published_block_ids": [],
+      "dropped_regions": [],
+      "record_digest": null,
+      "not_run": [
+        "queue",
+        "OCR",
+        "chunk_design",
+        "embedding",
+        "index_write",
+        "visibility"
+      ]
+    },
+    {
+      "schema_version": "rag-sample-1",
+      "request_id": "685e4e8c-4b2a-4aae-b09c-1721ac10c1d6",
+      "query_id": "ingest-slot-4",
+      "mode": "flat",
+      "trial_id": 0,
+      "workload_id": "ch19-source-quality-v1",
+      "corpus_version": "ch19-authored-three-format-v1",
+      "query_set_version": "ch19-eight-source-span-probes-v1",
+      "qrels_version": "ch19-source-span-requirements-v1",
+      "index_version": null,
+      "model_version": null,
+      "timestamp_utc": "2026-10-12T18:38:16.383501+00:00",
+      "status": "quarantined",
+      "reason": "native_text_absent_requires_ocr_review",
+      "stage_timings_ms": {
+        "ingest_adapter": 7.7011
+      },
+      "raw_candidate_ids": [],
+      "raw_candidate_scores": [],
+      "intermediate_candidate_ids": {},
+      "intermediate_candidate_scores": {},
+      "final_candidate_ids": [],
+      "final_candidate_scores": [],
+      "context_ids": null,
+      "evidence_ids": null,
+      "ivf_probed_lists": null,
+      "timing_boundary": "file read, parsing and canonicalization; trace/output serialization excluded",
+      "operation": "ingestion",
+      "source_id": "S-scan",
+      "source_version": "1",
+      "source_sha256": "66faa0ca8ff189d8fb47cc7fb747275aed1dd047373883f4bf53cea2732a4f15",
+      "parser_version": "ch19-bounded-adapters-1",
+      "normalization_version": null,
+      "normalized_block_ids": [],
+      "normalization_inputs_retained_in": null,
+      "published_block_ids": [],
+      "dropped_regions": [],
+      "record_digest": null,
+      "not_run": [
+        "queue",
+        "OCR",
+        "chunk_design",
+        "embedding",
+        "index_write",
+        "visibility"
+      ]
+    },
+    {
+      "schema_version": "rag-sample-1",
+      "request_id": "28cd7df2-270a-4c65-8de5-947da9634d5b",
+      "query_id": "ingest-slot-8",
+      "mode": "flat",
+      "trial_id": 0,
+      "workload_id": "ch19-source-quality-v1",
+      "corpus_version": "ch19-authored-three-format-v1",
+      "query_set_version": "ch19-eight-source-span-probes-v1",
+      "qrels_version": "ch19-source-span-requirements-v1",
+      "index_version": null,
+      "model_version": null,
+      "timestamp_utc": "2026-10-12T18:38:16.383570+00:00",
+      "status": "blocked",
+      "reason": "ineligible",
+      "stage_timings_ms": {
+        "ingest_adapter": 0.0114
+      },
+      "raw_candidate_ids": [],
+      "raw_candidate_scores": [],
+      "intermediate_candidate_ids": {},
+      "intermediate_candidate_scores": {},
+      "final_candidate_ids": [],
+      "final_candidate_scores": [],
+      "context_ids": null,
+      "evidence_ids": null,
+      "ivf_probed_lists": null,
+      "timing_boundary": "file read, parsing and canonicalization; trace/output serialization excluded",
+      "operation": "ingestion",
+      "source_id": null,
+      "source_version": null,
+      "source_sha256": null,
+      "parser_version": "ch19-bounded-adapters-1",
+      "normalization_version": null,
+      "normalized_block_ids": [],
+      "normalization_inputs_retained_in": null,
+      "published_block_ids": [],
+      "dropped_regions": [],
+      "record_digest": null,
+      "not_run": [
+        "queue",
+        "OCR",
+        "chunk_design",
+        "embedding",
+        "index_write",
+        "visibility"
+      ]
+    },
+    {
+      "schema_version": "rag-sample-1",
+      "request_id": "88100632-a790-475c-97ad-570a9bdfd3b6",
+      "query_id": "ingest-slot-2",
+      "mode": "structured",
+      "trial_id": 2,
+      "workload_id": "ch19-source-quality-v1",
+      "corpus_version": "ch19-authored-three-format-v1",
+      "query_set_version": "ch19-eight-source-span-probes-v1",
+      "qrels_version": "ch19-source-span-requirements-v1",
+      "index_version": null,
+      "model_version": null,
+      "timestamp_utc": "2026-10-12T18:38:16.392637+00:00",
+      "status": "accepted",
+      "reason": null,
+      "stage_timings_ms": {
+        "ingest_adapter": 9.0036
+      },
+      "raw_candidate_ids": [],
+      "raw_candidate_scores": [],
+      "intermediate_candidate_ids": {},
+      "intermediate_candidate_scores": {},
+      "final_candidate_ids": [],
+      "final_candidate_scores": [],
+      "context_ids": null,
+      "evidence_ids": null,
+      "ivf_probed_lists": null,
+      "timing_boundary": "file read, parsing and canonicalization; trace/output serialization excluded",
+      "operation": "ingestion",
+      "source_id": "S-pdf",
+      "source_version": "1",
+      "source_sha256": "484dbe173935b42ba2456f7d3179d05db2a6257b931ce5996edac217be57b595",
+      "parser_version": "ch19-bounded-adapters-1",
+      "normalization_version": "nfc-prose-space-code-preserve-1",
+      "normalized_block_ids": [
+        "S-pdf:b0",
+        "S-pdf:b1",
+        "S-pdf:b2",
+        "S-pdf:b3"
+      ],
+      "normalization_inputs_retained_in": "access-controlled canonical artifact",
+      "published_block_ids": [
+        "S-pdf:b0",
+        "S-pdf:b1",
+        "S-pdf:b2",
+        "S-pdf:b3"
+      ],
+      "dropped_regions": [
+        {
+          "reason": "reviewed_fixture_margin",
+          "locator": {
+            "format": "pdf",
+            "page": 1,
+            "bbox": [
+              54.0,
+              26.174999237060547,
+              277.0799560546875,
+              41.28900146484375
+            ],
+            "coordinate_system": "unrotated-pymupdf-top-left-points",
+            "block_number": 0
+          }
+        },
+        {
+          "reason": "reviewed_fixture_margin",
+          "locator": {
+            "format": "pdf",
+            "page": 1,
+            "bbox": [
+              54.0,
+              750.3250122070312,
+              82.52098846435547,
+              762.6909790039062
+            ],
+            "coordinate_system": "unrotated-pymupdf-top-left-points",
+            "block_number": 3
+          }
+        },
+        {
+          "reason": "reviewed_fixture_margin",
+          "locator": {
+            "format": "pdf",
+            "page": 2,
+            "bbox": [
+              54.0,
+              26.174999237060547,
+              277.0799560546875,
+              41.28900146484375
+            ],
+            "coordinate_system": "unrotated-pymupdf-top-left-points",
+            "block_number": 0
+          }
+        },
+        {
+          "reason": "reviewed_fixture_margin",
+          "locator": {
+            "format": "pdf",
+            "page": 2,
+            "bbox": [
+              54.0,
+              750.3250122070312,
+              82.52098846435547,
+              762.6909790039062
+            ],
+            "coordinate_system": "unrotated-pymupdf-top-left-points",
+            "block_number": 3
+          }
+        }
+      ],
+      "record_digest": "f24fa65e6c067b3af79ab2b4f4f8de395b12ed906bb25254b1a04551520ba36b",
+      "not_run": [
+        "queue",
+        "OCR",
+        "chunk_design",
+        "embedding",
+        "index_write",
+        "visibility"
+      ]
+    },
+    {
+      "schema_version": "rag-sample-1",
+      "request_id": "897c6b98-4a44-4a13-8f6c-cd79d4b79b60",
+      "query_id": "release",
+      "mode": "flat",
+      "trial_id": 0,
+      "workload_id": "ch19-source-quality-v1",
+      "corpus_version": "ch19-authored-three-format-v1",
+      "query_set_version": "ch19-eight-source-span-probes-v1",
+      "qrels_version": "ch19-source-span-requirements-v1",
+      "index_version": "flat-canonical-documents-0377394190576f3452468998a4563fb2143c9aa5d644cc28075c9eae66820f7b",
+      "model_version": null,
+      "timestamp_utc": "2026-10-12T18:38:16.393034+00:00",
+      "status": "ok",
+      "reason": null,
+      "stage_timings_ms": {
+        "lexical_source_diagnostic": 0.2475
+      },
+      "raw_candidate_ids": [
+        "S-copy",
+        "S-md",
+        "S-html",
+        "S-merged",
+        "S-pdf"
+      ],
+      "raw_candidate_scores": [
+        3.0,
+        3.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "intermediate_candidate_ids": {
+        "positive_score": [
+          "S-copy",
+          "S-md"
+        ]
+      },
+      "intermediate_candidate_scores": {
+        "positive_score": [
+          3.0,
+          3.0
+        ]
+      },
+      "final_candidate_ids": [
+        "S-copy"
+      ],
+      "final_candidate_scores": [
+        3.0
+      ],
+      "context_ids": null,
+      "evidence_ids": null,
+      "ivf_probed_lists": null,
+      "timing_boundary": "operation only; context/trace serialization excluded"
+    },
+    {
+      "schema_version": "rag-sample-1",
+      "request_id": "2481a262-ec3b-4c22-9166-8f0f234cece8",
+      "query_id": "negation",
+      "mode": "flat",
+      "trial_id": 0,
+      "workload_id": "ch19-source-quality-v1",
+      "corpus_version": "ch19-authored-three-format-v1",
+      "query_set_version": "ch19-eight-source-span-probes-v1",
+      "qrels_version": "ch19-source-span-requirements-v1",
+      "index_version": "flat-canonical-documents-0377394190576f3452468998a4563fb2143c9aa5d644cc28075c9eae66820f7b",
+      "model_version": null,
+      "timestamp_utc": "2026-10-12T18:38:16.393248+00:00",
+      "status": "ok",
+      "reason": null,
+      "stage_timings_ms": {
+        "lexical_source_diagnostic": 0.096
+      },
+      "raw_candidate_ids": [
+        "S-copy",
+        "S-md",
+        "S-html",
+        "S-merged",
+        "S-pdf"
+      ],
+      "raw_candidate_scores": [
+        3.0,
+        3.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "intermediate_candidate_ids": {
+        "positive_score": [
+          "S-copy",
+          "S-md"
+        ]
+      },
+      "intermediate_candidate_scores": {
+        "positive_score": [
+          3.0,
+          3.0
+        ]
+      },
+      "final_candidate_ids": [
+        "S-copy"
+      ],
+      "final_candidate_scores": [
+        3.0
+      ],
+      "context_ids": null,
+      "evidence_ids": null,
+      "ivf_probed_lists": null,
+      "timing_boundary": "operation only; context/trace serialization excluded"
+    },
+    {
+      "schema_version": "rag-sample-1",
+      "request_id": "022329ed-7686-4e61-9d27-2d42a04d4ec7",
+      "query_id": "unicode",
+      "mode": "flat",
+      "trial_id": 0,
+      "workload_id": "ch19-source-quality-v1",
+      "corpus_version": "ch19-authored-three-format-v1",
+      "query_set_version": "ch19-eight-source-span-probes-v1",
+      "qrels_version": "ch19-source-span-requirements-v1",
+      "index_version": "flat-canonical-documents-0377394190576f3452468998a4563fb2143c9aa5d644cc28075c9eae66820f7b",
+      "model_version": null,
+      "timestamp_utc": "2026-10-12T18:38:16.393448+00:00",
+      "status": "ok",
+      "reason": null,
+      "stage_timings_ms": {
+        "lexical_source_diagnostic": 0.1204
+      },
+      "raw_candidate_ids": [
+        "S-copy",
+        "S-md",
+        "S-html",
+        "S-merged",
+        "S-pdf"
+      ],
+      "raw_candidate_scores": [
+        4.0,
+        4.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "intermediate_candidate_ids": {
+        "positive_score": [
+          "S-copy",
+          "S-md"
+        ]
+      },
+      "intermediate_candidate_scores": {
+        "positive_score": [
+          4.0,
+          4.0
+        ]
+      },
+      "final_candidate_ids": [
+        "S-copy"
+      ],
+      "final_candidate_scores": [
+        4.0
+      ],
+      "context_ids": null,
+      "evidence_ids": null,
+      "ivf_probed_lists": null,
+      "timing_boundary": "operation only; context/trace serialization excluded"
+    },
+    {
+      "schema_version": "rag-sample-1",
+      "request_id": "2af71efd-e22a-453f-a5b6-0c7dbb0988ed",
+      "query_id": "table",
+      "mode": "flat",
+      "trial_id": 0,
+      "workload_id": "ch19-source-quality-v1",
+      "corpus_version": "ch19-authored-three-format-v1",
+      "query_set_version": "ch19-eight-source-span-probes-v1",
+      "qrels_version": "ch19-source-span-requirements-v1",
+      "index_version": "flat-canonical-documents-0377394190576f3452468998a4563fb2143c9aa5d644cc28075c9eae66820f7b",
+      "model_version": null,
+      "timestamp_utc": "2026-10-12T18:38:16.393608+00:00",
+      "status": "ok",
+      "reason": null,
+      "stage_timings_ms": {
+        "lexical_source_diagnostic": 0.0885
+      },
+      "raw_candidate_ids": [
+        "S-html",
+        "S-merged",
+        "S-copy",
+        "S-md",
+        "S-pdf"
+      ],
+      "raw_candidate_scores": [
+        3.0,
+        2.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "intermediate_candidate_ids": {
+        "positive_score": [
+          "S-html",
+          "S-merged",
+          "S-copy",
+          "S-md",
+          "S-pdf"
+        ]
+      },
+      "intermediate_candidate_scores": {
+        "positive_score": [
+          3.0,
+          2.0,
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "final_candidate_ids": [
+        "S-html"
+      ],
+      "final_candidate_scores": [
+        3.0
+      ],
+      "context_ids": null,
+      "evidence_ids": null,
+      "ivf_probed_lists": null,
+      "timing_boundary": "operation only; context/trace serialization excluded"
+    },
+    {
+      "schema_version": "rag-sample-1",
+      "request_id": "070b6a1d-3f0f-41ec-a85c-4aa648db3c68",
+      "query_id": "exception",
+      "mode": "flat",
+      "trial_id": 0,
+      "workload_id": "ch19-source-quality-v1",
+      "corpus_version": "ch19-authored-three-format-v1",
+      "query_set_version": "ch19-eight-source-span-probes-v1",
+      "qrels_version": "ch19-source-span-requirements-v1",
+      "index_version": "flat-canonical-documents-0377394190576f3452468998a4563fb2143c9aa5d644cc28075c9eae66820f7b",
+      "model_version": null,
+      "timestamp_utc": "2026-10-12T18:38:16.393760+00:00",
+      "status": "ok",
+      "reason": null,
+      "stage_timings_ms": {
+        "lexical_source_diagnostic": 0.0852
+      },
+      "raw_candidate_ids": [
+        "S-html",
+        "S-copy",
+        "S-md",
+        "S-merged",
+        "S-pdf"
+      ],
+      "raw_candidate_scores": [
+        3.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "intermediate_candidate_ids": {
+        "positive_score": [
+          "S-html"
+        ]
+      },
+      "intermediate_candidate_scores": {
+        "positive_score": [
+          3.0
+        ]
+      },
+      "final_candidate_ids": [
+        "S-html"
+      ],
+      "final_candidate_scores": [
+        3.0
+      ],
+      "context_ids": null,
+      "evidence_ids": null,
+      "ivf_probed_lists": null,
+      "timing_boundary": "operation only; context/trace serialization excluded"
+    },
+    {
+      "schema_version": "rag-sample-1",
+      "request_id": "b802cf3e-5d45-49f2-9feb-68a1cc0c9bb8",
+      "query_id": "response",
+      "mode": "flat",
+      "trial_id": 0,
+      "workload_id": "ch19-source-quality-v1",
+      "corpus_version": "ch19-authored-three-format-v1",
+      "query_set_version": "ch19-eight-source-span-probes-v1",
+      "qrels_version": "ch19-source-span-requirements-v1",
+      "index_version": "flat-canonical-documents-0377394190576f3452468998a4563fb2143c9aa5d644cc28075c9eae66820f7b",
+      "model_version": null,
+      "timestamp_utc": "2026-10-12T18:38:16.393893+00:00",
+      "status": "ok",
+      "reason": null,
+      "stage_timings_ms": {
+        "lexical_source_diagnostic": 0.0705
+      },
+      "raw_candidate_ids": [
+        "S-pdf",
+        "S-copy",
+        "S-md",
+        "S-html",
+        "S-merged"
+      ],
+      "raw_candidate_scores": [
+        3.0,
+        1.0,
+        1.0,
+        0.0,
+        0.0
+      ],
+      "intermediate_candidate_ids": {
+        "positive_score": [
+          "S-pdf",
+          "S-copy",
+          "S-md"
+        ]
+      },
+      "intermediate_candidate_scores": {
+        "positive_score": [
+          3.0,
+          1.0,
+          1.0
+        ]
+      },
+      "final_candidate_ids": [
+        "S-pdf"
+      ],
+      "final_candidate_scores": [
+        3.0
+      ],
+      "context_ids": null,
+      "evidence_ids": null,
+      "ivf_probed_lists": null,
+      "timing_boundary": "operation only; context/trace serialization excluded"
+    },
+    {
+      "schema_version": "rag-sample-1",
+      "request_id": "598e55d1-bf05-4bd4-b853-cc69b69a0a1a",
+      "query_id": "clock",
+      "mode": "flat",
+      "trial_id": 0,
+      "workload_id": "ch19-source-quality-v1",
+      "corpus_version": "ch19-authored-three-format-v1",
+      "query_set_version": "ch19-eight-source-span-probes-v1",
+      "qrels_version": "ch19-source-span-requirements-v1",
+      "index_version": "flat-canonical-documents-0377394190576f3452468998a4563fb2143c9aa5d644cc28075c9eae66820f7b",
+      "model_version": null,
+      "timestamp_utc": "2026-10-12T18:38:16.394023+00:00",
+      "status": "ok",
+      "reason": null,
+      "stage_timings_ms": {
+        "lexical_source_diagnostic": 0.0674
+      },
+      "raw_candidate_ids": [
+        "S-copy",
+        "S-md",
+        "S-pdf",
+        "S-html",
+        "S-merged"
+      ],
+      "raw_candidate_scores": [
+        1.0,
+        1.0,
+        1.0,
+        0.0,
+        0.0
+      ],
+      "intermediate_candidate_ids": {
+        "positive_score": [
+          "S-copy",
+          "S-md",
+          "S-pdf"
+        ]
+      },
+      "intermediate_candidate_scores": {
+        "positive_score": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "final_candidate_ids": [
+        "S-copy"
+      ],
+      "final_candidate_scores": [
+        1.0
+      ],
+      "context_ids": null,
+      "evidence_ids": null,
+      "ivf_probed_lists": null,
+      "timing_boundary": "operation only; context/trace serialization excluded"
+    },
+    {
+      "schema_version": "rag-sample-1",
+      "request_id": "c1f790e3-bba7-4466-baf7-9ab849dcf58b",
+      "query_id": "retention",
+      "mode": "flat",
+      "trial_id": 0,
+      "workload_id": "ch19-source-quality-v1",
+      "corpus_version": "ch19-authored-three-format-v1",
+      "query_set_version": "ch19-eight-source-span-probes-v1",
+      "qrels_version": "ch19-source-span-requirements-v1",
+      "index_version": "flat-canonical-documents-0377394190576f3452468998a4563fb2143c9aa5d644cc28075c9eae66820f7b",
+      "model_version": null,
+      "timestamp_utc": "2026-10-12T18:38:16.394143+00:00",
+      "status": "ok",
+      "reason": null,
+      "stage_timings_ms": {
+        "lexical_source_diagnostic": 0.0657
+      },
+      "raw_candidate_ids": [
+        "S-pdf",
+        "S-copy",
+        "S-html",
+        "S-md",
+        "S-merged"
+      ],
+      "raw_candidate_scores": [
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "intermediate_candidate_ids": {
+        "positive_score": [
+          "S-pdf"
+        ]
+      },
+      "intermediate_candidate_scores": {
+        "positive_score": [
+          1.0
+        ]
+      },
+      "final_candidate_ids": [
+        "S-pdf"
+      ],
+      "final_candidate_scores": [
+        1.0
+      ],
+      "context_ids": null,
+      "evidence_ids": null,
+      "ivf_probed_lists": null,
+      "timing_boundary": "operation only; context/trace serialization excluded"
+    },
+    {
+      "schema_version": "rag-sample-1",
+      "request_id": "1aabf360-02e2-4153-9bda-62f7a9a66dee",
+      "query_id": "release",
+      "mode": "structured",
+      "trial_id": 0,
+      "workload_id": "ch19-source-quality-v1",
+      "corpus_version": "ch19-authored-three-format-v1",
+      "query_set_version": "ch19-eight-source-span-probes-v1",
+      "qrels_version": "ch19-source-span-requirements-v1",
+      "index_version": "structured-canonical-documents-674c855e85d5f50e46c0150b0b0f0e2f9e9f83a4e5f5ffa12de517f1c77c8bb6",
+      "model_version": null,
+      "timestamp_utc": "2026-10-12T18:38:16.394405+00:00",
+      "status": "ok",
+      "reason": null,
+      "stage_timings_ms": {
+        "lexical_source_diagnostic": 0.0639
+      },
+      "raw_candidate_ids": [
+        "S-copy",
+        "S-md",
+        "S-html",
+        "S-pdf"
+      ],
+      "raw_candidate_scores": [
+        3.0,
+        3.0,
+        0.0,
+        0.0
+      ],
+      "intermediate_candidate_ids": {
+        "positive_score": [
+          "S-copy",
+          "S-md"
+        ]
+      },
+      "intermediate_candidate_scores": {
+        "positive_score": [
+          3.0,
+          3.0
+        ]
+      },
+      "final_candidate_ids": [
+        "S-copy"
+      ],
+      "final_candidate_scores": [
+        3.0
+      ],
+      "context_ids": null,
+      "evidence_ids": null,
+      "ivf_probed_lists": null,
+      "timing_boundary": "operation only; context/trace serialization excluded"
+    },
+    {
+      "schema_version": "rag-sample-1",
+      "request_id": "99c0e00c-a04e-4f3d-8020-54a8cfadb09a",
+      "query_id": "negation",
+      "mode": "structured",
+      "trial_id": 0,
+      "workload_id": "ch19-source-quality-v1",
+      "corpus_version": "ch19-authored-three-format-v1",
+      "query_set_version": "ch19-eight-source-span-probes-v1",
+      "qrels_version": "ch19-source-span-requirements-v1",
+      "index_version": "structured-canonical-documents-674c855e85d5f50e46c0150b0b0f0e2f9e9f83a4e5f5ffa12de517f1c77c8bb6",
+      "model_version": null,
+      "timestamp_utc": "2026-10-12T18:38:16.394536+00:00",
+      "status": "ok",
+      "reason": null,
+      "stage_timings_ms": {
+        "lexical_source_diagnostic": 0.0549
+      },
+      "raw_candidate_ids": [
+        "S-copy",
+        "S-md",
+        "S-html",
+        "S-pdf"
+      ],
+      "raw_candidate_scores": [
+        3.0,
+        3.0,
+        0.0,
+        0.0
+      ],
+      "intermediate_candidate_ids": {
+        "positive_score": [
+          "S-copy",
+          "S-md"
+        ]
+      },
+      "intermediate_candidate_scores": {
+        "positive_score": [
+          3.0,
+          3.0
+        ]
+      },
+      "final_candidate_ids": [
+        "S-copy"
+      ],
+      "final_candidate_scores": [
+        3.0
+      ],
+      "context_ids": null,
+      "evidence_ids": null,
+      "ivf_probed_lists": null,
+      "timing_boundary": "operation only; context/trace serialization excluded"
+    },
+    {
+      "schema_version": "rag-sample-1",
+      "request_id": "e58940e8-3002-4912-8110-f56d1c4c0e93",
+      "query_id": "unicode",
+      "mode": "structured",
+      "trial_id": 0,
+      "workload_id": "ch19-source-quality-v1",
+      "corpus_version": "ch19-authored-three-format-v1",
+      "query_set_version": "ch19-eight-source-span-probes-v1",
+      "qrels_version": "ch19-source-span-requirements-v1",
+      "index_version": "structured-canonical-documents-674c855e85d5f50e46c0150b0b0f0e2f9e9f83a4e5f5ffa12de517f1c77c8bb6",
+      "model_version": null,
+      "timestamp_utc": "2026-10-12T18:38:16.394664+00:00",
+      "status": "ok",
+      "reason": null,
+      "stage_timings_ms": {
+        "lexical_source_diagnostic": 0.0527
+      },
+      "raw_candidate_ids": [
+        "S-copy",
+        "S-md",
+        "S-html",
+        "S-pdf"
+      ],
+      "raw_candidate_scores": [
+        3.0,
+        3.0,
+        0.0,
+        0.0
+      ],
+      "intermediate_candidate_ids": {
+        "positive_score": [
+          "S-copy",
+          "S-md"
+        ]
+      },
+      "intermediate_candidate_scores": {
+        "positive_score": [
+          3.0,
+          3.0
+        ]
+      },
+      "final_candidate_ids": [
+        "S-copy"
+      ],
+      "final_candidate_scores": [
+        3.0
+      ],
+      "context_ids": null,
+      "evidence_ids": null,
+      "ivf_probed_lists": null,
+      "timing_boundary": "operation only; context/trace serialization excluded"
+    },
+    {
+      "schema_version": "rag-sample-1",
+      "request_id": "058d59fb-1309-4f1f-967d-ff5051b9262d",
+      "query_id": "table",
+      "mode": "structured",
+      "trial_id": 0,
+      "workload_id": "ch19-source-quality-v1",
+      "corpus_version": "ch19-authored-three-format-v1",
+      "query_set_version": "ch19-eight-source-span-probes-v1",
+      "qrels_version": "ch19-source-span-requirements-v1",
+      "index_version": "structured-canonical-documents-674c855e85d5f50e46c0150b0b0f0e2f9e9f83a4e5f5ffa12de517f1c77c8bb6",
+      "model_version": null,
+      "timestamp_utc": "2026-10-12T18:38:16.394778+00:00",
+      "status": "ok",
+      "reason": null,
+      "stage_timings_ms": {
+        "lexical_source_diagnostic": 0.0512
+      },
+      "raw_candidate_ids": [
+        "S-html",
+        "S-copy",
+        "S-md",
+        "S-pdf"
+      ],
+      "raw_candidate_scores": [
+        3.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "intermediate_candidate_ids": {
+        "positive_score": [
+          "S-html",
+          "S-copy",
+          "S-md",
+          "S-pdf"
+        ]
+      },
+      "intermediate_candidate_scores": {
+        "positive_score": [
+          3.0,
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "final_candidate_ids": [
+        "S-html"
+      ],
+      "final_candidate_scores": [
+        3.0
+      ],
+      "context_ids": null,
+      "evidence_ids": null,
+      "ivf_probed_lists": null,
+      "timing_boundary": "operation only; context/trace serialization excluded"
+    },
+    {
+      "schema_version": "rag-sample-1",
+      "request_id": "400c5ae3-3111-45b3-be3d-11b680b5fc75",
+      "query_id": "exception",
+      "mode": "structured",
+      "trial_id": 0,
+      "workload_id": "ch19-source-quality-v1",
+      "corpus_version": "ch19-authored-three-format-v1",
+      "query_set_version": "ch19-eight-source-span-probes-v1",
+      "qrels_version": "ch19-source-span-requirements-v1",
+      "index_version": "structured-canonical-documents-674c855e85d5f50e46c0150b0b0f0e2f9e9f83a4e5f5ffa12de517f1c77c8bb6",
+      "model_version": null,
+      "timestamp_utc": "2026-10-12T18:38:16.394892+00:00",
+      "status": "ok",
+      "reason": null,
+      "stage_timings_ms": {
+        "lexical_source_diagnostic": 0.0512
+      },
+      "raw_candidate_ids": [
+        "S-html",
+        "S-copy",
+        "S-md",
+        "S-pdf"
+      ],
+      "raw_candidate_scores": [
+        3.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "intermediate_candidate_ids": {
+        "positive_score": [
+          "S-html"
+        ]
+      },
+      "intermediate_candidate_scores": {
+        "positive_score": [
+          3.0
+        ]
+      },
+      "final_candidate_ids": [
+        "S-html"
+      ],
+      "final_candidate_scores": [
+        3.0
+      ],
+      "context_ids": null,
+      "evidence_ids": null,
+      "ivf_probed_lists": null,
+      "timing_boundary": "operation only; context/trace serialization excluded"
+    },
+    {
+      "schema_version": "rag-sample-1",
+      "request_id": "79086359-f85f-4bb4-829f-84050f07d20e",
+      "query_id": "response",
+      "mode": "structured",
+      "trial_id": 0,
+      "workload_id": "ch19-source-quality-v1",
+      "corpus_version": "ch19-authored-three-format-v1",
+      "query_set_version": "ch19-eight-source-span-probes-v1",
+      "qrels_version": "ch19-source-span-requirements-v1",
+      "index_version": "structured-canonical-documents-674c855e85d5f50e46c0150b0b0f0e2f9e9f83a4e5f5ffa12de517f1c77c8bb6",
+      "model_version": null,
+      "timestamp_utc": "2026-10-12T18:38:16.395001+00:00",
+      "status": "ok",
+      "reason": null,
+      "stage_timings_ms": {
+        "lexical_source_diagnostic": 0.052
+      },
+      "raw_candidate_ids": [
+        "S-pdf",
+        "S-copy",
+        "S-md",
+        "S-html"
+      ],
+      "raw_candidate_scores": [
+        3.0,
+        1.0,
+        1.0,
+        0.0
+      ],
+      "intermediate_candidate_ids": {
+        "positive_score": [
+          "S-pdf",
+          "S-copy",
+          "S-md"
+        ]
+      },
+      "intermediate_candidate_scores": {
+        "positive_score": [
+          3.0,
+          1.0,
+          1.0
+        ]
+      },
+      "final_candidate_ids": [
+        "S-pdf"
+      ],
+      "final_candidate_scores": [
+        3.0
+      ],
+      "context_ids": null,
+      "evidence_ids": null,
+      "ivf_probed_lists": null,
+      "timing_boundary": "operation only; context/trace serialization excluded"
+    },
+    {
+      "schema_version": "rag-sample-1",
+      "request_id": "1469248a-6c58-493f-a346-28ce3fd8945f",
+      "query_id": "clock",
+      "mode": "structured",
+      "trial_id": 0,
+      "workload_id": "ch19-source-quality-v1",
+      "corpus_version": "ch19-authored-three-format-v1",
+      "query_set_version": "ch19-eight-source-span-probes-v1",
+      "qrels_version": "ch19-source-span-requirements-v1",
+      "index_version": "structured-canonical-documents-674c855e85d5f50e46c0150b0b0f0e2f9e9f83a4e5f5ffa12de517f1c77c8bb6",
+      "model_version": null,
+      "timestamp_utc": "2026-10-12T18:38:16.395107+00:00",
+      "status": "ok",
+      "reason": null,
+      "stage_timings_ms": {
+        "lexical_source_diagnostic": 0.0496
+      },
+      "raw_candidate_ids": [
+        "S-copy",
+        "S-md",
+        "S-pdf",
+        "S-html"
+      ],
+      "raw_candidate_scores": [
+        1.0,
+        1.0,
+        1.0,
+        0.0
+      ],
+      "intermediate_candidate_ids": {
+        "positive_score": [
+          "S-copy",
+          "S-md",
+          "S-pdf"
+        ]
+      },
+      "intermediate_candidate_scores": {
+        "positive_score": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "final_candidate_ids": [
+        "S-copy"
+      ],
+      "final_candidate_scores": [
+        1.0
+      ],
+      "context_ids": null,
+      "evidence_ids": null,
+      "ivf_probed_lists": null,
+      "timing_boundary": "operation only; context/trace serialization excluded"
+    },
+    {
+      "schema_version": "rag-sample-1",
+      "request_id": "1d2178b1-4974-4074-8670-e32f92d925ed",
+      "query_id": "retention",
+      "mode": "structured",
+      "trial_id": 0,
+      "workload_id": "ch19-source-quality-v1",
+      "corpus_version": "ch19-authored-three-format-v1",
+      "query_set_version": "ch19-eight-source-span-probes-v1",
+      "qrels_version": "ch19-source-span-requirements-v1",
+      "index_version": "structured-canonical-documents-674c855e85d5f50e46c0150b0b0f0e2f9e9f83a4e5f5ffa12de517f1c77c8bb6",
+      "model_version": null,
+      "timestamp_utc": "2026-10-12T18:38:16.395210+00:00",
+      "status": "ok",
+      "reason": null,
+      "stage_timings_ms": {
+        "lexical_source_diagnostic": 0.052
+      },
+      "raw_candidate_ids": [
+        "S-pdf",
+        "S-copy",
+        "S-html",
+        "S-md"
+      ],
+      "raw_candidate_scores": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "intermediate_candidate_ids": {
+        "positive_score": [
+          "S-pdf"
+        ]
+      },
+      "intermediate_candidate_scores": {
+        "positive_score": [
+          1.0
+        ]
+      },
+      "final_candidate_ids": [
+        "S-pdf"
+      ],
+      "final_candidate_scores": [
+        1.0
+      ],
+      "context_ids": null,
+      "evidence_ids": null,
+      "ivf_probed_lists": null,
+      "timing_boundary": "operation only; context/trace serialization excluded"
+    }
+  ],
+  "uncertainty": "No confidence intervals; three tiny local ingestion repeats, one warm lexical diagnostic per query; no service/load/generalization claim.",
+  "decision": "Use structured canonical corpus for V5 development, retain flat comparison, quarantine scan/invalid bytes/merged table and preserve duplicate aliases. No replacement of historical V0/V3/V4 corpus.",
+  "limitations": [
+    "seven licensed eligible inputs; two policy blocks",
+    "authored inspected corpus/probes, not production or held-out evaluation",
+    "strict limited dialect; fixture-specific PDF margins",
+    "no OCR or layout model; fully scanned file quarantined",
+    "no generation/context/abstention assessment",
+    "canonical IDs differ by extraction mode; source-span requirements are not complete graded block qrels"
+  ]
+}

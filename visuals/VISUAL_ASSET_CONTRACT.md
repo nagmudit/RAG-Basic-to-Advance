@@ -36,3 +36,7 @@ The optional Phase 1.6 visual plan has become four focused assets: [17.01 fronti
 ## Chapter 18 visual audit
 
 Four focused assets show logical RAM/SSD/page-cache states (18.01), algorithm/library/engine/service responsibility delegation (18.02), measured public-predicate oracle recall (18.03), and measured native quality/latency/file bytes (18.04). All have chapter captions/alt text, editable code, SVG/PNG and actual fixture/registered data. Logical page requests are never labeled SSD timings; responsibility arrows are not a newly implemented pipeline. Native files are not RSS; batch/service timing boundaries and unavailable native frontiers remain explicit. A generated illustration is unnecessary for these exact relationships.
+
+## Chapter 19 visual audit
+
+Three focused assets show index-time lineage with policy/quality stopping points (19.01), actual canonical-span/page/bbox mapping (19.02), and measured source discovery versus evidence preservation (19.03). Editable plot/diagram code, SVG/PNG, captions, alt text and registered artifact inputs are retained. The source-page sketch is schematic with actual coordinates; canonical ranges are not inverse raw offsets. No OCR image/model result or implemented chunk-design comparison is implied. Exact diagrams and measured bars answer these questions without a generated illustration.

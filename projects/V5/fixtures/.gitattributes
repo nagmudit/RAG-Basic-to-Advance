@@ -1,0 +1,4 @@
+# These raw fixture bytes are judged by SHA-256; preserve them on every checkout.
+* -text
+*.pdf binary
+broken.md binary

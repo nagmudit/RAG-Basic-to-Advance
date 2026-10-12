@@ -1,0 +1,202 @@
+{
+  "version": "ch19-source-span-requirements-v1",
+  "query_set_version": "ch19-eight-source-span-probes-v1",
+  "binding_policy": "exact raw source bytes + version + sorted scope + license/retention; reviewed original locators",
+  "source_manifest": [
+    {
+      "source_id": "S-md",
+      "source_version": "1",
+      "path": "runbook.md",
+      "sha256": "e1fa5508851d2738eaafb3a220446fb86679b0cf250a339f70fb70a43cadaae5",
+      "allowed_scopes": [
+        "support-team"
+      ],
+      "license": "book-authored-fixture",
+      "indexing_allowed": true,
+      "retention_policy": "fixture-until-project-removal"
+    },
+    {
+      "source_id": "S-html",
+      "source_version": "1",
+      "path": "retry.html",
+      "sha256": "d5951c71da8f258b77748c85afc3c75acc4dc11f56e55c73be56b7c895e1f95e",
+      "allowed_scopes": [
+        "support-team"
+      ],
+      "license": "book-authored-fixture",
+      "indexing_allowed": true,
+      "retention_policy": "fixture-until-project-removal"
+    },
+    {
+      "source_id": "S-pdf",
+      "source_version": "1",
+      "path": "contract.pdf",
+      "sha256": "484dbe173935b42ba2456f7d3179d05db2a6257b931ce5996edac217be57b595",
+      "allowed_scopes": [
+        "support-team"
+      ],
+      "license": "book-authored-fixture",
+      "indexing_allowed": true,
+      "retention_policy": "fixture-until-project-removal"
+    },
+    {
+      "source_id": "S-copy",
+      "source_version": "1",
+      "path": "runbook-copy.md",
+      "sha256": "e1fa5508851d2738eaafb3a220446fb86679b0cf250a339f70fb70a43cadaae5",
+      "allowed_scopes": [
+        "support-team"
+      ],
+      "license": "book-authored-fixture",
+      "indexing_allowed": true,
+      "retention_policy": "fixture-until-project-removal"
+    },
+    {
+      "source_id": "S-scan",
+      "source_version": "1",
+      "path": "scanned.pdf",
+      "sha256": "66faa0ca8ff189d8fb47cc7fb747275aed1dd047373883f4bf53cea2732a4f15",
+      "allowed_scopes": [
+        "support-team"
+      ],
+      "license": "book-authored-fixture",
+      "indexing_allowed": true,
+      "retention_policy": "fixture-until-project-removal"
+    },
+    {
+      "source_id": "S-bad",
+      "source_version": "1",
+      "path": "broken.md",
+      "sha256": "8f269e1da3f3de786a9a3f7ef3886b62f41bcc48705d9562a51eff978373eb9e",
+      "allowed_scopes": [
+        "support-team"
+      ],
+      "license": "book-authored-fixture",
+      "indexing_allowed": true,
+      "retention_policy": "fixture-until-project-removal"
+    },
+    {
+      "source_id": "S-merged",
+      "source_version": "1",
+      "path": "merged.html",
+      "sha256": "bbfb9baa9ae4f7c911ce899fef62649ac6ee2815018ac24eafa40736169e15d1",
+      "allowed_scopes": [
+        "support-team"
+      ],
+      "license": "book-authored-fixture",
+      "indexing_allowed": true,
+      "retention_policy": "fixture-until-project-removal"
+    }
+  ],
+  "manifest_sha256": "0b1cc4866abf3e7c96f17f63913e2f2c861d967bc4c2cefd66b47130cf7427d5",
+  "probes": [
+    {
+      "query_id": "release",
+      "slice": "literal-id",
+      "source_ids": [
+        "S-md",
+        "S-copy"
+      ],
+      "query": "Which release TK-042 requires approval?",
+      "required_text": "Release TK-042",
+      "reviewed_source_locator": {
+        "format": "markdown",
+        "line_start": 3
+      }
+    },
+    {
+      "query_id": "negation",
+      "slice": "negation",
+      "source_ids": [
+        "S-md",
+        "S-copy"
+      ],
+      "query": "May we restart before approval?",
+      "required_text": "Do not restart before approval.",
+      "reviewed_source_locator": {
+        "format": "markdown",
+        "line_start": 5
+      }
+    },
+    {
+      "query_id": "unicode",
+      "slice": "unicode",
+      "source_ids": [
+        "S-md",
+        "S-copy"
+      ],
+      "query": "Who owns the cafe restart?",
+      "required_text": "The café team owns the restart.",
+      "reviewed_source_locator": {
+        "format": "markdown",
+        "line_start": 7
+      }
+    },
+    {
+      "query_id": "table",
+      "slice": "table-relation",
+      "source_ids": [
+        "S-html"
+      ],
+      "query": "What is the East retry limit?",
+      "required_text": "Region=East; Retry limit=2",
+      "reviewed_source_locator": {
+        "format": "html",
+        "table_id": "limits",
+        "row": 2
+      }
+    },
+    {
+      "query_id": "exception",
+      "slice": "exception",
+      "source_ids": [
+        "S-html"
+      ],
+      "query": "What happens on HTTP 403?",
+      "required_text": "No retry on HTTP 403.",
+      "reviewed_source_locator": {
+        "format": "html",
+        "id": "exception"
+      }
+    },
+    {
+      "query_id": "response",
+      "slice": "pdf-body",
+      "source_ids": [
+        "S-pdf"
+      ],
+      "query": "What is the first response time?",
+      "required_text": "First response is four hours.",
+      "reviewed_source_locator": {
+        "format": "pdf",
+        "page": 1
+      }
+    },
+    {
+      "query_id": "clock",
+      "slice": "pdf-note",
+      "source_ids": [
+        "S-pdf"
+      ],
+      "query": "When does the clock start?",
+      "required_text": "Clock starts after verification.",
+      "reviewed_source_locator": {
+        "format": "pdf",
+        "page": 2
+      }
+    },
+    {
+      "query_id": "retention",
+      "slice": "scanned-page",
+      "source_ids": [
+        "S-scan"
+      ],
+      "query": "How long is retention?",
+      "required_text": "Retention is 15 days.",
+      "reviewed_source_locator": {
+        "format": "pdf",
+        "page": 1
+      }
+    }
+  ]
+}

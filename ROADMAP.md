@@ -32,3 +32,5 @@ All tracks follow the 57 chapters and the same gates. Durations are planning est
 | Intensive, 30–40 hours/week | 4–6 chapters per week | 3–5 months |
 
 Capstone, review, and research time is included in the broad ranges. Do not advance just because a calendar says to; pass the milestone artifact first.
+
+**Chapter19 source-quality gate:** independently construct the canonical-span mapper, inspect three original formats, reproduce `ch19-source-quality-v1`, trace a fixed PDF unit and defend unresolved scan/table/encoding dispositions. The [V5 lab](labs/chapter-19/LAB.md) supplies its rubric. Source hits do not prove evidence preservation; passed parsing does not imply a visible index. Chapter20 remains the next unstarted dependency.

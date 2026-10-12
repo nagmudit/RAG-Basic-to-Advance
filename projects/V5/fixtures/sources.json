@@ -1,0 +1,101 @@
+[
+  {
+    "source_id": "S-md",
+    "source_version": "1",
+    "path": "runbook.md",
+    "allowed_scopes": [
+      "support-team"
+    ],
+    "indexing_allowed": true,
+    "license": "book-authored-fixture",
+    "retention_policy": "fixture-until-project-removal"
+  },
+  {
+    "source_id": "S-html",
+    "source_version": "1",
+    "path": "retry.html",
+    "allowed_scopes": [
+      "support-team"
+    ],
+    "indexing_allowed": true,
+    "license": "book-authored-fixture",
+    "retention_policy": "fixture-until-project-removal"
+  },
+  {
+    "source_id": "S-pdf",
+    "source_version": "1",
+    "path": "contract.pdf",
+    "allowed_scopes": [
+      "support-team"
+    ],
+    "indexing_allowed": true,
+    "license": "book-authored-fixture",
+    "retention_policy": "fixture-until-project-removal"
+  },
+  {
+    "source_id": "S-copy",
+    "source_version": "1",
+    "path": "runbook-copy.md",
+    "allowed_scopes": [
+      "support-team"
+    ],
+    "indexing_allowed": true,
+    "license": "book-authored-fixture",
+    "retention_policy": "fixture-until-project-removal"
+  },
+  {
+    "source_id": "S-scan",
+    "source_version": "1",
+    "path": "scanned.pdf",
+    "allowed_scopes": [
+      "support-team"
+    ],
+    "indexing_allowed": true,
+    "license": "book-authored-fixture",
+    "retention_policy": "fixture-until-project-removal"
+  },
+  {
+    "source_id": "S-bad",
+    "source_version": "1",
+    "path": "broken.md",
+    "allowed_scopes": [
+      "support-team"
+    ],
+    "indexing_allowed": true,
+    "license": "book-authored-fixture",
+    "retention_policy": "fixture-until-project-removal"
+  },
+  {
+    "source_id": "S-merged",
+    "source_version": "1",
+    "path": "merged.html",
+    "allowed_scopes": [
+      "support-team"
+    ],
+    "indexing_allowed": true,
+    "license": "book-authored-fixture",
+    "retention_policy": "fixture-until-project-removal"
+  },
+  {
+    "source_id": "S-unknown",
+    "source_version": "1",
+    "path": "unknown.md",
+    "allowed_scopes": [
+      "support-team"
+    ],
+    "indexing_allowed": false,
+    "license": null,
+    "retention_policy": "fixture-until-project-removal"
+  },
+  {
+    "source_id": "S-private",
+    "source_version": "1",
+    "path": "private.md",
+    "allowed_scopes": [
+      "private"
+    ],
+    "indexing_allowed": true,
+    "license": "book-authored-fixture",
+    "retention_policy": "fixture-until-project-removal"
+  }
+]

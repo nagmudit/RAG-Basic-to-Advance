@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="578.054375pt" height="358.5655pt" viewBox="0 0 578.054375 358.5655" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:date>2026-10-13T00:36:53.635806</dc:date>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.11.0, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 358.5655
+L 578.054375 358.5655
+L 578.054375 0
+L 0 0
+z
+" style="fill: #ffffff"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 18.36 164.3941
+L 247.14 164.3941
+L 247.14 85.3921
+L 18.36 85.3921
+z
+" clip-path="url(#p4bfa264e94)" style="fill: #edf4f7; stroke: #005f83; stroke-width: 1.5; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_3">
+    <path d="M 18.36 264.4633
+L 247.14 264.4633
+L 247.14 198.6283
+L 18.36 198.6283
+z
+" clip-path="url(#p4bfa264e94)" style="fill: #edf4f7; stroke: #005f83; stroke-width: 1.5; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_4">
+    <path d="M 353.16 277.6303
+L 520.56 277.6303
+L 520.56 73.27846
+L 353.16 73.27846
+z
+" clip-path="url(#p4bfa264e94)" style="fill: #ffffff; stroke: #333333; stroke-width: 1.5; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_5">
+    <path d="M 367.930588 110.865855
+L 408.608781 110.865855
+L 408.608781 106.609044
+L 367.930588 106.609044
+z
+" clip-path="url(#p4bfa264e94)" style="fill: #cbe5f0; stroke: #005f83; stroke-width: 2; stroke-linejoin: miter"/>
+   </g>
+   <g id="text_1">
+    <text style="font-size: 14px; font-family: 'DejaVu Sans'" transform="translate(69.75 111.725991)">CANONICAL BODY</text>
+    <text style="font-size: 14px; font-family: 'DejaVu Sans'" transform="translate(75.695625 128.529819)">S-pdf:b1 [24,53)</text>
+    <text style="font-size: 14px; font-family: 'DejaVu Sans'" transform="translate(35.770469 145.333647)">First response is four hours.</text>
+   </g>
+   <g id="text_2">
+    <text style="font-size: 14px; font-family: 'DejaVu Sans'" transform="translate(54.712031 218.379238)">Pinned source identity</text>
+    <text style="font-size: 14px; font-family: 'DejaVu Sans'" transform="translate(27.26 235.183066)">Parser / normalization identity</text>
+    <text style="font-size: 14px; font-family: 'DejaVu Sans'" transform="translate(50.047187 251.986894)">Canonical record digest</text>
+   </g>
+   <g id="patch_6">
+    <path d="M 132.75 166.395831
+Q 132.75 181.510703 132.75 194.83672
+" style="fill: none; stroke: #222222; stroke-width: 1.6; stroke-linecap: round"/>
+    <path d="M 135.55 189.23672
+L 132.75 194.83672
+L 129.95 189.23672
+" style="fill: none; stroke: #222222; stroke-width: 1.6; stroke-linecap: round"/>
+   </g>
+   <g id="text_3">
+    <text style="font-size: 14px; font-family: 'DejaVu Sans'; text-anchor: middle" x="436.86" y="59.0581" transform="rotate(-0 436.86 59.0581)">Pinned original: page 1</text>
+   </g>
+   <g id="patch_7">
+    <path d="M 248.549985 228.810931
+Q 307.534415 169.484159 365.2576 111.425952
+" style="fill: none; stroke: #222222; stroke-width: 1.6; stroke-linecap: round"/>
+    <path d="M 359.323657 113.423029
+L 365.2576 111.425952
+L 363.294896 117.371353
+" style="fill: none; stroke: #222222; stroke-width: 1.6; stroke-linecap: round"/>
+   </g>
+   <g id="text_4">
+    <text style="font-size: 14px; font-family: 'DejaVu Sans'; text-anchor: middle" x="436.86" y="296.0641" transform="rotate(-0 436.86 296.0641)">Schematic page; actual box</text>
+   </g>
+   <g id="text_5">
+    <text style="font-size: 14px; font-family: 'DejaVu Sans'; text-anchor: start" x="23.94" y="317.1313" transform="rotate(-0 23.94 317.1313)">bbox = [54.00, 129.10, 202.72, 145.59] points</text>
+   </g>
+   <g id="text_6">
+    <text style="font-size: 14px; font-family: 'DejaVu Sans'; text-anchor: start" x="23.94" y="340.8319" transform="rotate(-0 23.94 340.8319)">Unrotated PyMuPDF top-left coordinates; whole block, not inverse raw offsets.</text>
+   </g>
+   <g id="text_7">
+    <text style="font-size: 16px; font-family: 'DejaVu Sans'; text-anchor: middle" x="286.2" y="19.3575" transform="rotate(-0 286.2 19.3575)">Figure 19.02 - A canonical span resolves to a pinned page region</text>
+   </g>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="p4bfa264e94">
+   <rect x="7.2" y="35.3575" width="558" height="316.008"/>
+  </clipPath>
+ </defs>
+</svg>

@@ -1,0 +1,2 @@
+# PRIVATE FIXTURE
+Protected marker.

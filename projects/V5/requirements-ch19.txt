@@ -1,0 +1,4 @@
+# Installed versions used for the checked artifact, no model downloads.
+PyMuPDF==1.27.2
+reportlab==4.4.10
+Pillow==12.1.1

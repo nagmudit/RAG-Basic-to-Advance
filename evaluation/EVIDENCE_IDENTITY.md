@@ -15,3 +15,7 @@ python -X utf8 -m unittest discover -s projects/common -p 'test_qrel_identity.py
 ```
 
 The same-ID/snapshot `four hours` to `nine hours` change is rejected by all four loaders, while unchanged evidence and whitespace-only formatting changes still load. Updating a digest automatically to silence a failure is not a review: inspect the changed source and reassess affected judgments first.
+
+## Chapter 19 extraction requirements
+
+[V5 source-span requirements](../projects/V5/span_requirements.json) use a separate declared binding: exact raw file bytes plus source ID/version/path, sorted scopes, approved indexing use and license/retention policy for seven eligible licensed inputs. Canonical spans retain parser/normalization version, content/record digest and source locator. This byte-strict extraction policy does not replace `evidence-identity-v1` for historical qrels. The eight requirements are a preservation/traceability test, not complete graded block qrels. A scanned-page requirement remains in the denominator despite quarantine; automatic digest refresh is not source re-review.

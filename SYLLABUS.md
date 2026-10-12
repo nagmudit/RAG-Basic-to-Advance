@@ -250,11 +250,12 @@ The core question evolves throughout: **Which evidence enters the LLM's context,
 
 #### Chapter 19 — Source ingestion and document quality
 
+- **Authored materials:** [Chapter](chapters/chapter-19-source-ingestion-and-document-quality.md) · [Lab](labs/chapter-19/LAB.md) · [Separate solutions](solutions/chapter-19-solutions.md) · [V5 canonical corpus](projects/V5/README.md).
 - **Objective:** Turn heterogeneous sources into normalized, auditable documents before embedding them.
 - **Prerequisites:** Chapters 02, 05, and 18.
 - **Section 1 — Source adapters.** Topic: formats; micro-concepts: plain text, Markdown, HTML/websites, PDF vs scanned PDF and OCR, Word, spreadsheets, slides, JSON/API, SQL rows, email/tickets/wiki, code, image, audio/video transcript. Topic: extraction; micro-concepts: tables, reading order, headers, footnotes, page coordinates and source anchors.
 - **Section 2 — Quality pipeline.** Topic: records; micro-concepts: stable source IDs, parse errors, cleaning, Unicode normalization, deduplication, boilerplate removal, enrichment, version and checksum, quarantine, validation and provenance. Topic: governance; micro-concepts: source licensing, retention requirements, deletion obligations and allowed indexing uses.
-- **Lab:** Ingest three formats; report dropped or ambiguous content and trace a chunk to its original page.
+- **Lab:** Independently construct a bounded canonical-span/source-region mapper; ingest Markdown, HTML and native PDF with scan/encoding/table quarantines; report dropped/ambiguous content and trace a fixed retrieval unit to its pinned original page. Compare source-bound preservation/traceability with a flat baseline before Chapter20's chunk-design experiments.
 - **Visual:** Source-to-canonical-document lineage with rejection points.
 - **Trade-off / misconception:** A more sophisticated retriever cannot recover text lost or scrambled during parsing.
 - **Unlocks:** Meaningful chunk design and source-specific evaluation.

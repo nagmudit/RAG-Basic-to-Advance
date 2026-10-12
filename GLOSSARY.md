@@ -284,3 +284,24 @@ The glossary will grow with chapter writing. Each future entry will include: **p
 ## Naming notes
 
 “RAG” is used broadly here for retrieving external knowledge to inform generation, while the original 2020 RAG paper describes particular model architectures. “GraphRAG” can mean any graph-enabled retrieval system or a named implementation with community summaries; chapters will say which. “Contextual retrieval,” “late chunking,” “adaptive RAG,” and “agentic RAG” overlap, so mechanism and source are always stated. “Recall” is qualified as relevance recall, context recall, or exact-neighbor ANN recall, each with its own denominator. “Confidence” specifies whose estimate it is: retriever score, trigger probability, answer confidence, or calibrated correctness. “Memory” identifies session state, durable user preference, model weights, or external corpus explicitly.
+
+## Chapter 19 source-quality terms
+
+| Preferred term | Meaning and mechanism | First chapter | Distinguish from |
+|---|---|---|---|
+| Ingestion | Obtain/interpret/validate sources and prepare a governed canonical corpus | 19 | Retrieval for a user question |
+| Connector / format adapter | Capture a snapshot / interpret its format into anchored units | 19 | A ranker or authority judge |
+| Canonical document | Versioned chosen normalized representation with source lineage | 19 | Original bytes or universal truth |
+| Quarantine | Explicit exclusion from publication pending quality repair/review | 19 | Empty successful parse or low relevance |
+| Born-digital / scanned PDF | Software-produced native text may exist / page image needs recognition | 19; deeper42 | Guaranteed complete native extraction |
+| OCR | Estimated characters from an image, with engine/image/coordinate provenance | 19; deeper42 | Native text or human-verified facts |
+| Reading order | Interpreted sequence of source content units | 19; deeper42 | File-object order or geometric sorting alone |
+| Source locator | Version-bound line/tag/page/region anchor with declared units | 02,19 | Canonical code-point offset |
+| Canonical span / block map | Half-open body range / ordered content-unit ranges with source anchors | 19 | UTF-8 bytes, tokens or inverse raw offsets |
+| NFC / compatibility normalization | Canonical composition / additional compatibility folding | 05,19 | Lowercasing or evidence-safe transformation in all cases |
+| Raw / canonical checksum | Digest of captured bytes / normalized representation | 13,19 | Factual correctness, authorship or authorization |
+| Exact duplicate / alias | Equality under a declared content/policy rule / retained distinct origin | 19 | Permission to collapse source versions or tenants |
+| Near duplicate | Approximate similarity requiring review of consequential differences | 19 | Safe exact equality |
+| Boilerplate removal | Reviewed exclusion of repeated/nonbody regions with locator/reason | 19 | Guaranteed removal of irrelevant evidence |
+| Enrichment | Added source-derived/model-estimated metadata with provenance | 19 | Original evidence or verified truth |
+| Preservation / traceable preservation rate | Required source spans retained / also region-locatable, on a declared probe set | 19 | Retrieval recall, source hits or answer correctness |

@@ -428,6 +428,32 @@
       "valid_comparisons": "Replay identical page map, ordered beams, initial cache and capacity to verify logical decisions.",
       "invalid_cross_workload_inferences": "No DiskANN execution, measured SSD latency, storage throughput, geometric or judged retrieval gain; the second beam starts with changed cache state.",
       "source": "projects/V4/storage_ch18.py"
+    },
+    {
+      "workload_id": "ch19-source-quality-v1",
+      "chapters_using_it": [
+        19
+      ],
+      "corpus_version": "ch19-authored-three-format-v1",
+      "query_set_version": "ch19-eight-source-span-probes-v1",
+      "qrels_version": "ch19-source-span-requirements-v1",
+      "number_of_queries": 8,
+      "judgment_count": 8,
+      "query_slices": [
+        "literal-id",
+        "negation",
+        "unicode",
+        "table-relation",
+        "exception",
+        "pdf-body",
+        "pdf-note",
+        "scanned-page"
+      ],
+      "purpose": "Frozen source-bound span preservation and traceability across flat/structured ingestion, plus unchanged lexical source diagnostic. Nine descriptors; seven licensed eligible inputs.",
+      "valid_comparisons": "Same bytes, policies, eight probes, source-span requirements and diagnostic; adapter/normalization bundle changes. Source hit@1 uses alias-aware source IDs, not block qrels.",
+      "invalid_cross_workload_inferences": "No longitudinal improvement against V0/V3/V4 or ANN; no complete graded qrels, held-out generalization, OCR accuracy, generation or service-latency claim.",
+      "source": "projects/V5/span_requirements.json",
+      "source_manifest_sha256": "0b1cc4866abf3e7c96f17f63913e2f2c861d967bc4c2cefd66b47130cf7427d5"
     }
   ]
 }
