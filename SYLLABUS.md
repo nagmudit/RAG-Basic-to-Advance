@@ -234,11 +234,12 @@ The core question evolves throughout: **Which evidence enters the LLM's context,
 
 #### Chapter 18 — Disk ANN, benchmarks, and vector databases
 
+- **Authored materials:** [Chapter](chapters/chapter-18-disk-ann-benchmarks-and-vector-databases.md) · [Lab and Part IV assessment](labs/chapter-18/LAB.md) · [Separate solutions/rubric](solutions/chapter-18-solutions.md) · [Completed V4 laboratory](projects/V4/README.md).
 - **Objective:** Distinguish an index algorithm, a library, a search engine, and a database service.
 - **Prerequisites:** Chapters 15–17 and database vocabulary from Chapter 03.
 - **Section 1 — Index portfolios.** Topic: families; micro-concepts: disk-resident graph search such as DiskANN, SSD random reads, caches, ScaNN-style partition/quantize/rerank, FAISS index families, training vs build time, inserts/deletes, benchmark recall/latency/throughput.
 - **Section 2 — System boundary.** Topic: vector services; micro-concepts: FAISS library vs pgvector in PostgreSQL vs search engines (Elasticsearch, OpenSearch, Vespa) vs purpose-built stores (Qdrant, Milvus, Weaviate, Pinecone) vs local/embedded choices (Chroma, LanceDB); persistence, namespaces, metadata, filter execution, partition/shard routing, replication, write durability, consistency, backup, multi-tenancy and observability. Topic: selection; micro-concepts: ingest throughput, query throughput, filtered recall, operational ownership and portability.
-- **Lab:** Run one exact and one approximate index under identical queries; record index size, build time, p95 latency, and recall.
+- **Lab:** Independently construct bounded page coalescing/LRU state; run pinned native exact and approximate indexes under identical queries, recording actual file bytes, build time, p95 and oracle/judged recall. Diagnose public-predicate shortlist loss and trusted reload. Complete Part IV's architecture-from-memory, cross-chapter reasoning, running-project comparison and delayed teach-back with a separate rubric.
 - **Visual:** Layer diagram from vector to ANN index to storage service.
 - **Trade-off / misconception:** Product features and index defaults change; architectural category and measured workload matter more than vendor labels.
 - **Unlocks:** Designing an ingestion and serving stack.

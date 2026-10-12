@@ -1,6 +1,6 @@
-# Build Your Own RAG Engine — V4, Chapters 15–17 approximate search, compression and graphs
+# Build Your Own RAG Engine — V4, Chapters 15–18 candidate-index laboratory
 
-V4 spans Chapters 15–18 in the [project roadmap](../../PROJECT_ROADMAP.md). Chapters **15, 16 and 17** are implemented here. They start from V3's [checked materialized exact dense index](../V3/README.md), pinned 384-coordinate model and Chapter 13 diagnostic qrels. [Chapter 15](../../chapters/chapter-15-exact-knn-to-trees-and-hashing.md) tests exact tree bounds and random-hyperplane buckets. [Chapter 16](../../chapters/chapter-16-ivf-quantization-and-compressed-vectors.md) separates IVF coarse-list misses from PQ compressed-distance rank errors. V0–V3 remain baselines; no approximate index replaces the exact candidate route.
+V4 spans Chapters 15–18 in the [project roadmap](../../PROJECT_ROADMAP.md). Chapters **15, 16, 17 and 18** are implemented here. They start from V3's [checked materialized exact dense index](../V3/README.md), pinned 384-coordinate model and Chapter 13 diagnostic qrels. [Chapter 15](../../chapters/chapter-15-exact-knn-to-trees-and-hashing.md) tests exact tree bounds and random-hyperplane buckets. [Chapter 16](../../chapters/chapter-16-ivf-quantization-and-compressed-vectors.md) separates IVF coarse-list misses from PQ compressed-distance rank errors. V0–V3 remain baselines; no approximate index replaces the exact candidate route.
 
 ## Artifacts and execution contracts
 
@@ -60,7 +60,7 @@ The graph sweep uses M=2/4/8, efConstruction=32 and efSearch=2/8/24, plus a fixe
 
 On **`ch16-synthetic-n1024-d32-v1`**, M=8,c=32,e=24 has mean geometric Recall@2 `.96875` (31/32 memberships) and scores 256 vectors/query versus 1,024 exact. `synth-07` retains a miss: `s00352` is undiscovered. M=4,c=8/e=24 versus c=32/e=24 reaches `.625/.78125` with identical levels and different connection pools. Vector/edge/level payload bounds are reported separately from Python RSS. On **`ch13-stress-probes-v1`**, M=2 plateaus at `.750` geometric and `.708` judged macro recall despite a wider query pool; outgoing connectivity is part of the failure. M=4,e=24 reaches geometric parity but judged recall remains exact's `.791667`, with added local search overhead. Both no-evidence questions return eligible candidates. Query encoding is separate and much larger than twelve-vector search. **Decision: retain exact dense and BM25.** No held-out, multilingual, answer-quality or production-service gain is established.
 
-[Figures 17.01–17.03](../../visuals/chapter-17/plot-17-01-03-graph-mechanics.py) are computed frontier/hierarchy/diversity diagrams; [Figure 17.04](../../visuals/chapter-17/plot-17-04-quality-cost.py) plots checked recall/work/p95/payload. Each has SVG/PNG and chapter caption/alt text. [Reasoned solutions](../../solutions/chapter-17-solutions.md) and [technical/pedagogical review with completion checklist](../../authoring/reviews/chapter-17.md) complete this stage. The Part IV cumulative checkpoint is due after Chapter 18, which is not authored here.
+[Figures 17.01–17.03](../../visuals/chapter-17/plot-17-01-03-graph-mechanics.py) are computed frontier/hierarchy/diversity diagrams; [Figure 17.04](../../visuals/chapter-17/plot-17-04-quality-cost.py) plots checked recall/work/p95/payload. Each has SVG/PNG and chapter caption/alt text. [Reasoned solutions](../../solutions/chapter-17-solutions.md) and [technical/pedagogical review with completion checklist](../../authoring/reviews/chapter-17.md) complete this stage. Chapter18 now closes this laboratory and supplies the cumulative Part IV checkpoint below.
 
 ```powershell
 python -X utf8 labs/chapter-17/check_implementation.py
@@ -71,3 +71,29 @@ python -X utf8 visuals/chapter-17/plot-17-04-quality-cost.py
 ```
 
 The starter command intentionally fails until you construct it. Tests/reference index require only the standard library; judged replay additionally needs the cached pinned encoder as in V3, and plots need matplotlib. Two dependent warmed timing samples/query and one graph seed/order give descriptive p50/p95, not confidence intervals or production SLOs. Queue/trace construction is inside search; context/envelope serialization, encoding, model load, build and networking are outside. Preserve local replays and all sealed historical records.
+
+## Chapter 18: native indexes and system boundaries
+
+[The chapter](../../chapters/chapter-18-disk-ann-benchmarks-and-vector-databases.md) teaches disk-oriented RAM/SSD navigation, Vamana pruning intuition, partition/quantize/rescore, matched benchmarks and algorithm/library/engine/service responsibilities. Independently construct [the page/cache lab](../../labs/chapter-18/LAB.md) before opening [storage reference code](storage_ch18.py) or [separate solutions](../../solutions/chapter-18-solutions.md). Its logical two-beam fixture does not implement or time DiskANN/SSD.
+
+[The native adapter](native_ch18.py), [runner](experiment_ch18.py), [checked record](chapter-18-experiment.json), [snapshots](index_ch18/synthetic/flat/manifest.json) and [tests](test_ch18.py) use installed Faiss1.13.2 and NumPy2.4.2, one native OpenMP thread. Exact Flat/HNSW share float32 input and a bounded original-coordinate refinement policy, k2, native depth8, frozen source/query/model/qrel identities and static authorization. Sorted IDs, graph seed18012026/M8/c64, actual native/manifest bytes and independently trusted reload are explicit. D10 is excluded before native matrix/graph membership. HNSW internal scored IDs/frontiers are unavailable in this binding; the common envelope marks that limit, retains actual return/survivor/refinement/final pools, and keeps a separate actual Chapter17 reference trace. That graph is never labeled native execution.
+
+On **ch16-synthetic-n1024-d32-v1**, native HNSW e8/e32/e64 geometric Recall@2 is .78125/.96875/1; at observed parity it has higher native p95 and file/build cost than Flat. Native files are131,117/214,130 bytes plus16,055-byte ID/version manifests; these are not RSS, replicas or document/context storage. Matrix-call throughput excludes adapter/encoding/queue/network and is not request latency. Five repeats/query share one inspected workload/seed, so no confidence interval or service SLO is claimed. On **ch13-stress-probes-v1**, all native top-two IDs match exact, macro judged Recall@2 remains .791667, both no-evidence questions return candidates, and the same metadata-ID/current-amendment misses survive. New generation/abstention metrics remain null.
+
+The registered **ch18-public-tag-stride8-v1** and **ch18-public-tag-stride64-v1** workloads compare static predicate-specific exact indexes with public-tag filtering after native depths 8/32. Flat R8 filtered recall is .5625/.09375 with 75%/100% underfill respectively; a complete unfiltered scan can still lose constrained neighbors at its return cutoff. All vectors were already authorized; this is not postfilter ACL enforcement. **Decision: keep exact dense and BM25.** No vector database, live update/authorization service or production workload has been demonstrated.
+
+[Four figures](../../visuals/chapter-18/plot-18-01-02-boundaries-and-pages.py) and [measured plot source](../../visuals/chapter-18/plot-18-03-04-native-and-filters.py) preserve SVG/PNG, actual logical states, checked data, units, workload IDs and limitations. The [review/checklist](../../authoring/reviews/chapter-18.md) records technical, pedagogical, visual and test gates. The lab/solutions include the **required Part IV cumulative assessment**: architecture from memory, eight cross-chapter reasoning tasks, V0/V3/V4 capability/failure and compatible-workload comparisons, separate rubric, and delayed day1/3/7/21 recall with day3/day7 teach-back. Learner completion is assessed; the author does not claim those delayed tasks were already performed.
+
+```powershell
+python -m pip install -r projects/V4/requirements-ch18.txt
+python -X utf8 labs/chapter-18/check_implementation.py
+python -X utf8 -m unittest discover -s projects/V4 -p test_ch18.py -v
+$ch18Run = "projects/V4/experiment_ch18.py"
+$ch18Output = "projects/V4/chapter-18-experiment-local.json"
+$ch18Indexes = "build/ch18-local-indexes"
+python -X utf8 $ch18Run --output $ch18Output --artifact-dir $ch18Indexes
+python -X utf8 visuals/chapter-18/plot-18-01-02-boundaries-and-pages.py
+python -X utf8 visuals/chapter-18/plot-18-03-04-native-and-filters.py
+```
+
+Skip installation if the exact native packages are present; otherwise use an isolated environment. Native tests need those packages, while the bounded cache exercise uses the standard library. The starter intentionally fails until completed. The judged runner uses V3's cached encoder and does not download by default; `--allow-download` explicitly permits its pinned revision. Keep local replays separate from canonical/sealed records. Chapter19 is not authored here.

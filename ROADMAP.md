@@ -10,7 +10,7 @@
 
 Stages are gates, not fixed durations. Complete a gate when its artifact and explanation pass review. At every gate, keep a failure log: query, expected evidence, actual candidates, scores, filters, context, answer, and root cause.
 
-**Current graph-search gate:** [Chapter 17](chapters/chapter-17-proximity-graphs-nsw-and-hnsw.md) requires independent bounded frontier/diversity construction, a hand insertion/hierarchy trace, registered exact-oracle comparisons and a trace-backed index decision. V4 remains experimental: its graph reaches parity on the tiny judged workload without improving judged recall. Part IV's cumulative assessment belongs at its later end, after Chapter 18.
+**Completed Part IV gate:** [Chapter18](chapters/chapter-18-disk-ann-benchmarks-and-vector-databases.md) closes V4 with bounded page/cache construction, native exact/approximate comparisons, public-predicate loss, trusted snapshots and index/service responsibility checks. The required cumulative architecture, cross-chapter reasoning, V0/V3/V4 comparison and delayed teach-back have a separate rubric. The native small-workload experiment retains exact/BM25; it establishes no service or answer-quality gain. Pass the learner assessment before advancing to ingestion.
 
 ## Milestone projects
 

@@ -87,7 +87,8 @@
         13,
         15,
         16,
-        17
+        17,
+        18
       ],
       "corpus_version": "support-corpus-2026-05-20",
       "query_set_version": "ch13-dense-operations-probes-v1",
@@ -104,7 +105,7 @@
         "out_of_domain_style": 2
       },
       "purpose": "Same-model exact oracle versus lexical and ANN variants on inspected stress slices; geometric and judged recall stay separate.",
-      "valid_comparisons": "Within this workload compare routes at matched cutoff/eligibility/model/input and declared context; geometric exact-oracle comparisons also require the same vectors.",
+      "valid_comparisons": "Within this workload compare routes at matched cutoff/eligibility/model/input and declared context; geometric exact-oracle comparisons also require the same vectors. Chapter 18 compares pinned native Flat/HNSW on the same probes with explicit float32 input coercion and observed historical top-two parity; current adapter/kernel/batch boundaries are distinct.",
       "invalid_cross_workload_inferences": "No improvement sequence across Chapter 09, 11, 12 or stress workloads; no model gain from geometry alone.",
       "source": "projects/V3/judgments_ch13.json",
       "evidence_manifest_sha256": "6d78c210769d0992dd530ab66349792077f1b89564c368f63797301ebc66523c"
@@ -328,7 +329,8 @@
       "workload_id": "ch16-synthetic-n1024-d32-v1",
       "chapters_using_it": [
         16,
-        17
+        17,
+        18
       ],
       "corpus_version": "synth-16013082",
       "query_set_version": "planted-16-v1",
@@ -339,7 +341,7 @@
         "gaussian-coordinate-resampled-noisy-query"
       ],
       "purpose": "Decompose coarse-list omissions, PQ distortion and bounded refinement on fixed vectors. Chapter 17 reuses identical rows/queries for graph ANN and fresh exact/IVF-Flat controls.",
-      "valid_comparisons": "Within same trained index/query roster compare probe/mode/refinement at k=2; full-probe Flat oracle parity. Chapter 17 geometric oracles match historical IDs; compare fresh matched timings only, with traced search boundaries and index identities explicit.",
+      "valid_comparisons": "Within same trained index/query roster compare probe/mode/refinement at k=2; full-probe Flat oracle parity. Chapter 17 geometric oracles match historical IDs; compare fresh matched timings only, with traced search boundaries and index identities explicit. Chapter 18 compares pinned native Flat/HNSW on the same probes with explicit float32 input coercion and observed historical top-two parity; current adapter/kernel/batch boundaries are distinct.",
       "invalid_cross_workload_inferences": "No relevance labels; do not compare Chapter 15 synthetic Recall as longitudinal improvement: N/d/seed/queries differ.",
       "source": "projects/V4/experiment_ch16.py",
       "oracle_neighbor_memberships": 32,
@@ -363,6 +365,69 @@
       "valid_comparisons": "Compare ef1 and ef2 at k1 on the same four-vertex graph, exact squared L2 and ID ties.",
       "invalid_cross_workload_inferences": "No relevance labels, HNSW benchmark, generalization, latency claim or cross-fixture score improvement.",
       "source": "projects/V4/graph_fixture_ch17.json"
+    },
+    {
+      "workload_id": "ch18-public-tag-stride8-v1",
+      "chapters_using_it": [
+        18
+      ],
+      "corpus_version": "ch18-tagged-synth-16013082-v1",
+      "query_set_version": "planted-16-v1",
+      "qrels_version": "geometric-exact-eligible-top2-v1",
+      "number_of_queries": 16,
+      "judgment_count": 0,
+      "oracle_neighbor_memberships": 32,
+      "query_slices": [
+        "public-tag-1-in-8"
+      ],
+      "purpose": "Compare static predicate-specific exact index with public-tag post-shortlist filtering at depths8/32; inspect true filtered-oracle recall and underfill. All vectors already authorized.",
+      "valid_comparisons": "Within this tag stride, same authorized corpus, predicate roster, query vectors, k2 and metric. Compare postfilter modes with static prefiltered exact; latency boundaries matched.",
+      "invalid_cross_workload_inferences": "No ACL safety claim for postfiltering; no human relevance/answer/generalization gain; stride8 and64 define different eligible-oracle populations.",
+      "source": "projects/V4/experiment_ch18.py",
+      "predicate": "int(item_id[1:]) % 8 == 0",
+      "eligible_count": 128,
+      "authorized_count": 1024
+    },
+    {
+      "workload_id": "ch18-public-tag-stride64-v1",
+      "chapters_using_it": [
+        18
+      ],
+      "corpus_version": "ch18-tagged-synth-16013082-v1",
+      "query_set_version": "planted-16-v1",
+      "qrels_version": "geometric-exact-eligible-top2-v1",
+      "number_of_queries": 16,
+      "judgment_count": 0,
+      "oracle_neighbor_memberships": 32,
+      "query_slices": [
+        "public-tag-1-in-64"
+      ],
+      "purpose": "Compare static predicate-specific exact index with public-tag post-shortlist filtering at depths8/32; inspect true filtered-oracle recall and underfill. All vectors already authorized.",
+      "valid_comparisons": "Within this tag stride, same authorized corpus, predicate roster, query vectors, k2 and metric. Compare postfilter modes with static prefiltered exact; latency boundaries matched.",
+      "invalid_cross_workload_inferences": "No ACL safety claim for postfiltering; no human relevance/answer/generalization gain; stride8 and64 define different eligible-oracle populations.",
+      "source": "projects/V4/experiment_ch18.py",
+      "predicate": "int(item_id[1:]) % 64 == 0",
+      "eligible_count": 16,
+      "authorized_count": 1024
+    },
+    {
+      "workload_id": "ch18-logical-page-cache-v1",
+      "chapters_using_it": [
+        18
+      ],
+      "corpus_version": "ch18-four-node-pages-v1",
+      "query_set_version": "ch18-two-beams-v1",
+      "qrels_version": null,
+      "number_of_queries": 2,
+      "judgment_count": 0,
+      "query_slices": [
+        "first-beam",
+        "cache-reuse-with-eviction"
+      ],
+      "purpose": "Bounded page coalescing and beam-entry residency with oldest-first LRU; actual logical page requests and cache transitions.",
+      "valid_comparisons": "Replay identical page map, ordered beams, initial cache and capacity to verify logical decisions.",
+      "invalid_cross_workload_inferences": "No DiskANN execution, measured SSD latency, storage throughput, geometric or judged retrieval gain; the second beam starts with changed cache state.",
+      "source": "projects/V4/storage_ch18.py"
     }
   ]
 }

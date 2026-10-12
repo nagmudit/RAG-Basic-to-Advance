@@ -1,0 +1,32 @@
+{
+  "schema": "ch18-faiss-snapshot-1",
+  "faiss_version": "1.13.2",
+  "kind": "hnsw",
+  "dimension": 384,
+  "scope": "support-team",
+  "source_version": "ch13-exact-6ffbcad2d2bfa1f6",
+  "model_version": "8b3219a92973c328a8e22fadcfa821b5dc75636a",
+  "M": 8,
+  "efConstruction": 64,
+  "seed": 18012026,
+  "row_ids": [
+    "D1:\u00a73:0",
+    "D1:\u00a78:0",
+    "D2:\u00a72:0",
+    "D3:FAQ-7:0",
+    "D4:step-4:0",
+    "D4:step-4:1",
+    "D4:step-4:2",
+    "D5:\u00a73:0",
+    "D6:row-2:0",
+    "D7:timeline:0",
+    "D8:\u00a73:0",
+    "D9:proposal-2:0"
+  ],
+  "roster_digest": "6cef16cefa3577674beca31d973e63cdf0d4a9bedd4f47d313733e0ae50632d7",
+  "matrix_float32_sha256": "f576a46d82f918b400693ffd07ac51fb3583bfd8a15bf1b4ed91a9893e220b71",
+  "metric": "squared_l2",
+  "payload_sha256": "40a5e11700376f372872dfcf3fcd3ac0c5e83739d81a2f03603180f94c5ccc84",
+  "payload_bytes": 19714,
+  "query_settings": "efSearch and shortlist depth supplied explicitly at each query"
+}

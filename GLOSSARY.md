@@ -209,6 +209,23 @@ The glossary will grow with chapter writing. Each future entry will include: **p
 | Frontier-bound stop | Pending best pair is worse than the worst full retained pool, so graph expansion stops | 17 | Valid lower bound on every undiscovered vector |
 | Graph tombstone | Logical exclusion from this graph's scoring/traversal while stored vector/links remain | 17; lifecycle 22 | Physical erasure or guaranteed preserved connectivity |
 | Frontier delta trace | Initial queue state plus actual expansions, admissions, distances and evictions sufficient to replay search pools | 17 | Trace inferred from final winners or safe public metadata |
+| Disk-oriented ANN | Search designed around partial RAM residency, storage records, caching and dependent I/O | 18 | Saving an in-memory index to a file or measuring a logical cache fixture |
+| Vamana / robust pruning | Graph construction and alpha-scaled candidate pruning used in the original DiskANN design | 18 | HNSW hierarchy or a universal finite-pool routing guarantee |
+| Page / random read / I/O round | Storage transfer unit / address-selected block fetch / dependent group of fetches | 18 | Vector, adjacency hop or measured latency without a cache/device contract |
+| Disk-search beam | Pending vertex expansions whose records can be requested together | 18 | HNSW efSearch retained width or unlimited I/O parallelism |
+| LRU cache / residency | Least-recently-used eviction state / data available in a declared memory/cache layer | 18 | Relevance history or proof that restarting an object clears the OS cache |
+| Anisotropic quantization | Representation approximation that weights error directions according to a scoring objective | 18 | Error-free compression or retriever relevance training |
+| Index algorithm / library | Candidate-search rules and invariants / their implementation inside a program | 18 | A database service with durable authorized query semantics |
+| Search engine / vector database service | Query-planning/execution system / data and serving system with explicitly verified storage, visibility, access and recovery contracts | 18 | A particular ANN family or universal product guarantee |
+| Native kernel / adapter boundary | Measured library search call / application conversion, candidate processing and captured stage work around it | 18 | End-to-end assistant latency or pure CPU-cycle measurement |
+| Batch throughput | Queries completed per elapsed second under a declared matrix-call batch and execution configuration | 18 | Individual-request p95 or service capacity under independent arrivals |
+| Filtered geometric oracle | Exact nearest eligible items under the actual authorized roster and task predicate | 18 | Filtering an unfiltered bounded shortlist or human relevance judgments |
+| Predicate selectivity / underfill | Fraction of a population matching a task condition / fewer than requested valid results returned | 18 | Authorization strength / proof the corpus has no relevant evidence |
+| Namespace / collection | Logical organization/routing boundary with implementation-specific semantics | 18 | Authentication or permission enforcement by its name alone |
+| Durability / search visibility / consistency | Survival under a stated failure / observable indexed change / relationships between read/write observations | 18 | Interchangeable guarantees or a successful local snapshot load |
+| Write acknowledgment / visibility lag | Confirmation with a declared completion meaning / delay from a source/write event to specified searchable state | 18 | Automatic durable replicated indexing or embedding time alone |
+| Shard / replica | Partition of item ownership / additional copy under a declared serving/recovery policy | 18; deep treatment 51 | Comparable scores or immediate consistency by default |
+| Trusted index manifest / ordinal map | Independently expected source/model/scope/vector/payload identity / native row number to stable item-ID mapping | 18 | A self-supplied checksum, durable transaction or interchangeable source version |
 | Hybrid retrieval | Combining more than one retrieval signal, often lexical and dense | 25 | A specific fusion formula |
 | RRF | Reciprocal rank fusion, combining ranks rather than raw scores | 25 | Weighted score sum |
 | Learning to rank | Estimating ranking order from labeled query-candidate examples and features | 27 | Hand-tuned heuristic or candidate retrieval |
