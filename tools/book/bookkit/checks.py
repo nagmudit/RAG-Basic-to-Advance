@@ -56,13 +56,22 @@ def preflight(cfg: dict, issues: Issues) -> dict:
     captions: set[tuple] = set()
     for n, p in sorted(chapters.items()):
         captions |= set(scan_captions(p.read_text(encoding="utf-8"), n, rel(p), issues))
-    # Every tracked Markdown file: relative links and images must resolve.
+    # Include new manuscript files before staging. Explicit Git-binary fixtures
+    # are source data even when their deliberate invalid input has a .md suffix.
     tracked = [ROOT / f for f in git("ls-files", "*.md").splitlines()] or glob_files(["**/*.md"])
-    tracked += glob_files(["book/**/*.md"])
-    for p in dict.fromkeys(tracked):
+    paths = list(dict.fromkeys(tracked + glob_files(["**/*.md"])))
+    attrs = git("check-attr", "-z", "diff", "--", *(rel(p) for p in paths)).split("\0")
+    binary = {attrs[i] for i in range(0, len(attrs)-2, 3) if attrs[i+2] == "unset"}
+    for p in paths:
         if not p.exists() or rel(p).startswith((".", "build/", "dist/")):
             continue
-        text = p.read_text(encoding="utf-8")
+        if rel(p) in binary:
+            continue
+        try:
+            text = p.read_text(encoding="utf-8")
+        except UnicodeDecodeError:
+            issues.error(f"{rel(p)}: Markdown is not UTF-8; raw binary fixtures need an explicit binary attribute")
+            continue
         text_nocode = re.sub(r"```.*?```", "", text, flags=re.S)
         text_nocode = re.sub(r"`[^`\n]*`", "", text_nocode)
         for m in LINK_RE.finditer(text_nocode):

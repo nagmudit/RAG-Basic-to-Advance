@@ -188,3 +188,13 @@ This register records primary sources used in written chapters. Concept explanat
 | Tesseract, [quality guidance](https://tesseract-ocr.github.io/tessdoc/ImproveQuality.html) | Image quality and OCR preprocessing considerations | No OCR accuracy or local OCR result imported. |
 | W3C WAI, [table tutorial](https://www.w3.org/WAI/tutorials/tables/) | Importance of header/data associations | HTML row serialization is the book's bounded implementation; not a full accessibility/layout parser. |
 | Apache Tika, [supported formats3.2.3](https://tika.apache.org/3.2.3/formats.html) | Format-portfolio example | No Tika execution, exhaustive current feature inventory or recommendation; source-specific QA remains needed. |
+
+## Chapter 20 - verified 2026-10-13
+
+| Source | Used for | Scope and caution |
+|---|---|---|
+| Chen et al., [Dense X Retrieval](https://arxiv.org/abs/2312.06648), 2023/2024 | Retrieval granularity and proposition representation | Optional research comparison; no proposition generation or paper gain reproduced in V5. |
+| Sarthi et al., [RAPTOR](https://arxiv.org/abs/2401.18059), 2024 | Recursive embedding/clustering/summaries across abstraction levels | Distinct from original-parent expansion; no summary tree or external performance imported. |
+| Günther et al., [Late Chunking](https://arxiv.org/abs/2409.04701), 2024, revised 2025 | Contextual token states before chunk pooling; long-context limits | Mechanism comparison only; short independent MiniLM chunks are not late chunking. |
+| Anthropic, [Contextual Retrieval](https://www.anthropic.com/engineering/contextual-retrieval), 2024 | Document-informed descriptions prepended before indexing | Primary system account, not a general guarantee; no generated descriptions run locally. |
+| Sentence Transformers, [pinned model card](https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2) and [semantic similarity usage](https://www.sbert.net/docs/sentence_transformer/usage/semantic_textual_similarity.html) | Shared encoder/normalized comparison, token-limit expectations | Installed cached revision8b3219a92973c328a8e22fadcfa821b5dc75636a checked; actual chunk tokenizer audit precedes encoding. Body-only input is a new workload contract. |

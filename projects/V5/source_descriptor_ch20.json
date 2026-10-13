@@ -1,0 +1,9 @@
+{
+  "source_id": "S-ops",
+  "source_version": "1",
+  "path": "operations.md",
+  "allowed_scopes": ["support-team"],
+  "indexing_allowed": true,
+  "license": "book-authored-fixture",
+  "retention_policy": "fixture-until-project-removal"
+}

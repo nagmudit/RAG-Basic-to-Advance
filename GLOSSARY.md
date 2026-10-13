@@ -305,3 +305,22 @@ The glossary will grow with chapter writing. Each future entry will include: **p
 | Boilerplate removal | Reviewed exclusion of repeated/nonbody regions with locator/reason | 19 | Guaranteed removal of irrelevant evidence |
 | Enrichment | Added source-derived/model-estimated metadata with provenance | 19 | Original evidence or verified truth |
 | Preservation / traceable preservation rate | Required source spans retained / also region-locatable, on a declared probe set | 19 | Retrieval recall, source hits or answer correctness |
+
+## Chapter 20 chunk-boundary terms
+
+| Preferred term | Mechanism and definition | First chapter | Distinguish from |
+|---|---|---|---|
+| Chunking policy | Versioned rule selecting retrieval ranges/structure/size with retained source identity | 20 | Original source or universally correct boundary |
+| Chunk size unit | Explicit code points, whitespace words or particular model tokens | 20 | Bytes, graphemes or another model's tokens |
+| Overlap / stride | Repeated units O / forward progress L-O with 0<=O<L | 20 | Free new evidence or a relevance guarantee |
+| Recursive splitting | Descend a declared structural separator hierarchy when units exceed bounds | 20 | Guaranteed semantic completeness |
+| Semantic segmentation | Propose cuts from content/representation changes under calibrated rules | 20 | Sentence grammar or relevance judgments |
+| Proposition | Compact self-contained derived fact statement requiring original support | 20 | Source-preserving substring or verified truth |
+| Parent-child / small-to-big | Match focused children then select bounded verified larger original regions | 20 | Parent embedding, summary tree or automatic context success |
+| Heading context | Source-derived heading/title information added with separate provenance | 20 | Generated contextual description |
+| Contextual retrieval prefix | Add document-informed descriptive text before chunk indexing/encoding | 20 | Query-time original-parent expansion |
+| Late chunking | Larger-context transformer token states computed before pooling chunk vectors | 20 | Independent chunk encoding, prefix copying or late interaction ranking |
+| Hierarchical summary retrieval | Index derived summaries at abstraction levels with original support links | 20 | Deterministic original-parent expansion |
+| Evidence atom recall | Fully covered independently judged source spans divided by required atoms; stage/cutoff explicit | 20 | Chunk-ID recall, partial coverage or answer correctness |
+| Duplicate source fraction | One minus unique/emitted nonwhitespace canonical positions under governed alias equality | 20 | Semantic redundancy, token duplication or cross-tenant merging |
+| Embedding truncation | Model input silently cut at encoder token limit unless checked/refused | 20 | Canonical text deletion or selected-context budget |

@@ -95,8 +95,11 @@ ColBERTv2 also introduces the **LoTTE** evaluation setting. Read its dataset con
 
 ## Track J — Hierarchical and long-document retrieval (after Chapters 20 and 28)
 
+Chapter20 teaches boundary/expansion/prefix/late-pooling mechanisms and supplies a matched source-span experiment. A granularity card for Dense X can follow Chapter20; defer full summary/context-system readings and experiments until Chapter28's context prerequisites. External paper results never replace the V5 baseline.
+
 | Tier | Paper | Mechanism and reading question |
 |---|---|---|
+| IMPORTANT | [Dense X Retrieval](https://arxiv.org/abs/2312.06648), Chen et al., 2023/2024 | Contrast passage/sentence/proposition units; audit decontextualization, original-span support and matched budgets. Chapter20 introduces the mechanism; inspected V5 word/structure policies do not reproduce its proposition experiments. |
 | IMPORTANT | [RAPTOR](https://arxiv.org/abs/2401.18059), Sarthi et al., 2024 | Recursive clustering/summarization tree; trace summary error to final evidence. |
 | IMPORTANT | [Late Chunking](https://arxiv.org/abs/2409.04701), Günther et al., 2024 | Encode long context before pooling chunk vectors; compare with independently embedded chunks. |
 | CORE | [Lost in the Middle](https://arxiv.org/abs/2307.03172), Liu et al., 2023 | Context position experiments; re-test on the book's current model rather than assuming the effect is fixed. |

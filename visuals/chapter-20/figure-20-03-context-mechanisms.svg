@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="600.3pt" height="393.8295pt" viewBox="0 0 600.3 393.8295" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:date>2026-10-13T09:06:27.464056</dc:date>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.11.0, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 393.8295
+L 600.3 393.8295
+L 600.3 -0
+L 0 -0
+z
+" style="fill: #ffffff"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 18.918 128.705562
+L 177.111 128.705562
+L 177.111 74.971408
+L 18.918 74.971408
+z
+" clip-path="url(#pffa736df3c)" style="fill: #edf4f7; stroke: #005f83; stroke-width: 1.4; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_3">
+    <path d="M 221.0535 128.705562
+L 379.2465 128.705562
+L 379.2465 74.971408
+L 221.0535 74.971408
+z
+" clip-path="url(#pffa736df3c)" style="fill: #edf4f7; stroke: #005f83; stroke-width: 1.4; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_4">
+    <path d="M 423.189 128.705562
+L 581.382 128.705562
+L 581.382 74.971408
+L 423.189 74.971408
+z
+" clip-path="url(#pffa736df3c)" style="fill: #edf4f7; stroke: #005f83; stroke-width: 1.4; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_5">
+    <path d="M 18.918 233.487162
+L 177.111 233.487162
+L 177.111 179.753008
+L 18.918 179.753008
+z
+" clip-path="url(#pffa736df3c)" style="fill: #edf4f7; stroke: #005f83; stroke-width: 1.4; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_6">
+    <path d="M 221.0535 233.487162
+L 379.2465 233.487162
+L 379.2465 179.753008
+L 221.0535 179.753008
+z
+" clip-path="url(#pffa736df3c)" style="fill: #edf4f7; stroke: #005f83; stroke-width: 1.4; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_7">
+    <path d="M 423.189 233.487162
+L 581.382 233.487162
+L 581.382 179.753008
+L 423.189 179.753008
+z
+" clip-path="url(#pffa736df3c)" style="fill: #edf4f7; stroke: #005f83; stroke-width: 1.4; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_8">
+    <path d="M 18.918 338.268762
+L 177.111 338.268762
+L 177.111 284.534608
+L 18.918 284.534608
+z
+" clip-path="url(#pffa736df3c)" style="fill: #edf4f7; stroke: #005f83; stroke-width: 1.4; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_9">
+    <path d="M 221.0535 338.268762
+L 379.2465 338.268762
+L 379.2465 284.534608
+L 221.0535 284.534608
+z
+" clip-path="url(#pffa736df3c)" style="fill: #edf4f7; stroke: #005f83; stroke-width: 1.4; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_10">
+    <path d="M 423.189 338.268762
+L 581.382 338.268762
+L 581.382 284.534608
+L 423.189 284.534608
+z
+" clip-path="url(#pffa736df3c)" style="fill: #edf4f7; stroke: #005f83; stroke-width: 1.4; stroke-linejoin: miter"/>
+   </g>
+   <g id="text_1">
+    <text style="font-size: 14px; font-family: 'DejaVu Sans'" transform="translate(55.237938 97.073289)">QUERY TIME</text>
+    <text style="font-size: 14px; font-family: 'DejaVu Sans'" transform="translate(57.033875 113.877117)">child match</text>
+   </g>
+   <g id="text_2">
+    <text style="font-size: 14px; font-family: 'DejaVu Sans'" transform="translate(247.541719 97.073836)">Verify / expand</text>
+    <text style="font-size: 14px; font-family: 'DejaVu Sans'" transform="translate(248.815938 113.877664)">original parent</text>
+   </g>
+   <g id="text_3">
+    <text style="font-size: 14px; font-family: 'DejaVu Sans'" transform="translate(449.501125 97.073836)">Budget / select</text>
+    <text style="font-size: 14px; font-family: 'DejaVu Sans'" transform="translate(447.087219 113.877664)">reading context</text>
+   </g>
+   <g id="patch_11">
+    <path d="M 179.109118 101.838485
+Q 199.081597 101.838485 217.377025 101.838485
+" style="fill: none; stroke: #222222; stroke-width: 1.5; stroke-linecap: round"/>
+    <path d="M 211.777025 99.038485
+L 217.377025 101.838485
+L 211.777025 104.638485
+" style="fill: none; stroke: #222222; stroke-width: 1.5; stroke-linecap: round"/>
+   </g>
+   <g id="patch_12">
+    <path d="M 381.244618 101.838485
+Q 401.217097 101.838485 419.512525 101.838485
+" style="fill: none; stroke: #222222; stroke-width: 1.5; stroke-linecap: round"/>
+    <path d="M 413.912525 99.038485
+L 419.512525 101.838485
+L 413.912525 104.638485
+" style="fill: none; stroke: #222222; stroke-width: 1.5; stroke-linecap: round"/>
+   </g>
+   <g id="text_4">
+    <text style="font-size: 14px; font-family: 'DejaVu Sans'" transform="translate(57.076531 201.854889)">INDEX TIME</text>
+    <text style="font-size: 14px; font-family: 'DejaVu Sans'" transform="translate(27.567156 218.658717)">chunk + description</text>
+   </g>
+   <g id="text_5">
+    <text style="font-size: 14px; font-family: 'DejaVu Sans'" transform="translate(255.77875 201.855436)">Independent</text>
+    <text style="font-size: 14px; font-family: 'DejaVu Sans'" transform="translate(244.57 218.659264)">chunk encoding</text>
+   </g>
+   <g id="text_6">
+    <text style="font-size: 14px; font-family: 'DejaVu Sans'" transform="translate(452.99675 201.855436)">Store prefixed</text>
+    <text style="font-size: 14px; font-family: 'DejaVu Sans'" transform="translate(456.6455 218.659264)">chunk vector</text>
+   </g>
+   <g id="patch_13">
+    <path d="M 179.109118 206.620085
+Q 199.081597 206.620085 217.377025 206.620085
+" style="fill: none; stroke: #222222; stroke-width: 1.5; stroke-linecap: round"/>
+    <path d="M 211.777025 203.820085
+L 217.377025 206.620085
+L 211.777025 209.420085
+" style="fill: none; stroke: #222222; stroke-width: 1.5; stroke-linecap: round"/>
+   </g>
+   <g id="patch_14">
+    <path d="M 381.244618 206.620085
+Q 401.217097 206.620085 419.512525 206.620085
+" style="fill: none; stroke: #222222; stroke-width: 1.5; stroke-linecap: round"/>
+    <path d="M 413.912525 203.820085
+L 419.512525 206.620085
+L 413.912525 209.420085
+" style="fill: none; stroke: #222222; stroke-width: 1.5; stroke-linecap: round"/>
+   </g>
+   <g id="text_7">
+    <text style="font-size: 14px; font-family: 'DejaVu Sans'" transform="translate(57.076531 306.636489)">INDEX TIME</text>
+    <text style="font-size: 14px; font-family: 'DejaVu Sans'" transform="translate(57.436375 323.440317)">long source</text>
+   </g>
+   <g id="text_8">
+    <text style="font-size: 14px; font-family: 'DejaVu Sans'" transform="translate(262.055781 306.637036)">Contextual</text>
+    <text style="font-size: 14px; font-family: 'DejaVu Sans'" transform="translate(256.972031 323.440864)">token states</text>
+   </g>
+   <g id="text_9">
+    <text style="font-size: 14px; font-family: 'DejaVu Sans'" transform="translate(444.155969 306.637036)">Chunk-boundary</text>
+    <text style="font-size: 14px; font-family: 'DejaVu Sans'" transform="translate(437.814406 323.440864)">pooling -&gt; vectors</text>
+   </g>
+   <g id="patch_15">
+    <path d="M 179.109118 311.401685
+Q 199.081597 311.401685 217.377025 311.401685
+" style="fill: none; stroke: #222222; stroke-width: 1.5; stroke-linecap: round"/>
+    <path d="M 211.777025 308.601685
+L 217.377025 311.401685
+L 211.777025 314.201685
+" style="fill: none; stroke: #222222; stroke-width: 1.5; stroke-linecap: round"/>
+   </g>
+   <g id="patch_16">
+    <path d="M 381.244618 311.401685
+Q 401.217097 311.401685 419.512525 311.401685
+" style="fill: none; stroke: #222222; stroke-width: 1.5; stroke-linecap: round"/>
+    <path d="M 413.912525 308.601685
+L 419.512525 311.401685
+L 413.912525 314.201685
+" style="fill: none; stroke: #222222; stroke-width: 1.5; stroke-linecap: round"/>
+   </g>
+   <g id="text_10">
+    <text style="font-size: 14px; font-family: 'DejaVu Sans'; text-anchor: start" x="18.918" y="150.199223" transform="rotate(-0 18.918 150.199223)">Parent expansion: executed in the bounded experiment</text>
+   </g>
+   <g id="text_11">
+    <text style="font-size: 14px; font-family: 'DejaVu Sans'; text-anchor: start" x="18.918" y="254.980823" transform="rotate(-0 18.918 254.980823)">Contextual description/prefix: conceptual, not run</text>
+   </g>
+   <g id="text_12">
+    <text style="font-size: 14px; font-family: 'DejaVu Sans'; text-anchor: start" x="18.918" y="359.762423" transform="rotate(-0 18.918 359.762423)">Late chunking: conceptual; needs suitable long-context token states</text>
+   </g>
+   <g id="text_13">
+    <text style="font-size: 16px; font-family: 'DejaVu Sans'; text-anchor: middle" x="300.15" y="19.3575" transform="rotate(-0 300.15 19.3575)">Figure 20.03 - Context enters at different stages</text>
+   </g>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="pffa736df3c">
+   <rect x="7.2" y="37.3575" width="585.9" height="349.272"/>
+  </clipPath>
+ </defs>
+</svg>

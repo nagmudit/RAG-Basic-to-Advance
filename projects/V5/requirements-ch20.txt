@@ -1,0 +1,7 @@
+# Exact checked versions; use the cached pinned V3 model revision.
+numpy==2.4.2
+sentence-transformers==5.2.2
+transformers==4.57.3
+# The observed CPU wheel reports 2.10.0+cpu; its public version is pinned below.
+torch==2.10.0
+PyMuPDF==1.27.2

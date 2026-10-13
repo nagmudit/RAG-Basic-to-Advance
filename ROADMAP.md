@@ -34,3 +34,5 @@ All tracks follow the 57 chapters and the same gates. Durations are planning est
 Capstone, review, and research time is included in the broad ranges. Do not advance just because a calendar says to; pass the milestone artifact first.
 
 **Chapter19 source-quality gate:** independently construct the canonical-span mapper, inspect three original formats, reproduce `ch19-source-quality-v1`, trace a fixed PDF unit and defend unresolved scan/table/encoding dispositions. The [V5 lab](labs/chapter-19/LAB.md) supplies its rubric. Source hits do not prove evidence preservation; passed parsing does not imply a visible index. Chapter20 remains the next unstarted dependency.
+
+**Completed V5 gate through Chapter20:** independently implement source-preserving windows, compare at least three policies on the same judged source spans/model/budget, trace actual packing losses and original evidence, and defend a provisional choice with negative results. [The lab](labs/chapter-20/LAB.md) supplies construction/units/evaluation/design criteria. Candidate recall, context evidence and answer quality remain separate; the Part V cumulative checkpoint follows Chapter22.

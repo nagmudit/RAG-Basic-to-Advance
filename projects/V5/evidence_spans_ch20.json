@@ -1,0 +1,624 @@
+{
+  "version": "ch20-independent-source-spans-v1",
+  "query_set_version": "ch20-twelve-evidence-probes-v1",
+  "binding_policy": "source/version/raw/body/record/policy + original anchors and exact canonical required spans",
+  "source_manifest": [
+    {
+      "source_id": "S-copy",
+      "source_version": "1",
+      "source_sha256": "e1fa5508851d2738eaafb3a220446fb86679b0cf250a339f70fb70a43cadaae5",
+      "record_digest": "0726de38ae74c8e448af52742e417d375a156fea6fe19bd0eca34de12e0180bf",
+      "body_sha256": "578c303acd0ca3f6633fb7c147071de822c0e91558a11691eda8aa66aa47d7f3",
+      "allowed_scopes": [
+        "support-team"
+      ],
+      "license": "book-authored-fixture",
+      "indexing_allowed": true,
+      "retention_policy": "fixture-until-project-removal"
+    },
+    {
+      "source_id": "S-html",
+      "source_version": "1",
+      "source_sha256": "d5951c71da8f258b77748c85afc3c75acc4dc11f56e55c73be56b7c895e1f95e",
+      "record_digest": "56a06a18806f97bf89a7e8b167013a725455f23ed06617e1e3fdb3967bf28ac8",
+      "body_sha256": "dcf61907e78a58eb734cfa3e6ae0239a23718bbb5bc30ebb3cebd92a4bd9ca93",
+      "allowed_scopes": [
+        "support-team"
+      ],
+      "license": "book-authored-fixture",
+      "indexing_allowed": true,
+      "retention_policy": "fixture-until-project-removal"
+    },
+    {
+      "source_id": "S-md",
+      "source_version": "1",
+      "source_sha256": "e1fa5508851d2738eaafb3a220446fb86679b0cf250a339f70fb70a43cadaae5",
+      "record_digest": "19ed6cf63de381557af6a2710dd847ae28d2b8c7bf057a2a2e9980b63277cb62",
+      "body_sha256": "578c303acd0ca3f6633fb7c147071de822c0e91558a11691eda8aa66aa47d7f3",
+      "allowed_scopes": [
+        "support-team"
+      ],
+      "license": "book-authored-fixture",
+      "indexing_allowed": true,
+      "retention_policy": "fixture-until-project-removal"
+    },
+    {
+      "source_id": "S-ops",
+      "source_version": "1",
+      "source_sha256": "48b4886e8764460bd2b6ea6ce23e70b31f83aedf076a8df805af45962a4695ce",
+      "record_digest": "14d61caffe00545abb6b7009987699ddf02c30f4d0341baa5ce8adeeefc59bcb",
+      "body_sha256": "a6836d7fb1f005db414747f312313fce75f3d405b8ffad275d1cccc9c08909f8",
+      "allowed_scopes": [
+        "support-team"
+      ],
+      "license": "book-authored-fixture",
+      "indexing_allowed": true,
+      "retention_policy": "fixture-until-project-removal"
+    },
+    {
+      "source_id": "S-pdf",
+      "source_version": "1",
+      "source_sha256": "484dbe173935b42ba2456f7d3179d05db2a6257b931ce5996edac217be57b595",
+      "record_digest": "f24fa65e6c067b3af79ab2b4f4f8de395b12ed906bb25254b1a04551520ba36b",
+      "body_sha256": "ad37c23cb63a4178b04b5623b0830fd657860605345511a136a0374a60960b05",
+      "allowed_scopes": [
+        "support-team"
+      ],
+      "license": "book-authored-fixture",
+      "indexing_allowed": true,
+      "retention_policy": "fixture-until-project-removal"
+    }
+  ],
+  "source_manifest_sha256": "c25448b7cf7e8b910dd7d55d18a9ac43d84e2d3920831d0d3b1c7fb22be828b1",
+  "aliases": {
+    "S-copy": "S-md"
+  },
+  "queries": [
+    {
+      "query_id": "restart",
+      "slice": "rule-and-condition",
+      "question": "Can the team restart release TK-042 before approval?",
+      "requirements": [
+        {
+          "requirement_id": "restart:0",
+          "source_id": "S-md",
+          "canonical_span": [
+            17,
+            31
+          ],
+          "text": "Release TK-042",
+          "text_sha256": "1e11e9f95f42af25b6f60f4fb15500746f65380921b0909da60a2f397b2e8d39",
+          "anchors": [
+            {
+              "block_id": "S-md:b1",
+              "canonical_overlap": [
+                17,
+                31
+              ],
+              "locator": {
+                "format": "markdown",
+                "line_start": 3,
+                "line_end": 3
+              }
+            }
+          ]
+        },
+        {
+          "requirement_id": "restart:1",
+          "source_id": "S-md",
+          "canonical_span": [
+            33,
+            64
+          ],
+          "text": "Do not restart before approval.",
+          "text_sha256": "14cf480a522a6bf1796a3354f0bff6a5ed4d9e943288ed876bce261d66e71851",
+          "anchors": [
+            {
+              "block_id": "S-md:b2",
+              "canonical_overlap": [
+                33,
+                64
+              ],
+              "locator": {
+                "format": "markdown",
+                "line_start": 5,
+                "line_end": 5
+              }
+            }
+          ]
+        }
+      ],
+      "rationale": "Required source spans reviewed on fictional approved canonical snapshots; empty means no eligible published evidence."
+    },
+    {
+      "query_id": "east",
+      "slice": "table-relation",
+      "question": "How many retries are permitted in East?",
+      "requirements": [
+        {
+          "requirement_id": "east:0",
+          "source_id": "S-html",
+          "canonical_span": [
+            62,
+            88
+          ],
+          "text": "Region=East; Retry limit=2",
+          "text_sha256": "1e24dc28a04495462c13668fe2a45001995f3a26ead4ad4ccd9d0f7d7e818e1a",
+          "anchors": [
+            {
+              "block_id": "S-html:b3",
+              "canonical_overlap": [
+                62,
+                88
+              ],
+              "locator": {
+                "format": "html",
+                "tag": "tr",
+                "id": null,
+                "line": 5,
+                "headers": [
+                  "Region",
+                  "Retry limit"
+                ]
+              }
+            }
+          ]
+        }
+      ],
+      "rationale": "Required source spans reviewed on fictional approved canonical snapshots; empty means no eligible published evidence."
+    },
+    {
+      "query_id": "403",
+      "slice": "negation",
+      "question": "May we retry HTTP 403?",
+      "requirements": [
+        {
+          "requirement_id": "403:0",
+          "source_id": "S-html",
+          "canonical_span": [
+            118,
+            139
+          ],
+          "text": "No retry on HTTP 403.",
+          "text_sha256": "74123a22834597b6dbc1886d2fc60ce7a467b73f1aecaf0b74b066cd98692b5e",
+          "anchors": [
+            {
+              "block_id": "S-html:b5",
+              "canonical_overlap": [
+                118,
+                139
+              ],
+              "locator": {
+                "format": "html",
+                "tag": "p",
+                "id": "exception",
+                "line": 6
+              }
+            }
+          ]
+        }
+      ],
+      "rationale": "Required source spans reviewed on fictional approved canonical snapshots; empty means no eligible published evidence."
+    },
+    {
+      "query_id": "response-clock",
+      "slice": "cross-page",
+      "question": "What is the first response duration and when does its clock begin?",
+      "requirements": [
+        {
+          "requirement_id": "response-clock:0",
+          "source_id": "S-pdf",
+          "canonical_span": [
+            24,
+            53
+          ],
+          "text": "First response is four hours.",
+          "text_sha256": "f3e0bb026351b88fd2ad80998431946b2627ab06dedfb111dc8fb974256a4748",
+          "anchors": [
+            {
+              "block_id": "S-pdf:b1",
+              "canonical_overlap": [
+                24,
+                53
+              ],
+              "locator": {
+                "format": "pdf",
+                "page": 1,
+                "bbox": [
+                  54.0,
+                  129.10000610351562,
+                  202.71597290039062,
+                  145.58799743652344
+                ],
+                "coordinate_system": "unrotated-pymupdf-top-left-points",
+                "block_number": 2
+              }
+            }
+          ]
+        },
+        {
+          "requirement_id": "response-clock:1",
+          "source_id": "S-pdf",
+          "canonical_span": [
+            74,
+            106
+          ],
+          "text": "Clock starts after verification.",
+          "text_sha256": "ac537795dfaf2d658c32ea60364a3d7f178e84aed876c14bba3f13fc44cbb4c3",
+          "anchors": [
+            {
+              "block_id": "S-pdf:b3",
+              "canonical_overlap": [
+                74,
+                106
+              ],
+              "locator": {
+                "format": "pdf",
+                "page": 2,
+                "bbox": [
+                  54.0,
+                  129.10000610351562,
+                  208.04397583007812,
+                  145.58799743652344
+                ],
+                "coordinate_system": "unrotated-pymupdf-top-left-points",
+                "block_number": 2
+              }
+            }
+          ]
+        }
+      ],
+      "rationale": "Required source spans reviewed on fictional approved canonical snapshots; empty means no eligible published evidence."
+    },
+    {
+      "query_id": "blue-wait",
+      "slice": "local-policy",
+      "question": "Who owns Blue rollouts and how long does an ordinary rollout wait?",
+      "requirements": [
+        {
+          "requirement_id": "blue-wait:0",
+          "source_id": "S-ops",
+          "canonical_span": [
+            235,
+            296
+          ],
+          "text": "The ordinary waiting period is thirty minutes after approval.",
+          "text_sha256": "9b94796bfd1e99c892f581872ee9c1aa8f9b0f34ea6037c14e821bd9c31b3e79",
+          "anchors": [
+            {
+              "block_id": "S-ops:b2",
+              "canonical_overlap": [
+                235,
+                296
+              ],
+              "locator": {
+                "format": "markdown",
+                "line_start": 5,
+                "line_end": 5
+              }
+            }
+          ]
+        },
+        {
+          "requirement_id": "blue-wait:1",
+          "source_id": "S-ops",
+          "canonical_span": [
+            44,
+            87
+          ],
+          "text": "The release coordinator owns Blue rollouts.",
+          "text_sha256": "d2209549ab018ab5e875a0337badc4c50db21e020880d6e617bb027d9fdd629d",
+          "anchors": [
+            {
+              "block_id": "S-ops:b2",
+              "canonical_overlap": [
+                44,
+                87
+              ],
+              "locator": {
+                "format": "markdown",
+                "line_start": 5,
+                "line_end": 5
+              }
+            }
+          ]
+        }
+      ],
+      "rationale": "Required source spans reviewed on fictional approved canonical snapshots; empty means no eligible published evidence."
+    },
+    {
+      "query_id": "blue-emergency",
+      "slice": "exception",
+      "question": "When may an emergency Blue rollback start immediately?",
+      "requirements": [
+        {
+          "requirement_id": "blue-emergency:0",
+          "source_id": "S-ops",
+          "canonical_span": [
+            437,
+            530
+          ],
+          "text": "An emergency Blue rollback may start immediately when two responders confirm customer impact.",
+          "text_sha256": "acb197e207323bf71e06eec4cf4d873e73fca1f86251047b1edb0faa97df12a8",
+          "anchors": [
+            {
+              "block_id": "S-ops:b3",
+              "canonical_overlap": [
+                437,
+                530
+              ],
+              "locator": {
+                "format": "markdown",
+                "line_start": 7,
+                "line_end": 7
+              }
+            }
+          ]
+        },
+        {
+          "requirement_id": "blue-emergency:1",
+          "source_id": "S-ops",
+          "canonical_span": [
+            531,
+            600
+          ],
+          "text": "This exception does not permit a routine deployment without approval.",
+          "text_sha256": "ba0aeae67168b4050b3ddf351ed809cecdae1eeaca023a4dc9e2bab38f8a6360",
+          "anchors": [
+            {
+              "block_id": "S-ops:b3",
+              "canonical_overlap": [
+                531,
+                600
+              ],
+              "locator": {
+                "format": "markdown",
+                "line_start": 7,
+                "line_end": 7
+              }
+            }
+          ]
+        }
+      ],
+      "rationale": "Required source spans reviewed on fictional approved canonical snapshots; empty means no eligible published evidence."
+    },
+    {
+      "query_id": "green-wait",
+      "slice": "section-disambiguation",
+      "question": "What is the Green waiting period and does it have an emergency exception?",
+      "requirements": [
+        {
+          "requirement_id": "green-wait:0",
+          "source_id": "S-ops",
+          "canonical_span": [
+            936,
+            997
+          ],
+          "text": "The ordinary waiting period is ninety minutes after approval.",
+          "text_sha256": "480b2577f546cfed41bb5e95dc3d543d1c2e6d62e39242c56d99be4ff9e32d40",
+          "anchors": [
+            {
+              "block_id": "S-ops:b5",
+              "canonical_overlap": [
+                936,
+                997
+              ],
+              "locator": {
+                "format": "markdown",
+                "line_start": 11,
+                "line_end": 11
+              }
+            }
+          ]
+        },
+        {
+          "requirement_id": "green-wait:1",
+          "source_id": "S-ops",
+          "canonical_span": [
+            998,
+            1056
+          ],
+          "text": "Green rollouts have no emergency waiting-period exception.",
+          "text_sha256": "bd83c4786fa581563a630f9fce601ab021a8ffb2a53594c40f47ca49d3d4e613",
+          "anchors": [
+            {
+              "block_id": "S-ops:b5",
+              "canonical_overlap": [
+                998,
+                1056
+              ],
+              "locator": {
+                "format": "markdown",
+                "line_start": 11,
+                "line_end": 11
+              }
+            }
+          ]
+        }
+      ],
+      "rationale": "Required source spans reviewed on fictional approved canonical snapshots; empty means no eligible published evidence."
+    },
+    {
+      "query_id": "green-fail",
+      "slice": "procedure",
+      "question": "After a failed Green health check, what is required before another attempt?",
+      "requirements": [
+        {
+          "requirement_id": "green-fail:0",
+          "source_id": "S-ops",
+          "canonical_span": [
+            1224,
+            1325
+          ],
+          "text": "When a Green rollout fails its health check, stop the rollout and notify the maintenance coordinator.",
+          "text_sha256": "b3e9f626b61c943fddd6439d66556f8ff72cd2149e7afb603498ec3718f740d3",
+          "anchors": [
+            {
+              "block_id": "S-ops:b6",
+              "canonical_overlap": [
+                1224,
+                1325
+              ],
+              "locator": {
+                "format": "markdown",
+                "line_start": 13,
+                "line_end": 13
+              }
+            }
+          ]
+        },
+        {
+          "requirement_id": "green-fail:1",
+          "source_id": "S-ops",
+          "canonical_span": [
+            1383,
+            1456
+          ],
+          "text": "A stopped Green rollout requires a fresh approval before another attempt.",
+          "text_sha256": "bad345885ad95cf0fcf8b850b2df3d98dfc9ba37a3a283c8c5a6fed6328c08fe",
+          "anchors": [
+            {
+              "block_id": "S-ops:b6",
+              "canonical_overlap": [
+                1383,
+                1456
+              ],
+              "locator": {
+                "format": "markdown",
+                "line_start": 13,
+                "line_end": 13
+              }
+            }
+          ]
+        }
+      ],
+      "rationale": "Required source spans reviewed on fictional approved canonical snapshots; empty means no eligible published evidence."
+    },
+    {
+      "query_id": "billing",
+      "slice": "boundary-value",
+      "question": "Which invoice batch receives a ticket submitted at exactly 17:00 UTC?",
+      "requirements": [
+        {
+          "requirement_id": "billing:0",
+          "source_id": "S-ops",
+          "canonical_span": [
+            1633,
+            1691
+          ],
+          "text": "A ticket submitted at 17:00 UTC belongs to the next batch.",
+          "text_sha256": "f2b9965d6440bfc088c23a3e359062f0b73b3fc949369fa52f23808c5a96c64c",
+          "anchors": [
+            {
+              "block_id": "S-ops:b8",
+              "canonical_overlap": [
+                1633,
+                1691
+              ],
+              "locator": {
+                "format": "markdown",
+                "line_start": 17,
+                "line_end": 17
+              }
+            }
+          ]
+        }
+      ],
+      "rationale": "Required source spans reviewed on fictional approved canonical snapshots; empty means no eligible published evidence."
+    },
+    {
+      "query_id": "drill",
+      "slice": "multi-span",
+      "question": "Which evidence records support a Blue drill and what must the health report include?",
+      "requirements": [
+        {
+          "requirement_id": "drill:0",
+          "source_id": "S-ops",
+          "canonical_span": [
+            2009,
+            2104
+          ],
+          "text": "The drill lead records the form identifier and the signed release before starting a Blue drill.",
+          "text_sha256": "6fe014b168a2d8c4b46c006263c40eec1ac6c64dca8e7e3bb9f99f22bf9b974e",
+          "anchors": [
+            {
+              "block_id": "S-ops:b10",
+              "canonical_overlap": [
+                2009,
+                2104
+              ],
+              "locator": {
+                "format": "markdown",
+                "line_start": 21,
+                "line_end": 21
+              }
+            }
+          ]
+        },
+        {
+          "requirement_id": "drill:1",
+          "source_id": "S-ops",
+          "canonical_span": [
+            2161,
+            2245
+          ],
+          "text": "The report must include the target region, observed error rate and rollback outcome.",
+          "text_sha256": "5ce1bba623dcbcf605d7d567d7256e13d407477f92de298be47541cc362bb519",
+          "anchors": [
+            {
+              "block_id": "S-ops:b10",
+              "canonical_overlap": [
+                2161,
+                2245
+              ],
+              "locator": {
+                "format": "markdown",
+                "line_start": 21,
+                "line_end": 21
+              }
+            }
+          ]
+        },
+        {
+          "requirement_id": "drill:2",
+          "source_id": "S-ops",
+          "canonical_span": [
+            2246,
+            2303
+          ],
+          "text": "The run log and health report are complementary evidence.",
+          "text_sha256": "efa6384dbd557ac559adf37d8859d225d468f86cad31fc41fab989b30bdc34e9",
+          "anchors": [
+            {
+              "block_id": "S-ops:b10",
+              "canonical_overlap": [
+                2246,
+                2303
+              ],
+              "locator": {
+                "format": "markdown",
+                "line_start": 21,
+                "line_end": 21
+              }
+            }
+          ]
+        }
+      ],
+      "rationale": "Required source spans reviewed on fictional approved canonical snapshots; empty means no eligible published evidence."
+    },
+    {
+      "query_id": "scan-unavailable",
+      "slice": "quarantined-evidence",
+      "question": "What is the retention limit in the scanned amendment?",
+      "requirements": [],
+      "rationale": "Required source spans reviewed on fictional approved canonical snapshots; empty means no eligible published evidence."
+    },
+    {
+      "query_id": "unpublished",
+      "slice": "no-eligible-evidence",
+      "question": "What password unlocks the confidential private support console?",
+      "requirements": [],
+      "rationale": "Required source spans reviewed on fictional approved canonical snapshots; empty means no eligible published evidence."
+    }
+  ]
+}

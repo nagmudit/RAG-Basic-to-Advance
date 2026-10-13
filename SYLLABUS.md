@@ -262,11 +262,12 @@ The core question evolves throughout: **Which evidence enters the LLM's context,
 
 #### Chapter 20 — Chunking as a retrieval design decision
 
+- **Authored materials:** [Chapter](chapters/chapter-20-chunking-as-a-retrieval-design-decision.md) · [Lab](labs/chapter-20/LAB.md) · [Separate solutions](solutions/chapter-20-solutions.md) · [Completed V5 source/segmentation laboratory](projects/V5/README.md).
 - **Objective:** Select segmentation by document structure, question granularity, and measured answer coverage.
 - **Prerequisites:** Chapters 09, 11–13, and 19.
 - **Section 1 — Boundaries.** Topic: strategies; micro-concepts: fixed characters/tokens, sentences, paragraphs, recursive splits, overlap, Markdown/HTML/layout/code/conversation boundaries, semantic and proposition segmentation, query-aware/adaptive proposals. Topic: parameters; micro-concepts: token count, overlap ratio, heading context, section continuity.
 - **Section 2 — Multi-scale retrieval.** Topic: parent-child; micro-concepts: child match vs parent expansion, small-to-big, hierarchical summaries, RAPTOR-style trees, late chunking, contextual retrieval (adding document context before indexing), chunk-to-document mapping. Topic: measurement; micro-concepts: boundary quality, recall, redundancy, embedding cost, context dilution and citation span accuracy.
-- **Lab:** Compare at least three chunkers on the same judged questions and report recall, duplicate context, and answer evidence span.
+- **Lab:** Independently construct a source-preserving word-window chunker, then compare at least three policies (seven reference configurations) on the same source-bound judged questions. Report candidate/context atom recall, duplicate source positions, model input/vector cost and original answer-evidence spans; diagnose budget/expansion losses without claiming unrun generation quality.
 - **Visual:** One document with competing boundaries and retrieved spans.
 - **Trade-off / misconception:** Larger or overlapping chunks do not monotonically improve answer quality.
 - **Unlocks:** Controlled index metadata and hierarchical retrieval.

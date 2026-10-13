@@ -1,0 +1,706 @@
+[
+  {
+    "source_id": "S-md",
+    "source_version": "1",
+    "source_sha256": "e1fa5508851d2738eaafb3a220446fb86679b0cf250a339f70fb70a43cadaae5",
+    "allowed_scopes": [
+      "support-team"
+    ],
+    "license": "book-authored-fixture",
+    "indexing_allowed": true,
+    "retention_policy": "fixture-until-project-removal",
+    "parser_version": "ch19-bounded-adapters-1",
+    "normalization_version": "nfc-prose-space-code-preserve-1",
+    "mode": "structured",
+    "body": "Restart runbook\n\nRelease TK-042\n\nDo not restart before approval.\n\nThe café team owns the restart.\n\nif approved:\n    restart()",
+    "body_sha256": "578c303acd0ca3f6633fb7c147071de822c0e91558a11691eda8aa66aa47d7f3",
+    "blocks": [
+      {
+        "block_id": "S-md:b0",
+        "text": "Restart runbook",
+        "kind": "heading",
+        "start": 0,
+        "end": 15,
+        "locator": {
+          "format": "markdown",
+          "line_start": 1,
+          "line_end": 1
+        },
+        "raw_extracted_text": "Restart runbook",
+        "raw_extracted_sha256": "322c950101a92e407def5a75a088cc8c2e5fdb3eb2a6a19147e77ba5a664e8b6"
+      },
+      {
+        "block_id": "S-md:b1",
+        "text": "Release TK-042",
+        "kind": "heading",
+        "start": 17,
+        "end": 31,
+        "locator": {
+          "format": "markdown",
+          "line_start": 3,
+          "line_end": 3
+        },
+        "raw_extracted_text": "Release TK-042",
+        "raw_extracted_sha256": "1e11e9f95f42af25b6f60f4fb15500746f65380921b0909da60a2f397b2e8d39"
+      },
+      {
+        "block_id": "S-md:b2",
+        "text": "Do not restart before approval.",
+        "kind": "prose",
+        "start": 33,
+        "end": 64,
+        "locator": {
+          "format": "markdown",
+          "line_start": 5,
+          "line_end": 5
+        },
+        "raw_extracted_text": "Do not restart before approval.",
+        "raw_extracted_sha256": "14cf480a522a6bf1796a3354f0bff6a5ed4d9e943288ed876bce261d66e71851"
+      },
+      {
+        "block_id": "S-md:b3",
+        "text": "The café team owns the restart.",
+        "kind": "prose",
+        "start": 66,
+        "end": 97,
+        "locator": {
+          "format": "markdown",
+          "line_start": 7,
+          "line_end": 7
+        },
+        "raw_extracted_text": "The café team owns the restart.",
+        "raw_extracted_sha256": "e6eda4eab3f87c7f58ad143963625695318af1031c0bf0e634d791c11f497bd3"
+      },
+      {
+        "block_id": "S-md:b4",
+        "text": "if approved:\n    restart()",
+        "kind": "code",
+        "start": 99,
+        "end": 125,
+        "locator": {
+          "format": "markdown",
+          "line_start": 9,
+          "line_end": 12
+        },
+        "raw_extracted_text": "if approved:\n    restart()",
+        "raw_extracted_sha256": "566e41c7eb4f43695b9f8403087869ac216035c6d85d1155d3b719297a936ad7"
+      }
+    ],
+    "dropped_regions": [],
+    "status": "accepted",
+    "reason": null,
+    "record_digest": "19ed6cf63de381557af6a2710dd847ae28d2b8c7bf057a2a2e9980b63277cb62"
+  },
+  {
+    "source_id": "S-html",
+    "source_version": "1",
+    "source_sha256": "d5951c71da8f258b77748c85afc3c75acc4dc11f56e55c73be56b7c895e1f95e",
+    "allowed_scopes": [
+      "support-team"
+    ],
+    "license": "book-authored-fixture",
+    "indexing_allowed": true,
+    "retention_policy": "fixture-until-project-removal",
+    "parser_version": "ch19-bounded-adapters-1",
+    "normalization_version": "nfc-prose-space-code-preserve-1",
+    "mode": "structured",
+    "body": "Retry policy\n\nLimits depend on region.\n\nRegion | Retry limit\n\nRegion=East; Retry limit=2\n\nRegion=West; Retry limit=4\n\nNo retry on HTTP 403.",
+    "body_sha256": "dcf61907e78a58eb734cfa3e6ae0239a23718bbb5bc30ebb3cebd92a4bd9ca93",
+    "blocks": [
+      {
+        "block_id": "S-html:b0",
+        "text": "Retry policy",
+        "kind": "heading",
+        "start": 0,
+        "end": 12,
+        "locator": {
+          "format": "html",
+          "tag": "h1",
+          "id": "policy",
+          "line": 3
+        },
+        "raw_extracted_text": "Retry policy",
+        "raw_extracted_sha256": "2ee363ab50125e071e17e85a131ba4d534eab1a8085aaf81061a91f7f402164e"
+      },
+      {
+        "block_id": "S-html:b1",
+        "text": "Limits depend on region.",
+        "kind": "prose",
+        "start": 14,
+        "end": 38,
+        "locator": {
+          "format": "html",
+          "tag": "p",
+          "id": "intro",
+          "line": 3
+        },
+        "raw_extracted_text": "Limits depend on region.",
+        "raw_extracted_sha256": "557367a056fb96ed7a3103557b8ed5da2240ff7d9aa2497438054da4733d225a"
+      },
+      {
+        "block_id": "S-html:b2",
+        "text": "Region | Retry limit",
+        "kind": "table_header",
+        "start": 40,
+        "end": 60,
+        "locator": {
+          "format": "html",
+          "tag": "tr",
+          "id": null,
+          "line": 4
+        },
+        "raw_extracted_text": "Region | Retry limit",
+        "raw_extracted_sha256": "f281037de7d51ca60e256792fbd8d90d05ce317b44518fecb987f672f501da34"
+      },
+      {
+        "block_id": "S-html:b3",
+        "text": "Region=East; Retry limit=2",
+        "kind": "table_row",
+        "start": 62,
+        "end": 88,
+        "locator": {
+          "format": "html",
+          "tag": "tr",
+          "id": null,
+          "line": 5,
+          "headers": [
+            "Region",
+            "Retry limit"
+          ]
+        },
+        "raw_extracted_text": "Region=East; Retry limit=2",
+        "raw_extracted_sha256": "1e24dc28a04495462c13668fe2a45001995f3a26ead4ad4ccd9d0f7d7e818e1a"
+      },
+      {
+        "block_id": "S-html:b4",
+        "text": "Region=West; Retry limit=4",
+        "kind": "table_row",
+        "start": 90,
+        "end": 116,
+        "locator": {
+          "format": "html",
+          "tag": "tr",
+          "id": null,
+          "line": 5,
+          "headers": [
+            "Region",
+            "Retry limit"
+          ]
+        },
+        "raw_extracted_text": "Region=West; Retry limit=4",
+        "raw_extracted_sha256": "3c98203a6de4e5a3a76f91848cd8f4e482f29e10105be92fc075a980481007fc"
+      },
+      {
+        "block_id": "S-html:b5",
+        "text": "No retry on HTTP 403.",
+        "kind": "prose",
+        "start": 118,
+        "end": 139,
+        "locator": {
+          "format": "html",
+          "tag": "p",
+          "id": "exception",
+          "line": 6
+        },
+        "raw_extracted_text": "No retry on HTTP 403.",
+        "raw_extracted_sha256": "74123a22834597b6dbc1886d2fc60ce7a467b73f1aecaf0b74b066cd98692b5e"
+      }
+    ],
+    "dropped_regions": [
+      {
+        "reason": "excluded_html_region",
+        "locator": {
+          "tag": "head",
+          "line": 1
+        }
+      },
+      {
+        "reason": "excluded_html_region",
+        "locator": {
+          "tag": "nav",
+          "line": 2
+        }
+      },
+      {
+        "reason": "excluded_html_region",
+        "locator": {
+          "tag": "footer",
+          "line": 7
+        }
+      },
+      {
+        "reason": "excluded_html_region",
+        "locator": {
+          "tag": "script",
+          "line": 7
+        }
+      }
+    ],
+    "status": "accepted",
+    "reason": null,
+    "record_digest": "56a06a18806f97bf89a7e8b167013a725455f23ed06617e1e3fdb3967bf28ac8"
+  },
+  {
+    "source_id": "S-pdf",
+    "source_version": "1",
+    "source_sha256": "484dbe173935b42ba2456f7d3179d05db2a6257b931ce5996edac217be57b595",
+    "allowed_scopes": [
+      "support-team"
+    ],
+    "license": "book-authored-fixture",
+    "indexing_allowed": true,
+    "retention_policy": "fixture-until-project-removal",
+    "parser_version": "ch19-bounded-adapters-1",
+    "normalization_version": "nfc-prose-space-code-preserve-1",
+    "mode": "structured",
+    "body": "Signed response policy\n\nFirst response is four hours.\n\nVerification note\n\nClock starts after verification.",
+    "body_sha256": "ad37c23cb63a4178b04b5623b0830fd657860605345511a136a0374a60960b05",
+    "blocks": [
+      {
+        "block_id": "S-pdf:b0",
+        "text": "Signed response policy",
+        "kind": "prose",
+        "start": 0,
+        "end": 22,
+        "locator": {
+          "format": "pdf",
+          "page": 1,
+          "bbox": [
+            54.0,
+            82.87999725341797,
+            233.61598205566406,
+            104.91200256347656
+          ],
+          "coordinate_system": "unrotated-pymupdf-top-left-points",
+          "block_number": 1
+        },
+        "raw_extracted_text": "Signed response policy\n",
+        "raw_extracted_sha256": "141847396a563ddfacf2454b1430047a95c7c97896acde95bdc4bea96fb1d2ca"
+      },
+      {
+        "block_id": "S-pdf:b1",
+        "text": "First response is four hours.",
+        "kind": "prose",
+        "start": 24,
+        "end": 53,
+        "locator": {
+          "format": "pdf",
+          "page": 1,
+          "bbox": [
+            54.0,
+            129.10000610351562,
+            202.71597290039062,
+            145.58799743652344
+          ],
+          "coordinate_system": "unrotated-pymupdf-top-left-points",
+          "block_number": 2
+        },
+        "raw_extracted_text": "First response is four hours.\n",
+        "raw_extracted_sha256": "1aef7842cf9801745629fbcac2143acb85aa92e0112b2cbeaf3875a58517d7d7"
+      },
+      {
+        "block_id": "S-pdf:b2",
+        "text": "Verification note",
+        "kind": "prose",
+        "start": 55,
+        "end": 72,
+        "locator": {
+          "format": "pdf",
+          "page": 2,
+          "bbox": [
+            54.0,
+            82.87999725341797,
+            179.36000061035156,
+            104.91200256347656
+          ],
+          "coordinate_system": "unrotated-pymupdf-top-left-points",
+          "block_number": 1
+        },
+        "raw_extracted_text": "Verification note\n",
+        "raw_extracted_sha256": "a1451b0c7f318bcdcfe100e7eb1cf7872327ffe048b12b82b3b576751d49c35d"
+      },
+      {
+        "block_id": "S-pdf:b3",
+        "text": "Clock starts after verification.",
+        "kind": "prose",
+        "start": 74,
+        "end": 106,
+        "locator": {
+          "format": "pdf",
+          "page": 2,
+          "bbox": [
+            54.0,
+            129.10000610351562,
+            208.04397583007812,
+            145.58799743652344
+          ],
+          "coordinate_system": "unrotated-pymupdf-top-left-points",
+          "block_number": 2
+        },
+        "raw_extracted_text": "Clock starts after verification.\n",
+        "raw_extracted_sha256": "754fbea21f1874ac08486dbb48d4cc9e44d4f2743f63bcae3f7862ea43454819"
+      }
+    ],
+    "dropped_regions": [
+      {
+        "reason": "reviewed_fixture_margin",
+        "locator": {
+          "format": "pdf",
+          "page": 1,
+          "bbox": [
+            54.0,
+            26.174999237060547,
+            277.0799560546875,
+            41.28900146484375
+          ],
+          "coordinate_system": "unrotated-pymupdf-top-left-points",
+          "block_number": 0
+        }
+      },
+      {
+        "reason": "reviewed_fixture_margin",
+        "locator": {
+          "format": "pdf",
+          "page": 1,
+          "bbox": [
+            54.0,
+            750.3250122070312,
+            82.52098846435547,
+            762.6909790039062
+          ],
+          "coordinate_system": "unrotated-pymupdf-top-left-points",
+          "block_number": 3
+        }
+      },
+      {
+        "reason": "reviewed_fixture_margin",
+        "locator": {
+          "format": "pdf",
+          "page": 2,
+          "bbox": [
+            54.0,
+            26.174999237060547,
+            277.0799560546875,
+            41.28900146484375
+          ],
+          "coordinate_system": "unrotated-pymupdf-top-left-points",
+          "block_number": 0
+        }
+      },
+      {
+        "reason": "reviewed_fixture_margin",
+        "locator": {
+          "format": "pdf",
+          "page": 2,
+          "bbox": [
+            54.0,
+            750.3250122070312,
+            82.52098846435547,
+            762.6909790039062
+          ],
+          "coordinate_system": "unrotated-pymupdf-top-left-points",
+          "block_number": 3
+        }
+      }
+    ],
+    "status": "accepted",
+    "reason": null,
+    "record_digest": "f24fa65e6c067b3af79ab2b4f4f8de395b12ed906bb25254b1a04551520ba36b"
+  },
+  {
+    "source_id": "S-copy",
+    "source_version": "1",
+    "source_sha256": "e1fa5508851d2738eaafb3a220446fb86679b0cf250a339f70fb70a43cadaae5",
+    "allowed_scopes": [
+      "support-team"
+    ],
+    "license": "book-authored-fixture",
+    "indexing_allowed": true,
+    "retention_policy": "fixture-until-project-removal",
+    "parser_version": "ch19-bounded-adapters-1",
+    "normalization_version": "nfc-prose-space-code-preserve-1",
+    "mode": "structured",
+    "body": "Restart runbook\n\nRelease TK-042\n\nDo not restart before approval.\n\nThe café team owns the restart.\n\nif approved:\n    restart()",
+    "body_sha256": "578c303acd0ca3f6633fb7c147071de822c0e91558a11691eda8aa66aa47d7f3",
+    "blocks": [
+      {
+        "block_id": "S-copy:b0",
+        "text": "Restart runbook",
+        "kind": "heading",
+        "start": 0,
+        "end": 15,
+        "locator": {
+          "format": "markdown",
+          "line_start": 1,
+          "line_end": 1
+        },
+        "raw_extracted_text": "Restart runbook",
+        "raw_extracted_sha256": "322c950101a92e407def5a75a088cc8c2e5fdb3eb2a6a19147e77ba5a664e8b6"
+      },
+      {
+        "block_id": "S-copy:b1",
+        "text": "Release TK-042",
+        "kind": "heading",
+        "start": 17,
+        "end": 31,
+        "locator": {
+          "format": "markdown",
+          "line_start": 3,
+          "line_end": 3
+        },
+        "raw_extracted_text": "Release TK-042",
+        "raw_extracted_sha256": "1e11e9f95f42af25b6f60f4fb15500746f65380921b0909da60a2f397b2e8d39"
+      },
+      {
+        "block_id": "S-copy:b2",
+        "text": "Do not restart before approval.",
+        "kind": "prose",
+        "start": 33,
+        "end": 64,
+        "locator": {
+          "format": "markdown",
+          "line_start": 5,
+          "line_end": 5
+        },
+        "raw_extracted_text": "Do not restart before approval.",
+        "raw_extracted_sha256": "14cf480a522a6bf1796a3354f0bff6a5ed4d9e943288ed876bce261d66e71851"
+      },
+      {
+        "block_id": "S-copy:b3",
+        "text": "The café team owns the restart.",
+        "kind": "prose",
+        "start": 66,
+        "end": 97,
+        "locator": {
+          "format": "markdown",
+          "line_start": 7,
+          "line_end": 7
+        },
+        "raw_extracted_text": "The café team owns the restart.",
+        "raw_extracted_sha256": "e6eda4eab3f87c7f58ad143963625695318af1031c0bf0e634d791c11f497bd3"
+      },
+      {
+        "block_id": "S-copy:b4",
+        "text": "if approved:\n    restart()",
+        "kind": "code",
+        "start": 99,
+        "end": 125,
+        "locator": {
+          "format": "markdown",
+          "line_start": 9,
+          "line_end": 12
+        },
+        "raw_extracted_text": "if approved:\n    restart()",
+        "raw_extracted_sha256": "566e41c7eb4f43695b9f8403087869ac216035c6d85d1155d3b719297a936ad7"
+      }
+    ],
+    "dropped_regions": [],
+    "status": "accepted",
+    "reason": null,
+    "record_digest": "0726de38ae74c8e448af52742e417d375a156fea6fe19bd0eca34de12e0180bf"
+  },
+  {
+    "source_id": "S-ops",
+    "source_version": "1",
+    "source_sha256": "48b4886e8764460bd2b6ea6ce23e70b31f83aedf076a8df805af45962a4695ce",
+    "allowed_scopes": [
+      "support-team"
+    ],
+    "license": "book-authored-fixture",
+    "indexing_allowed": true,
+    "retention_policy": "fixture-until-project-removal",
+    "parser_version": "ch19-bounded-adapters-1",
+    "normalization_version": "nfc-prose-space-code-preserve-1",
+    "mode": "structured",
+    "body": "Deployment operations manual\n\nBlue rollout\n\nThe release coordinator owns Blue rollouts. Blue deployment requests use form B-17 and require an approval ticket. Operators attach the ticket identifier to the run log before starting work. The ordinary waiting period is thirty minutes after approval. A scheduled drill follows the ordinary waiting period. The monitoring team observes traffic during the wait and records each health check.\n\nAn emergency Blue rollback may start immediately when two responders confirm customer impact. This exception does not permit a routine deployment without approval. The responders record the incident identifier and the decision in the same run log. A rollback returns to the previously signed release. An unsigned experimental build is never the rollback target.\n\nGreen rollout\n\nThe maintenance coordinator owns Green rollouts. Green deployment requests use form G-29 and require an approval ticket. The ordinary waiting period is ninety minutes after approval. Green rollouts have no emergency waiting-period exception. Operators attach the change identifier and record the planned region before work. The coordinator checks that the maintenance window remains open through completion.\n\nWhen a Green rollout fails its health check, stop the rollout and notify the maintenance coordinator. Do not apply the Blue emergency exception to Green work. A stopped Green rollout requires a fresh approval before another attempt. The operations log preserves the failed check and its timestamp instead of replacing them with the successful retry.\n\nBilling boundary\n\nThe invoice batch freezes at 17:00 UTC. A ticket submitted at 17:00 UTC belongs to the next batch. Tickets submitted earlier belong to the current batch only when verification is complete. The literal boundary is inclusive for the next batch. Local display times are not the batch clock. A verified ticket retains the original submission timestamp and the verification timestamp as separate fields.\n\nDrill evidence\n\nThe drill lead records the form identifier and the signed release before starting a Blue drill. After the drill, the observer attaches a health report. The report must include the target region, observed error rate and rollback outcome. The run log and health report are complementary evidence. An empty report does not prove that no errors occurred. Record a missing observation explicitly.\n\nHistorical discussion\n\nEarlier planning notes discussed a ten-minute wait for all colors. That proposal was not adopted. The current Blue and Green procedures above govern operations. A search result mentioning a short wait must retain this rejection and its source section. Historical examples explain decisions but do not override the current approved procedure. These notes are part of this fictional book fixture, not a real service policy.",
+    "body_sha256": "a6836d7fb1f005db414747f312313fce75f3d405b8ffad275d1cccc9c08909f8",
+    "blocks": [
+      {
+        "block_id": "S-ops:b0",
+        "text": "Deployment operations manual",
+        "kind": "heading",
+        "start": 0,
+        "end": 28,
+        "locator": {
+          "format": "markdown",
+          "line_start": 1,
+          "line_end": 1
+        },
+        "raw_extracted_text": "Deployment operations manual",
+        "raw_extracted_sha256": "15e347e3c7e7cfdd8d1ea2eac6a9d0c93b89cf692c062dafb9060b95df8c6657"
+      },
+      {
+        "block_id": "S-ops:b1",
+        "text": "Blue rollout",
+        "kind": "heading",
+        "start": 30,
+        "end": 42,
+        "locator": {
+          "format": "markdown",
+          "line_start": 3,
+          "line_end": 3
+        },
+        "raw_extracted_text": "Blue rollout",
+        "raw_extracted_sha256": "ea411491744936424ca101a495da35ad89b2d7021a37e8d2e30befe199897f1a"
+      },
+      {
+        "block_id": "S-ops:b2",
+        "text": "The release coordinator owns Blue rollouts. Blue deployment requests use form B-17 and require an approval ticket. Operators attach the ticket identifier to the run log before starting work. The ordinary waiting period is thirty minutes after approval. A scheduled drill follows the ordinary waiting period. The monitoring team observes traffic during the wait and records each health check.",
+        "kind": "prose",
+        "start": 44,
+        "end": 435,
+        "locator": {
+          "format": "markdown",
+          "line_start": 5,
+          "line_end": 5
+        },
+        "raw_extracted_text": "The release coordinator owns Blue rollouts. Blue deployment requests use form B-17 and require an approval ticket. Operators attach the ticket identifier to the run log before starting work. The ordinary waiting period is thirty minutes after approval. A scheduled drill follows the ordinary waiting period. The monitoring team observes traffic during the wait and records each health check.",
+        "raw_extracted_sha256": "d089c75c55c79261d022041c4f14ff50c55b61c01e8a6cd188d1e98554d0a6ee"
+      },
+      {
+        "block_id": "S-ops:b3",
+        "text": "An emergency Blue rollback may start immediately when two responders confirm customer impact. This exception does not permit a routine deployment without approval. The responders record the incident identifier and the decision in the same run log. A rollback returns to the previously signed release. An unsigned experimental build is never the rollback target.",
+        "kind": "prose",
+        "start": 437,
+        "end": 798,
+        "locator": {
+          "format": "markdown",
+          "line_start": 7,
+          "line_end": 7
+        },
+        "raw_extracted_text": "An emergency Blue rollback may start immediately when two responders confirm customer impact. This exception does not permit a routine deployment without approval. The responders record the incident identifier and the decision in the same run log. A rollback returns to the previously signed release. An unsigned experimental build is never the rollback target.",
+        "raw_extracted_sha256": "643a8ac47af3cc62130ddb6f4dee0826e898d1da699bbbc676dda2f4cf7bbc9a"
+      },
+      {
+        "block_id": "S-ops:b4",
+        "text": "Green rollout",
+        "kind": "heading",
+        "start": 800,
+        "end": 813,
+        "locator": {
+          "format": "markdown",
+          "line_start": 9,
+          "line_end": 9
+        },
+        "raw_extracted_text": "Green rollout",
+        "raw_extracted_sha256": "8a1fc543137203cb8c0daa767d025d482e3f33fc0e34594d9862d4574c698e1c"
+      },
+      {
+        "block_id": "S-ops:b5",
+        "text": "The maintenance coordinator owns Green rollouts. Green deployment requests use form G-29 and require an approval ticket. The ordinary waiting period is ninety minutes after approval. Green rollouts have no emergency waiting-period exception. Operators attach the change identifier and record the planned region before work. The coordinator checks that the maintenance window remains open through completion.",
+        "kind": "prose",
+        "start": 815,
+        "end": 1222,
+        "locator": {
+          "format": "markdown",
+          "line_start": 11,
+          "line_end": 11
+        },
+        "raw_extracted_text": "The maintenance coordinator owns Green rollouts. Green deployment requests use form G-29 and require an approval ticket. The ordinary waiting period is ninety minutes after approval. Green rollouts have no emergency waiting-period exception. Operators attach the change identifier and record the planned region before work. The coordinator checks that the maintenance window remains open through completion.",
+        "raw_extracted_sha256": "0b13fe440d790a2d252868df400a382d2b6bed452feb9e5046b2562955d6a0af"
+      },
+      {
+        "block_id": "S-ops:b6",
+        "text": "When a Green rollout fails its health check, stop the rollout and notify the maintenance coordinator. Do not apply the Blue emergency exception to Green work. A stopped Green rollout requires a fresh approval before another attempt. The operations log preserves the failed check and its timestamp instead of replacing them with the successful retry.",
+        "kind": "prose",
+        "start": 1224,
+        "end": 1573,
+        "locator": {
+          "format": "markdown",
+          "line_start": 13,
+          "line_end": 13
+        },
+        "raw_extracted_text": "When a Green rollout fails its health check, stop the rollout and notify the maintenance coordinator. Do not apply the Blue emergency exception to Green work. A stopped Green rollout requires a fresh approval before another attempt. The operations log preserves the failed check and its timestamp instead of replacing them with the successful retry.",
+        "raw_extracted_sha256": "e6477a89793966b6f27479bbaf17611412cd8a094f854fda600ce259a2570d2d"
+      },
+      {
+        "block_id": "S-ops:b7",
+        "text": "Billing boundary",
+        "kind": "heading",
+        "start": 1575,
+        "end": 1591,
+        "locator": {
+          "format": "markdown",
+          "line_start": 15,
+          "line_end": 15
+        },
+        "raw_extracted_text": "Billing boundary",
+        "raw_extracted_sha256": "d65989ea82689c8a0da7da9401cb4d342fcd388ee20cdc51df3071d0153d6334"
+      },
+      {
+        "block_id": "S-ops:b8",
+        "text": "The invoice batch freezes at 17:00 UTC. A ticket submitted at 17:00 UTC belongs to the next batch. Tickets submitted earlier belong to the current batch only when verification is complete. The literal boundary is inclusive for the next batch. Local display times are not the batch clock. A verified ticket retains the original submission timestamp and the verification timestamp as separate fields.",
+        "kind": "prose",
+        "start": 1593,
+        "end": 1991,
+        "locator": {
+          "format": "markdown",
+          "line_start": 17,
+          "line_end": 17
+        },
+        "raw_extracted_text": "The invoice batch freezes at 17:00 UTC. A ticket submitted at 17:00 UTC belongs to the next batch. Tickets submitted earlier belong to the current batch only when verification is complete. The literal boundary is inclusive for the next batch. Local display times are not the batch clock. A verified ticket retains the original submission timestamp and the verification timestamp as separate fields.",
+        "raw_extracted_sha256": "2f02d224a3d2bcae74ded16461e2594f87a3e2a761cc20c28310deff5ed26128"
+      },
+      {
+        "block_id": "S-ops:b9",
+        "text": "Drill evidence",
+        "kind": "heading",
+        "start": 1993,
+        "end": 2007,
+        "locator": {
+          "format": "markdown",
+          "line_start": 19,
+          "line_end": 19
+        },
+        "raw_extracted_text": "Drill evidence",
+        "raw_extracted_sha256": "70c2e9d7c636addc3141cb17a698981174fbdc8c04b2433d1c3c1971d595d563"
+      },
+      {
+        "block_id": "S-ops:b10",
+        "text": "The drill lead records the form identifier and the signed release before starting a Blue drill. After the drill, the observer attaches a health report. The report must include the target region, observed error rate and rollback outcome. The run log and health report are complementary evidence. An empty report does not prove that no errors occurred. Record a missing observation explicitly.",
+        "kind": "prose",
+        "start": 2009,
+        "end": 2400,
+        "locator": {
+          "format": "markdown",
+          "line_start": 21,
+          "line_end": 21
+        },
+        "raw_extracted_text": "The drill lead records the form identifier and the signed release before starting a Blue drill. After the drill, the observer attaches a health report. The report must include the target region, observed error rate and rollback outcome. The run log and health report are complementary evidence. An empty report does not prove that no errors occurred. Record a missing observation explicitly.",
+        "raw_extracted_sha256": "9b8d6a06804217ee3a3d37522bcc463145c7ba30f5e57e6578f8b59148cb16b6"
+      },
+      {
+        "block_id": "S-ops:b11",
+        "text": "Historical discussion",
+        "kind": "heading",
+        "start": 2402,
+        "end": 2423,
+        "locator": {
+          "format": "markdown",
+          "line_start": 23,
+          "line_end": 23
+        },
+        "raw_extracted_text": "Historical discussion",
+        "raw_extracted_sha256": "a19d86ba6ce59061ea451e38d1f435a2a4f89410ff2b26ec748b7a90c7a56d4c"
+      },
+      {
+        "block_id": "S-ops:b12",
+        "text": "Earlier planning notes discussed a ten-minute wait for all colors. That proposal was not adopted. The current Blue and Green procedures above govern operations. A search result mentioning a short wait must retain this rejection and its source section. Historical examples explain decisions but do not override the current approved procedure. These notes are part of this fictional book fixture, not a real service policy.",
+        "kind": "prose",
+        "start": 2425,
+        "end": 2846,
+        "locator": {
+          "format": "markdown",
+          "line_start": 25,
+          "line_end": 25
+        },
+        "raw_extracted_text": "Earlier planning notes discussed a ten-minute wait for all colors. That proposal was not adopted. The current Blue and Green procedures above govern operations. A search result mentioning a short wait must retain this rejection and its source section. Historical examples explain decisions but do not override the current approved procedure. These notes are part of this fictional book fixture, not a real service policy.",
+        "raw_extracted_sha256": "56053688b22ccc6ccabb901da7b0c42f39526382e342bb013bfbdb205d416752"
+      }
+    ],
+    "dropped_regions": [],
+    "status": "accepted",
+    "reason": null,
+    "record_digest": "14d61caffe00545abb6b7009987699ddf02c30f4d0341baa5ce8adeeefc59bcb"
+  }
+]

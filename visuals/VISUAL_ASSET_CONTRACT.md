@@ -40,3 +40,7 @@ Four focused assets show logical RAM/SSD/page-cache states (18.01), algorithm/li
 ## Chapter 19 visual audit
 
 Three focused assets show index-time lineage with policy/quality stopping points (19.01), actual canonical-span/page/bbox mapping (19.02), and measured source discovery versus evidence preservation (19.03). Editable plot/diagram code, SVG/PNG, captions, alt text and registered artifact inputs are retained. The source-page sketch is schematic with actual coordinates; canonical ranges are not inverse raw offsets. No OCR image/model result or implemented chunk-design comparison is implied. Exact diagrams and measured bars answer these questions without a generated illustration.
+
+## Chapter 20 visual audit
+
+Four figures show actual competing canonical ranges (20.01), actual full-parent budget rejection (20.02), distinct expansion/prefix/late-pooling intervention stages (20.03), and measured candidate/context/duplication outcomes (20.04). SVG/PNG, editable source, source-bound labels/snapshot/experiment inputs, captions/alt text and workload/denominators/units are retained. The parent example is517 encoder WordPieces under budget80; it is counted without encoding. Research-only lanes are marked not run. Categorical bar policies have no implied interpolation or CI, and source-span availability is not answer/citation quality. Exact graphics answer the learner questions without generated illustration.

@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="683.463938pt" height="366.1095pt" viewBox="0 0 683.463938 366.1095" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:date>2026-10-13T09:06:27.266826</dc:date>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.11.0, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 366.1095
+L 683.463937 366.1095
+L 683.463937 0
+L 0 0
+z
+" style="fill: #ffffff"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 18.918 149.9007
+L 177.111 149.9007
+L 177.111 96.3087
+L 18.918 96.3087
+z
+" clip-path="url(#p05b82519bf)" style="fill: #edf4f7; stroke: #005f83; stroke-width: 1.4; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_3">
+    <path d="M 215.1945 149.9007
+L 373.3875 149.9007
+L 373.3875 96.3087
+L 215.1945 96.3087
+z
+" clip-path="url(#p05b82519bf)" style="fill: #edf4f7; stroke: #005f83; stroke-width: 1.4; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_4">
+    <path d="M 411.471 149.9007
+L 569.664 149.9007
+L 569.664 96.3087
+L 411.471 96.3087
+z
+" clip-path="url(#p05b82519bf)" style="fill: #edf4f7; stroke: #005f83; stroke-width: 1.4; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_5">
+    <path d="M 490.5675 171.3375
+L 563.805 214.2111
+L 490.5675 257.0847
+L 417.33 214.2111
+z
+" clip-path="url(#p05b82519bf)" style="fill: #fff8eb; stroke: #005f83; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_6">
+    <path d="M 411.471 326.7543
+L 569.664 326.7543
+L 569.664 278.5215
+L 411.471 278.5215
+z
+" clip-path="url(#p05b82519bf)" style="fill: #edf4f7; stroke: #005f83; stroke-width: 1.4; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_7">
+    <path d="M 18.918 310.6767
+L 218.124 310.6767
+L 218.124 257.0847
+L 18.918 257.0847
+z
+" clip-path="url(#p05b82519bf)" style="fill: #edf4f7; stroke: #005f83; stroke-width: 1.4; stroke-linejoin: miter"/>
+   </g>
+   <g id="text_1">
+    <text style="font-weight: 700; font-size: 14px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #005f83" x="18.918" y="66.8331" transform="rotate(-0 18.918 66.8331)">QUERY TIME - word24-parent; child index unchanged</text>
+   </g>
+   <g id="text_2">
+    <text style="font-size: 14px; font-family: 'DejaVu Sans'" transform="translate(51.942469 118.340052)">Eligible top-3</text>
+    <text style="font-size: 14px; font-family: 'DejaVu Sans'" transform="translate(49.080125 135.14388)">child matches</text>
+   </g>
+   <g id="text_3">
+    <text style="font-size: 14px; font-family: 'DejaVu Sans'" transform="translate(233.219281 118.340052)">Source / version /</text>
+    <text style="font-size: 14px; font-family: 'DejaVu Sans'" transform="translate(231.844438 135.14388)">scope / use check</text>
+   </g>
+   <g id="text_4">
+    <text style="font-size: 14px; font-family: 'DejaVu Sans'" transform="translate(425.201719 118.340598)">Resolve full parent</text>
+    <text style="font-size: 14px; font-family: 'DejaVu Sans'" transform="translate(439.783594 135.143333)">S-ops: 517 WP</text>
+   </g>
+   <g id="patch_8">
+    <path d="M 179.114661 123.1047
+Q 196.152607 123.1047 211.513503 123.1047
+" style="fill: none; stroke: #222222; stroke-width: 1.5; stroke-linecap: round"/>
+    <path d="M 205.913503 120.3047
+L 211.513503 123.1047
+L 205.913503 125.9047
+" style="fill: none; stroke: #222222; stroke-width: 1.5; stroke-linecap: round"/>
+   </g>
+   <g id="patch_9">
+    <path d="M 375.391161 123.1047
+Q 392.429107 123.1047 407.790003 123.1047
+" style="fill: none; stroke: #222222; stroke-width: 1.5; stroke-linecap: round"/>
+    <path d="M 402.190003 120.3047
+L 407.790003 123.1047
+L 402.190003 125.9047
+" style="fill: none; stroke: #222222; stroke-width: 1.5; stroke-linecap: round"/>
+   </g>
+   <g id="text_5">
+    <text style="font-size: 14px; font-family: 'DejaVu Sans'" transform="translate(471.23 209.446452)">Fit 80</text>
+    <text style="font-size: 14px; font-family: 'DejaVu Sans'" transform="translate(446.737656 226.25028)">WordPieces?</text>
+   </g>
+   <g id="patch_10">
+    <path d="M 490.5675 151.90255
+Q 490.5675 160.621232 490.5675 167.662863
+" style="fill: none; stroke: #222222; stroke-width: 1.5; stroke-linecap: round"/>
+    <path d="M 493.3675 162.062863
+L 490.5675 167.662863
+L 487.7675 162.062863
+" style="fill: none; stroke: #222222; stroke-width: 1.5; stroke-linecap: round"/>
+   </g>
+   <g id="text_6">
+    <text style="font-size: 14px; font-family: 'DejaVu Sans'" transform="translate(432.625 297.873252)">Budget rejection</text>
+    <text style="font-size: 14px; font-family: 'DejaVu Sans'" transform="translate(424.103594 314.67708)">No selected parent</text>
+   </g>
+   <g id="patch_11">
+    <path d="M 490.5675 259.08655
+Q 490.5675 267.805232 490.5675 274.846863
+" style="fill: none; stroke: #222222; stroke-width: 1.5; stroke-linecap: round"/>
+    <path d="M 493.3675 269.246863
+L 490.5675 274.846863
+L 487.7675 269.246863
+" style="fill: none; stroke: #222222; stroke-width: 1.5; stroke-linecap: round"/>
+   </g>
+   <g id="text_7">
+    <text style="font-size: 14px; font-family: 'DejaVu Sans'; text-anchor: start" x="505.215" y="271.55454" transform="rotate(-0 505.215 271.55454)">no</text>
+   </g>
+   <g id="text_8">
+    <text style="font-size: 14px; font-family: 'DejaVu Sans'" transform="translate(34.421469 279.116052)">Smaller verified parents</text>
+    <text style="font-size: 14px; font-family: 'DejaVu Sans'" transform="translate(35.747094 295.91988)">may fit and be selected</text>
+   </g>
+   <g id="text_9">
+    <text style="font-size: 14px; font-family: 'DejaVu Sans'; text-anchor: start" x="18.918" y="195.4539" transform="rotate(-0 18.918 195.4539)">Several children can cause one parent attempt.</text>
+   </g>
+   <g id="text_10">
+    <text style="font-size: 14px; font-family: 'DejaVu Sans'; text-anchor: start" x="18.918" y="216.8907" transform="rotate(-0 18.918 216.8907)">Retain child causes and duplicate/budget reasons.</text>
+   </g>
+   <g id="text_11">
+    <text style="font-size: 14px; font-family: 'DejaVu Sans'; text-anchor: start" x="18.918" y="350.8707" transform="rotate(-0 18.918 350.8707)">Actual whole-parent rejection; WP counts are an encoder-budget proxy, not generator tokens.</text>
+   </g>
+   <g id="text_12">
+    <text style="font-size: 16px; font-family: 'DejaVu Sans'; text-anchor: middle" x="300.15" y="19.3575" transform="rotate(-0 300.15 19.3575)">Figure 20.02 - Matching and expansion have different budgets</text>
+   </g>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="p05b82519bf">
+   <rect x="7.2" y="37.3575" width="585.9" height="321.552"/>
+  </clipPath>
+ </defs>
+</svg>
