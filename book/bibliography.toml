@@ -148,3 +148,11 @@ year = "n.d."
 title = "TREC English relevance judgments"
 venue = "Text REtrieval Conference data"
 cite_text = "NIST TREC relevance judgments"
+
+[[work]]
+match = ["https://www.elastic.co/docs/solutions/search/vector/knn", "https://www.elastic.co/docs/manage-data/data-store/near-real-time-search", "https://www.elastic.co/docs/reference/query-languages/query-dsl/query-dsl-term-query"]
+authors = "Elastic"
+year = "n.d."
+title = "Elasticsearch documentation"
+url = "https://www.elastic.co/docs/reference/elasticsearch"
+cite_text = "Elasticsearch documentation"

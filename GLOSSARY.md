@@ -356,3 +356,19 @@ The glossary will grow with chapter writing. Each future entry will include: **p
 | Cutover / rollback window | Validated pointer switch / bounded retention of a current fallback | 22 | Automatically safe alias switch or restored stale permissions |
 | Update-to-searchable lag | Source-to-visible interval under declared clocks, scope and dispositions | 22 | CPU search latency or a universal SLO |
 | Cache score origin | Request identity that actually produced reused candidate scores | 22 | Fresh scoring on every cache hit |
+
+## Chapter 23 query interpretation terms
+
+| Preferred term | Mechanism and definition | First chapter | Distinguish from |
+|---|---|---|---|
+| Original-query anchor | Retained request used to check derived representations | 23 | A final rewrite being the only record of intent |
+| Query surface / exact slot | Normalized text / typed protected field value | 23 | Cue tokens or embedding coordinates being exact IDs |
+| Intent / entity | Requested evidence operation / resolved subject identity | 23 | Topic similarity or a text mention alone |
+| Slot provenance | Origin and binding of an explicit or prior-turn constraint | 23 | Permission granted by conversation memory |
+| Contextualization | Bound reference resolution from permitted prior state | 23 | Generated paraphrase or unbounded conversation text |
+| Query plan / route | Operation, constraints and stop policy / selected mechanism | 23 | Tool use proving correctness |
+| Capability registry | Trusted allowlist of implemented routes and contracts | 23 | User text inventing a backend or granting access |
+| Route confidence | Calibrated probability of a defined dispatch decision | 23 | Similarity, retriever or answer confidence |
+| Partial evidence fallback | Retrieval with explicitly incomplete operation semantics | 23 | Completed graph traversal or exact aggregation |
+| Required-empty / unsupported | Reviewed evidence absence / unavailable operation | 23 | Timeout or generated abstention |
+| Query-distribution drift | Changed intents, languages or identifier patterns | 23 | Corpus content or retriever representation drift |

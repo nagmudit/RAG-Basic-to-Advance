@@ -215,3 +215,11 @@ This register records primary sources used in written chapters. Concept explanat
 | Elasticsearch, [near-real-time search](https://www.elastic.co/docs/manage-data/data-store/near-real-time-search) | Write versus refresh/search visibility versus durable commit | No Lucene/Elasticsearch execution or refresh/SLO guarantee imported. |
 | Qdrant, [collections and aliases](https://qdrant.tech/documentation/manage-data/collections/) | Atomic alias control-plane example | Local pointer/gates are separate; alias syntax does not validate source tail, policy or model compatibility. |
 | Python, [OS interfaces](https://docs.python.org/3.14/library/os.html) | File flush/fsync/replace primitives | Local trusted checkpoint is not a signature, distributed commit or universal power-loss guarantee. |
+
+## Chapter 23 - verified 2026-10-14
+
+| Source | Used for | Scope and caution |
+|---|---|---|
+| Unicode Consortium, [Unicode normalization forms, revision 58](https://www.unicode.org/reports/tr15/tr15-58.html) | Canonical versus compatibility equivalence | Field semantics decide allowed transformations; runtime Unicode data is recorded separately. |
+| Manning, Raghavan and Schuetze, [Spelling correction](https://nlp.stanford.edu/IR-book/html/htmledition/spelling-correction-1.html) | Classical correction candidates and context | No automatic spelling correction runs in V7. |
+| Elasticsearch, [Term query](https://www.elastic.co/docs/reference/query-languages/query-dsl/query-dsl-term-query) | Exact indexed term versus analyzed full text | No service runs; mappings/normalizers still define field semantics. |

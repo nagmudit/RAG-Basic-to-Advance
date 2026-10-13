@@ -596,6 +596,56 @@
       "invalid_cross_workload_inferences": "No longitudinal V0-V6 improvement, benchmark/generalization, live CDC/IAM/distributed durability, physical erasure, generator/correctness/faithfulness/citation/abstention claim. Control clocks are not wall latency. Ingest/cache/contract probes have no relevance judgments.",
       "source": "projects/V6/chapter-22-experiment.json",
       "source_manifest_sha256": "34310ea48f089a50a0e4084cc81fef6f943eb9b8bb75e4df6f642cb8c73c26e4"
+    },
+    {
+      "chapters_using_it": [
+        23
+      ],
+      "corpus_version": "ch23-v6-final-current-history-v1",
+      "source_manifest_sha256": "34310ea48f089a50a0e4084cc81fef6f943eb9b8bb75e4df6f642cb8c73c26e4",
+      "invalid_cross_workload_inferences": "No longitudinal V0-V6 improvement; no generalization/language transfer, production latency, actual SQL/graph/web result, generated answer/correctness/faithfulness/citation/abstention claim.",
+      "workload_id": "ch23-query-plans-v1",
+      "query_set_version": "ch23-twenty-one-original-queries-v1",
+      "qrels_version": "ch23-source-spans-and-plan-rubric-v1",
+      "number_of_queries": 21,
+      "judgment_count": 11,
+      "query_slices": [
+        "exact-id",
+        "follow-up",
+        "guard",
+        "history",
+        "no-result",
+        "paraphrase",
+        "publication",
+        "quantity-counterexample",
+        "spelling"
+      ],
+      "purpose": "Compare all-dense, interpreted-constraint dense and rule-selected lexical/dense policies, with 10 positive questions/11 source requirements, four required-empty tasks and seven separately scored plan guard tasks.",
+      "valid_comparisons": "Same final V6 authority/capsules, current/as-of grant gates, frozen model, query surfaces, k2/context80 and 21 original queries. Constraint-dense versus rule-route isolates route selection only on shared interpreted plans. All-dense comparison is a bundled interpretation/dispatch-policy change.",
+      "source": "projects/V7/chapter-23-experiment.json",
+      "query_manifest_sha256": "54cb4dac797b28dbc85c40b4ffab93d54b36e3fc10d9ee7869a173ceefe1f19e"
+    },
+    {
+      "chapters_using_it": [
+        23
+      ],
+      "corpus_version": "ch23-v6-final-current-history-v1",
+      "source_manifest_sha256": "34310ea48f089a50a0e4084cc81fef6f943eb9b8bb75e4df6f642cb8c73c26e4",
+      "invalid_cross_workload_inferences": "No longitudinal V0-V6 improvement; no generalization/language transfer, production latency, actual SQL/graph/web result, generated answer/correctness/faithfulness/citation/abstention claim.",
+      "workload_id": "ch23-bounded-route-fallback-v1",
+      "query_set_version": "ch23-four-controlled-failure-cases-v1",
+      "qrels_version": null,
+      "number_of_queries": 4,
+      "judgment_count": 0,
+      "query_slices": [
+        "dense-timeout",
+        "lexical-timeout",
+        "both-timeout",
+        "empty-hard-id"
+      ],
+      "purpose": "Controlled exception injection and an actual empty exact-ID task; verify one fallback, two-attempt stop and no constraint widening. No relevance evaluation.",
+      "valid_comparisons": "Within each stated fault/empty scenario on the same snapshots and hard constraints. Exceptions are injected immediately, not measured deadline/service timeouts.",
+      "source": "projects/V7/chapter-23-experiment.json"
     }
   ]
 }

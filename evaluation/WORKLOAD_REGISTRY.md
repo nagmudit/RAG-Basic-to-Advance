@@ -70,3 +70,12 @@ Chapter 18 also reuses `ch16-synthetic-n1024-d32-v1` and `ch13-stress-probes-v1`
 **ch22-compatible-generation-cutover-v1**: same corpus, ch22-seven-final-cutover-queries-v1, source-policy-time requirements. Seven judged final questions (three positives/four empty) run on two input contracts; six additional contract/cache probes have no relevance labels, giving 20 envelopes. One frozen backbone, body and entity-prefix inputs. Compare final source-version parity, stale target rejection, tail catch-up, contract gate, current rollback and cache-context boundaries.
 
 All three use [the checked record](../projects/V6/chapter-22-experiment.json) and bind the same reviewed capsule manifest. No cross-workload improvement over Chapter 21/V5/V3, trained-model superiority, generalization, live CDC/IAM/distributed durability, physical erasure or answer/faithfulness/citation/abstention claim. Actual CPU search/packing/encoding timings are distinct from logical clocks. An edited learner corpus requires reviewed new labels and related registry entries, not an automatic digest refresh.
+
+## Chapter 23 query-policy workloads
+
+| Workload ID | Corpus / query / judgment identity | Purpose and valid comparison | Invalid inference |
+|---|---|---|---|
+| `ch23-query-plans-v1` | `ch23-v6-final-current-history-v1` / `ch23-twenty-one-original-queries-v1` / `ch23-source-spans-and-plan-rubric-v1`; 21 questions, 10 positives/11 spans, 4 required-empty, 7 guards | Same V6 authority/capsules, surface model, k2 and context 80; all-dense versus interpreted dispatch is a bundle. Interpreted-dense versus rule-route shares plans to assess route selection. | No longitudinal V0-V6 gain, generalization/language transfer, production latency or SQL/graph/web/answer claim. |
+| `ch23-bounded-route-fallback-v1` | Same corpus / `ch23-four-controlled-failure-cases-v1` / no qrels | Four immediate-exception/empty controls; same hard constraints, one alternative/two-attempt stop. | No measured service deadlines, relevance improvement, graph/SQL execution or generated abstention. |
+
+The [JSON registry](WORKLOAD_REGISTRY.json) binds source and original-query manifests. [V7 record](../projects/V7/chapter-23-experiment.json) retains 333 main and 10 control envelopes. Positive/empty/guard/plan metrics have distinct denominators; three repeats are not independent new questions. Hypothetical budget 60 arithmetic is not a new result on context 80.

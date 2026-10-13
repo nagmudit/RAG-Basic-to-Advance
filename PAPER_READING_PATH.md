@@ -173,3 +173,7 @@ Before interpreting a filtered-ANN result, state its authorized universe, typed 
 ## Lifecycle checkpoint after Chapter 22
 
 Before interpreting a dynamic retrieval system, identify source/incarnation/revision semantics, snapshot watermark/tail coverage, delete/permission propagation, searchable visibility and query/document encoding contract. Ask whether current/as-of questions and caches use actual content/version-bound evidence. [V6](projects/V6/README.md) supplies replay/publication/migration failures and their measured/unrun boundaries. The Chapter 22 primary CDC/refresh/alias/file documentation in [REFERENCES.md](REFERENCES.md) is an OPTIONAL mechanism companion, not a new mandatory paper track or frontier promotion. Part V's cumulative assessment precedes Chapter 23 question processing.
+
+## Query-plan checkpoint after Chapter 23
+
+Before reading Track H query-transformation or Track O dynamic-policy work, identify the preserved original, explicit entity/ID/time slots, prior-state authority, route labels, capability budget and actual candidate branches. [V7](projects/V7/README.md) supplies a deterministic baseline with a quantity false trigger and a route-selection quality tie. The Chapter 23 primary Unicode/IR spelling/exact-field documentation in [REFERENCES.md](REFERENCES.md) is OPTIONAL mechanism reading. No learned/LLM router, agentic method or new frontier paper is promoted here; rewriting begins after this checkpoint.

@@ -304,6 +304,8 @@ The core question evolves throughout: **Which evidence enters the LLM's context,
 
 #### Chapter 23 — Normalize, classify, route, and contextualize queries
 
+- **Authored materials:** [Chapter](chapters/chapter-23-normalize-classify-route-and-contextualize-queries.md) · [Lab](labs/chapter-23/LAB.md) · [Solutions](solutions/chapter-23-solutions.md) · [V7 brief](projects/V7/README.md).
+
 - **Objective:** Determine what kind of evidence a query requires before searching.
 - **Prerequisites:** Chapters 05, 13, and 20–22.
 - **Section 1 — Query interpretation.** Topic: parsing; micro-concepts: normalization, spelling, entities, identifiers, language, intent, temporal expressions, aggregation cues, ambiguity and follow-up references.

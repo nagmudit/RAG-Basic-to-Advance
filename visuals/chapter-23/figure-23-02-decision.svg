@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="628.2pt" height="430.2pt" viewBox="0 0 628.2 430.2" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:date>2026-10-14T01:31:12.517391</dc:date>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.11.0, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 430.2
+L 628.2 430.2
+L 628.2 0
+L 0 0
+z
+" style="fill: #ffffff"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 23.94 73.728
+L 102.06 46.008
+L 180.18 73.728
+L 102.06 101.448
+z
+" clip-path="url(#p4842f60236)" style="fill: #f4f7fa; stroke: #245a81; stroke-width: 1.8; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_3">
+    <path d="M 415.935 98.9532
+L 597.285 98.9532
+Q 600.075 98.9532 600.075 96.1812
+L 600.075 51.8292
+Q 600.075 49.0572 597.285 49.0572
+L 415.935 49.0572
+Q 413.145 49.0572 413.145 51.8292
+L 413.145 96.1812
+Q 413.145 98.9532 415.935 98.9532
+z
+" clip-path="url(#p4842f60236)" style="fill: #f4f7fa; stroke: #a95418; stroke-width: 1.8; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_4">
+    <path d="M 23.94 151.344
+L 102.06 123.624
+L 180.18 151.344
+L 102.06 179.064
+z
+" clip-path="url(#p4842f60236)" style="fill: #f4f7fa; stroke: #245a81; stroke-width: 1.8; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_5">
+    <path d="M 415.935 177.678
+L 597.285 177.678
+Q 600.075 177.678 600.075 174.906
+L 600.075 130.554
+Q 600.075 127.782 597.285 127.782
+L 415.935 127.782
+Q 413.145 127.782 413.145 130.554
+L 413.145 174.906
+Q 413.145 177.678 415.935 177.678
+z
+" clip-path="url(#p4842f60236)" style="fill: #f4f7fa; stroke: #a95418; stroke-width: 1.8; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_6">
+    <path d="M 30.915 423.2772
+L 597.285 423.2772
+Q 600.075 423.2772 600.075 420.5052
+L 600.075 384.4692
+Q 600.075 381.6972 597.285 381.6972
+L 30.915 381.6972
+Q 28.125 381.6972 28.125 384.4692
+L 28.125 420.5052
+Q 28.125 423.2772 30.915 423.2772
+z
+" clip-path="url(#p4842f60236)" style="fill: #f4f7fa; stroke: #245a81; stroke-width: 1.8; stroke-linejoin: miter"/>
+   </g>
+   <g id="line2d_1">
+    <path d="M 23.94 255.5712
+L 604.26 255.5712
+" clip-path="url(#p4842f60236)" style="fill: none; stroke: #ccd7e0; stroke-width: 0.8; stroke-linecap: square"/>
+   </g>
+   <g id="line2d_2">
+    <path d="M 23.94 286.0632
+L 604.26 286.0632
+" clip-path="url(#p4842f60236)" style="fill: none; stroke: #ccd7e0; stroke-width: 0.8; stroke-linecap: square"/>
+   </g>
+   <g id="line2d_3">
+    <path d="M 23.94 316.5552
+L 604.26 316.5552
+" clip-path="url(#p4842f60236)" style="fill: none; stroke: #ccd7e0; stroke-width: 0.8; stroke-linecap: square"/>
+   </g>
+   <g id="line2d_4">
+    <path d="M 23.94 347.0472
+L 604.26 347.0472
+" clip-path="url(#p4842f60236)" style="fill: none; stroke: #ccd7e0; stroke-width: 0.8; stroke-linecap: square"/>
+   </g>
+   <g id="text_1">
+    <text style="font-weight: 700; font-size: 16px; font-family: 'DejaVu Sans'; text-anchor: start" x="18.36" y="28.2672" transform="rotate(-0 18.36 28.2672)">QUERY TIME — closed grammar and local capability registry</text>
+   </g>
+   <g id="text_2">
+    <text style="font-size: 16px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #172c3c" x="102.06" y="77.884875" transform="rotate(-0 102.06 77.884875)">Ambiguous?</text>
+   </g>
+   <g id="text_3">
+    <text style="font-size: 16px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #172c3c" x="506.61" y="78.162075" transform="rotate(-0 506.61 78.162075)">Clarify / no search</text>
+   </g>
+   <g id="patch_7">
+    <path d="M 182.179012 73.728
+Q 297.357889 73.728 410.636108 73.728
+" style="fill: none; stroke: #172c3c; stroke-width: 1.7; stroke-linecap: round"/>
+    <path d="M 404.236108 70.528
+L 410.636108 73.728
+L 404.236108 76.928
+" style="fill: none; stroke: #172c3c; stroke-width: 1.7; stroke-linecap: round"/>
+   </g>
+   <g id="text_4">
+    <text style="font-size: 16px; font-family: 'DejaVu Sans'; text-anchor: middle" x="297.36" y="67.0752" transform="rotate(-0 297.36 67.0752)">yes</text>
+   </g>
+   <g id="text_5">
+    <text style="font-size: 16px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #172c3c" x="102.06" y="155.500875" transform="rotate(-0 102.06 155.500875)">English hint?</text>
+   </g>
+   <g id="patch_8">
+    <path d="M 102.06 103.448496
+Q 102.06 112.533876 102.06 119.718599
+" style="fill: none; stroke: #172c3c; stroke-width: 1.7; stroke-linecap: round"/>
+    <path d="M 105.26 113.318599
+L 102.06 119.718599
+L 98.86 113.318599
+" style="fill: none; stroke: #172c3c; stroke-width: 1.7; stroke-linecap: round"/>
+   </g>
+   <g id="text_6">
+    <text style="font-size: 16px; font-family: 'DejaVu Sans'; text-anchor: start" x="113.22" y="113.6448" transform="rotate(-0 113.22 113.6448)">no ambiguity</text>
+   </g>
+   <g id="text_7">
+    <text style="font-size: 16px; font-family: 'DejaVu Sans'; fill: #172c3c" transform="translate(454.96875 147.284688)">Unsupported</text>
+    <text style="font-size: 16px; font-family: 'DejaVu Sans'; fill: #172c3c" transform="translate(469.3625 166.489062)">language</text>
+   </g>
+   <g id="patch_9">
+    <path d="M 182.179012 151.344
+Q 297.357889 151.344 410.636108 151.344
+" style="fill: none; stroke: #172c3c; stroke-width: 1.7; stroke-linecap: round"/>
+    <path d="M 404.236108 148.144
+L 410.636108 151.344
+L 404.236108 154.544
+" style="fill: none; stroke: #172c3c; stroke-width: 1.7; stroke-linecap: round"/>
+   </g>
+   <g id="text_8">
+    <text style="font-size: 16px; font-family: 'DejaVu Sans'; text-anchor: middle" x="297.36" y="144.6912" transform="rotate(-0 297.36 144.6912)">no</text>
+   </g>
+   <g id="patch_10">
+    <path d="M 102.06 181.064834
+Q 102.06 191.539801 102.06 200.11411
+" style="fill: none; stroke: #172c3c; stroke-width: 1.7; stroke-linecap: round"/>
+    <path d="M 105.26 193.71411
+L 102.06 200.11411
+L 98.86 193.71411
+" style="fill: none; stroke: #172c3c; stroke-width: 1.7; stroke-linecap: round"/>
+   </g>
+   <g id="text_9">
+    <text style="font-weight: 700; font-size: 16px; font-family: 'DejaVu Sans'; text-anchor: start" x="26.73" y="220.644" transform="rotate(-0 26.73 220.644)">Operation</text>
+   </g>
+   <g id="text_10">
+    <text style="font-weight: 700; font-size: 16px; font-family: 'DejaVu Sans'; text-anchor: start" x="216.45" y="220.644" transform="rotate(-0 216.45 220.644)">Primary</text>
+   </g>
+   <g id="text_11">
+    <text style="font-weight: 700; font-size: 16px; font-family: 'DejaVu Sans'; text-anchor: start" x="406.17" y="220.644" transform="rotate(-0 406.17 220.644)">Local outcome</text>
+   </g>
+   <g id="text_12">
+    <text style="font-size: 16px; font-family: 'DejaVu Sans'; text-anchor: start" x="26.73" y="248.9184" transform="rotate(-0 26.73 248.9184)">Exact ID</text>
+   </g>
+   <g id="text_13">
+    <text style="font-size: 16px; font-family: 'DejaVu Sans'; text-anchor: start" x="216.45" y="248.9184" transform="rotate(-0 216.45 248.9184)">Lexical</text>
+   </g>
+   <g id="text_14">
+    <text style="font-size: 16px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #245a81" x="406.17" y="248.9184" transform="rotate(-0 406.17 248.9184)">Ready lexical</text>
+   </g>
+   <g id="text_15">
+    <text style="font-size: 16px; font-family: 'DejaVu Sans'; text-anchor: start" x="26.73" y="279.4104" transform="rotate(-0 26.73 279.4104)">Paraphrase / date</text>
+   </g>
+   <g id="text_16">
+    <text style="font-size: 16px; font-family: 'DejaVu Sans'; text-anchor: start" x="216.45" y="279.4104" transform="rotate(-0 216.45 279.4104)">Dense</text>
+   </g>
+   <g id="text_17">
+    <text style="font-size: 16px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #245a81" x="406.17" y="279.4104" transform="rotate(-0 406.17 279.4104)">Ready dense</text>
+   </g>
+   <g id="text_18">
+    <text style="font-size: 16px; font-family: 'DejaVu Sans'; text-anchor: start" x="26.73" y="309.9024" transform="rotate(-0 26.73 309.9024)">Count / fresh public</text>
+   </g>
+   <g id="text_19">
+    <text style="font-size: 16px; font-family: 'DejaVu Sans'; text-anchor: start" x="216.45" y="309.9024" transform="rotate(-0 216.45 309.9024)">SQL / web</text>
+   </g>
+   <g id="text_20">
+    <text style="font-size: 16px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #a95418" x="406.17" y="309.9024" transform="rotate(-0 406.17 309.9024)">Unsupported</text>
+   </g>
+   <g id="text_21">
+    <text style="font-size: 16px; font-family: 'DejaVu Sans'; text-anchor: start" x="26.73" y="340.3944" transform="rotate(-0 26.73 340.3944)">Relationship</text>
+   </g>
+   <g id="text_22">
+    <text style="font-size: 16px; font-family: 'DejaVu Sans'; text-anchor: start" x="216.45" y="340.3944" transform="rotate(-0 216.45 340.3944)">Graph</text>
+   </g>
+   <g id="text_23">
+    <text style="font-size: 16px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #a95418" x="406.17" y="340.3944" transform="rotate(-0 406.17 340.3944)">Partial lexical evidence</text>
+   </g>
+   <g id="text_24">
+    <text style="font-size: 16px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #172c3c" x="314.1" y="406.644075" transform="rotate(-0 314.1 406.644075)">Available retrieval → current grants / source version → scoring</text>
+   </g>
+   <g id="text_25">
+    <text style="font-size: 16px; font-family: 'DejaVu Sans'; text-anchor: start" x="23.94" y="369.2232" transform="rotate(-0 23.94 369.2232)">Registry: lexical + dense. Other backends do not execute.</text>
+   </g>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="p4842f60236">
+   <rect x="7.2" y="7.2" width="613.8" height="415.8"/>
+  </clipPath>
+ </defs>
+</svg>
