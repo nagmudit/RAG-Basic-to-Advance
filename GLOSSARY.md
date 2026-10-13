@@ -339,3 +339,20 @@ The glossary will grow with chapter writing. Each future entry will include: **p
 | Eligible-oracle recall | Returned overlap with exact top min(k, eligible count) under declared score/ties | 18; refined 21 | Judged relevance recall, context availability or answer confidence |
 | Empty-task correctness | Candidate emptiness on reviewed tasks with no eligible evidence | 21 | Generated abstention, completeness or every empty search being correct |
 | Task-ineligible transit | Traversal through an authorized vertex that fails the task predicate | 21 | Authorization to inspect a private vector |
+
+## Chapter 22 lifecycle terms
+
+| Preferred term | Mechanism and definition | First chapter | Distinguish from |
+|---|---|---|---|
+| Source revision / incarnation | Ordered source state / identity of one logical source lifetime | 22 | Arrival time, content hash or physical row ordinal |
+| Idempotent upsert | Repeatable create/replace with the same logical effect | 22 | Deduplication alone or guaranteed end-to-end exactly once |
+| Tombstone | Deletion revision retained to reject obsolete recreation | 22 | Physical erasure or an indefinitely trusted grant |
+| Desired / searchable state | Canonical target / representation visible to declared readers | 22 | Acknowledged receipt or merely written vectors |
+| Known-revision barrier | Exclude permitted candidates missing the requested known revision | 22 | Authorization, similarity threshold or omniscient freshness |
+| Valid / recorded time | When a fact applies / when a system knew or stored its claim | 22 | Publication, receipt or one timestamp answering all time questions |
+| As-of view | Effective-interval selection intersected with current grants | 22 | Old grants or general bitemporal correction storage |
+| Backfill watermark / tail | Snapshot continuation position / subsequent changes needing catch-up | 22 | Completed new index or two independent writes being a transaction |
+| Generation compatibility contract | Compatible model/input/metric, units and source/policy identities | 22 | Equal dimensions or index-name equality |
+| Cutover / rollback window | Validated pointer switch / bounded retention of a current fallback | 22 | Automatically safe alias switch or restored stale permissions |
+| Update-to-searchable lag | Source-to-visible interval under declared clocks, scope and dispositions | 22 | CPU search latency or a universal SLO |
+| Cache score origin | Request identity that actually produced reused candidate scores | 22 | Fresh scoring on every cache hit |

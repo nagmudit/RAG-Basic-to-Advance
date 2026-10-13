@@ -1,0 +1,436 @@
+{
+  "workload_id": "ch22-versioned-evidence-v1",
+  "corpus_version": "ch22-reviewed-version-capsules-v1",
+  "query_set_version": "ch22-ten-checkpoint-questions-v1",
+  "qrels_version": "ch22-source-policy-time-bound-spans-v1",
+  "capsule_manifest": [
+    {
+      "capsule_key": "A-admin@1",
+      "capsule_digest": "610f7a67b23534afacd01abc9739779e523ffb5e55d57058d2e8bff9892a48c0",
+      "raw_sha256": "b34aea697eeabcac9fcb29d3611c87088014d0a4ffcc369942f6955d6363927b",
+      "record_digest": "27ad806711a643cbb050b234ce3a396da53235fdd42778eaff68a48bb7b6d6b1",
+      "metadata_digest": "a5da7c76b105743a06462618c9842a386dd32efa645e2fc9e0b446e826e7d3b4"
+    },
+    {
+      "capsule_key": "A01@1",
+      "capsule_digest": "0e23c046c7fed52144b2686f9db57d700a6aecfb06ede4ec276ffad085b75e93",
+      "raw_sha256": "9385a51266e96be4aab973ce1bbc868cae4245ff1fc912b516a0dba55d8408e2",
+      "record_digest": "8649f0a78ce47cf4ae472c5a95dd7f43cda9ae1770e2e397a3786d1d60459962",
+      "metadata_digest": "7a9e459bb235a8fb9fe3873f058f6176cf7c9a9bba8e68041b57d919dfb05667"
+    },
+    {
+      "capsule_key": "A02@1",
+      "capsule_digest": "89c825f6b37c201af2e4ea1d87766dbcb64e6096d17815947556d59fa095303d",
+      "raw_sha256": "9385a51266e96be4aab973ce1bbc868cae4245ff1fc912b516a0dba55d8408e2",
+      "record_digest": "9a28bd0d882d9d1637f94a73dc54f9d5c54d2f7c0e10f4ef6ddb7dc05b6047fe",
+      "metadata_digest": "9c4168268051bc9aeac1582c8fa10719ca16b8d3d6f9d52828c8275fffa75343"
+    },
+    {
+      "capsule_key": "A03@1",
+      "capsule_digest": "77be5b3115ec83dcd548b06c7ce0af7840f8bb5c12ddb6e883b5fff5d1ca7ccf",
+      "raw_sha256": "bc56400ca2b92691fbcfef5504d6217cd9e348a30088b0249b5299f29f826a3e",
+      "record_digest": "1caff5384477bc631167f6e575164d2d2325f94d1d00aa36ce1fa31ece98ade6",
+      "metadata_digest": "7ef4681cef4000c3444e881ed99ad8f163a66ddb05fb04348ecb2c13f7ce0236"
+    },
+    {
+      "capsule_key": "A04@1",
+      "capsule_digest": "8b9c7a8aba0121f40b330e67b9a0ac016c6d700909a617e0a9c52b8428678a9e",
+      "raw_sha256": "2e3c9fa1a6f42ba1554679f9c8cace9318bc4bfb4b73a8e9f7fd4b6ec7ee5a2b",
+      "record_digest": "e157a5f6c313d4b913b1f20a42380b2184e096007afe00450ba18953ebf30784",
+      "metadata_digest": "fe08d90ea9c3b89dc4f1e8b1b2cf19c67875bc604abe795a7cf99a1210bce79e"
+    },
+    {
+      "capsule_key": "A05@1",
+      "capsule_digest": "e8986da1f2f92ab4bab18b77b0a03c8aec5eaedf31cea781436c3288e52f1446",
+      "raw_sha256": "d3c2c815d928a076d22f940358e34891e4fcbd771767d447af757c81015d75d9",
+      "record_digest": "d30b876b7ae04528dfc1f40ed7a7f383c52bbe4e4234b849ef083853115599f8",
+      "metadata_digest": "52b8b329cda2f6a78c22d9561863c0e29114db0e9c90ab27c4b5634a905a8976"
+    },
+    {
+      "capsule_key": "A06@1",
+      "capsule_digest": "04e5934154e41a40ca246c477b131ae7e344663445cd895bb21dd6ad39b5465e",
+      "raw_sha256": "9ca4350041cb480bdcf59292f59937042bfda9543c3fce1495cb43202e2107a6",
+      "record_digest": "2c2c218faa0ed51b98ee363cbdb06d5d4cd0da8f082f081b3ab953394f5fd4ee",
+      "metadata_digest": "42bd4dede5e2625e23d3b92436e9b0e9fdfe6bda2292464cec162ce6035b1ad9"
+    },
+    {
+      "capsule_key": "A06@2",
+      "capsule_digest": "235dac406e0a1d2e5af112f761148f295d0d20ce3407a1dbf16a76d1e3583516",
+      "raw_sha256": "dcee2c1c8ede2da1baa3ff0e378767cafece2654c5d9934ba1036681bc89e410",
+      "record_digest": "f0f9b01b3d3505bf052eb3c8c8fd348af782e69ccbde0ec650d881ee06101367",
+      "metadata_digest": "a5213077dbe8f0391c7013efa0a490701a57ef7a44920a9e7018fdb1df816b95"
+    },
+    {
+      "capsule_key": "A06@3",
+      "capsule_digest": "3356206366b6106dcbf83113aec91ed1885f832b2a839265c4cf481a1951532c",
+      "raw_sha256": "1ad398521557a17ef8775d01cd241e0872eec01d8e285a351565c36c5898b272",
+      "record_digest": "72fb4176e4da43cacdf89cc3111c9cb383f95281440f43887c3172cee3ac0a66",
+      "metadata_digest": "676c2051fa20e8ea673264e34e0445d4896fe1c889e423b50648fa81c390bf17"
+    },
+    {
+      "capsule_key": "A07@1",
+      "capsule_digest": "0f8941aa62b1da7c2af0b4636dc6fb0f84b5b3b8ab8599e7f89ad83b1345c025",
+      "raw_sha256": "ab5d58c6603a0f6cb1aa168d06049946c025e2fc71933dec467e00c2f9f22bb9",
+      "record_digest": "85ea2cef40cfa26c7524dac280bf11a93e3a6601a2c2cfc881076156c45fb0ac",
+      "metadata_digest": "a76e228e34aa53523a67ab61d273cf429e35d1c42d08c92871b67bc3b7919d42"
+    },
+    {
+      "capsule_key": "A08@1",
+      "capsule_digest": "86125e18ee359404a236f4e8b32290698b66c2a702c95fac711bebaa402de919",
+      "raw_sha256": "cfb5628d10863e8a7414bdf5711770a9a1172980778b6a69f33156ed871b22cb",
+      "record_digest": "ed21b2feb7d06a302333f9898b0d710cfdd1106c8b13ec4da4330032396236c1",
+      "metadata_digest": "8a437c8926792ecf923ad725cd547ed6989a7fd0e80d0468881babc5189d93d6"
+    },
+    {
+      "capsule_key": "A08@2",
+      "capsule_digest": "1f5adeb478b114934d1601cf8a31d8c2a2d804b28b2039f754abf9d6274647c7",
+      "raw_sha256": "cfb5628d10863e8a7414bdf5711770a9a1172980778b6a69f33156ed871b22cb",
+      "record_digest": "01823fb8b1c062f3cae690f1cf8cf9ca25914a42df7e706a89fd88055031b022",
+      "metadata_digest": "5c38574c41f4e9e2b175b9632d880d9b9001198c0249a461892fe552454cc320"
+    },
+    {
+      "capsule_key": "A09@1",
+      "capsule_digest": "2147620d576a01192bfe6e6121af5000d4fe0ad06c09ca38e285932400ba3db3",
+      "raw_sha256": "24779c1c008b654123194780c4099b1620467a1b2c93424acc21d84555e35357",
+      "record_digest": "51f9d8f7ec2f3c02a9c082f4e94622a3a5380cbbb8dc132a8f1f3c3897bec9a8",
+      "metadata_digest": "81cf38f4554632d1921ae9101c5502e00bc5edb9c0585639de53d4a4879b77de"
+    },
+    {
+      "capsule_key": "A10@1",
+      "capsule_digest": "1722537e7bed6cd8091e77739f140d0fc0b57fd24eef2e0514264646081e1cee",
+      "raw_sha256": "65a27fce5cb4b5c278840c74e10df547739af0bcbced3973321f40d432e17aa5",
+      "record_digest": "1a9da101657b24e3d937dea7c38483385217a91c524b76ef45f78bdfcbad08ea",
+      "metadata_digest": "b7d59b15cdb4ceb8da840bc2e03965f2b109a041bfcb3a01e57a4d33818a7812"
+    },
+    {
+      "capsule_key": "B01@1",
+      "capsule_digest": "052bbf9fb25e31d83ea6162039cc3607115d4673b68f66d079841f4f405a71ff",
+      "raw_sha256": "4fafa88c779ab4669356805c1d389aeb240d52839e180eaebaaee8b95340ccc2",
+      "record_digest": "23d06ef294b067699fa2dff3b1b02fff760b8f0c27fdc34908671b962557f4ce",
+      "metadata_digest": "2c8a36fbaeef3150c0910e24c762ab7f024c94e364e72215a1b4a14707ef2437"
+    },
+    {
+      "capsule_key": "B02@1",
+      "capsule_digest": "c434b88ed14e4ce58bb07e5a5017f9e924cf45b3c2a5c638fc9c20ceca1d2cc2",
+      "raw_sha256": "964db6714469a104bbaf6a260576dcc0dcdb838e3dc2469fd927117241c2d09b",
+      "record_digest": "a635a92cebbd0c7a1888eeea2ccd13c9f87a6ad36511834cf57989e4b675d5cb",
+      "metadata_digest": "6dcb5880985bdd1e281bf4c60d89891fb439c2e98dffe7f2ded0b8bf2335f5dd"
+    },
+    {
+      "capsule_key": "B03@1",
+      "capsule_digest": "b4e1724f7da335cafb1bae84c9f7d8320a9b32a58054402c6eb28f90c6868764",
+      "raw_sha256": "05a7e3ae92a9bd4464b83e4715b4a1af38d86d04802a7f6a1dbd5a9202b85bf4",
+      "record_digest": "fe9736e34556cf4a3690d1c1cf65b4776a01672f137d10427c1a34984aed8cd8",
+      "metadata_digest": "79f38f5fba4e15b669440d61d46180d865208cd21e095d97a94bb7d710e56cd6"
+    },
+    {
+      "capsule_key": "B04@1",
+      "capsule_digest": "94982dc22d63133faeaeef508f7848e6aac46dc4c170e93a7d757b237313c52c",
+      "raw_sha256": "1356a89a6a8cefc874ff0e5cd04b32aa289f6501b6ffe839cbeb48ba7a7718bd",
+      "record_digest": "22cc292863da097db65eba226848e6478bda526a122618d57db8efd7519d9746",
+      "metadata_digest": "3c518ede8d9dc10d0f901b3294f6a98d94133526c27dc74bd1bf56521bfbaa5c"
+    }
+  ],
+  "capsule_manifest_sha256": "34310ea48f089a50a0e4084cc81fef6f943eb9b8bb75e4df6f642cb8c73c26e4",
+  "schedule_digest": "77effba509a26d0446e26d016a31dab5223f565279a8c70bfc06deac018406a8",
+  "assessment": "Six positive source-span tasks/four empty eligibility tasks, not complete graded retrieval pairs; single author, supplied exact IDs, no train/dev/test. Logical controlled times are not measured service lag.",
+  "queries": [
+    {
+      "query_id": "initial-current",
+      "checkpoint_ms": 0,
+      "principal": {
+        "tenant": "A",
+        "roles": [
+          "reader"
+        ]
+      },
+      "source_id": "A06",
+      "as_of_ms": null,
+      "question": "What is the Orion rollback wait in record A06 now?",
+      "slice": "current-initial",
+      "requirement": {
+        "capsule_key": "A06@1",
+        "canonical_span": [
+          0,
+          90
+        ],
+        "text": "Orion rollback procedure: The coordinator waits 90 minutes after approval before rollback.",
+        "text_sha256": "3193cd7e0d7c07e8bfb0e3d46946d5a1ea496172a1d95ec312e97d346bc4c846",
+        "anchors": [
+          {
+            "block_id": "A06:b0",
+            "canonical_overlap": [
+              0,
+              90
+            ],
+            "locator": {
+              "format": "markdown",
+              "line_start": 1,
+              "line_end": 1
+            }
+          }
+        ]
+      },
+      "assessment": "Inspected source-version waiting-period span under frozen controlled checkpoint/current authorization; historical source A03/A08 is denied after delete/revocation."
+    },
+    {
+      "query_id": "updated-current",
+      "checkpoint_ms": 1500,
+      "principal": {
+        "tenant": "A",
+        "roles": [
+          "reader"
+        ]
+      },
+      "source_id": "A06",
+      "as_of_ms": null,
+      "question": "What is the Orion rollback wait in record A06 now?",
+      "slice": "edit-visible",
+      "requirement": {
+        "capsule_key": "A06@2",
+        "canonical_span": [
+          0,
+          89
+        ],
+        "text": "Orion rollback procedure: The coordinator waits 9 minutes after approval before rollback.",
+        "text_sha256": "7e5017b075c83ed49842f2ae95671754ff6492bda69563f61a9ac65316dc51c8",
+        "anchors": [
+          {
+            "block_id": "A06:b0",
+            "canonical_overlap": [
+              0,
+              89
+            ],
+            "locator": {
+              "format": "markdown",
+              "line_start": 1,
+              "line_end": 1
+            }
+          }
+        ]
+      },
+      "assessment": "Inspected source-version waiting-period span under frozen controlled checkpoint/current authorization; historical source A03/A08 is denied after delete/revocation."
+    },
+    {
+      "query_id": "known-pending",
+      "checkpoint_ms": 4200,
+      "principal": {
+        "tenant": "A",
+        "roles": [
+          "reader"
+        ]
+      },
+      "source_id": "A06",
+      "as_of_ms": null,
+      "question": "What is the Orion rollback wait in record A06 now?",
+      "slice": "delivery-gap",
+      "requirement": {
+        "capsule_key": "A06@3",
+        "canonical_span": [
+          0,
+          90
+        ],
+        "text": "Orion rollback procedure: The coordinator waits 12 minutes after approval before rollback.",
+        "text_sha256": "374456f27fecbcab83b34db453b51ec2ca52b85187407d58135f44da1491cde5",
+        "anchors": [
+          {
+            "block_id": "A06:b0",
+            "canonical_overlap": [
+              0,
+              90
+            ],
+            "locator": {
+              "format": "markdown",
+              "line_start": 1,
+              "line_end": 1
+            }
+          }
+        ]
+      },
+      "assessment": "Inspected source-version waiting-period span under frozen controlled checkpoint/current authorization; historical source A03/A08 is denied after delete/revocation."
+    },
+    {
+      "query_id": "final-current",
+      "checkpoint_ms": 5300,
+      "principal": {
+        "tenant": "A",
+        "roles": [
+          "reader"
+        ]
+      },
+      "source_id": "A06",
+      "as_of_ms": null,
+      "question": "What is the Orion rollback wait in record A06 now?",
+      "slice": "out-of-order-replay",
+      "requirement": {
+        "capsule_key": "A06@3",
+        "canonical_span": [
+          0,
+          90
+        ],
+        "text": "Orion rollback procedure: The coordinator waits 12 minutes after approval before rollback.",
+        "text_sha256": "374456f27fecbcab83b34db453b51ec2ca52b85187407d58135f44da1491cde5",
+        "anchors": [
+          {
+            "block_id": "A06:b0",
+            "canonical_overlap": [
+              0,
+              90
+            ],
+            "locator": {
+              "format": "markdown",
+              "line_start": 1,
+              "line_end": 1
+            }
+          }
+        ]
+      },
+      "assessment": "Inspected source-version waiting-period span under frozen controlled checkpoint/current authorization; historical source A03/A08 is denied after delete/revocation."
+    },
+    {
+      "query_id": "history-v2",
+      "checkpoint_ms": 5300,
+      "principal": {
+        "tenant": "A",
+        "roles": [
+          "reader"
+        ]
+      },
+      "source_id": "A06",
+      "as_of_ms": 1500,
+      "question": "What is the Orion rollback wait in record A06 at controlled source time 1500?",
+      "slice": "as-of",
+      "requirement": {
+        "capsule_key": "A06@2",
+        "canonical_span": [
+          0,
+          89
+        ],
+        "text": "Orion rollback procedure: The coordinator waits 9 minutes after approval before rollback.",
+        "text_sha256": "7e5017b075c83ed49842f2ae95671754ff6492bda69563f61a9ac65316dc51c8",
+        "anchors": [
+          {
+            "block_id": "A06:b0",
+            "canonical_overlap": [
+              0,
+              89
+            ],
+            "locator": {
+              "format": "markdown",
+              "line_start": 1,
+              "line_end": 1
+            }
+          }
+        ]
+      },
+      "assessment": "Inspected source-version waiting-period span under frozen controlled checkpoint/current authorization; historical source A03/A08 is denied after delete/revocation."
+    },
+    {
+      "query_id": "history-v1",
+      "checkpoint_ms": 5300,
+      "principal": {
+        "tenant": "A",
+        "roles": [
+          "reader"
+        ]
+      },
+      "source_id": "A06",
+      "as_of_ms": 500,
+      "question": "What is the Orion rollback wait in record A06 at controlled source time 500?",
+      "slice": "as-of",
+      "requirement": {
+        "capsule_key": "A06@1",
+        "canonical_span": [
+          0,
+          90
+        ],
+        "text": "Orion rollback procedure: The coordinator waits 90 minutes after approval before rollback.",
+        "text_sha256": "3193cd7e0d7c07e8bfb0e3d46946d5a1ea496172a1d95ec312e97d346bc4c846",
+        "anchors": [
+          {
+            "block_id": "A06:b0",
+            "canonical_overlap": [
+              0,
+              90
+            ],
+            "locator": {
+              "format": "markdown",
+              "line_start": 1,
+              "line_end": 1
+            }
+          }
+        ]
+      },
+      "assessment": "Inspected source-version waiting-period span under frozen controlled checkpoint/current authorization; historical source A03/A08 is denied after delete/revocation."
+    },
+    {
+      "query_id": "deleted-current",
+      "checkpoint_ms": 5300,
+      "principal": {
+        "tenant": "A",
+        "roles": [
+          "reader"
+        ]
+      },
+      "source_id": "A03",
+      "as_of_ms": null,
+      "question": "What is the Orion rollback wait in record A03 now?",
+      "slice": "delete",
+      "requirement": null,
+      "assessment": "Inspected source-version waiting-period span under frozen controlled checkpoint/current authorization; historical source A03/A08 is denied after delete/revocation."
+    },
+    {
+      "query_id": "deleted-history",
+      "checkpoint_ms": 5300,
+      "principal": {
+        "tenant": "A",
+        "roles": [
+          "reader"
+        ]
+      },
+      "source_id": "A03",
+      "as_of_ms": 500,
+      "question": "What is the Orion rollback wait in record A03 at controlled source time 500?",
+      "slice": "historical-delete",
+      "requirement": null,
+      "assessment": "Inspected source-version waiting-period span under frozen controlled checkpoint/current authorization; historical source A03/A08 is denied after delete/revocation."
+    },
+    {
+      "query_id": "revoked-history",
+      "checkpoint_ms": 5300,
+      "principal": {
+        "tenant": "A",
+        "roles": [
+          "reader"
+        ]
+      },
+      "source_id": "A08",
+      "as_of_ms": 500,
+      "question": "What is the Orion rollback wait in record A08 at controlled source time 500?",
+      "slice": "current-acl",
+      "requirement": null,
+      "assessment": "Inspected source-version waiting-period span under frozen controlled checkpoint/current authorization; historical source A03/A08 is denied after delete/revocation."
+    },
+    {
+      "query_id": "other-tenant",
+      "checkpoint_ms": 5300,
+      "principal": {
+        "tenant": "B",
+        "roles": [
+          "reader"
+        ]
+      },
+      "source_id": "A06",
+      "as_of_ms": null,
+      "question": "What is the Orion rollback wait in record A06 now?",
+      "slice": "tenant",
+      "requirement": null,
+      "assessment": "Inspected source-version waiting-period span under frozen controlled checkpoint/current authorization; historical source A03/A08 is denied after delete/revocation."
+    }
+  ],
+  "updates_descriptor_sha256": "326c461c9ada09bdeef49ddbcde2f443c1db708abaefcaee83f7e10db4ffa13d",
+  "event_workload_id": "ch22-controlled-event-delivery-v1",
+  "event_query_set_version": "ch22-seven-deliveries-v1",
+  "migration_workload_id": "ch22-compatible-generation-cutover-v1",
+  "migration_query_set_version": "ch22-seven-final-cutover-queries-v1"
+}

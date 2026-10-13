@@ -1,6 +1,6 @@
 # V6 — Governed metadata and eligibility
 
-[Chapter 21](../../chapters/chapter-21-metadata-schemas-and-filtered-retrieval.md) begins V6 from completed [V5](../V5/README.md). V0–V5 corpus/code/results remain historical and unchanged. This snapshot implements Chapter 21 only; Chapter 22's incremental/freshness lifecycle is not started.
+[Chapter 21](../../chapters/chapter-21-metadata-schemas-and-filtered-retrieval.md) begins V6 from completed [V5](../V5/README.md). V0–V5 corpus/code/results remain historical and unchanged. Chapter 21's snapshot remains frozen; the Chapter 22 lifecycle below completes V6.
 
 ## Construction before reference
 
@@ -16,7 +16,7 @@ Complete [lab A0](../../labs/chapter-21/LAB.md#a0-construct-the-metadata-selecto
 - Chapter 20's actual whole-unit context selector, permission recheck before forward fetch, budget80 encoder WordPieces without special tokens and packing attempts/context IDs. No reranker/generator/citation verification.
 - Four-node authorized task-transit/pruning demonstration with actual frontier events, separate registered workload and preassigned scores. Not HNSW or ANN timing.
 
-Principals are fixtures, not authentication. Metadata is curated/checksum-bound, not signed. Services, query compilation, caches and live revocation/updates remain unrun.
+Principals are fixtures, not authentication. Metadata is curated/checksum-bound, not signed. At the Chapter 21 checkpoint, services, query compilation, caches and live revocation/updates remained unrun. Chapter 22 adds the bounded local lifecycle and exact cache below.
 
 ## Workload and evidence identity
 
@@ -49,4 +49,26 @@ python -X utf8 visuals/chapter-21/render_visuals.py
 
 [make_fixture_ch21.py](make_fixture_ch21.py) reproduces source bytes/metadata only; it never regenerates judgments. The committed sources/labels are the checked identities. Fixture changes need a reviewed new version, not an automatic checksum update. Protect equivalent real source/index/trace data by tenant policy.
 
-See [lab](../../labs/chapter-21/LAB.md), [solutions](../../solutions/chapter-21-solutions.md), [figures](../../visuals/chapter-21/render_visuals.py) and [review](../../authoring/reviews/chapter-21.md). Stop before Chapter 22.
+See [lab](../../labs/chapter-21/LAB.md), [solutions](../../solutions/chapter-21-solutions.md), [figures](../../visuals/chapter-21/render_visuals.py) and [review](../../authoring/reviews/chapter-21.md). Chapter 21 ends here; Chapter 22 continues below.
+
+## Chapter 22 — Evidence lifecycle and Part V completion
+
+[Chapter 22](../../chapters/chapter-22-freshness-versions-and-incremental-indexes.md) adds [revision/tombstone/generation mechanisms](lifecycle_ch22.py) and a [controlled experiment](experiment_ch22.py) on the unchanged fifteen Chapter 21 sources plus three new immutable revision capsules. [Raw updates](fixtures_ch22/updates.json) change A06's wait 90 to 9 to 12 and A08's readers to admin; A03 deletion has no live content pointer. Current authorization gates all historical/current/cache reads, and a known-revision barrier drops stale permitted candidates before context. Source approval/parsing/chunking and actual whole-unit 80 encoder-WordPiece packing continue.
+
+[Labels](qrels_ch22.json) bind actual raw/canonical/record/locator/metadata/origin identity and event-time semantics to ten inspected questions: six positive requirements/four empty tasks, not complete graded pairs or train/dev/test. On **ch22-versioned-evidence-v1**, arrival/ordered Recall@1 and context recall are .6667/.8333, correct-empty fraction 1 in both; the source-known/index-pending question remains a miss. Stale scored fraction over ten is .2/.1. No longitudinal gain against Chapter 21's different .963 predicate workload or answer-quality claim follows.
+
+[The checked record](chapter-22-experiment.json) retains 80 main envelopes (20 actual encodes +60 search/context), 14 separately registered event/publication envelopes and 20 migration/cache/contract envelopes. Common versions/status/timings, actual raw/shortlist/revision-barrier/final IDs/scores, packing attempts/context IDs and per-request source/policy snapshots persist. Privileged ingest IDs are not reader logs. Search and packing CPU times are separate from prepared encoding/publication; controlled source-to-visible 200/600/900/500 ms gaps are scheduled arithmetic, not service lag.
+
+[index_ch22/checkpoint.json](index_ch22/checkpoint.json) persists real body/entity-prefix vector banks, query vectors, heads/history/tombstones/receipts and checkpoint snapshots under an independently expected digest. Fifteen body vectors are reused; three updates and eighteen new-prefix inputs are actually encoded using one cached frozen backbone. Same dimension does not establish input-contract compatibility. Twenty scored/final query sequences reload exactly. The local fsync/replace checkpoint is not distributed or universal crash durability.
+
+On **ch22-compatible-generation-cutover-v1**, an untailed 3500 backfill fails the gate; replay catches it up, flip/compatible rollback succeed, and old-contract query vectors are rejected before scoring. Cache hits reference original scoring requests; generation/tenant/source-policy changes miss. Physical raw/history/vector erasure, live CDC/IAM/broker/distributed publication, a second trained model and generation remain unrun. Current known deletion/revocation suppresses all serving history; the fictional privileged audit retains it.
+
+```powershell
+$ch22Runner = "projects/V6/experiment_ch22.py"
+$ch22Output = "build/ch22-local-results.json"
+$ch22Artifacts = "build/ch22-local-index"
+python -X utf8 $ch22Runner --output $ch22Output --artifacts $ch22Artifacts
+python -X utf8 -m unittest discover -s projects/V6 -p 'test*.py' -v
+```
+
+Use the existing pinned stack/cached model; no dependency/model download runs. [The fixture generator](make_fixture_ch22.py) reproduces changed bytes/descriptors, never judgments. Independent [lab A0](../../labs/chapter-22/LAB.md#a0-construct-the-revision-reducer), own reviewed edit/delete workflow, [solutions](../../solutions/chapter-22-solutions.md), [visual sources](../../visuals/chapter-22/render_visuals.py), [author review](../../authoring/reviews/chapter-22.md) and the required Part V architecture/reasoning/project/delayed-teach-back rubric complete this stage. Chapter 23 is not started.

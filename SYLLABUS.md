@@ -288,11 +288,12 @@ The core question evolves throughout: **Which evidence enters the LLM's context,
 
 #### Chapter 22 — Freshness, versions, and incremental indexes
 
+- **Authored materials:** [Chapter](chapters/chapter-22-freshness-versions-and-incremental-indexes.md) · [Independent lab and Part V checkpoint](labs/chapter-22/LAB.md) · [Solutions/rubric](solutions/chapter-22-solutions.md) · [Completed V6](projects/V6/README.md).
 - **Objective:** Keep answers tied to the correct version of changing sources.
 - **Prerequisites:** Chapters 19–21.
 - **Section 1 — Change detection.** Topic: ingestion lifecycle; micro-concepts: polling vs events vs CDC, content hashes, idempotent upserts, out-of-order events, document lineage, tombstones, deletions, replay.
 - **Section 2 — Reindexing and time.** Topic: migration; micro-concepts: embedding model/version compatibility, dual indexes, backfill, cutover, rollback, stale cache invalidation, temporal filters vs freshness boosting, as-of queries.
-- **Lab:** Edit and delete a document; prove the new version appears and the old one cannot be retrieved.
+- **Lab:** Independently implement revision/tombstone reduction; edit and delete actual source versions, prove current/historical eligibility, trace pending/replay/publication failures, reject stale backfill and incompatible contracts, and complete the cumulative Part V architecture/reasoning/project/delayed assessment.
 - **Visual:** Version timeline and two-index migration.
 - **Trade-off / misconception:** A recently updated source is not necessarily the relevant one; freshness and relevance must be measured separately.
 - **Unlocks:** Reliable production ingestion and temporal retrieval.

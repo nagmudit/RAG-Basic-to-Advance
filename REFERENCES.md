@@ -206,3 +206,12 @@ This register records primary sources used in written chapters. Concept explanat
 | Elasticsearch, [filtered approximate kNN](https://www.elastic.co/docs/solutions/search/vector/knn/filtered-knn-search) | Primary example of filter placement and physical execution | No Elasticsearch instance or benchmark runs; syntax alone is not the book's before-scoring authorization proof. |
 | pgvector maintainers, [filtering and multitenancy](https://github.com/pgvector/pgvector#filtering) | Scan-then-filter, bounded iterative scans and partition options | No PostgreSQL execution/default recommendation; task filtering and protected scoring boundaries remain distinct. |
 | Microsoft, [Azure AI Search OData filter reference](https://learn.microsoft.com/en-us/azure/search/search-query-odata-filter) | Typed Boolean/range/collection/null grammar example | V6 uses its own limited conjunction dictionary, not full OData/SQL or natural-language query compilation. |
+
+## Chapter 22 — verified 2026-10-13
+
+| Source | Used for | Scope and caution |
+|---|---|---|
+| Debezium, [PostgreSQL connector](https://debezium.io/documentation/reference/stable/connectors/postgresql.html) | Snapshot/log capture and source-position example | No live database/connector/broker runs; CDC is not a shared index transaction. |
+| Elasticsearch, [near-real-time search](https://www.elastic.co/docs/manage-data/data-store/near-real-time-search) | Write versus refresh/search visibility versus durable commit | No Lucene/Elasticsearch execution or refresh/SLO guarantee imported. |
+| Qdrant, [collections and aliases](https://qdrant.tech/documentation/manage-data/collections/) | Atomic alias control-plane example | Local pointer/gates are separate; alias syntax does not validate source tail, policy or model compatibility. |
+| Python, [OS interfaces](https://docs.python.org/3.14/library/os.html) | File flush/fsync/replace primitives | Local trusted checkpoint is not a signature, distributed commit or universal power-loss guarantee. |

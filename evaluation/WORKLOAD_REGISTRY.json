@@ -530,6 +530,72 @@
       "valid_comparisons": "Same graph,entry,preassigned scores and task membership; final eligible node/frontier events.",
       "invalid_cross_workload_inferences": "Not HNSW,ANN latency,ACL traversal,relevance/generation or longitudinal quality. No train/dev/test.",
       "source": "projects/V6/chapter-21-experiment.json"
+    },
+    {
+      "workload_id": "ch22-versioned-evidence-v1",
+      "chapters_using_it": [
+        22
+      ],
+      "corpus_version": "ch22-reviewed-version-capsules-v1",
+      "query_set_version": "ch22-ten-checkpoint-questions-v1",
+      "qrels_version": "ch22-source-policy-time-bound-spans-v1",
+      "number_of_queries": 10,
+      "judgment_count": 6,
+      "query_slices": [
+        "current-initial",
+        "edit-visible",
+        "delivery-gap",
+        "out-of-order-replay",
+        "as-of",
+        "as-of",
+        "delete",
+        "historical-delete",
+        "current-acl",
+        "tenant"
+      ],
+      "purpose": "Six positive/four empty source-span tasks at controlled checkpoints; compare arrival/ordered under identical source authority, events, model,exact ID,k1,context80. Known pending source revision is retained as a miss.",
+      "valid_comparisons": "Same checkpoint/source/version/permission-bound requirements; macro recall over six positives and empty correctness over four. Search and context measured separately. No train/dev/test.",
+      "invalid_cross_workload_inferences": "No longitudinal V0-V6 improvement, benchmark/generalization, live CDC/IAM/distributed durability, physical erasure, generator/correctness/faithfulness/citation/abstention claim. Control clocks are not wall latency. Ingest/cache/contract probes have no relevance judgments.",
+      "source": "projects/V6/qrels_ch22.json",
+      "source_manifest_sha256": "34310ea48f089a50a0e4084cc81fef6f943eb9b8bb75e4df6f642cb8c73c26e4"
+    },
+    {
+      "workload_id": "ch22-controlled-event-delivery-v1",
+      "chapters_using_it": [
+        22
+      ],
+      "corpus_version": "ch22-reviewed-version-capsules-v1",
+      "query_set_version": "ch22-seven-deliveries-v1",
+      "qrels_version": null,
+      "number_of_queries": 7,
+      "judgment_count": 0,
+      "query_slices": [
+        "controlled-event-or-migration-state"
+      ],
+      "purpose": "Version-aware upsert/tombstone/dedup/stale replay on seven identical controlled deliveries after15 source seeds; privileged ingest traces and deterministic source/receive/visibility clocks.",
+      "valid_comparisons": "Same source event/delivery schedule; compare projection heads/tombstones/work. Logical lag is arithmetic, not service performance.",
+      "invalid_cross_workload_inferences": "No longitudinal V0-V6 improvement, benchmark/generalization, live CDC/IAM/distributed durability, physical erasure, generator/correctness/faithfulness/citation/abstention claim. Control clocks are not wall latency. Ingest/cache/contract probes have no relevance judgments.",
+      "source": "projects/V6/chapter-22-experiment.json",
+      "source_manifest_sha256": "34310ea48f089a50a0e4084cc81fef6f943eb9b8bb75e4df6f642cb8c73c26e4"
+    },
+    {
+      "workload_id": "ch22-compatible-generation-cutover-v1",
+      "chapters_using_it": [
+        22
+      ],
+      "corpus_version": "ch22-reviewed-version-capsules-v1",
+      "query_set_version": "ch22-seven-final-cutover-queries-v1",
+      "qrels_version": "ch22-source-policy-time-bound-spans-v1",
+      "number_of_queries": 7,
+      "judgment_count": 3,
+      "query_slices": [
+        "controlled-event-or-migration-state"
+      ],
+      "purpose": "Backfill3500, tail catch-up, stale cutover rejection, valid flip/rollback, same-dimensional contract mismatch and tenant/generation/policy-safe cache drills.",
+      "valid_comparisons": "Same final source targets/authority; body versus entity-prefix input contracts on one frozen backbone. Migration protocol parity, not model superiority.",
+      "invalid_cross_workload_inferences": "No longitudinal V0-V6 improvement, benchmark/generalization, live CDC/IAM/distributed durability, physical erasure, generator/correctness/faithfulness/citation/abstention claim. Control clocks are not wall latency. Ingest/cache/contract probes have no relevance judgments.",
+      "source": "projects/V6/chapter-22-experiment.json",
+      "source_manifest_sha256": "34310ea48f089a50a0e4084cc81fef6f943eb9b8bb75e4df6f642cb8c73c26e4"
     }
   ]
 }

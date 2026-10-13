@@ -48,3 +48,7 @@ Four figures show actual competing canonical ranges (20.01), actual full-parent 
 ## Chapter 21 visual audit
 
 Four assets show index/query policy and content boundaries (21.01), prefilter/postfilter/task-transit candidate sets (21.02), matched measured recall and cutoff ceiling (21.03), and actual A08 loss at the shortlist boundary (21.04). [Editable code](chapter-21/render_visuals.py), SVG/PNG, registered fixture/record data, chapter captions/alt text and units/denominators remain. Task transit occurs entirely in an authorized partition; no private traversal or native ANN frontier is implied. Categorical bars have no interpolation/independent CI. Measured context availability is not answer correctness. Exact diagrams and plots supply the relevant questions without a generated illustration.
+
+## Chapter 22 visual audit
+
+Four editable SVG/PNG assets show controlled source/publication clocks (22.01), actual ordered/arrival head regressions and serving gates (22.02), watermark/tail/rejected-cutover/valid-flip/rollback contracts (22.03), and matched version/context recall with the retained pending gap (22.04). [Sources](chapter-22/render_visuals.py), registered data, captions/alt text, units and denominators are retained. Logical clock gaps are not measured worker/service latency; state diagrams do not imply live CDC, distributed alias/durability or physical erase. Categorical bars do not imply independent CIs or interpolation. Generated illustration is unnecessary for these exact states.

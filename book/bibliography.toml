@@ -95,7 +95,7 @@ doi = "10.1145/361219.361220"
 # ---- software and standards documentation (descriptive in-text labels)
 
 [[work]]
-match = ["https://docs.python.org/3/"]
+match = ["https://docs.python.org/3/", "https://docs.python.org/3.14/library/os.html"]
 authors = "Python Software Foundation"
 year = "n.d."
 title = "The Python 3 Standard Library and HOWTO documentation"

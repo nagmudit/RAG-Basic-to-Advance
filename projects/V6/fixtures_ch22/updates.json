@@ -1,0 +1,86 @@
+[
+  {
+    "source_id": "A06",
+    "source_version": "2",
+    "path": "A06-v2.md",
+    "allowed_scopes": [
+      "A-reader"
+    ],
+    "license": "book-authored-fixture",
+    "indexing_allowed": true,
+    "retention_policy": "book-fixture-snapshot",
+    "metadata": {
+      "schema_version": "ch21-metadata-1",
+      "policy_version": "ch21-role-intersection-1",
+      "record_id": "A06",
+      "tenant": "A",
+      "acl_roles": [
+        "reader"
+      ],
+      "owner": "ops-A",
+      "published_at": "2026-10-06T00:00:00Z",
+      "updated_at": "2026-10-13T12:00:00Z",
+      "version": 2,
+      "entity": "Orion",
+      "language": "en",
+      "parent_id": "A/manual",
+      "extraction_confidence": 0.99
+    }
+  },
+  {
+    "source_id": "A06",
+    "source_version": "3",
+    "path": "A06-v3.md",
+    "allowed_scopes": [
+      "A-reader"
+    ],
+    "license": "book-authored-fixture",
+    "indexing_allowed": true,
+    "retention_policy": "book-fixture-snapshot",
+    "metadata": {
+      "schema_version": "ch21-metadata-1",
+      "policy_version": "ch21-role-intersection-1",
+      "record_id": "A06",
+      "tenant": "A",
+      "acl_roles": [
+        "reader"
+      ],
+      "owner": "ops-A",
+      "published_at": "2026-10-06T00:00:00Z",
+      "updated_at": "2026-10-13T12:00:00Z",
+      "version": 3,
+      "entity": "Orion",
+      "language": "en",
+      "parent_id": "A/manual",
+      "extraction_confidence": 0.99
+    }
+  },
+  {
+    "source_id": "A08",
+    "source_version": "2",
+    "path": "A08-v2.md",
+    "allowed_scopes": [
+      "A-admin"
+    ],
+    "license": "book-authored-fixture",
+    "indexing_allowed": true,
+    "retention_policy": "book-fixture-snapshot",
+    "metadata": {
+      "schema_version": "ch21-metadata-1",
+      "policy_version": "ch21-role-intersection-1",
+      "record_id": "A08",
+      "tenant": "A",
+      "acl_roles": [
+        "admin"
+      ],
+      "owner": "ops-A",
+      "published_at": "2026-10-08T00:00:00Z",
+      "updated_at": "2026-10-13T12:00:00Z",
+      "version": 2,
+      "entity": "Orion",
+      "language": "en",
+      "parent_id": "A/manual",
+      "extraction_confidence": 0.99
+    }
+  }
+]
