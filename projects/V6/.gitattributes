@@ -1,0 +1,2 @@
+# Preserve source, descriptor, qrel, code and snapshot bytes bound by SHA256.
+* -text

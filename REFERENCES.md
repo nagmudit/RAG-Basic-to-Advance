@@ -198,3 +198,11 @@ This register records primary sources used in written chapters. Concept explanat
 | Günther et al., [Late Chunking](https://arxiv.org/abs/2409.04701), 2024, revised 2025 | Contextual token states before chunk pooling; long-context limits | Mechanism comparison only; short independent MiniLM chunks are not late chunking. |
 | Anthropic, [Contextual Retrieval](https://www.anthropic.com/engineering/contextual-retrieval), 2024 | Document-informed descriptions prepended before indexing | Primary system account, not a general guarantee; no generated descriptions run locally. |
 | Sentence Transformers, [pinned model card](https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2) and [semantic similarity usage](https://www.sbert.net/docs/sentence_transformer/usage/semantic_textual_similarity.html) | Shared encoder/normalized comparison, token-limit expectations | Installed cached revision8b3219a92973c328a8e22fadcfa821b5dc75636a checked; actual chunk tokenizer audit precedes encoding. Body-only input is a new workload contract. |
+## Chapter 21 — verified 2026-10-13
+
+| Source | Used for | Scope and caution |
+|---|---|---|
+| Python, [datetime](https://docs.python.org/3.14/library/datetime.html) | Aware/naive instants and UTC conversion | V6 implements a bounded ISO-input/half-open policy; no locale-day/temporal-validity inference. |
+| Elasticsearch, [filtered approximate kNN](https://www.elastic.co/docs/solutions/search/vector/knn/filtered-knn-search) | Primary example of filter placement and physical execution | No Elasticsearch instance or benchmark runs; syntax alone is not the book's before-scoring authorization proof. |
+| pgvector maintainers, [filtering and multitenancy](https://github.com/pgvector/pgvector#filtering) | Scan-then-filter, bounded iterative scans and partition options | No PostgreSQL execution/default recommendation; task filtering and protected scoring boundaries remain distinct. |
+| Microsoft, [Azure AI Search OData filter reference](https://learn.microsoft.com/en-us/azure/search/search-query-odata-filter) | Typed Boolean/range/collection/null grammar example | V6 uses its own limited conjunction dictionary, not full OData/SQL or natural-language query compilation. |

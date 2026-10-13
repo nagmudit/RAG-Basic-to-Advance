@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="774.4pt" height="457.6pt" viewBox="0 0 774.4 457.6" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:date>2026-10-13T14:02:48.365450</dc:date>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.11.0, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 457.6
+L 774.4 457.6
+L 774.4 0
+L 0 0
+z
+" style="fill: #ffffff"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 251.781818 150.232727
+L 432.8 150.232727
+Q 437.636364 150.232727 437.636364 145.532121
+L 437.636364 80.395152
+Q 437.636364 75.694545 432.8 75.694545
+L 251.781818 75.694545
+Q 246.945455 75.694545 246.945455 80.395152
+L 246.945455 145.532121
+Q 246.945455 150.232727 251.781818 150.232727
+z
+" clip-path="url(#pabd7b794d0)" style="fill: #f4f7fa; stroke: #245a81; stroke-width: 1.8; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_3">
+    <path d="M 500.509091 150.232727
+L 702.254545 150.232727
+Q 707.090909 150.232727 707.090909 145.532121
+L 707.090909 80.395152
+Q 707.090909 75.694545 702.254545 75.694545
+L 500.509091 75.694545
+Q 495.672727 75.694545 495.672727 80.395152
+L 495.672727 145.532121
+Q 495.672727 150.232727 500.509091 150.232727
+z
+" clip-path="url(#pabd7b794d0)" style="fill: #f4f7fa; stroke: #245a81; stroke-width: 1.8; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_4">
+    <path d="M 500.509091 277.820606
+L 702.254545 277.820606
+Q 707.090909 277.820606 707.090909 273.12
+L 707.090909 207.98303
+Q 707.090909 203.282424 702.254545 203.282424
+L 500.509091 203.282424
+Q 495.672727 203.282424 495.672727 207.98303
+L 495.672727 273.12
+Q 495.672727 277.820606 500.509091 277.820606
+z
+" clip-path="url(#pabd7b794d0)" style="fill: #f4f7fa; stroke: #245a81; stroke-width: 1.8; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_5">
+    <path d="M 251.781818 415.481212
+L 470.8 415.481212
+Q 475.636364 415.481212 475.636364 410.780606
+L 475.636364 349.001212
+Q 475.636364 344.300606 470.8 344.300606
+L 251.781818 344.300606
+Q 246.945455 344.300606 246.945455 349.001212
+L 246.945455 410.780606
+Q 246.945455 415.481212 251.781818 415.481212
+z
+" clip-path="url(#pabd7b794d0)" style="fill: #f4f7fa; stroke: #245a81; stroke-width: 1.8; stroke-linejoin: miter"/>
+   </g>
+   <g id="text_1">
+    <text style="font-weight: 700; font-size: 16px; font-family: 'DejaVu Sans'; text-anchor: start" x="14.109091" y="34.060606" transform="rotate(-0 14.109091 34.060606)">a-day8 / post3 — first loss is the shortlist cutoff</text>
+   </g>
+   <g id="text_2">
+    <text style="font-weight: 700; font-size: 16px; font-family: 'DejaVu Sans'; text-anchor: start" x="21.018182" y="70.993939" transform="rotate(-0 21.018182 70.993939)">10 authorized scores</text>
+   </g>
+   <g id="text_3">
+    <text style="font-size: 16px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #172c3c" x="27.927273" y="99.869091" transform="rotate(-0 27.927273 99.869091)">1. A07   0.61026</text>
+   </g>
+   <g id="text_4">
+    <text style="font-size: 16px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #172c3c" x="27.927273" y="131.430303" transform="rotate(-0 27.927273 131.430303)">2. A05   0.60951</text>
+   </g>
+   <g id="text_5">
+    <text style="font-size: 16px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #172c3c" x="27.927273" y="162.991515" transform="rotate(-0 27.927273 162.991515)">3. A06   0.60660</text>
+   </g>
+   <g id="text_6">
+    <text style="font-size: 16px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #172c3c" x="27.927273" y="194.552727" transform="rotate(-0 27.927273 194.552727)">4. A03   0.60464</text>
+   </g>
+   <g id="text_7">
+    <text style="font-size: 16px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #172c3c" x="27.927273" y="226.113939" transform="rotate(-0 27.927273 226.113939)">5. A01   0.60389</text>
+   </g>
+   <g id="text_8">
+    <text style="font-size: 16px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #172c3c" x="27.927273" y="257.675152" transform="rotate(-0 27.927273 257.675152)">6. A02   0.60389</text>
+   </g>
+   <g id="text_9">
+    <text style="font-weight: 700; font-size: 16px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #27715b" x="27.927273" y="289.236364" transform="rotate(-0 27.927273 289.236364)">7. A08   0.60323</text>
+   </g>
+   <g id="text_10">
+    <text style="font-size: 16px; font-family: 'DejaVu Sans'; fill: #172c3c" transform="translate(285.635909 107.518949)">Shortlist top3:</text>
+    <text style="font-size: 16px; font-family: 'DejaVu Sans'; fill: #172c3c" transform="translate(285.163409 126.722074)">A07, A05, A06</text>
+   </g>
+   <g id="text_11">
+    <text style="font-size: 16px; font-family: 'DejaVu Sans'; fill: #172c3c" transform="translate(542.309318 107.518949)">Task survivors:</text>
+    <text style="font-size: 16px; font-family: 'DejaVu Sans'; fill: #172c3c" transform="translate(575.716818 126.722074)">empty</text>
+   </g>
+   <g id="patch_6">
+    <path d="M 206.107304 114.642424
+Q 226.563567 114.642424 245.230975 114.642424
+" style="fill: none; stroke: #172c3c; stroke-width: 1.6; stroke-linecap: round"/>
+    <path d="M 238.830975 111.442424
+L 245.230975 114.642424
+L 238.830975 117.842424
+" style="fill: none; stroke: #172c3c; stroke-width: 1.6; stroke-linecap: round"/>
+   </g>
+   <g id="patch_7">
+    <path d="M 437.563747 114.642424
+Q 466.653654 114.642424 493.954706 114.642424
+" style="fill: none; stroke: #172c3c; stroke-width: 1.6; stroke-linecap: round"/>
+    <path d="M 487.554706 111.442424
+L 493.954706 114.642424
+L 487.554706 117.842424
+" style="fill: none; stroke: #172c3c; stroke-width: 1.6; stroke-linecap: round"/>
+   </g>
+   <g id="text_12">
+    <text style="font-size: 16px; font-family: 'DejaVu Sans'; fill: #172c3c" transform="translate(542.316818 235.106828)">Final / context:</text>
+    <text style="font-size: 16px; font-family: 'DejaVu Sans'; fill: #172c3c" transform="translate(575.716818 254.309953)">empty</text>
+   </g>
+   <g id="patch_8">
+    <path d="M 601.381818 150.221374
+Q 601.381818 176.759112 601.381818 201.507995
+" style="fill: none; stroke: #172c3c; stroke-width: 1.6; stroke-linecap: round"/>
+    <path d="M 604.581818 195.107995
+L 601.381818 201.507995
+L 598.181818 195.107995
+" style="fill: none; stroke: #172c3c; stroke-width: 1.6; stroke-linecap: round"/>
+   </g>
+   <g id="text_13">
+    <text style="font-size: 16px; font-family: 'DejaVu Sans'; fill: #27715b" transform="translate(249.018182 176.960947)">A08 is outside top3.</text>
+    <text style="font-size: 16px; font-family: 'DejaVu Sans'; fill: #27715b" transform="translate(249.018182 196.165322)">Its task membership is known;</text>
+    <text style="font-size: 16px; font-family: 'DejaVu Sans'; fill: #27715b" transform="translate(249.018182 215.369697)">its raw score was observed.</text>
+   </g>
+   <g id="text_14">
+    <text style="font-size: 16px; font-family: 'DejaVu Sans'; fill: #172c3c" transform="translate(302.243409 374.445597)">Exact prefilter:</text>
+    <text style="font-size: 16px; font-family: 'DejaVu Sans'; fill: #172c3c" transform="translate(277.003409 393.649972)">score and return A08</text>
+   </g>
+   <g id="text_15">
+    <text style="font-size: 16px; font-family: 'DejaVu Sans'" transform="translate(497.745455 377.474413)">task_count = 1</text>
+    <text style="font-size: 16px; font-family: 'DejaVu Sans'" transform="translate(497.745455 396.678788)">reason: shortlist_underfill</text>
+   </g>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="pabd7b794d0">
+   <rect x="7.2" y="7.2" width="760" height="443.2"/>
+  </clipPath>
+ </defs>
+</svg>

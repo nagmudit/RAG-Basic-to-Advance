@@ -165,3 +165,7 @@ For each paper, write a one-page card: **problem → architecture → training d
 ## Corpus-quality checkpoint after Chapter 19
 
 Before interpreting a retrieval paper's result, record how its collection was captured, decoded, parsed, normalized and deduplicated; identify excluded formats and missing or ambiguous evidence. Chapter 19's [source-bound preservation experiment](projects/V5/README.md) demonstrates that a source hit does not guarantee evidence preservation. Unicode, native-PDF/OCR and table-semantics documentation in [the source register](REFERENCES.md) is an OPTIONAL mechanism companion, not a new mandatory paper track. Deeper layout and visual-document research stays after Chapters 42–43; no frontier promotion is made here.
+
+## Filter-plan checkpoint after Chapter 21
+
+Before interpreting a filtered-ANN result, state its authorized universe, typed task predicate, selectivity denominator, exact eligible oracle, cutoff/oversampling and physical filter placement. Identify whether transit vertices are task-ineligible but authorized, which lossy pools are observed, and whether an empty result reflects absence or budget loss. [V6](projects/V6/README.md) provides exact shortlist and deterministic bridge diagnostics rather than a new ANN performance claim. Elasticsearch/pgvector filtering, aware datetime and OData primary documentation in [the source register](REFERENCES.md) are OPTIONAL companions after Chapters18–21, not additional mandatory research papers. No frontier promotion or Chapter22 lifecycle prerequisite is introduced.

@@ -276,11 +276,12 @@ The core question evolves throughout: **Which evidence enters the LLM's context,
 
 #### Chapter 21 — Metadata schemas and filtered retrieval
 
+- **Authored materials:** [Chapter](chapters/chapter-21-metadata-schemas-and-filtered-retrieval.md) · [Independent lab](labs/chapter-21/LAB.md) · [Solutions](solutions/chapter-21-solutions.md) · [V6 metadata stage](projects/V6/README.md).
 - **Objective:** Use structured attributes and permissions to reduce the eligible search space correctly.
 - **Prerequisites:** Chapters 05, 13, 18–20.
 - **Section 1 — Metadata design.** Topic: schema; micro-concepts: source, tenant, owner, ACL, timestamps, version, entity, language, hierarchy, stable IDs, extraction confidence and missing values. Topic: constraints; micro-concepts: exact IDs, date ranges, field filters and SQL-like predicates.
 - **Section 2 — Filter execution.** Topic: placement; micro-concepts: prefilter, ANN-aware filtering, postfilter, filter selectivity, empty result behavior, oversampling, authorization before evidence leaves the service.
-- **Lab:** Compare metadata filtering with semantic scoring on an exact-date and exact-tenant query.
+- **Lab:** Independently construct a metadata-only authorization/predicate selector before reference exposure; compare authorized semantic, exact prefilter and bounded task postfilters on source/policy-bound date/tenant/ID questions, preserving the eligible oracle, context attempts and actual first-loss traces.
 - **Visual:** Candidate sets before and after each filter placement.
 - **Trade-off / misconception:** Postfiltering an unauthorized top-k can leak information and underfill results.
 - **Unlocks:** Secure hybrid retrieval and production ACL design.

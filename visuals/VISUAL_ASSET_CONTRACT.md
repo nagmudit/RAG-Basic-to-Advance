@@ -44,3 +44,7 @@ Three focused assets show index-time lineage with policy/quality stopping points
 ## Chapter 20 visual audit
 
 Four figures show actual competing canonical ranges (20.01), actual full-parent budget rejection (20.02), distinct expansion/prefix/late-pooling intervention stages (20.03), and measured candidate/context/duplication outcomes (20.04). SVG/PNG, editable source, source-bound labels/snapshot/experiment inputs, captions/alt text and workload/denominators/units are retained. The parent example is517 encoder WordPieces under budget80; it is counted without encoding. Research-only lanes are marked not run. Categorical bar policies have no implied interpolation or CI, and source-span availability is not answer/citation quality. Exact graphics answer the learner questions without generated illustration.
+
+## Chapter 21 visual audit
+
+Four assets show index/query policy and content boundaries (21.01), prefilter/postfilter/task-transit candidate sets (21.02), matched measured recall and cutoff ceiling (21.03), and actual A08 loss at the shortlist boundary (21.04). [Editable code](chapter-21/render_visuals.py), SVG/PNG, registered fixture/record data, chapter captions/alt text and units/denominators remain. Task transit occurs entirely in an authorized partition; no private traversal or native ANN frontier is implied. Categorical bars have no interpolation/independent CI. Measured context availability is not answer correctness. Exact diagrams and plots supply the relevant questions without a generated illustration.

@@ -1,0 +1,542 @@
+[
+  {
+    "source_id": "A01",
+    "source_version": "1",
+    "source_sha256": "9385a51266e96be4aab973ce1bbc868cae4245ff1fc912b516a0dba55d8408e2",
+    "allowed_scopes": [
+      "A-reader"
+    ],
+    "license": "book-authored-fixture",
+    "indexing_allowed": true,
+    "retention_policy": "book-fixture-snapshot",
+    "parser_version": "ch19-bounded-adapters-1",
+    "normalization_version": "nfc-prose-space-code-preserve-1",
+    "mode": "structured",
+    "body": "Orion rollback procedure: The coordinator waits 30 minutes after approval before rollback. The signed approval record must be attached to the incident. Stop if the health check fails.",
+    "body_sha256": "2fe3056b00118d22f320ec14ee458d8720d6861680ae0c8fabb2c132a818750d",
+    "blocks": [
+      {
+        "block_id": "A01:b0",
+        "text": "Orion rollback procedure: The coordinator waits 30 minutes after approval before rollback. The signed approval record must be attached to the incident. Stop if the health check fails.",
+        "kind": "prose",
+        "start": 0,
+        "end": 183,
+        "locator": {
+          "format": "markdown",
+          "line_start": 1,
+          "line_end": 1
+        },
+        "raw_extracted_text": "Orion rollback procedure: The coordinator waits 30 minutes after approval before rollback. The signed approval record must be attached to the incident. Stop if the health check fails.",
+        "raw_extracted_sha256": "2fe3056b00118d22f320ec14ee458d8720d6861680ae0c8fabb2c132a818750d"
+      }
+    ],
+    "dropped_regions": [],
+    "status": "accepted",
+    "reason": null,
+    "record_digest": "8649f0a78ce47cf4ae472c5a95dd7f43cda9ae1770e2e397a3786d1d60459962"
+  },
+  {
+    "source_id": "A02",
+    "source_version": "1",
+    "source_sha256": "9385a51266e96be4aab973ce1bbc868cae4245ff1fc912b516a0dba55d8408e2",
+    "allowed_scopes": [
+      "A-reader"
+    ],
+    "license": "book-authored-fixture",
+    "indexing_allowed": true,
+    "retention_policy": "book-fixture-snapshot",
+    "parser_version": "ch19-bounded-adapters-1",
+    "normalization_version": "nfc-prose-space-code-preserve-1",
+    "mode": "structured",
+    "body": "Orion rollback procedure: The coordinator waits 30 minutes after approval before rollback. The signed approval record must be attached to the incident. Stop if the health check fails.",
+    "body_sha256": "2fe3056b00118d22f320ec14ee458d8720d6861680ae0c8fabb2c132a818750d",
+    "blocks": [
+      {
+        "block_id": "A02:b0",
+        "text": "Orion rollback procedure: The coordinator waits 30 minutes after approval before rollback. The signed approval record must be attached to the incident. Stop if the health check fails.",
+        "kind": "prose",
+        "start": 0,
+        "end": 183,
+        "locator": {
+          "format": "markdown",
+          "line_start": 1,
+          "line_end": 1
+        },
+        "raw_extracted_text": "Orion rollback procedure: The coordinator waits 30 minutes after approval before rollback. The signed approval record must be attached to the incident. Stop if the health check fails.",
+        "raw_extracted_sha256": "2fe3056b00118d22f320ec14ee458d8720d6861680ae0c8fabb2c132a818750d"
+      }
+    ],
+    "dropped_regions": [],
+    "status": "accepted",
+    "reason": null,
+    "record_digest": "9a28bd0d882d9d1637f94a73dc54f9d5c54d2f7c0e10f4ef6ddb7dc05b6047fe"
+  },
+  {
+    "source_id": "A03",
+    "source_version": "1",
+    "source_sha256": "bc56400ca2b92691fbcfef5504d6217cd9e348a30088b0249b5299f29f826a3e",
+    "allowed_scopes": [
+      "A-reader"
+    ],
+    "license": "book-authored-fixture",
+    "indexing_allowed": true,
+    "retention_policy": "book-fixture-snapshot",
+    "parser_version": "ch19-bounded-adapters-1",
+    "normalization_version": "nfc-prose-space-code-preserve-1",
+    "mode": "structured",
+    "body": "Orion rollback procedure: The coordinator waits 45 minutes after approval before rollback. The signed approval record must be attached to the incident. Stop if the health check fails.",
+    "body_sha256": "e71a5f6c2688ed3f0d22b929e9ec0f94a5e949e07e2a1e9c12d258f4a2251b00",
+    "blocks": [
+      {
+        "block_id": "A03:b0",
+        "text": "Orion rollback procedure: The coordinator waits 45 minutes after approval before rollback. The signed approval record must be attached to the incident. Stop if the health check fails.",
+        "kind": "prose",
+        "start": 0,
+        "end": 183,
+        "locator": {
+          "format": "markdown",
+          "line_start": 1,
+          "line_end": 1
+        },
+        "raw_extracted_text": "Orion rollback procedure: The coordinator waits 45 minutes after approval before rollback. The signed approval record must be attached to the incident. Stop if the health check fails.",
+        "raw_extracted_sha256": "e71a5f6c2688ed3f0d22b929e9ec0f94a5e949e07e2a1e9c12d258f4a2251b00"
+      }
+    ],
+    "dropped_regions": [],
+    "status": "accepted",
+    "reason": null,
+    "record_digest": "1caff5384477bc631167f6e575164d2d2325f94d1d00aa36ce1fa31ece98ade6"
+  },
+  {
+    "source_id": "A04",
+    "source_version": "1",
+    "source_sha256": "2e3c9fa1a6f42ba1554679f9c8cace9318bc4bfb4b73a8e9f7fd4b6ec7ee5a2b",
+    "allowed_scopes": [
+      "A-reader"
+    ],
+    "license": "book-authored-fixture",
+    "indexing_allowed": true,
+    "retention_policy": "book-fixture-snapshot",
+    "parser_version": "ch19-bounded-adapters-1",
+    "normalization_version": "nfc-prose-space-code-preserve-1",
+    "mode": "structured",
+    "body": "Orion rollback procedure: The coordinator waits 60 minutes after approval before rollback. The signed approval record must be attached to the incident. Stop if the health check fails.",
+    "body_sha256": "0c0787c83f2833e9ea33e194937319be3a3f9054e3afe503bd67b4ba6db31118",
+    "blocks": [
+      {
+        "block_id": "A04:b0",
+        "text": "Orion rollback procedure: The coordinator waits 60 minutes after approval before rollback. The signed approval record must be attached to the incident. Stop if the health check fails.",
+        "kind": "prose",
+        "start": 0,
+        "end": 183,
+        "locator": {
+          "format": "markdown",
+          "line_start": 1,
+          "line_end": 1
+        },
+        "raw_extracted_text": "Orion rollback procedure: The coordinator waits 60 minutes after approval before rollback. The signed approval record must be attached to the incident. Stop if the health check fails.",
+        "raw_extracted_sha256": "0c0787c83f2833e9ea33e194937319be3a3f9054e3afe503bd67b4ba6db31118"
+      }
+    ],
+    "dropped_regions": [],
+    "status": "accepted",
+    "reason": null,
+    "record_digest": "e157a5f6c313d4b913b1f20a42380b2184e096007afe00450ba18953ebf30784"
+  },
+  {
+    "source_id": "A05",
+    "source_version": "1",
+    "source_sha256": "d3c2c815d928a076d22f940358e34891e4fcbd771767d447af757c81015d75d9",
+    "allowed_scopes": [
+      "A-reader"
+    ],
+    "license": "book-authored-fixture",
+    "indexing_allowed": true,
+    "retention_policy": "book-fixture-snapshot",
+    "parser_version": "ch19-bounded-adapters-1",
+    "normalization_version": "nfc-prose-space-code-preserve-1",
+    "mode": "structured",
+    "body": "Orion rollback procedure: The coordinator waits 75 minutes after approval before rollback. The signed approval record must be attached to the incident. Stop if the health check fails.",
+    "body_sha256": "a233ed95c781650def32a2ccfef62c86c236513aaafda98d83235443e6b4aa76",
+    "blocks": [
+      {
+        "block_id": "A05:b0",
+        "text": "Orion rollback procedure: The coordinator waits 75 minutes after approval before rollback. The signed approval record must be attached to the incident. Stop if the health check fails.",
+        "kind": "prose",
+        "start": 0,
+        "end": 183,
+        "locator": {
+          "format": "markdown",
+          "line_start": 1,
+          "line_end": 1
+        },
+        "raw_extracted_text": "Orion rollback procedure: The coordinator waits 75 minutes after approval before rollback. The signed approval record must be attached to the incident. Stop if the health check fails.",
+        "raw_extracted_sha256": "a233ed95c781650def32a2ccfef62c86c236513aaafda98d83235443e6b4aa76"
+      }
+    ],
+    "dropped_regions": [],
+    "status": "accepted",
+    "reason": null,
+    "record_digest": "d30b876b7ae04528dfc1f40ed7a7f383c52bbe4e4234b849ef083853115599f8"
+  },
+  {
+    "source_id": "A06",
+    "source_version": "1",
+    "source_sha256": "9ca4350041cb480bdcf59292f59937042bfda9543c3fce1495cb43202e2107a6",
+    "allowed_scopes": [
+      "A-reader"
+    ],
+    "license": "book-authored-fixture",
+    "indexing_allowed": true,
+    "retention_policy": "book-fixture-snapshot",
+    "parser_version": "ch19-bounded-adapters-1",
+    "normalization_version": "nfc-prose-space-code-preserve-1",
+    "mode": "structured",
+    "body": "Orion rollback procedure: The coordinator waits 90 minutes after approval before rollback. The signed approval record must be attached to the incident. Stop if the health check fails.",
+    "body_sha256": "b1fa926e666528d134ea0b172aabcca846c317e6a664e970d10f337a508d19cb",
+    "blocks": [
+      {
+        "block_id": "A06:b0",
+        "text": "Orion rollback procedure: The coordinator waits 90 minutes after approval before rollback. The signed approval record must be attached to the incident. Stop if the health check fails.",
+        "kind": "prose",
+        "start": 0,
+        "end": 183,
+        "locator": {
+          "format": "markdown",
+          "line_start": 1,
+          "line_end": 1
+        },
+        "raw_extracted_text": "Orion rollback procedure: The coordinator waits 90 minutes after approval before rollback. The signed approval record must be attached to the incident. Stop if the health check fails.",
+        "raw_extracted_sha256": "b1fa926e666528d134ea0b172aabcca846c317e6a664e970d10f337a508d19cb"
+      }
+    ],
+    "dropped_regions": [],
+    "status": "accepted",
+    "reason": null,
+    "record_digest": "2c2c218faa0ed51b98ee363cbdb06d5d4cd0da8f082f081b3ab953394f5fd4ee"
+  },
+  {
+    "source_id": "A07",
+    "source_version": "1",
+    "source_sha256": "ab5d58c6603a0f6cb1aa168d06049946c025e2fc71933dec467e00c2f9f22bb9",
+    "allowed_scopes": [
+      "A-reader"
+    ],
+    "license": "book-authored-fixture",
+    "indexing_allowed": true,
+    "retention_policy": "book-fixture-snapshot",
+    "parser_version": "ch19-bounded-adapters-1",
+    "normalization_version": "nfc-prose-space-code-preserve-1",
+    "mode": "structured",
+    "body": "Orion rollback procedure: The coordinator waits 105 minutes after approval before rollback. The signed approval record must be attached to the incident. Stop if the health check fails.",
+    "body_sha256": "ebd0bf6d53357b9594f721f6fac59da60ddfba1be2a674c5694129d8de56e41c",
+    "blocks": [
+      {
+        "block_id": "A07:b0",
+        "text": "Orion rollback procedure: The coordinator waits 105 minutes after approval before rollback. The signed approval record must be attached to the incident. Stop if the health check fails.",
+        "kind": "prose",
+        "start": 0,
+        "end": 184,
+        "locator": {
+          "format": "markdown",
+          "line_start": 1,
+          "line_end": 1
+        },
+        "raw_extracted_text": "Orion rollback procedure: The coordinator waits 105 minutes after approval before rollback. The signed approval record must be attached to the incident. Stop if the health check fails.",
+        "raw_extracted_sha256": "ebd0bf6d53357b9594f721f6fac59da60ddfba1be2a674c5694129d8de56e41c"
+      }
+    ],
+    "dropped_regions": [],
+    "status": "accepted",
+    "reason": null,
+    "record_digest": "85ea2cef40cfa26c7524dac280bf11a93e3a6601a2c2cfc881076156c45fb0ac"
+  },
+  {
+    "source_id": "A08",
+    "source_version": "1",
+    "source_sha256": "cfb5628d10863e8a7414bdf5711770a9a1172980778b6a69f33156ed871b22cb",
+    "allowed_scopes": [
+      "A-reader"
+    ],
+    "license": "book-authored-fixture",
+    "indexing_allowed": true,
+    "retention_policy": "book-fixture-snapshot",
+    "parser_version": "ch19-bounded-adapters-1",
+    "normalization_version": "nfc-prose-space-code-preserve-1",
+    "mode": "structured",
+    "body": "Orion rollback procedure: The coordinator waits 120 minutes after approval before rollback. The signed approval record must be attached to the incident. Stop if the health check fails.",
+    "body_sha256": "b67caa440bd626080f81335415a4103c0eba16085692f185513ea24562c65939",
+    "blocks": [
+      {
+        "block_id": "A08:b0",
+        "text": "Orion rollback procedure: The coordinator waits 120 minutes after approval before rollback. The signed approval record must be attached to the incident. Stop if the health check fails.",
+        "kind": "prose",
+        "start": 0,
+        "end": 184,
+        "locator": {
+          "format": "markdown",
+          "line_start": 1,
+          "line_end": 1
+        },
+        "raw_extracted_text": "Orion rollback procedure: The coordinator waits 120 minutes after approval before rollback. The signed approval record must be attached to the incident. Stop if the health check fails.",
+        "raw_extracted_sha256": "b67caa440bd626080f81335415a4103c0eba16085692f185513ea24562c65939"
+      }
+    ],
+    "dropped_regions": [],
+    "status": "accepted",
+    "reason": null,
+    "record_digest": "ed21b2feb7d06a302333f9898b0d710cfdd1106c8b13ec4da4330032396236c1"
+  },
+  {
+    "source_id": "A09",
+    "source_version": "1",
+    "source_sha256": "24779c1c008b654123194780c4099b1620467a1b2c93424acc21d84555e35357",
+    "allowed_scopes": [
+      "A-reader"
+    ],
+    "license": "book-authored-fixture",
+    "indexing_allowed": true,
+    "retention_policy": "book-fixture-snapshot",
+    "parser_version": "ch19-bounded-adapters-1",
+    "normalization_version": "nfc-prose-space-code-preserve-1",
+    "mode": "structured",
+    "body": "Green rollback procedure: The coordinator waits 15 minutes after approval before rollback. The signed approval record must be attached to the incident. Stop if the health check fails.",
+    "body_sha256": "58da1f3ffd994065b085cd6fbc3cac8bbed76350cf360e443f815632029cc993",
+    "blocks": [
+      {
+        "block_id": "A09:b0",
+        "text": "Green rollback procedure: The coordinator waits 15 minutes after approval before rollback. The signed approval record must be attached to the incident. Stop if the health check fails.",
+        "kind": "prose",
+        "start": 0,
+        "end": 183,
+        "locator": {
+          "format": "markdown",
+          "line_start": 1,
+          "line_end": 1
+        },
+        "raw_extracted_text": "Green rollback procedure: The coordinator waits 15 minutes after approval before rollback. The signed approval record must be attached to the incident. Stop if the health check fails.",
+        "raw_extracted_sha256": "58da1f3ffd994065b085cd6fbc3cac8bbed76350cf360e443f815632029cc993"
+      }
+    ],
+    "dropped_regions": [],
+    "status": "accepted",
+    "reason": null,
+    "record_digest": "51f9d8f7ec2f3c02a9c082f4e94622a3a5380cbbb8dc132a8f1f3c3897bec9a8"
+  },
+  {
+    "source_id": "A10",
+    "source_version": "1",
+    "source_sha256": "65a27fce5cb4b5c278840c74e10df547739af0bcbced3973321f40d432e17aa5",
+    "allowed_scopes": [
+      "A-reader"
+    ],
+    "license": "book-authored-fixture",
+    "indexing_allowed": true,
+    "retention_policy": "book-fixture-snapshot",
+    "parser_version": "ch19-bounded-adapters-1",
+    "normalization_version": "nfc-prose-space-code-preserve-1",
+    "mode": "structured",
+    "body": "Procedimiento Orion: El coordinador espera 150 minutos después de la aprobación antes de revertir. Adjunte el registro firmado al incidente. Detenga el proceso si falla la comprobación.",
+    "body_sha256": "202999a805a31c2a51e6d216afaa7557e5b26b5ed35d2af614813f95c6ef1060",
+    "blocks": [
+      {
+        "block_id": "A10:b0",
+        "text": "Procedimiento Orion: El coordinador espera 150 minutos después de la aprobación antes de revertir. Adjunte el registro firmado al incidente. Detenga el proceso si falla la comprobación.",
+        "kind": "prose",
+        "start": 0,
+        "end": 185,
+        "locator": {
+          "format": "markdown",
+          "line_start": 1,
+          "line_end": 1
+        },
+        "raw_extracted_text": "Procedimiento Orion: El coordinador espera 150 minutos después de la aprobación antes de revertir. Adjunte el registro firmado al incidente. Detenga el proceso si falla la comprobación.",
+        "raw_extracted_sha256": "202999a805a31c2a51e6d216afaa7557e5b26b5ed35d2af614813f95c6ef1060"
+      }
+    ],
+    "dropped_regions": [],
+    "status": "accepted",
+    "reason": null,
+    "record_digest": "1a9da101657b24e3d937dea7c38483385217a91c524b76ef45f78bdfcbad08ea"
+  },
+  {
+    "source_id": "B01",
+    "source_version": "1",
+    "source_sha256": "4fafa88c779ab4669356805c1d389aeb240d52839e180eaebaaee8b95340ccc2",
+    "allowed_scopes": [
+      "B-reader"
+    ],
+    "license": "book-authored-fixture",
+    "indexing_allowed": true,
+    "retention_policy": "book-fixture-snapshot",
+    "parser_version": "ch19-bounded-adapters-1",
+    "normalization_version": "nfc-prose-space-code-preserve-1",
+    "mode": "structured",
+    "body": "Orion rollback procedure: The coordinator waits 20 minutes after approval before rollback. The signed approval record must be attached to the incident. Stop if the health check fails.",
+    "body_sha256": "f2e81a9efb15d0352583fc39a9c0bbab56fc8a0466842ad203d2d3d777fe47e6",
+    "blocks": [
+      {
+        "block_id": "B01:b0",
+        "text": "Orion rollback procedure: The coordinator waits 20 minutes after approval before rollback. The signed approval record must be attached to the incident. Stop if the health check fails.",
+        "kind": "prose",
+        "start": 0,
+        "end": 183,
+        "locator": {
+          "format": "markdown",
+          "line_start": 1,
+          "line_end": 1
+        },
+        "raw_extracted_text": "Orion rollback procedure: The coordinator waits 20 minutes after approval before rollback. The signed approval record must be attached to the incident. Stop if the health check fails.",
+        "raw_extracted_sha256": "f2e81a9efb15d0352583fc39a9c0bbab56fc8a0466842ad203d2d3d777fe47e6"
+      }
+    ],
+    "dropped_regions": [],
+    "status": "accepted",
+    "reason": null,
+    "record_digest": "23d06ef294b067699fa2dff3b1b02fff760b8f0c27fdc34908671b962557f4ce"
+  },
+  {
+    "source_id": "B02",
+    "source_version": "1",
+    "source_sha256": "964db6714469a104bbaf6a260576dcc0dcdb838e3dc2469fd927117241c2d09b",
+    "allowed_scopes": [
+      "B-reader"
+    ],
+    "license": "book-authored-fixture",
+    "indexing_allowed": true,
+    "retention_policy": "book-fixture-snapshot",
+    "parser_version": "ch19-bounded-adapters-1",
+    "normalization_version": "nfc-prose-space-code-preserve-1",
+    "mode": "structured",
+    "body": "Orion rollback procedure: The coordinator waits 40 minutes after approval before rollback. The signed approval record must be attached to the incident. Stop if the health check fails.",
+    "body_sha256": "3f2fe65e0396209574e69bd63f7ca4987198027fcf66cacf756f9dff39306149",
+    "blocks": [
+      {
+        "block_id": "B02:b0",
+        "text": "Orion rollback procedure: The coordinator waits 40 minutes after approval before rollback. The signed approval record must be attached to the incident. Stop if the health check fails.",
+        "kind": "prose",
+        "start": 0,
+        "end": 183,
+        "locator": {
+          "format": "markdown",
+          "line_start": 1,
+          "line_end": 1
+        },
+        "raw_extracted_text": "Orion rollback procedure: The coordinator waits 40 minutes after approval before rollback. The signed approval record must be attached to the incident. Stop if the health check fails.",
+        "raw_extracted_sha256": "3f2fe65e0396209574e69bd63f7ca4987198027fcf66cacf756f9dff39306149"
+      }
+    ],
+    "dropped_regions": [],
+    "status": "accepted",
+    "reason": null,
+    "record_digest": "a635a92cebbd0c7a1888eeea2ccd13c9f87a6ad36511834cf57989e4b675d5cb"
+  },
+  {
+    "source_id": "B03",
+    "source_version": "1",
+    "source_sha256": "05a7e3ae92a9bd4464b83e4715b4a1af38d86d04802a7f6a1dbd5a9202b85bf4",
+    "allowed_scopes": [
+      "B-reader"
+    ],
+    "license": "book-authored-fixture",
+    "indexing_allowed": true,
+    "retention_policy": "book-fixture-snapshot",
+    "parser_version": "ch19-bounded-adapters-1",
+    "normalization_version": "nfc-prose-space-code-preserve-1",
+    "mode": "structured",
+    "body": "Orion rollback procedure: The coordinator waits 80 minutes after approval before rollback. The signed approval record must be attached to the incident. Stop if the health check fails.",
+    "body_sha256": "51e86743ff4e89564f002f4af2b98ecf9908d95bf3ac1ee9bb3809ce878d0c2b",
+    "blocks": [
+      {
+        "block_id": "B03:b0",
+        "text": "Orion rollback procedure: The coordinator waits 80 minutes after approval before rollback. The signed approval record must be attached to the incident. Stop if the health check fails.",
+        "kind": "prose",
+        "start": 0,
+        "end": 183,
+        "locator": {
+          "format": "markdown",
+          "line_start": 1,
+          "line_end": 1
+        },
+        "raw_extracted_text": "Orion rollback procedure: The coordinator waits 80 minutes after approval before rollback. The signed approval record must be attached to the incident. Stop if the health check fails.",
+        "raw_extracted_sha256": "51e86743ff4e89564f002f4af2b98ecf9908d95bf3ac1ee9bb3809ce878d0c2b"
+      }
+    ],
+    "dropped_regions": [],
+    "status": "accepted",
+    "reason": null,
+    "record_digest": "fe9736e34556cf4a3690d1c1cf65b4776a01672f137d10427c1a34984aed8cd8"
+  },
+  {
+    "source_id": "B04",
+    "source_version": "1",
+    "source_sha256": "1356a89a6a8cefc874ff0e5cd04b32aa289f6501b6ffe839cbeb48ba7a7718bd",
+    "allowed_scopes": [
+      "B-reader"
+    ],
+    "license": "book-authored-fixture",
+    "indexing_allowed": true,
+    "retention_policy": "book-fixture-snapshot",
+    "parser_version": "ch19-bounded-adapters-1",
+    "normalization_version": "nfc-prose-space-code-preserve-1",
+    "mode": "structured",
+    "body": "Orion rollback procedure: The coordinator waits 160 minutes after approval before rollback. The signed approval record must be attached to the incident. Stop if the health check fails.",
+    "body_sha256": "ba29fe4c4c7cbaea93aad8c51c45d2269ff63b50d313d03bb6f1b4cab578d855",
+    "blocks": [
+      {
+        "block_id": "B04:b0",
+        "text": "Orion rollback procedure: The coordinator waits 160 minutes after approval before rollback. The signed approval record must be attached to the incident. Stop if the health check fails.",
+        "kind": "prose",
+        "start": 0,
+        "end": 184,
+        "locator": {
+          "format": "markdown",
+          "line_start": 1,
+          "line_end": 1
+        },
+        "raw_extracted_text": "Orion rollback procedure: The coordinator waits 160 minutes after approval before rollback. The signed approval record must be attached to the incident. Stop if the health check fails.",
+        "raw_extracted_sha256": "ba29fe4c4c7cbaea93aad8c51c45d2269ff63b50d313d03bb6f1b4cab578d855"
+      }
+    ],
+    "dropped_regions": [],
+    "status": "accepted",
+    "reason": null,
+    "record_digest": "22cc292863da097db65eba226848e6478bda526a122618d57db8efd7519d9746"
+  },
+  {
+    "source_id": "A-admin",
+    "source_version": "1",
+    "source_sha256": "b34aea697eeabcac9fcb29d3611c87088014d0a4ffcc369942f6955d6363927b",
+    "allowed_scopes": [
+      "A-admin"
+    ],
+    "license": "book-authored-fixture",
+    "indexing_allowed": true,
+    "retention_policy": "book-fixture-snapshot",
+    "parser_version": "ch19-bounded-adapters-1",
+    "normalization_version": "nfc-prose-space-code-preserve-1",
+    "mode": "structured",
+    "body": "Orion rollback procedure: The coordinator waits 1 minutes after approval before rollback. The signed approval record must be attached to the incident. Stop if the health check fails.",
+    "body_sha256": "65d8de47aa16203876d5881b786c4dbde4e88dcb637d73a73ca704fc7f61537b",
+    "blocks": [
+      {
+        "block_id": "A-admin:b0",
+        "text": "Orion rollback procedure: The coordinator waits 1 minutes after approval before rollback. The signed approval record must be attached to the incident. Stop if the health check fails.",
+        "kind": "prose",
+        "start": 0,
+        "end": 182,
+        "locator": {
+          "format": "markdown",
+          "line_start": 1,
+          "line_end": 1
+        },
+        "raw_extracted_text": "Orion rollback procedure: The coordinator waits 1 minutes after approval before rollback. The signed approval record must be attached to the incident. Stop if the health check fails.",
+        "raw_extracted_sha256": "65d8de47aa16203876d5881b786c4dbde4e88dcb637d73a73ca704fc7f61537b"
+      }
+    ],
+    "dropped_regions": [],
+    "status": "accepted",
+    "reason": null,
+    "record_digest": "27ad806711a643cbb050b234ce3a396da53235fdd42778eaff68a48bb7b6d6b1"
+  }
+]

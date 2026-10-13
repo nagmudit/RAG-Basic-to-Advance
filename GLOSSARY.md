@@ -220,7 +220,7 @@ The glossary will grow with chapter writing. Each future entry will include: **p
 | Native kernel / adapter boundary | Measured library search call / application conversion, candidate processing and captured stage work around it | 18 | End-to-end assistant latency or pure CPU-cycle measurement |
 | Batch throughput | Queries completed per elapsed second under a declared matrix-call batch and execution configuration | 18 | Individual-request p95 or service capacity under independent arrivals |
 | Filtered geometric oracle | Exact nearest eligible items under the actual authorized roster and task predicate | 18 | Filtering an unfiltered bounded shortlist or human relevance judgments |
-| Predicate selectivity / underfill | Fraction of a population matching a task condition / fewer than requested valid results returned | 18 | Authorization strength / proof the corpus has no relevant evidence |
+| Predicate selectivity / underfill | Fraction of a declared authorized population matching a task condition / fewer than min(k, eligible count) valid results when that count is known | 18; refined 21 | Authorization strength / proof the corpus has no relevant evidence |
 | Namespace / collection | Logical organization/routing boundary with implementation-specific semantics | 18 | Authentication or permission enforcement by its name alone |
 | Durability / search visibility / consistency | Survival under a stated failure / observable indexed change / relationships between read/write observations | 18 | Interchangeable guarantees or a successful local snapshot load |
 | Write acknowledgment / visibility lag | Confirmation with a declared completion meaning / delay from a source/write event to specified searchable state | 18 | Automatic durable replicated indexing or embedding time alone |
@@ -324,3 +324,18 @@ The glossary will grow with chapter writing. Each future entry will include: **p
 | Evidence atom recall | Fully covered independently judged source spans divided by required atoms; stage/cutoff explicit | 20 | Chunk-ID recall, partial coverage or answer correctness |
 | Duplicate source fraction | One minus unique/emitted nonwhitespace canonical positions under governed alias equality | 20 | Semantic redundancy, token duplication or cross-tenant merging |
 | Embedding truncation | Model input silently cut at encoder token limit unless checked/refused | 20 | Canonical text deletion or selected-context budget |
+
+## Chapter 21 metadata and filter terms
+
+| Preferred term | Mechanism and definition | First chapter | Distinguish from |
+|---|---|---|---|
+| Governed metadata schema | Versioned field types, owners, allowed values and missing-value semantics | 21 | Arbitrary parser dictionary or verified source truth |
+| Trusted principal / authorization policy version | Verified identity context supplied to permissions / identity of grant-rule semantics | 21 | User-requested tenant, source owner or relevance feature |
+| Task predicate / authorized universe | Exact task condition / corpus subset permitted before relevance scoring | 21 | Interchangeable filters or permission inferred from query text |
+| Metadata digest | Content identity of governed attributes including schema/policy | 21 | Source-text digest, signature or current revocation proof |
+| Half-open timestamp interval | Aware instant range including lower bound and excluding upper bound | 21 | Locale calendar day, effective validity or naive timestamp |
+| Prefilter / task postfilter | Select task IDs before scoring / select task survivors after bounded authorized shortlist | 18; deep treatment 21 | Global ACL enforcement after private scoring |
+| ANN-aware task filtering | Integrate task acceptance/probing/expansion into approximate search inside an authorized universe | 21 | Guaranteed recall, private graph transit or filter API syntax |
+| Eligible-oracle recall | Returned overlap with exact top min(k, eligible count) under declared score/ties | 18; refined 21 | Judged relevance recall, context availability or answer confidence |
+| Empty-task correctness | Candidate emptiness on reviewed tasks with no eligible evidence | 21 | Generated abstention, completeness or every empty search being correct |
+| Task-ineligible transit | Traversal through an authorized vertex that fails the task predicate | 21 | Authorization to inspect a private vector |

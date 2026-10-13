@@ -484,6 +484,52 @@
       "invalid_cross_workload_inferences": "No improvement against Chapter19 extraction or V3/V4 metrics; no train/dev/test/production/generalization, answer correctness, generator token budget, OCR or learned semantic/RAPTOR/late-chunking claim.",
       "source": "projects/V5/evidence_spans_ch20.json",
       "source_manifest_sha256": "c25448b7cf7e8b910dd7d55d18a9ac43d84e2d3920831d0d3b1c7fb22be828b1"
+    },
+    {
+      "workload_id": "ch21-metadata-predicates-v1",
+      "chapters_using_it": [
+        21
+      ],
+      "corpus_version": "ch21-two-tenant-policy-fixtures-v1",
+      "query_set_version": "ch21-twelve-filter-probes-v1",
+      "qrels_version": "ch21-source-policy-bound-qrels-v1",
+      "number_of_queries": 12,
+      "judgment_count": 108,
+      "query_slices": {
+        "exact-date": 2,
+        "date-range": 1,
+        "exact-tenant": 2,
+        "exact-id": 1,
+        "entity": 1,
+        "language": 1,
+        "timezone-boundary": 1,
+        "unauthorized-request": 1,
+        "no-date-match": 1,
+        "missing-language": 1
+      },
+      "purpose": "Authorization-first typed predicates, exact eligible oracle and bounded task postfilters. 17 descriptors,15 accepted; reader A10/B4,one admin-only;9 positive/3 empty questions,11 relevant memberships in108 reviewed authorized pairs.",
+      "valid_comparisons": "Same body-only pinned384 model/typed metadata/principal/queries/qrels/exact scoring/stable ties/k2. Semantic omits task constraints; prefilter and post3/post9 enforce them. Macro relevance recall over9 positives; eligible-oracle recall separate; empty correctness over3. Inherited whole-unit80 encoder-WordPiece context selector measures source availability separately.",
+      "invalid_cross_workload_inferences": "No longitudinal V3/V4/V5 gain, ANN or production latency, authentication/live revocation, train/dev/test/generalization, multilingual model quality, answer-quality/generation/citation/abstention claim. Task postfilter is never ACL enforcement.",
+      "source": "projects/V6/qrels_ch21.json",
+      "source_manifest_sha256": "463988cf6916ce17191ef6aacdaf24e2d0b39bd4ab783faaaf2ded99c26a2096"
+    },
+    {
+      "workload_id": "ch21-authorized-task-bridge-v1",
+      "chapters_using_it": [
+        21
+      ],
+      "corpus_version": "ch21-four-public-nodes-v1",
+      "query_set_version": "ch21-bridge-query-v1",
+      "qrels_version": "preassigned-score-task-top1-v1",
+      "number_of_queries": 1,
+      "judgment_count": 0,
+      "query_slices": [
+        "authorized-task-connectivity"
+      ],
+      "purpose": "Exhaustive traversal with/without task-ineligible transit vertices in one already authorized four-node chain.",
+      "valid_comparisons": "Same graph,entry,preassigned scores and task membership; final eligible node/frontier events.",
+      "invalid_cross_workload_inferences": "Not HNSW,ANN latency,ACL traversal,relevance/generation or longitudinal quality. No train/dev/test.",
+      "source": "projects/V6/chapter-21-experiment.json"
     }
   ]
 }

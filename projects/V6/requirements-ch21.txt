@@ -1,0 +1,8 @@
+# Observed local CPU stack; prepare dependencies separately, no model download.
+numpy==2.4.2
+sentence-transformers==5.2.2
+transformers==4.57.3
+torch==2.10.0
+PyMuPDF==1.27.2
+# Installed torch distribution is 2.10.0+cpu.
+# all-MiniLM-L6-v2 revision8b3219a92973c328a8e22fadcfa821b5dc75636a
