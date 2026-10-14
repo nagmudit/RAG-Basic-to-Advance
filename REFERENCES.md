@@ -223,3 +223,11 @@ This register records primary sources used in written chapters. Concept explanat
 | Unicode Consortium, [Unicode normalization forms, revision 58](https://www.unicode.org/reports/tr15/tr15-58.html) | Canonical versus compatibility equivalence | Field semantics decide allowed transformations; runtime Unicode data is recorded separately. |
 | Manning, Raghavan and Schuetze, [Spelling correction](https://nlp.stanford.edu/IR-book/html/htmledition/spelling-correction-1.html) | Classical correction candidates and context | No automatic spelling correction runs in V7. |
 | Elasticsearch, [Term query](https://www.elastic.co/docs/reference/query-languages/query-dsl/query-dsl-term-query) | Exact indexed term versus analyzed full text | No service runs; mappings/normalizers still define field semantics. |
+
+## Chapter 24 - verified 2026-10-14
+
+| Source | Used for | Scope and caution |
+|---|---|---|
+| Manning, Raghavan and Schuetze, [Pseudo-relevance feedback](https://nlp.stanford.edu/IR-book/html/htmledition/pseudo-relevance-feedback-1.html) and [Rocchio](https://nlp.stanford.edu/IR-book/html/htmledition/the-rocchio71-algorithm-1.html) | Assumed feedback, centroid update and drift | Dense normalized helper differs from sparse negative-weight clipping; neither PRF nor lexical expansion is a fourth benchmark mode. |
+| Gao, Ma, Lin and Callan, [Precise Zero-Shot Dense Retrieval without Relevance Labels](https://aclanthology.org/2023.acl-long.99/), ACL 2023, DOI 10.18653/v1/2023.acl-long.99 | Hypothetical document as retrieval representation | Author-written MiniLM ablation is not original HyDE, a live generator or zero-shot evaluation. Embedding does not guarantee removal of hallucinated intent. |
+| Zheng et al., [Take a Step Back: Evoking Reasoning via Abstraction in Large Language Models](https://arxiv.org/abs/2310.06117), ICLR 2024 | Abstraction and broader conceptual questions | Mechanism/research reading only; no step-back generator or benchmark runs in V7. |

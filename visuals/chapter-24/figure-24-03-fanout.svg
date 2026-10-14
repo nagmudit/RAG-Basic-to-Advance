@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="628.2pt" height="374.76pt" viewBox="0 0 628.2 374.76" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:date>2026-10-14T22:48:00.377835</dc:date>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.11.0, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 374.76
+L 628.2 374.76
+L 628.2 0
+L 0 0
+z
+" style="fill: #ffffff"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 19.755 125.01
+L 173.205 125.01
+Q 175.995 125.01 175.995 122.238
+L 175.995 39.078
+Q 175.995 36.306 173.205 36.306
+L 19.755 36.306
+Q 16.965 36.306 16.965 39.078
+L 16.965 122.238
+Q 16.965 125.01 19.755 125.01
+z
+" clip-path="url(#p16f1de6516)" style="fill: #f4f7fa; stroke: #245a81; stroke-width: 1.8; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_3">
+    <path d="M 231.795 125.01
+L 385.245 125.01
+Q 388.035 125.01 388.035 122.238
+L 388.035 39.078
+Q 388.035 36.306 385.245 36.306
+L 231.795 36.306
+Q 229.005 36.306 229.005 39.078
+L 229.005 122.238
+Q 229.005 125.01 231.795 125.01
+z
+" clip-path="url(#p16f1de6516)" style="fill: #f4f7fa; stroke: #245a81; stroke-width: 1.8; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_4">
+    <path d="M 443.835 125.01
+L 597.285 125.01
+Q 600.075 125.01 600.075 122.238
+L 600.075 39.078
+Q 600.075 36.306 597.285 36.306
+L 443.835 36.306
+Q 441.045 36.306 441.045 39.078
+L 441.045 122.238
+Q 441.045 125.01 443.835 125.01
+z
+" clip-path="url(#p16f1de6516)" style="fill: #f4f7fa; stroke: #245a81; stroke-width: 1.8; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_5">
+    <path d="M 120.195 216.486
+L 508.005 216.486
+Q 510.795 216.486 510.795 213.714
+L 510.795 161.046
+Q 510.795 158.274 508.005 158.274
+L 120.195 158.274
+Q 117.405 158.274 117.405 161.046
+L 117.405 213.714
+Q 117.405 216.486 120.195 216.486
+z
+" clip-path="url(#p16f1de6516)" style="fill: #f4f7fa; stroke: #245a81; stroke-width: 1.8; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_6">
+    <path d="M 198.315 307.962
+L 429.885 307.962
+Q 432.675 307.962 432.675 305.19
+L 432.675 258.066
+Q 432.675 255.294 429.885 255.294
+L 198.315 255.294
+Q 195.525 255.294 195.525 258.066
+L 195.525 305.19
+Q 195.525 307.962 198.315 307.962
+z
+" clip-path="url(#p16f1de6516)" style="fill: #f4f7fa; stroke: #27715b; stroke-width: 1.8; stroke-linejoin: miter"/>
+   </g>
+   <g id="text_1">
+    <text style="font-weight: 700; font-size: 16px; font-family: 'DejaVu Sans'; text-anchor: start" x="18.36" y="26.604" transform="rotate(-0 18.36 26.604)">q07 / MULTI — ch24-frozen-reformulations-v1</text>
+   </g>
+   <g id="text_2">
+    <text style="font-size: 16px; font-family: 'DejaVu Sans'; fill: #172c3c" transform="translate(66.5775 56.009562)">original</text>
+    <text style="font-size: 16px; font-family: 'DejaVu Sans'; fill: #172c3c" transform="translate(52.99375 75.213937)">8 input WP</text>
+    <text style="font-size: 16px; font-family: 'DejaVu Sans'; fill: #172c3c" transform="translate(30.175 94.417062)">14 vector scores</text>
+    <text style="font-size: 16px; font-family: 'DejaVu Sans'; fill: #172c3c" transform="translate(60.09 113.620187)">A17, A12</text>
+   </g>
+   <g id="patch_7">
+    <path d="M 98.455768 123.95117
+Q 205.292388 141.642395 310.253885 159.023116
+" style="fill: none; stroke: #172c3c; stroke-width: 1.7; stroke-linecap: round"/>
+    <path d="M 304.46264 154.82056
+L 310.253885 159.023116
+L 303.417093 161.134579
+" style="fill: none; stroke: #172c3c; stroke-width: 1.7; stroke-linecap: round"/>
+   </g>
+   <g id="text_3">
+    <text style="font-size: 16px; font-family: 'DejaVu Sans'; fill: #172c3c" transform="translate(272.39625 56.009562)">rewrite-1</text>
+    <text style="font-size: 16px; font-family: 'DejaVu Sans'; fill: #172c3c" transform="translate(259.94375 75.213937)">10 input WP</text>
+    <text style="font-size: 16px; font-family: 'DejaVu Sans'; fill: #172c3c" transform="translate(242.215 94.417062)">14 vector scores</text>
+    <text style="font-size: 16px; font-family: 'DejaVu Sans'; fill: #172c3c" transform="translate(272.13 113.620187)">A17, A12</text>
+   </g>
+   <g id="patch_8">
+    <path d="M 308.825837 125.599118
+Q 311.310012 141.642076 313.503345 155.806761
+" style="fill: none; stroke: #172c3c; stroke-width: 1.7; stroke-linecap: round"/>
+    <path d="M 315.68632 148.992466
+L 313.503345 155.806761
+L 309.361694 149.971803
+" style="fill: none; stroke: #172c3c; stroke-width: 1.7; stroke-linecap: round"/>
+   </g>
+   <g id="text_4">
+    <text style="font-size: 16px; font-family: 'DejaVu Sans'; fill: #172c3c" transform="translate(484.43625 56.009562)">rewrite-2</text>
+    <text style="font-size: 16px; font-family: 'DejaVu Sans'; fill: #172c3c" transform="translate(477.07375 75.213937)">9 input WP</text>
+    <text style="font-size: 16px; font-family: 'DejaVu Sans'; fill: #172c3c" transform="translate(454.255 94.417062)">14 vector scores</text>
+    <text style="font-size: 16px; font-family: 'DejaVu Sans'; fill: #172c3c" transform="translate(484.17 113.620187)">A14, A12</text>
+   </g>
+   <g id="patch_9">
+    <path d="M 518.591044 123.967666
+Q 417.329972 141.642005 317.941251 158.989539
+" style="fill: none; stroke: #172c3c; stroke-width: 1.7; stroke-linecap: round"/>
+    <path d="M 324.796153 161.041447
+L 317.941251 158.989539
+L 323.695719 154.736763
+" style="fill: none; stroke: #172c3c; stroke-width: 1.7; stroke-linecap: round"/>
+   </g>
+   <g id="text_5">
+    <text style="font-size: 16px; font-family: 'DejaVu Sans'; fill: #172c3c" transform="translate(155.48 181.934687)">Deduplicated admission: A17, A14, A12</text>
+    <text style="font-size: 16px; font-family: 'DejaVu Sans'; fill: #172c3c" transform="translate(174.41625 201.139062)">Origins: original, rewrite-2, original</text>
+   </g>
+   <g id="text_6">
+    <text style="font-size: 16px; font-family: 'DejaVu Sans'; fill: #172c3c" transform="translate(239.78875 276.182062)">Cap two: A17, A14</text>
+    <text style="font-size: 16px; font-family: 'DejaVu Sans'; fill: #172c3c" transform="translate(229.9975 295.386437)">Both packed (75 WP)</text>
+   </g>
+   <g id="patch_10">
+    <path d="M 314.1 217.102357
+Q 314.1 235.893524 314.1 252.784034
+" style="fill: none; stroke: #172c3c; stroke-width: 1.7; stroke-linecap: round"/>
+    <path d="M 317.3 246.384034
+L 314.1 252.784034
+L 310.9 246.384034
+" style="fill: none; stroke: #172c3c; stroke-width: 1.7; stroke-linecap: round"/>
+   </g>
+   <g id="text_7">
+    <text style="font-size: 16px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #172c3c" x="18.36" y="353.7" transform="rotate(-0 18.36 353.7)">27 input WP; three searches. A12 is visible before the global cap.</text>
+   </g>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="p16f1de6516">
+   <rect x="7.2" y="7.2" width="613.8" height="360.36"/>
+  </clipPath>
+ </defs>
+</svg>

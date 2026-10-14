@@ -372,3 +372,23 @@ The glossary will grow with chapter writing. Each future entry will include: **p
 | Partial evidence fallback | Retrieval with explicitly incomplete operation semantics | 23 | Completed graph traversal or exact aggregation |
 | Required-empty / unsupported | Reviewed evidence absence / unavailable operation | 23 | Timeout or generated abstention |
 | Query-distribution drift | Changed intents, languages or identifier patterns | 23 | Corpus content or retriever representation drift |
+
+## Chapter 24 query-reformulation terms
+
+| Preferred term | Meaning | First chapter | Distinguish from |
+|---|---|---|---|
+| Rewrite / expansion | Replace a search representation / add terms or representations | 24 | Changing the original information need or hard fields |
+| Intent anchor | Original request with typed constraints, trusted principal and source/model/policy identities | 24 | Generated text or cryptographic authentication |
+| Protected atom | Domain-defined exact token whose unsupported change rejects a proposal | 24 | General semantic-equivalence guarantee |
+| Pseudo-relevance feedback (PRF) | Revise retrieval using top results assumed relevant | 24 | User-judged relevance feedback |
+| Rocchio / centroid update | Weighted original plus positive centroid minus negative centroid | 24 | New encoder training; sparse clipping and signed dense conventions differ |
+| Hypothetical passage / HyDE | Document-like query representation / a specific generated-document retrieval research mechanism | 24 | Actual corpus evidence or this source-aware author-written ablation |
+| Step-back question | Broader conceptual question used to seek helpful background | 24 | Losing original source/time/ID constraints |
+| Query drift | Reformulation moves retrieval away from the original need | 24 | Corpus drift or model drift |
+| Query fan-out | Multiple search branches under a shared request | 24 | Independent unlimited budgets |
+| Branch provenance | Actual representation, request and rank/score origin of a candidate | 24 | A reconstructed owner inferred from the final list |
+| Stable interleaving | Admit branch ranks in declared round-robin order and deduplicate first occurrences | 24 | Score calibration, learned ranking or RRF |
+| Required-evidence union recall | Fraction of inspected requirements found in the union of retained branch shortlists | 24 | Recall after a global cap or actual context packing |
+| Decomposition / dependency DAG | Named information requirements / acyclic prerequisite graph | 24 | Multiple paraphrases of one need or completed multi-hop QA |
+| Ready / blocked / budget-pending | Prerequisites satisfied / failed prerequisite prevents progress / work remains but budget is exhausted | 24 | Completed evidence retrieval or a generated answer |
+| Shared representation budget | Parent-level branch/input/step allowance charged across children | 24 | Giving each child the full parent limit or generator-token accounting |

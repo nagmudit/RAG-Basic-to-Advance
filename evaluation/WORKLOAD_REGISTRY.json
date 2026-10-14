@@ -646,6 +646,53 @@
       "purpose": "Controlled exception injection and an actual empty exact-ID task; verify one fallback, two-attempt stop and no constraint widening. No relevance evaluation.",
       "valid_comparisons": "Within each stated fault/empty scenario on the same snapshots and hard constraints. Exceptions are injected immediately, not measured deadline/service timeouts.",
       "source": "projects/V7/chapter-23-experiment.json"
+    },
+    {
+      "chapters_using_it": [
+        24
+      ],
+      "corpus_version": "ch24-extended-ops-capsules-v1",
+      "source_manifest_sha256": "ab507d755338c4bd7affc5772423ca4ad107707d372a315c344f6f289956c2af",
+      "invalid_cross_workload_inferences": "No longitudinal gain over Chapter23/V0-V6: ten sources and new queries were added. No zero-shot, training, generalization, live HyDE generator, score fusion, production latency, answer correctness/faithfulness/citation/abstention claim.",
+      "workload_id": "ch24-frozen-reformulations-v1",
+      "query_set_version": "ch24-sixteen-original-questions-v1",
+      "qrels_version": "ch24-inspected-source-spans-v1",
+      "number_of_queries": 16,
+      "judgment_count": 12,
+      "query_slices": [
+        "guard",
+        "protected-id",
+        "publication",
+        "quantity-counterexample",
+        "reformulation",
+        "required-empty"
+      ],
+      "purpose": "Matched original/multi-query/author-written hypothetical-passage exact dense retrieval; eleven positive questions/twelve inspected source requirements, three required-empty tasks and two guards. Freeze all drafts before ranking; retain semantic drift and inherited duration false trigger.",
+      "valid_comparisons": "Within these questions/capsules/authority/model/typed constraints/k2/context80 only. Branch depth2; multi at most3 branches. Compare union recall and capped/context recall separately; unequal search work is explicit. Three warm repeats, no splits.",
+      "source": "projects/V7/chapter-24-experiment.json",
+      "query_manifest_sha256": "50f84c212f9d874f8d6480dbaeb5ea1c1ac0872b82f6ebcae891366e79c345b0"
+    },
+    {
+      "chapters_using_it": [
+        24
+      ],
+      "corpus_version": "ch24-extended-ops-capsules-v1",
+      "source_manifest_sha256": "ab507d755338c4bd7affc5772423ca4ad107707d372a315c344f6f289956c2af",
+      "invalid_cross_workload_inferences": "No longitudinal gain over Chapter23/V0-V6: ten sources and new queries were added. No zero-shot, training, generalization, live HyDE generator, score fusion, production latency, answer correctness/faithfulness/citation/abstention claim.",
+      "workload_id": "ch24-decomposition-budget-v1",
+      "query_set_version": "ch24-four-task-scheduler-controls-v1",
+      "qrels_version": null,
+      "number_of_queries": 4,
+      "judgment_count": 0,
+      "query_slices": [
+        "budget",
+        "failed-dependency",
+        "cycle",
+        "missing-dependency"
+      ],
+      "purpose": "DAG readiness, shared step budget, failed prerequisites and invalid graphs; scheduler/control only, no retrieval or relevance evaluation.",
+      "valid_comparisons": "Deterministic control states on declared dependency fixtures. No multi-hop QA/retrieval correctness or latency conclusions.",
+      "source": "projects/V7/chapter-24-experiment.json"
     }
   ]
 }

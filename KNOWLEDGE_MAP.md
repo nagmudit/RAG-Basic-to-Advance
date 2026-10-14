@@ -127,3 +127,7 @@ Chapter 22 makes the lifecycle branch executable in [V6](projects/V6/README.md):
 ## Chapter 23 query-plan checkpoint
 
 [V7](projects/V7/README.md) makes query control explicit: original text -> declared surface -> cue/slot/time/reference interpretation -> capability decision -> current/history authorization -> typed task set -> one actual lexical/dense route -> one compatible timeout fallback -> original-version context. A remembered slot never grants authority. Source/operation/slot labels, actual branch pools and declared partial/unsupported/empty reasons precede Chapter 24 reformulation and Chapter 25 fusion. The quantity false trigger and route-quality tie remain measured failures/limits.
+
+## Chapter 24 representation and dependency checkpoint
+
+[Chapter 24](chapters/chapter-24-rewrite-expand-and-decompose-queries.md) adds original intent anchor → bounded representations → original authorized task view → branch pools/shortlists → deduplicated admission → cap → actual source-version context. Feedback labels/assumptions precede centroid arithmetic; hypothetical text remains a representation, never evidence. Distinct requirements → dependency DAG → readiness → shared budget → completion/partial/blocking is a separate control branch. The implemented scheduler does not yet supply evidence-derived slots or multi-hop QA. Per-branch coverage/work and the multi-query tie/hypothetical regressions precede Chapter25 fusion; evidence-dependent iteration waits for Chapter35. [Construction and lab](labs/chapter-24/LAB.md) make these dependencies observable.

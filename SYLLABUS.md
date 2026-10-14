@@ -317,6 +317,8 @@ The core question evolves throughout: **Which evidence enters the LLM's context,
 
 #### Chapter 24 — Rewrite, expand, and decompose queries
 
+- **Authored materials:** [Chapter](chapters/chapter-24-rewrite-expand-and-decompose-queries.md) · [Lab](labs/chapter-24/LAB.md) · [Solutions](solutions/chapter-24-solutions.md) · [V7 checkpoint](projects/V7/README.md#chapter-24--bounded-reformulation-checkpoint).
+
 - **Objective:** Increase candidate recall without creating unsupported intent.
 - **Prerequisites:** Chapters 09, 11–13, and 23.
 - **Section 1 — Lexical and semantic reformulation.** Topic: expansion; micro-concepts: synonyms, spelling variants, pseudo-relevance feedback, multiple paraphrases, HyDE hypothetical passage, step-back prompts and their failure modes.

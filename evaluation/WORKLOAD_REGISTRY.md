@@ -79,3 +79,12 @@ All three use [the checked record](../projects/V6/chapter-22-experiment.json) an
 | `ch23-bounded-route-fallback-v1` | Same corpus / `ch23-four-controlled-failure-cases-v1` / no qrels | Four immediate-exception/empty controls; same hard constraints, one alternative/two-attempt stop. | No measured service deadlines, relevance improvement, graph/SQL execution or generated abstention. |
 
 The [JSON registry](WORKLOAD_REGISTRY.json) binds source and original-query manifests. [V7 record](../projects/V7/chapter-23-experiment.json) retains 333 main and 10 control envelopes. Positive/empty/guard/plan metrics have distinct denominators; three repeats are not independent new questions. Hypothetical budget 60 arithmetic is not a new result on context 80.
+
+## Chapter 24 representation and scheduler workloads
+
+| Workload ID | Corpus / query / judgment identity | Purpose and valid comparison | Invalid inference |
+|---|---|---|---|
+| `ch24-frozen-reformulations-v1` | `ch24-extended-ops-capsules-v1` / `ch24-sixteen-original-questions-v1` / `ch24-inspected-source-spans-v1`; 28 capsules, 16 questions, 11 positives/12 requirements, 3 required-empty, 2 guards | Original/multi/author-written hypothetical representation under identical authority/typed constraints/frozen dense/k2/context80; compare branch union, cap, actual context and unequal work. Three warm repeats are not extra independent questions. | No longitudinal Chapter23 improvement: corpus and queries differ. No live/zero-shot HyDE, splits/generalization, score fusion, production latency or answer-quality claim. |
+| `ch24-decomposition-budget-v1` | Same source-manifest identity / `ch24-four-task-scheduler-controls-v1` / no qrels | Four readiness/shared-budget/failure/cycle/missing-task controls; abstract scheduler states only. Index/model are null. | No retrieval, evidence-derived slot, multi-hop QA correctness or relevance result. |
+
+[The JSON registry](WORKLOAD_REGISTRY.json) appends these entries without altering historical workload objects. [Labels](../projects/V7/qrels_ch24.json) bind original questions, reviewed source/version/locator/policy requirements, descriptor, authority and frozen drafts. The [record](../projects/V7/chapter-24-experiment.json) retains the original/multi tie, extra work, two hypothetical drift losses and the inherited positive duration miss. All later changed drafts/sources/questions require a reviewed comparison identity.

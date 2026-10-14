@@ -76,14 +76,18 @@ ColBERTv2 also introduces the **LoTTE** evaluation setting. Read its dataset con
 | IMPORTANT | [RETRO](https://arxiv.org/abs/2112.04426), Borgeaud et al., 2021 | Chunk retrieval and cross-attention during language-model training/inference; separate frozen retriever from trained model components. |
 | OPTIONAL | [Atlas](https://arxiv.org/abs/2208.03299), Izacard et al., 2022 | Retrieval-augmented few-shot learning and index updates; distinguish retrieval timing and joint training choices. |
 
-## Track H — Query transformation and multi-hop (after Chapters 24 and 35)
+## Track H — Query transformation and multi-hop (transformation after Chapter 24; interleaving after Chapter 35)
 
 | Tier | Paper | Mechanism and reading question |
 |---|---|---|
-| IMPORTANT | [HyDE](https://arxiv.org/abs/2212.10496), Gao et al., 2022 | Hypothetical document as query representation; never treat the generated hypothetical text as evidence. |
+| CORE | [Classical PRF](https://nlp.stanford.edu/IR-book/html/htmledition/pseudo-relevance-feedback-1.html) and [Rocchio](https://nlp.stanford.edu/IR-book/html/htmledition/the-rocchio71-algorithm-1.html), Manning et al., 2008 | After 24: distinguish judged versus assumed feedback, work the centroid update, and identify drift. |
+| IMPORTANT | [HyDE](https://aclanthology.org/2023.acl-long.99/), Gao et al., ACL 2023 (preprint 2022) | After 24: hypothetical document as query representation; never evidence. Compare the paper's live generator/encoder with V7's source-aware author-written MiniLM ablation; do not transfer its zero-shot claims. |
+| OPTIONAL | [Step-Back Prompting](https://arxiv.org/abs/2310.06117), Zheng et al., ICLR 2024 | After 24: abstraction toward principles; ask when broader retrieval helps and when it drops task constraints. Research mechanism, not a V7 benchmark mode. |
 | CORE | [IRCoT](https://arxiv.org/abs/2212.10509), Trivedi et al., 2022 | Interleave reasoning and retrieval; compare hop-level evidence recall with final answer accuracy. |
 | IMPORTANT | [HotpotQA](https://arxiv.org/abs/1809.09600), Yang et al., 2018 | Supporting-fact supervision; inspect whether a system truly uses both hops. |
 | OPTIONAL | [MuSiQue](https://arxiv.org/abs/2108.00573), Trivedi et al., 2021 | Composed multi-hop questions designed to reduce shortcut solutions; test decomposition assumptions. |
+
+**Chapter 24 checkpoint (verified 2026-10-14):** [Construction and paired lab](labs/chapter-24/LAB.md) precede these readings. Explain the original/multi tie and two hypothetical drift losses on `ch24-frozen-reformulations-v1` without calling source-aware frozen drafts a live HyDE evaluation. DAG readiness is already available; evidence-dependent IRCoT/multi-hop reading still waits for Chapter 35. Not every paper is mandatory.
 
 ## Track I — Adaptive, active and corrective retrieval (after Chapter 36)
 

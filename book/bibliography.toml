@@ -135,7 +135,7 @@ url = "https://lucene.apache.org/core/10_1_0/"
 cite_text = "Lucene 10.1.0 API"
 
 [[work]]
-match = ["https://www.unicode.org/reports/tr15"]
+match = ["https://www.unicode.org/reports/tr15", "https://unicode.org/reports/tr15"]
 authors = "Unicode Consortium"
 year = "n.d."
 title = "Unicode Standard Annex #15: Unicode Normalization Forms"
@@ -156,3 +156,22 @@ year = "n.d."
 title = "Elasticsearch documentation"
 url = "https://www.elastic.co/docs/reference/elasticsearch"
 cite_text = "Elasticsearch documentation"
+
+[[work]]
+match = ["https://arxiv.org/abs/2212.10496", "https://aclanthology.org/2023.acl-long.99"]
+authors = "Gao, L., Ma, X., Lin, J., & Callan, J."
+cite = "Gao et al."
+year = "2023"
+title = "Precise Zero-Shot Dense Retrieval without Relevance Labels"
+venue = "ACL 2023 (Long Papers), 1762–1777"
+url = "https://aclanthology.org/2023.acl-long.99/"
+doi = "10.18653/v1/2023.acl-long.99"
+
+[[work]]
+match = ["https://arxiv.org/abs/2310.06117"]
+authors = "Zheng, H. S., et al."
+cite = "Zheng et al."
+year = "2024"
+title = "Take a Step Back: Evoking Reasoning via Abstraction in Large Language Models"
+venue = "ICLR 2024"
+url = "https://arxiv.org/abs/2310.06117"

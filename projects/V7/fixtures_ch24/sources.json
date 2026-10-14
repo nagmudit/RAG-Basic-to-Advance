@@ -1,0 +1,282 @@
+[
+  {
+    "source_id": "A11",
+    "source_version": "1",
+    "path": "A11.md",
+    "allowed_scopes": [
+      "A-reader"
+    ],
+    "license": "book-authored-fixture",
+    "indexing_allowed": true,
+    "retention_policy": "book-fixture-snapshot",
+    "metadata": {
+      "schema_version": "ch21-metadata-1",
+      "policy_version": "ch21-role-intersection-1",
+      "record_id": "A11",
+      "tenant": "A",
+      "acl_roles": [
+        "reader"
+      ],
+      "owner": "ops-A",
+      "published_at": "2026-10-14T00:00:00Z",
+      "updated_at": "2026-10-14T00:00:00Z",
+      "version": 1,
+      "entity": "Orion",
+      "language": "en",
+      "parent_id": "A/manual",
+      "extraction_confidence": 0.99
+    }
+  },
+  {
+    "source_id": "A12",
+    "source_version": "1",
+    "path": "A12.md",
+    "allowed_scopes": [
+      "A-reader"
+    ],
+    "license": "book-authored-fixture",
+    "indexing_allowed": true,
+    "retention_policy": "book-fixture-snapshot",
+    "metadata": {
+      "schema_version": "ch21-metadata-1",
+      "policy_version": "ch21-role-intersection-1",
+      "record_id": "A12",
+      "tenant": "A",
+      "acl_roles": [
+        "reader"
+      ],
+      "owner": "ops-A",
+      "published_at": "2026-10-14T00:00:00Z",
+      "updated_at": "2026-10-14T00:00:00Z",
+      "version": 1,
+      "entity": "Orion",
+      "language": "en",
+      "parent_id": "A/manual",
+      "extraction_confidence": 0.99
+    }
+  },
+  {
+    "source_id": "A13",
+    "source_version": "1",
+    "path": "A13.md",
+    "allowed_scopes": [
+      "A-reader"
+    ],
+    "license": "book-authored-fixture",
+    "indexing_allowed": true,
+    "retention_policy": "book-fixture-snapshot",
+    "metadata": {
+      "schema_version": "ch21-metadata-1",
+      "policy_version": "ch21-role-intersection-1",
+      "record_id": "A13",
+      "tenant": "A",
+      "acl_roles": [
+        "reader"
+      ],
+      "owner": "ops-A",
+      "published_at": "2026-10-14T00:00:00Z",
+      "updated_at": "2026-10-14T00:00:00Z",
+      "version": 1,
+      "entity": "Orion",
+      "language": "en",
+      "parent_id": "A/manual",
+      "extraction_confidence": 0.99
+    }
+  },
+  {
+    "source_id": "A14",
+    "source_version": "1",
+    "path": "A14.md",
+    "allowed_scopes": [
+      "A-reader"
+    ],
+    "license": "book-authored-fixture",
+    "indexing_allowed": true,
+    "retention_policy": "book-fixture-snapshot",
+    "metadata": {
+      "schema_version": "ch21-metadata-1",
+      "policy_version": "ch21-role-intersection-1",
+      "record_id": "A14",
+      "tenant": "A",
+      "acl_roles": [
+        "reader"
+      ],
+      "owner": "ops-A",
+      "published_at": "2026-10-14T00:00:00Z",
+      "updated_at": "2026-10-14T00:00:00Z",
+      "version": 1,
+      "entity": "Orion",
+      "language": "en",
+      "parent_id": "A/manual",
+      "extraction_confidence": 0.99
+    }
+  },
+  {
+    "source_id": "A15",
+    "source_version": "1",
+    "path": "A15.md",
+    "allowed_scopes": [
+      "A-reader"
+    ],
+    "license": "book-authored-fixture",
+    "indexing_allowed": true,
+    "retention_policy": "book-fixture-snapshot",
+    "metadata": {
+      "schema_version": "ch21-metadata-1",
+      "policy_version": "ch21-role-intersection-1",
+      "record_id": "A15",
+      "tenant": "A",
+      "acl_roles": [
+        "reader"
+      ],
+      "owner": "ops-A",
+      "published_at": "2026-10-14T00:00:00Z",
+      "updated_at": "2026-10-14T00:00:00Z",
+      "version": 1,
+      "entity": "Green",
+      "language": "en",
+      "parent_id": "A/manual",
+      "extraction_confidence": 0.99
+    }
+  },
+  {
+    "source_id": "A16",
+    "source_version": "1",
+    "path": "A16.md",
+    "allowed_scopes": [
+      "A-reader"
+    ],
+    "license": "book-authored-fixture",
+    "indexing_allowed": true,
+    "retention_policy": "book-fixture-snapshot",
+    "metadata": {
+      "schema_version": "ch21-metadata-1",
+      "policy_version": "ch21-role-intersection-1",
+      "record_id": "A16",
+      "tenant": "A",
+      "acl_roles": [
+        "reader"
+      ],
+      "owner": "ops-A",
+      "published_at": "2026-10-14T00:00:00Z",
+      "updated_at": "2026-10-14T00:00:00Z",
+      "version": 1,
+      "entity": "Orion",
+      "language": "en",
+      "parent_id": "A/manual",
+      "extraction_confidence": 0.99
+    }
+  },
+  {
+    "source_id": "A17",
+    "source_version": "1",
+    "path": "A17.md",
+    "allowed_scopes": [
+      "A-reader"
+    ],
+    "license": "book-authored-fixture",
+    "indexing_allowed": true,
+    "retention_policy": "book-fixture-snapshot",
+    "metadata": {
+      "schema_version": "ch21-metadata-1",
+      "policy_version": "ch21-role-intersection-1",
+      "record_id": "A17",
+      "tenant": "A",
+      "acl_roles": [
+        "reader"
+      ],
+      "owner": "ops-A",
+      "published_at": "2026-10-14T00:00:00Z",
+      "updated_at": "2026-10-14T00:00:00Z",
+      "version": 1,
+      "entity": "Orion",
+      "language": "en",
+      "parent_id": "A/manual",
+      "extraction_confidence": 0.99
+    }
+  },
+  {
+    "source_id": "A18",
+    "source_version": "1",
+    "path": "A18.md",
+    "allowed_scopes": [
+      "A-reader"
+    ],
+    "license": "book-authored-fixture",
+    "indexing_allowed": true,
+    "retention_policy": "book-fixture-snapshot",
+    "metadata": {
+      "schema_version": "ch21-metadata-1",
+      "policy_version": "ch21-role-intersection-1",
+      "record_id": "A18",
+      "tenant": "A",
+      "acl_roles": [
+        "reader"
+      ],
+      "owner": "ops-A",
+      "published_at": "2026-10-14T00:00:00Z",
+      "updated_at": "2026-10-14T00:00:00Z",
+      "version": 1,
+      "entity": "Orion",
+      "language": "en",
+      "parent_id": "A/manual",
+      "extraction_confidence": 0.99
+    }
+  },
+  {
+    "source_id": "B05",
+    "source_version": "1",
+    "path": "B05.md",
+    "allowed_scopes": [
+      "B-reader"
+    ],
+    "license": "book-authored-fixture",
+    "indexing_allowed": true,
+    "retention_policy": "book-fixture-snapshot",
+    "metadata": {
+      "schema_version": "ch21-metadata-1",
+      "policy_version": "ch21-role-intersection-1",
+      "record_id": "B05",
+      "tenant": "B",
+      "acl_roles": [
+        "reader"
+      ],
+      "owner": "ops-B",
+      "published_at": "2026-10-14T00:00:00Z",
+      "updated_at": "2026-10-14T00:00:00Z",
+      "version": 1,
+      "entity": "Orion",
+      "language": "en",
+      "parent_id": "B/manual",
+      "extraction_confidence": 0.99
+    }
+  },
+  {
+    "source_id": "A19",
+    "source_version": "1",
+    "path": "A19.md",
+    "allowed_scopes": [
+      "A-admin"
+    ],
+    "license": "book-authored-fixture",
+    "indexing_allowed": true,
+    "retention_policy": "book-fixture-snapshot",
+    "metadata": {
+      "schema_version": "ch21-metadata-1",
+      "policy_version": "ch21-role-intersection-1",
+      "record_id": "A19",
+      "tenant": "A",
+      "acl_roles": [
+        "admin"
+      ],
+      "owner": "ops-A",
+      "published_at": "2026-10-14T00:00:00Z",
+      "updated_at": "2026-10-14T00:00:00Z",
+      "version": 1,
+      "entity": "Orion",
+      "language": "en",
+      "parent_id": "A/manual",
+      "extraction_confidence": 0.99
+    }
+  }
+]

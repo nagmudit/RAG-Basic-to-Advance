@@ -1,0 +1,342 @@
+{
+  "schema_version": "ch24-frozen-author-drafts-1",
+  "frozen_date": "2026-10-14",
+  "origin": "Author-written before encoding/ranking; author knows fictional sources. No language model was called. Not zero-shot HyDE.",
+  "prompt_specification": "Given the original request and immutable typed constraints, draft search paraphrases or one plausible retrieval passage. Preserve identifiers, entity, numbers and time intent. The passage is a representation, never evidence. Do not change permissions. Stop at the declared budget.",
+  "queries": {
+    "q01": {
+      "multi": [
+        {
+          "branch_id": "rewrite-1",
+          "text": "Orion HTTP 503 exponential backoff and jitter",
+          "kind": "paraphrase",
+          "lock": "99cca73ce671ffbf23845d2e2086e90ffd6bc0f9a0be78186c6a0087165ddf35"
+        },
+        {
+          "branch_id": "rewrite-2",
+          "text": "Orion retry unavailable service HTTP 503",
+          "kind": "paraphrase",
+          "lock": "99cca73ce671ffbf23845d2e2086e90ffd6bc0f9a0be78186c6a0087165ddf35"
+        },
+        {
+          "branch_id": "rewrite-3",
+          "text": "Orion retry unavailable service HTTP 429",
+          "kind": "paraphrase",
+          "lock": "99cca73ce671ffbf23845d2e2086e90ffd6bc0f9a0be78186c6a0087165ddf35"
+        }
+      ],
+      "hypothetical": {
+        "branch_id": "hypothesis",
+        "text": "Orion HTTP 503 service unavailable responses require exponential backoff with random jitter.",
+        "kind": "author_written_hypothetical_passage",
+        "lock": "99cca73ce671ffbf23845d2e2086e90ffd6bc0f9a0be78186c6a0087165ddf35"
+      }
+    },
+    "q02": {
+      "multi": [
+        {
+          "branch_id": "rewrite-1",
+          "text": "Orion credential rotation revoke old API key",
+          "kind": "paraphrase",
+          "lock": "7be5888eaaa9bcde3a46ff06178729ebca9d6f3f0e1ea688fd08db7e9ab440f0"
+        },
+        {
+          "branch_id": "rewrite-2",
+          "text": "Orion replace and verify API key then revoke old secret",
+          "kind": "paraphrase",
+          "lock": "7be5888eaaa9bcde3a46ff06178729ebca9d6f3f0e1ea688fd08db7e9ab440f0"
+        },
+        {
+          "branch_id": "rewrite-3",
+          "text": "Orion credential rotation revoke old API key",
+          "kind": "paraphrase",
+          "lock": "7be5888eaaa9bcde3a46ff06178729ebca9d6f3f0e1ea688fd08db7e9ab440f0"
+        }
+      ],
+      "hypothetical": {
+        "branch_id": "hypothesis",
+        "text": "Orion credential rotation issues a replacement API key, verifies it, and revokes the old secret.",
+        "kind": "author_written_hypothetical_passage",
+        "lock": "7be5888eaaa9bcde3a46ff06178729ebca9d6f3f0e1ea688fd08db7e9ab440f0"
+      }
+    },
+    "q03": {
+      "multi": [
+        {
+          "branch_id": "rewrite-1",
+          "text": "Orion restore accidentally deleted files from backup",
+          "kind": "paraphrase",
+          "lock": "a0f39da9e66730c303d040ebd10b0ae2b2e75858f67fca24b57dae7ee1f1b34d"
+        },
+        {
+          "branch_id": "rewrite-2",
+          "text": "Orion snapshot recovery checksum validation",
+          "kind": "paraphrase",
+          "lock": "a0f39da9e66730c303d040ebd10b0ae2b2e75858f67fca24b57dae7ee1f1b34d"
+        },
+        {
+          "branch_id": "oversize",
+          "text": "Orion restoration restoration restoration restoration restoration restoration restoration restoration restoration restoration restoration restoration restoration restoration restoration restoration restoration restoration restoration restoration restoration restoration restoration restoration restoration restoration restoration restoration restoration restoration restoration restoration restoration restoration restoration restoration restoration restoration restoration restoration restoration restoration restoration restoration restoration restoration restoration restoration restoration restoration restoration restoration restoration restoration restoration restoration restoration restoration restoration restoration restoration restoration restoration restoration restoration restoration restoration restoration restoration restoration restoration restoration restoration restoration restoration restoration restoration restoration restoration restoration restoration restoration restoration restoration restoration restoration restoration restoration restoration restoration restoration restoration restoration restoration restoration restoration restoration restoration restoration restoration restoration restoration restoration restoration restoration restoration restoration restoration restoration restoration restoration restoration restoration restoration restoration restoration restoration restoration restoration restoration ",
+          "kind": "paraphrase",
+          "lock": "a0f39da9e66730c303d040ebd10b0ae2b2e75858f67fca24b57dae7ee1f1b34d"
+        }
+      ],
+      "hypothetical": {
+        "branch_id": "hypothesis",
+        "text": "Orion restoration recovers deleted files from a verified backup snapshot after checking its checksum.",
+        "kind": "author_written_hypothetical_passage",
+        "lock": "a0f39da9e66730c303d040ebd10b0ae2b2e75858f67fca24b57dae7ee1f1b34d"
+      }
+    },
+    "q04": {
+      "multi": [
+        {
+          "branch_id": "rewrite-1",
+          "text": "Orion invoice payment deadline purchase order",
+          "kind": "paraphrase",
+          "lock": "a8b38b79fa1d3de3d8b09adbdd9ef940c4bd39dada70d17e5f646df22ee8d893"
+        },
+        {
+          "branch_id": "rewrite-2",
+          "text": "Orion bill payment terms finance",
+          "kind": "paraphrase",
+          "lock": "a8b38b79fa1d3de3d8b09adbdd9ef940c4bd39dada70d17e5f646df22ee8d893"
+        }
+      ],
+      "hypothetical": {
+        "branch_id": "hypothesis",
+        "text": "Orion billing invoices show the purchase order and a payment deadline after the invoice date.",
+        "kind": "author_written_hypothetical_passage",
+        "lock": "a8b38b79fa1d3de3d8b09adbdd9ef940c4bd39dada70d17e5f646df22ee8d893"
+      }
+    },
+    "q05": {
+      "multi": [
+        {
+          "branch_id": "rewrite-1",
+          "text": "Green HTTP 429 retry delay jitter",
+          "kind": "paraphrase",
+          "lock": "2f797e432faafa498ce8c320dac97100f855636c454eaa049fb6c434f6e2bff0"
+        },
+        {
+          "branch_id": "rewrite-2",
+          "text": "Green HTTP 429 rate limit recovery",
+          "kind": "paraphrase",
+          "lock": "2f797e432faafa498ce8c320dac97100f855636c454eaa049fb6c434f6e2bff0"
+        }
+      ],
+      "hypothetical": {
+        "branch_id": "hypothesis",
+        "text": "Green HTTP 429 rate limits require a delay with random jitter and bounded retries.",
+        "kind": "author_written_hypothetical_passage",
+        "lock": "2f797e432faafa498ce8c320dac97100f855636c454eaa049fb6c434f6e2bff0"
+      }
+    },
+    "q06": {
+      "multi": [
+        {
+          "branch_id": "rewrite-1",
+          "text": "Orion rollback waiting period after approval",
+          "kind": "paraphrase",
+          "lock": "1a846466a275b60528109886d2ec3d27d2b582bfb73f9c1a1471e3d2f8a600e9"
+        },
+        {
+          "branch_id": "rewrite-2",
+          "text": "Orion incident commander final rollback authorization",
+          "kind": "paraphrase",
+          "lock": "1a846466a275b60528109886d2ec3d27d2b582bfb73f9c1a1471e3d2f8a600e9"
+        }
+      ],
+      "hypothetical": {
+        "branch_id": "hypothesis",
+        "text": "Orion rollback requires a signed approval record and a waiting period before the coordinator starts.",
+        "kind": "author_written_hypothetical_passage",
+        "lock": "1a846466a275b60528109886d2ec3d27d2b582bfb73f9c1a1471e3d2f8a600e9"
+      }
+    },
+    "q07": {
+      "multi": [
+        {
+          "branch_id": "rewrite-1",
+          "text": "Orion TLS certificate trust store reload",
+          "kind": "paraphrase",
+          "lock": "a7cce49a765f0fff42652a3e2c14ddd5e4077e17a5ce0c9daefa2af49d40e9ac"
+        },
+        {
+          "branch_id": "rewrite-2",
+          "text": "Orion payment invoice purchase order",
+          "kind": "paraphrase",
+          "lock": "a7cce49a765f0fff42652a3e2c14ddd5e4077e17a5ce0c9daefa2af49d40e9ac"
+        }
+      ],
+      "hypothetical": {
+        "branch_id": "hypothesis",
+        "text": "Orion billing invoices require purchase orders and payment before the deadline.",
+        "kind": "author_written_hypothetical_passage",
+        "lock": "a7cce49a765f0fff42652a3e2c14ddd5e4077e17a5ce0c9daefa2af49d40e9ac"
+      }
+    },
+    "q08": {
+      "multi": [
+        {
+          "branch_id": "rewrite-1",
+          "text": "Orion audit log retention investigation of restoration",
+          "kind": "paraphrase",
+          "lock": "8e73d1a45c224a85a4b45e47d79ada5770ff0e4c2bc8e1d8f0f6ac3fc2db51e2"
+        },
+        {
+          "branch_id": "rewrite-2",
+          "text": "Orion snapshot restore files backup checksum",
+          "kind": "paraphrase",
+          "lock": "8e73d1a45c224a85a4b45e47d79ada5770ff0e4c2bc8e1d8f0f6ac3fc2db51e2"
+        }
+      ],
+      "hypothetical": {
+        "branch_id": "hypothesis",
+        "text": "Orion snapshot restoration recovers lost files from a verified backup and validates its checksum.",
+        "kind": "author_written_hypothetical_passage",
+        "lock": "8e73d1a45c224a85a4b45e47d79ada5770ff0e4c2bc8e1d8f0f6ac3fc2db51e2"
+      }
+    },
+    "q09": {
+      "multi": [
+        {
+          "branch_id": "rewrite-1",
+          "text": "A11 HTTP 503 exponential backoff",
+          "kind": "paraphrase",
+          "lock": "6e115294cd9a651d1b3e8c4e4f6235de8d3ce628efe8943a5ab1a78e8e4b675a"
+        },
+        {
+          "branch_id": "rewrite-2",
+          "text": "A12 HTTP 503 retry credential policy",
+          "kind": "paraphrase",
+          "lock": "6e115294cd9a651d1b3e8c4e4f6235de8d3ce628efe8943a5ab1a78e8e4b675a"
+        }
+      ],
+      "hypothetical": {
+        "branch_id": "hypothesis",
+        "text": "A11 HTTP 429 responses require retries.",
+        "kind": "author_written_hypothetical_passage",
+        "lock": "6e115294cd9a651d1b3e8c4e4f6235de8d3ce628efe8943a5ab1a78e8e4b675a"
+      }
+    },
+    "q10": {
+      "multi": [
+        {
+          "branch_id": "rewrite-1",
+          "text": "Orion coordinator rollback approval waiting policy",
+          "kind": "paraphrase",
+          "lock": "a8fee07f156a110d1779c2a54d27b3e0a5c16c5500262e2c4e1162c657efd536"
+        },
+        {
+          "branch_id": "rewrite-2",
+          "text": "Orion signed approval before rollback",
+          "kind": "paraphrase",
+          "lock": "a8fee07f156a110d1779c2a54d27b3e0a5c16c5500262e2c4e1162c657efd536"
+        }
+      ],
+      "hypothetical": {
+        "branch_id": "hypothesis",
+        "text": "Orion rollback policy requires signed approval before the coordinator waits.",
+        "kind": "author_written_hypothetical_passage",
+        "lock": "a8fee07f156a110d1779c2a54d27b3e0a5c16c5500262e2c4e1162c657efd536"
+      }
+    },
+    "q11": {
+      "multi": [
+        {
+          "branch_id": "rewrite-1",
+          "text": "A19 Orion administrator key rotation",
+          "kind": "paraphrase",
+          "lock": "33c4fc00fda87f8d61b7f2fd5cad33acd2306d25bd775bfe04df49c6e21d1980"
+        }
+      ],
+      "hypothetical": {
+        "branch_id": "hypothesis",
+        "text": "A19 Orion privileged credential rotation requires an officer.",
+        "kind": "author_written_hypothetical_passage",
+        "lock": "33c4fc00fda87f8d61b7f2fd5cad33acd2306d25bd775bfe04df49c6e21d1980"
+      }
+    },
+    "q12": {
+      "multi": [
+        {
+          "branch_id": "rewrite-1",
+          "text": "A11 HTTP 503 exponential backoff",
+          "kind": "paraphrase",
+          "lock": "3a521b93477b04513679aeb1664ad1fe18c9569de42dd12f7d8a562fbf30148c"
+        }
+      ],
+      "hypothetical": {
+        "branch_id": "hypothesis",
+        "text": "A11 HTTP 503 retries use exponential backoff.",
+        "kind": "author_written_hypothetical_passage",
+        "lock": "3a521b93477b04513679aeb1664ad1fe18c9569de42dd12f7d8a562fbf30148c"
+      }
+    },
+    "q13": {
+      "multi": [
+        {
+          "branch_id": "rewrite-1",
+          "text": "Orion approval records total",
+          "kind": "paraphrase",
+          "lock": "b08f71c8b9c867aae66f5cccc59fcaf6bff347262eb4d2dc62cf658baf406835"
+        }
+      ],
+      "hypothetical": {
+        "branch_id": "hypothesis",
+        "text": "Orion records need signed approval.",
+        "kind": "author_written_hypothetical_passage",
+        "lock": "b08f71c8b9c867aae66f5cccc59fcaf6bff347262eb4d2dc62cf658baf406835"
+      }
+    },
+    "q14": {
+      "multi": [
+        {
+          "branch_id": "rewrite-1",
+          "text": "retry with backoff",
+          "kind": "paraphrase",
+          "lock": "e12cc4d717a8ad62027b97a162cdbe90a5e83118f1ee703c754b910d51f5b367"
+        }
+      ],
+      "hypothetical": {
+        "branch_id": "hypothesis",
+        "text": "Retries need backoff.",
+        "kind": "author_written_hypothetical_passage",
+        "lock": "e12cc4d717a8ad62027b97a162cdbe90a5e83118f1ee703c754b910d51f5b367"
+      }
+    },
+    "q15": {
+      "multi": [
+        {
+          "branch_id": "rewrite-1",
+          "text": "A03 coordinator rollback delay",
+          "kind": "paraphrase",
+          "lock": "be2df358fbe542c0705e0347ab95a221e17673fd791c07d09fa650e36a8441f9"
+        }
+      ],
+      "hypothetical": {
+        "branch_id": "hypothesis",
+        "text": "A03 rollback needs signed approval and a wait.",
+        "kind": "author_written_hypothetical_passage",
+        "lock": "be2df358fbe542c0705e0347ab95a221e17673fd791c07d09fa650e36a8441f9"
+      }
+    },
+    "q16": {
+      "multi": [
+        {
+          "branch_id": "rewrite-1",
+          "text": "Green rollback waiting period",
+          "kind": "paraphrase",
+          "lock": "484a48a00e66b4dd432496570414168a616ffb623f8820ff8b67bd08c0b14816"
+        }
+      ],
+      "hypothetical": {
+        "branch_id": "hypothesis",
+        "text": "Green rollback waits after signed approval.",
+        "kind": "author_written_hypothetical_passage",
+        "lock": "484a48a00e66b4dd432496570414168a616ffb623f8820ff8b67bd08c0b14816"
+      }
+    }
+  }
+}

@@ -1,6 +1,6 @@
-# V7 — Query interpretation and routing checkpoint
+# V7 — Query interpretation and bounded reformulation
 
-[Chapter 23](../../chapters/chapter-23-normalize-classify-route-and-contextualize-queries.md) begins V7 from completed [V6](../V6/README.md). V0–V6 code, source capsules, judgments, vectors and result files remain historical and unchanged. Chapter 24 rewriting and Chapter 25 fusion are unstarted; this is the query-routing stage, not completed V7.
+[Chapter 23](../../chapters/chapter-23-normalize-classify-route-and-contextualize-queries.md) begins V7 from completed [V6](../V6/README.md). V0–V6 code, source capsules, judgments, vectors and result files remain historical and unchanged. Its routing checkpoint below is frozen. Chapter 24's separate reformulation checkpoint follows it; Chapter 25 fusion remains unstarted, so V7 is not yet complete.
 
 ## Construct, then inspect
 
@@ -44,4 +44,41 @@ python -X utf8 -m unittest discover -s projects/V7 -p 'test*.py' -v
 python -X utf8 visuals/chapter-23/render_visuals.py
 ```
 
-A measured new query policy/dataset needs reviewed source/query/permission/judgment identities and a registered comparison. Digest replacement is not reassessment. See [lab](../../labs/chapter-23/LAB.md), [solutions](../../solutions/chapter-23-solutions.md), [figures](../../visuals/chapter-23/render_visuals.py) and [author review](../../authoring/reviews/chapter-23.md). Chapter 24 remains unstarted.
+A measured new query policy/dataset needs reviewed source/query/permission/judgment identities and a registered comparison. Digest replacement is not reassessment. See [lab](../../labs/chapter-23/LAB.md), [solutions](../../solutions/chapter-23-solutions.md), [figures](../../visuals/chapter-23/render_visuals.py) and [author review](../../authoring/reviews/chapter-23.md). Chapter 24 follows.
+
+## Chapter 24 — Bounded reformulation checkpoint
+
+Complete [Chapter 24](../../chapters/chapter-24-rewrite-expand-and-decompose-queries.md) and independently implement admission and dependency readiness in [A0](../../labs/chapter-24/LAB.md#a0--construct-before-opening-the-reference) before opening [reformulate_ch24.py](reformulate_ch24.py). The fresh checker imports only the learner's implementation. [Separate solutions](../../solutions/chapter-24-solutions.md) explain the reference; running it earns no construction credit.
+
+### Implemented data path
+
+[retrieval_ch24.py](retrieval_ch24.py) extends a copy of the frozen source capsule roster with ten governed fixtures. Eighteen historical body vectors remain unchanged; ten new bodies use the same pinned MiniLM body-only contract. Current authority, task fields and as-of selection still precede scoring. Each proposal binds the original request, principal, typed constraints, source authority, model contract and admission-policy version. Cheap atom checks reject changed IDs/numbers/known entities; they do not prove semantic equivalence.
+
+The original/multi/hypothetical modes hold exact dense retrieval fixed, including for IDs, to isolate representation. Multi retains original plus at most two paraphrases. Hypothetical uses one admitted **author-written**, source-aware passage, with original fallback on rejection. No language model generates queries. Both methods keep the original interpreter and constraints; the duration/count false trigger remains untouched. At most three branches, 128 admitted whitespace words, 192 executed-input encoder WordPieces, branch depth two, global candidate cap two and inherited context budget eighty are explicit. Encoder inputs over 256 WordPieces reject without truncation.
+
+Branch shortlists are interleaved by rank, deduplicated by immutable unit identity and capped. First occurrence owns its actual branch score; the merge never compares those scores or invents fused relevance. Raw pools, shortlists, full admission, capped IDs, origin branches and real packing outcomes survive in correlated frames. Current grants are checked again before source-version forward fetch. Hypothetical text cannot become context. Generator/token/monetary fields stay null when unrun.
+
+### Checked comparison
+
+**`ch24-frozen-reformulations-v1`** binds 28 source-version capsules, 25 logical heads, 16 original questions and frozen source-aware drafts. Eleven positive questions have twelve inspected source requirements; three required-empty tasks and two guards have separate denominators. The known answerable duration query remains a positive miss. No train/dev/test or zero-shot/generalization claim is made.
+
+Original/multi/hypothetical union, Recall@2 and context recall are **.9091/.9091/.7273**. Multi scores 19.25 versus 6.4375 query-unit pairs per original task, about 2.99 times the work, with no required-recall gain. Hypothetical q06/q07 lose authority/certificate evidence through topic drift. Guard and required-empty decisions are correct, but intended outcome accuracy over all 16 is 15/16. No additional **required** evidence is lost at cap/packing; other candidates can still be lost, as original q07's rejected A12 shows. Both q10 publications fit in 68 WordPieces.
+
+All ten positive questions that reach retrieval already have full original recall; the fixed interpreter blocks the eleventh. The feasible ceiling is therefore 10/11. This workload cannot establish whether reformulation recovers a correctly interpreted baseline retrieval miss. A follow-up needs independently frozen questions with that headroom. Deliberately faulty hypothetical drafts illustrate possible failures, not a live generator's error frequency.
+
+[chapter-24-experiment.json](chapter-24-experiment.json) retains 291 parent/child envelopes (144 parents/147 branches), 38 separately measured prepared-input encodes and one privileged document-build sample. Three shuffled warm repeats use seed 24014 and prepared vectors. Search percentiles exclude proposal generation, request-time encoding, packing and serving overhead; they are not end-to-end service latency. The snapshot stores actual body/query vectors and token counts under an independently expected digest. Forty-eight query/method outcomes replay through all raw/intermediate/final scores, branch provenance and ordered context.
+
+**`ch24-decomposition-budget-v1`** has four scheduler-only controls: shared step exhaustion, failed prerequisites, cycle and missing task. It records readiness/completion/blocking with null retrieval/context/model stages. No evidence-dependent multi-hop execution or answer is implied. Fault injection in tests checks partial branch failure and redacted errors; it is not a deadline experiment.
+
+### Reproduce Chapter 24
+
+```powershell
+$ch24Runner = 'projects/V7/experiment_ch24.py'
+$ch24Output = 'build/ch24-local-results.json'
+$ch24Artifacts = 'build/ch24-local-index'
+python -u -X utf8 $ch24Runner --output $ch24Output --artifacts $ch24Artifacts
+python -X utf8 -m unittest discover -s projects/V7 -p 'test*.py' -v
+python -X utf8 visuals/chapter-24/render_visuals.py
+```
+
+Use the existing pinned stack; model downloads remain disabled. The [labels](qrels_ch24.json), [drafts/prompt specification](reformulations_ch24.json), [sources](fixtures_ch24/sources.json), [runner](experiment_ch24.py), [snapshot](index_ch24/snapshot.json), [lab](../../labs/chapter-24/LAB.md), [solutions](../../solutions/chapter-24-solutions.md), [visual source](../../visuals/chapter-24/render_visuals.py) and [author review](../../authoring/reviews/chapter-24.md) form one checkpoint. Changed sources/questions/drafts require reviewed identities and a registered comparison. Do not refresh expected hashes to hide changed judgments. No Chapter 23 longitudinal gain, learned/live query generator, score fusion, production service or generated-answer metric is claimed. Chapter 25 remains unstarted.
