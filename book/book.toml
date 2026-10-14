@@ -38,6 +38,17 @@ code_pt = 8.5             # code size used for line-length checks (see book.css)
 short_code_lines = 25     # code blocks up to this length are kept on one page
 dense_diagram_nodes = 28  # Mermaid diagrams above this node count get a density warning
 
+# Smaller paragraph/heading gaps prevent short spill pages in these documents.
+# Body/code type sizes and line heights stay at the normal publisher settings.
+compact_documents = [
+  "labs/chapter-01/LAB.md",
+  "chapters/chapter-02-build-the-first-rag-loop.md",
+  "chapters/chapter-04-what-an-llm-does-with-supplied-context.md",
+  "labs/chapter-11/LAB.md",
+  "labs/chapter-13/LAB.md",
+  "chapters/chapter-14-sparse-neural-search-and-late-interaction.md",
+]
+
 # ------------------------------------------------------------------ sections
 [sections.preface]
 title = "Preface"

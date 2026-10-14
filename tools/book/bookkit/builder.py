@@ -449,7 +449,8 @@ class BookBuilder:
                 self._inline(tok, path)
         body = self.md.renderer.render(tokens, self.md.options, {})
         body = self._postprocess(body, maths, marks, doc_id, chapter, src_rel)
-        return Block(f'<section class="doc" id="{doc_id}" data-src="{src_rel}">\n{body}</section>\n',
+        classes = "doc layout-compact" if src_rel in self.layout.get("compact_documents", []) else "doc"
+        return Block(f'<section class="{classes}" id="{doc_id}" data-src="{src_rel}">\n{body}</section>\n',
                      headings)
 
     def _inline(self, tok: Token, path: Path):

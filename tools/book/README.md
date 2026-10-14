@@ -64,6 +64,7 @@ Every PDF records its build date, version, git commit, dirty flag, profile and b
 - **Figure metadata:** put it in a paragraph starting `*Alt text:*` right after the figure.
 - **Index:** mark index terms with `@index{term}` or `@index{term|subterm}`. The markers are removed from the text, and an Index section is built once any exist.
 - **Reader front matter** lives in `book/front/`. `{{written_span}}`, `{{planned_total}}`, `{{planned_parts}}`, `{{solutions_note}}`, `{{edition}}` and `{{version}}` are filled in at build time.
+- **Short spill pages:** `layout.compact_documents` opts named source files into smaller paragraph, heading and list gaps. It changes spacing only; font sizes, leading, source content and forced chapter/lab starts remain intact. Rebuild and inspect the affected endings when adding an entry. The nearly-empty-page check stays enabled.
 
 ## Requirements
 

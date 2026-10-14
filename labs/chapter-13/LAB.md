@@ -20,7 +20,9 @@ The runner uses the pinned locally cached model unless you explicitly allow a do
 $env:HF_HUB_OFFLINE='1'
 $env:TRANSFORMERS_OFFLINE='1'
 python -X utf8 -m unittest discover -s projects/V3 -p 'test_*.py' -v
-python -X utf8 projects/V3/experiment_ch13.py --index-dir projects/V3/index_ch13-local --output projects/V3/chapter-13-experiment-local.json
+$ch13Index = 'projects/V3/index_ch13-local'
+$ch13Output = 'projects/V3/chapter-13-experiment-local.json'
+python -X utf8 projects/V3/experiment_ch13.py --index-dir $ch13Index --output $ch13Output
 python -X utf8 visuals/chapter-13/plot-13-01-dense-flow.py
 python -X utf8 visuals/chapter-13/plot-13-02-score-trace.py
 ```

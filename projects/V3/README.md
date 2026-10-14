@@ -26,18 +26,24 @@ From the repository root:
 
 ```powershell
 python -X utf8 -m unittest discover -s projects/V3 -p 'test_*.py' -v
-python -X utf8 projects/V3/experiment_ch10.py --output projects/V3/chapter-10-experiment-local.json
+$ch10Output = 'projects/V3/chapter-10-experiment-local.json'
+python -X utf8 projects/V3/experiment_ch10.py --output $ch10Output
 python -X utf8 visuals/chapter-10/plot-10-01-metric-geometry.py
 python -X utf8 projects/V3/contrastive_math.py
-python -X utf8 projects/V3/experiment_ch11.py --output projects/V3/chapter-11-experiment-local.json
+$ch11Output = 'projects/V3/chapter-11-experiment-local.json'
+python -X utf8 projects/V3/experiment_ch11.py --output $ch11Output
 python -X utf8 visuals/chapter-11/plot-11-01-encoders-and-batch.py
-python -X utf8 projects/V3/experiment_ch12.py --output projects/V3/chapter-12-experiment-local.json
+$ch12Output = 'projects/V3/chapter-12-experiment-local.json'
+python -X utf8 projects/V3/experiment_ch12.py --output $ch12Output
 python -X utf8 visuals/chapter-12/plot-12-01-training-matrix.py
 python -X utf8 visuals/chapter-12/plot-12-02-document-split.py
-python -X utf8 projects/V3/experiment_ch13.py --index-dir projects/V3/index_ch13-local --output projects/V3/chapter-13-experiment-local.json
+$ch13Index = 'projects/V3/index_ch13-local'
+$ch13Output = 'projects/V3/chapter-13-experiment-local.json'
+python -X utf8 projects/V3/experiment_ch13.py --index-dir $ch13Index --output $ch13Output
 python -X utf8 visuals/chapter-13/plot-13-01-dense-flow.py
 python -X utf8 visuals/chapter-13/plot-13-02-score-trace.py
-python -X utf8 projects/V3/experiment_ch14.py --output projects/V3/chapter-14-experiment-local.json
+$ch14Output = 'projects/V3/chapter-14-experiment-local.json'
+python -X utf8 projects/V3/experiment_ch14.py --output $ch14Output
 python -X utf8 visuals/chapter-14/plot-14-01-maxsim-grid.py
 ```
 

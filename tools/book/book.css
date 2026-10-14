@@ -264,6 +264,18 @@ h2.lab-title {
   border-radius: 0 4pt 4pt 0;
 }
 .lab h3 { color: var(--lab); }
+
+/* Opt-in document spacing for short chapter/lab spills. Keep type and leading;
+   only gaps change, so prose, equations, code and figure labels remain intact. */
+.doc.layout-compact > p { margin-bottom: 5pt; }
+.doc.layout-compact h2:not(.lab-title) { margin-top: 16pt; }
+.doc.layout-compact h3 { margin-top: 12pt; }
+.doc.layout-compact h4 { margin-top: 10pt; }
+.doc.layout-compact ul, .doc.layout-compact ol { margin-bottom: 6pt; }
+.doc.layout-compact li { margin-top: 1pt; margin-bottom: 1pt; }
+/* This lab's long corruption probe leaves a short submission spill. */
+.doc.layout-compact[data-src="labs/chapter-13/LAB.md"] > p { margin-bottom: 3pt; }
+.doc.layout-compact[data-src="labs/chapter-13/LAB.md"] h3 { margin-top: 10pt; }
 .practice-title { color: var(--accent); }
 .answer-space { break-before: page; font-family: var(--sans); }
 .answer-space .as-title { font-size: 12pt; font-weight: 600; color: var(--lab); margin-bottom: 8pt; }
